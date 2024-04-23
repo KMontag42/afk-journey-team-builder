@@ -7,40 +7,58 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col items-center p-24">
       <h1 className="text-4xl">Create Formation</h1>
       <div className="grid grid-cols-3 gap-4">
-        <div className="h-16 w-16 bg-gray-200 rounded-full">
+        <div className="h-16 w-16 bg-gray-400 rounded-full">
           <CharacterPicker selectedCharacter={""} />
         </div>
-        <div className="h-16 w-16 bg-gray-200 rounded-full"></div>
-        <div className="h-16 w-16 bg-gray-200 rounded-full"></div>
+        <div className="h-16 w-16 bg-gray-400 rounded-full">
+          <CharacterPicker selectedCharacter={""} />
+        </div>
+        <div className="h-16 w-16 bg-gray-400 rounded-full">
+          <CharacterPicker selectedCharacter={""} />
+        </div>
       </div>
       <div className="grid grid-cols-4 gap-4">
-        <div className="h-16 w-16 bg-gray-200 rounded-full">
-          <CharacterPicker selectedCharacter='thoran' />
+        <div className="h-16 w-16 bg-gray-400 rounded-full">
+          <CharacterPicker selectedCharacter={""} />
         </div>
-        <div className="h-16 w-16 bg-gray-200 rounded-full"></div>
-        <div className="h-16 w-16 bg-gray-200 rounded-full"></div>
-        <div className="h-16 w-16 bg-gray-200 rounded-full"></div>
+        <div className="h-16 w-16 bg-gray-400 rounded-full">
+          <CharacterPicker selectedCharacter={""} />
+        </div>
+        <div className="h-16 w-16 bg-gray-400 rounded-full">
+          <CharacterPicker selectedCharacter={""} />
+        </div>
+        <div className="h-16 w-16 bg-gray-400 rounded-full">
+          <CharacterPicker selectedCharacter={""} />
+        </div>
       </div>
       <div className="grid grid-cols-5 gap-4">
-        <div className="invisible h-16 w-16 bg-gray-200 rounded-full"></div>
-        <div className="h-16 w-16 bg-gray-200 rounded-full">
-          <CharacterPicker selectedCharacter='cecia' />
+        <div className="invisible h-16 w-16 bg-gray-400 rounded-full"></div>
+        <div className="h-16 w-16 bg-gray-400 rounded-full">
+          <CharacterPicker selectedCharacter={""} />
         </div>
-        <div className="h-16 w-16 bg-gray-200 rounded-full">
-          <CharacterPicker selectedCharacter='damian' />
+        <div className="h-16 w-16 bg-gray-400 rounded-full">
+          <CharacterPicker selectedCharacter={""} />
         </div>
-        <div className="h-16 w-16 bg-gray-200 rounded-full"></div>
-        <div className="h-16 w-16 bg-gray-200 rounded-full"></div>
+        <div className="h-16 w-16 bg-gray-400 rounded-full">
+          <CharacterPicker selectedCharacter={""} />
+        </div>
+        <div className="h-16 w-16 bg-gray-400 rounded-full">
+          <CharacterPicker selectedCharacter={""} />
+        </div>
       </div>
       <div className="grid grid-cols-4 gap-4">
-        <div className="invisible h-16 w-16 bg-gray-200 rounded-full"></div>
-        <div className="invisible h-16 w-16 bg-gray-200 rounded-full"></div>
-        <div className="h-16 w-16 bg-gray-200 rounded-full"><CharacterPicker selectedCharacter='rowan' /></div>
-        <div className="h-16 w-16 bg-gray-200 rounded-full"></div>
+        <div className="invisible h-16 w-16 bg-gray-400 rounded-full"></div>
+        <div className="invisible h-16 w-16 bg-gray-400 rounded-full"></div>
+        <div className="h-16 w-16 bg-gray-400 rounded-full">
+          <CharacterPicker selectedCharacter={""} />
+        </div>
+        <div className="h-16 w-16 bg-gray-400 rounded-full">
+          <CharacterPicker selectedCharacter={""} />
+        </div>
       </div>
       <div>
         <p>Share this formation:</p>
-        <input readOnly type="text" value="https://afkjourney.com/formation?characters=thoran,cecia,damian,rowan" />
+        <input readOnly type="text" value="https://afkjfb.krm.sh/formation?f=420" />
       </div>
     </main>
   );
