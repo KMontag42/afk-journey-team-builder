@@ -15,10 +15,11 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.372.0",
     "next": "14.2.2",
-    "react": "^18.2.0",
+    "react": "^18.3.0",
     "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dnd-touch-backend": "^16.0.1",
-    "react-dom": "^18.2.0",
+    "react-dom": "^18.3.0",
     "sst": "ion",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7"
