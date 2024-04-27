@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import { DndProvider } from "react-dnd"
-import { TouchBackend } from "react-dnd-touch-backend"
+import { DndContext } from '@dnd-kit/core';
 
 export default function Providers({
   children,
@@ -10,8 +9,8 @@ export default function Providers({
   children: React.ReactNode
 }>) {
   return (
-    <DndProvider backend={TouchBackend}>
+    <DndContext>
       {children}
-    </DndProvider>
+    </DndContext>
   )
 }
