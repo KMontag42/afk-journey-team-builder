@@ -23,13 +23,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import awakening from "@/public/artifacts/awakening.png";
-import blazing from "@/public/artifacts/blazing.png";
-import confining from "@/public/artifacts/confining.png";
-import enlightening from "@/public/artifacts/enlightening.png";
-import ironwall from "@/public/artifacts/ironwall.png";
-import starshard from "@/public/artifacts/starshard.png";
-import tekLogo from "@/public/tekLogo.png";
+
+import { spellImages, tekImages, slotImages, characterImages } from "@/lib/images";
 
 export default function Home() {
   const [selectedCharacter, setSelectedCharacter] = useState<string | null>(
@@ -52,15 +47,6 @@ export default function Home() {
     defaultValue: 'blazing',
   });
   
-  const spellImages: { [key: string]: StaticImageData } = {
-    "awakening": awakening,
-    "blazing": blazing,
-    "confining": confining,
-    "enlightening": enlightening,
-    "ironwall": ironwall,
-    "starshard": starshard,
-  };
-
   function updateFormation(slot: number, character: string) {
     const characterInSlot = formation[slot];
     const characterIndex = formation.indexOf(character);
@@ -109,26 +95,21 @@ export default function Home() {
   }
 
   function CharacterSlot(props: { index: number; onClick?: () => void }) {
-    const character = formation[props.index];
+    const slotNumber = props.index - 1;
+    const character = formation[slotNumber];
     if (character) {
       const isSelected = selectedCharacter === character;
-      const className = `rounded-full h-16 w-16 ${isSelected ? "border border-yellow-400 border-4" : ""}`;
+      const className = `rounded h-16 w-16 ${isSelected ? "border border-yellow-400 border-4" : ""}`;
       return (
         <div className={className} onClick={props.onClick}>
-          <Avatar className="h-full w-full">
-            <AvatarImage
-              src={getCharacterImage(character)}
-              className="object-cover"
-            />
-            <AvatarFallback>{character}</AvatarFallback>
-          </Avatar>
+          <Image src={characterImages[character.toLowerCase()]} alt={character} className="-mt-1" />
         </div>
       );
     }
     return (
       <div className="h-16 w-16" onClick={props.onClick}>
         <Image
-          src={emptySlot}
+          src={slotImages[`Tile${props.index}`] || emptySlot}
           alt="Empty Slot"
           style={{ objectFit: "cover" }}
           className="-mt-1"
@@ -142,11 +123,12 @@ export default function Home() {
   }
 
   function onCharacterSlotClick(slot: number) {
+    const slotNumber = slot - 1;
     if (selectedCharacter) {
-      updateFormation(slot, selectedCharacter);
+      updateFormation(slotNumber, selectedCharacter);
       setSelectedCharacter(null);
-    } else if (formation[slot]) {
-      setSelectedCharacter(formation[slot]);
+    } else if (formation[slotNumber]) {
+      setSelectedCharacter(formation[slotNumber]);
     }
   }
 
@@ -177,30 +159,30 @@ export default function Home() {
         </PopoverContent>
       </Popover>
 
-      <div className="mx-4 flex flex-col items-center mb-4">
-        <Image src={tekLogo} alt="Tekken Emblem" className="w-56" />
+      <div className="flex flex-col items-center">
+        <Image src={tekImages['tekLogo']} alt="Tekken Emblem" className="w-56" />
       </div>
 
-      <div className="flex flex-col items-center mr-6">
+      <div className="flex flex-col items-center mr-6 my-4">
         <div className="grid grid-cols-3 gap-2">
-          <CharacterSlot index={0} onClick={() => onCharacterSlotClick(0)} />
-          <CharacterSlot index={1} onClick={() => onCharacterSlotClick(1)} />
-          <CharacterSlot index={2} onClick={() => onCharacterSlotClick(2)} />
+          <CharacterSlot index={10} onClick={() => onCharacterSlotClick(10)} />
+          <CharacterSlot index={12} onClick={() => onCharacterSlotClick(12)} />
+          <CharacterSlot index={13} onClick={() => onCharacterSlotClick(13)} />
         </div>
         <div className="grid grid-cols-4 gap-2">
-          <CharacterSlot index={3} onClick={() => onCharacterSlotClick(3)} />
-          <CharacterSlot index={4} onClick={() => onCharacterSlotClick(4)} />
           <CharacterSlot index={5} onClick={() => onCharacterSlotClick(5)} />
           <CharacterSlot index={6} onClick={() => onCharacterSlotClick(6)} />
+          <CharacterSlot index={9} onClick={() => onCharacterSlotClick(9)} />
+          <CharacterSlot index={11} onClick={() => onCharacterSlotClick(11)} />
         </div>
         <div className="grid grid-cols-5 gap-2">
           <div className="invisible h-14 w-14 bg-gray-400 rounded-full"></div>
+          <CharacterSlot index={2} onClick={() => onCharacterSlotClick(2)} />
+          <CharacterSlot index={4} onClick={() => onCharacterSlotClick(4)} />
           <CharacterSlot index={7} onClick={() => onCharacterSlotClick(7)} />
-          <CharacterSlot index={8} onClick={() => onCharacterSlotClick(8)} />
-          <CharacterSlot index={9} onClick={() => onCharacterSlotClick(9)} />
           <CharacterSlot
-            index={10}
-            onClick={() => onCharacterSlotClick(10)}
+            index={8}
+            onClick={() => onCharacterSlotClick(8)}
           />
         </div>
         <div className="grid grid-cols-4 gap-2">
@@ -213,29 +195,30 @@ export default function Home() {
             <DropdownMenuContent className="w-48">
               <DropdownMenuSeparator />
               <DropdownMenuRadioGroup value={spell} onValueChange={setSpell}>
-                <DropdownMenuRadioItem value="awakening"><Image height={36} src={awakening} alt="awakening" className="mr-2" />Awakening</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="blazing"><Image height={36} src={blazing} alt="blazing" className="mr-2" />Blazing</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="confining"><Image height={36} src={confining} alt="confining" className="mr-2" />Confining</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="enlightening"><Image height={36} src={enlightening} alt="enlightening" className="mr-2" />Enlightening</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="ironwall"><Image height={36} src={ironwall} alt="ironwall" className="mr-2" />Ironwall</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="starshard"><Image height={36} src={starshard} alt="starshard" className="mr-2" />Starshard</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="awakening"><Image height={36} src={spellImages["awakening"]} alt="awakening" className="mr-2" />Awakening</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="blazing"><Image height={36} src={spellImages["blazing"]} alt="blazing" className="mr-2" />Blazing</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="confining"><Image height={36} src={spellImages["confining"]} alt="confining" className="mr-2" />Confining</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="enlightening"><Image height={36} src={spellImages["enlightening"]} alt="enlightening" className="mr-2" />Enlightening</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="ironwall"><Image height={36} src={spellImages["ironwall"]} alt="ironwall" className="mr-2" />Ironwall</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="starshard"><Image height={36} src={spellImages["starshard"]} alt="starshard" className="mr-2" />Starshard</DropdownMenuRadioItem>
               </DropdownMenuRadioGroup>
             </DropdownMenuContent>
           </DropdownMenu>
 
           <div className="invisible h-14 w-14 bg-gray-400 rounded-full"></div>
           <CharacterSlot
-            index={11}
-            onClick={() => onCharacterSlotClick(11)}
+            index={1}
+            onClick={() => onCharacterSlotClick(1)}
           />
           <CharacterSlot
-            index={12}
-            onClick={() => onCharacterSlotClick(12)}
+            index={3}
+            onClick={() => onCharacterSlotClick(3)}
           />
         </div>
       </div>
-      <ScrollArea className="h-56 flex flex-col items-center">
-        <div className={`grid grid-cols-5 gap-2 pt-4`}>
+      
+      <ScrollArea className="h-56 flex flex-col items-center w-full">
+        <div className={`grid grid-cols-5 gap-2 pt-4 mx-6`}>
           {characters.map((character) => {
             const isSelected = selectedCharacter === character;
             const className = `w-14 h-14 ${isSelected ? "border border-yellow-400 border-4" : ""}`;
@@ -258,11 +241,12 @@ export default function Home() {
             navigator.clipboard.writeText(window.location.href);
             toast("Formation link copied to clipboard");
           }}
+          className="h-8"
         >
           Share this formation
         </Button>
       </div>
-      <p className="mt-1">
+      <p className="mt-1 text-xs">
         Made with &hearts; by{" "}
         <Link
           className="underline"
