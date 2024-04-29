@@ -117,9 +117,7 @@ export default function Home() {
         Create Formation
         <Popover>
           <PopoverTrigger>
-            <Button className="ml-4 text-xl w-4 h-8" variant={"default"}>
-              ?
-            </Button>
+            <p className="ml-4 text-xl w-4 h-8 underline">?</p>
           </PopoverTrigger>
           <PopoverContent>
             <ul className="p-4 list-disc">
@@ -190,6 +188,15 @@ export default function Home() {
           </Link>
         </Button>
       </div>
+      <p className="mt-2">
+        Made by{" "}
+        <Link
+          className="underline"
+          href={"https://discordapp.com/users/89367326989770752"}
+        >
+          0xKRM
+        </Link>
+      </p>
     </main>
   );
 }
