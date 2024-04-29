@@ -8,12 +8,12 @@ import Image from "next/image";
 import emptySlot from "@/public/emptySlot.png";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 export default function Home() {
   const [characters, setCharacters] = useState<string[]>(Characters)
   const [selectedCharacter, setSelectedCharacter] = useState<string | null>(null)
   const [formation, setFormation] = useState<string[]>(new Array<string>(13).fill(''))
-  const [formationString, setFormationString] = useState<string>('')
   
   function updateFormation(slot: number, character: string) {
     const characterInSlot = formation[slot]
@@ -48,14 +48,13 @@ export default function Home() {
 
     setFormation(formationCopy)
     setCharacters(newCharacters.sort())
-    setFormationString(btoa(formationCopy.join(',')))
   }
 
   function CharacterSlot(props: { index: number, onClick?: () => void }) {
     const character = formation[props.index]
     if (character) {
       const isSelected = selectedCharacter === character
-      const className = `h-16 w-14 ${isSelected ? 'border border-slate-800 rounded-full border-4' : ''}`
+      const className = `rounded-full h-16 w-16 ${isSelected ? 'border border-slate-400 border-4' : ''}`
       return (
         <div className={className} onClick={props.onClick}>
           <Avatar className="h-full w-full">
@@ -66,7 +65,7 @@ export default function Home() {
       )
     }
     return (
-      <div className="h-16 w-14" onClick={props.onClick}>
+      <div className="h-16 w-16" onClick={props.onClick}>
         <Image src={emptySlot} alt="Empty Slot" style={{objectFit: 'cover'}} />
       </div>
     )
@@ -87,7 +86,21 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center pt-8">
-      <h1 className="text-4xl pb-8">Create Formation</h1>
+      <h1 className="text-4xl pb-8">
+      Create Formation
+      <Popover>
+        <PopoverTrigger>
+          <Button className="ml-4 text-xl w-4 h-8" variant={'default'}>?</Button>
+        </PopoverTrigger>
+        <PopoverContent>
+          <ul className="p-4 list-disc">
+            <li>Click on a character to select it, then click on a slot to place it.</li>
+            <li>Click on a character in a slot to select it, then click on a different slot to swap them.</li>
+            <li>Click on a character in a slot to select it, then click on the character to remove it.</li>
+          </ul>
+        </PopoverContent>
+      </Popover>
+      </h1>
       <div className="flex flex-col items-center mr-6">
       <div className="grid grid-cols-3 gap-4">
         <CharacterSlot index={0} onClick={() => onCharacterSlotClick(0)}/>
@@ -128,7 +141,7 @@ export default function Home() {
       </ScrollArea>
       <div className="pt-2">
         <Button asChild>
-          <Link href={`https://builder.afkanalytica.com/?f=${formationString}`}>
+          <Link href={`https://builder.afkanalytica.com/?f=420`}>
             Share this formation
           </Link>
         </Button>
