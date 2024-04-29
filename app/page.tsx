@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useQueryState } from 'nuqs';
 import { Characters, getCharacterImage } from "@/lib/characters";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -13,15 +14,24 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { toast } from "sonner";
 
 export default function Home() {
-  const [characters, setCharacters] = useState<string[]>(Characters);
   const [selectedCharacter, setSelectedCharacter] = useState<string | null>(
     null,
   );
-  const [formation, setFormation] = useState<string[]>(
-    new Array<string>(13).fill(""),
+  const [formation, setFormation] = useQueryState<string[]>(
+    "formation",
+    {
+      parse: (query: string): string[] => atob(query).split(","),
+      serialize: (formation: string[]) => btoa(formation.join(",")),
+      defaultValue: new Array<string>(13).fill(""),
+    },
   );
+  const charactersNotInFormation = Characters.filter(
+    (character) => !formation.includes(character),
+  )
+  const [characters, setCharacters] = useState<string[]>(charactersNotInFormation.sort());
 
   function updateFormation(slot: number, character: string) {
     const characterInSlot = formation[slot];
@@ -74,7 +84,7 @@ export default function Home() {
     const character = formation[props.index];
     if (character) {
       const isSelected = selectedCharacter === character;
-      const className = `rounded-full h-16 w-16 ${isSelected ? "border border-slate-400 border-4" : ""}`;
+      const className = `rounded-full h-16 w-16 ${isSelected ? "border border-yellow-400 border-4" : ""}`;
       return (
         <div className={className} onClick={props.onClick}>
           <Avatar className="h-full w-full">
@@ -167,7 +177,7 @@ export default function Home() {
         <div className={`grid grid-cols-5 gap-2 pt-4`}>
           {characters.map((character) => {
             const isSelected = selectedCharacter === character;
-            const className = `w-14 h-14 ${isSelected ? "border border-slate-800 border-4" : ""}`;
+            const className = `w-14 h-14 ${isSelected ? "border border-yellow-400 border-4" : ""}`;
             return (
               <Avatar
                 className={className}
@@ -182,14 +192,17 @@ export default function Home() {
         </div>
       </ScrollArea>
       <div className="pt-2">
-        <Button asChild>
-          <Link href={`https://builder.afkanalytica.com/?f=420`}>
-            Share this formation
-          </Link>
+        <Button
+          onClick={() => {
+            navigator.clipboard.writeText(window.location.href);
+            toast("Formation link copied to clipboard");
+          }}
+        >
+          Share this formation
         </Button>
       </div>
-      <p className="mt-2">
-        Made by{" "}
+      <p className="mt-1">
+        Made with &hearts; by{" "}
         <Link
           className="underline"
           href={"https://discordapp.com/users/89367326989770752"}
