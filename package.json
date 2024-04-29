@@ -11,6 +11,7 @@
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
     "@radix-ui/react-avatar": "^1.0.4",
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-scroll-area": "^1.0.5",
     "@radix-ui/react-select": "^2.0.0",
@@ -24,6 +25,7 @@
     "nuqs": "^1.17.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "sharp": "^0.33.3",
     "sonner": "^1.4.41",
     "sst": "ion",
     "tailwind-merge": "^2.3.0",

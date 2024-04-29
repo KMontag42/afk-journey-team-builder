@@ -5,7 +5,7 @@ import { useQueryState } from "nuqs";
 import { Characters, getCharacterImage } from "@/lib/characters";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import emptySlot from "@/public/emptySlot.png";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -15,7 +15,21 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { toast } from "sonner";
-import { Suspense } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import awakening from "@/public/artifacts/awakening.png";
+import blazing from "@/public/artifacts/blazing.png";
+import confining from "@/public/artifacts/confining.png";
+import enlightening from "@/public/artifacts/enlightening.png";
+import ironwall from "@/public/artifacts/ironwall.png";
+import starshard from "@/public/artifacts/starshard.png";
+import tekLogo from "@/public/tekLogo.png";
 
 export default function Home() {
   const [selectedCharacter, setSelectedCharacter] = useState<string | null>(
@@ -32,6 +46,20 @@ export default function Home() {
   const [characters, setCharacters] = useState<string[]>(
     charactersNotInFormation.sort(),
   );
+  const [spell, setSpell] = useQueryState<string>("spell", {
+    parse: (query: string): string => atob(query),
+    serialize: (spell: string) => btoa(spell),
+    defaultValue: 'blazing',
+  });
+  
+  const spellImages: { [key: string]: StaticImageData } = {
+    "awakening": awakening,
+    "blazing": blazing,
+    "confining": confining,
+    "enlightening": enlightening,
+    "ironwall": ironwall,
+    "starshard": starshard,
+  };
 
   function updateFormation(slot: number, character: string) {
     const characterInSlot = formation[slot];
@@ -103,6 +131,7 @@ export default function Home() {
           src={emptySlot}
           alt="Empty Slot"
           style={{ objectFit: "cover" }}
+          className="-mt-1"
         />
       </div>
     );
@@ -123,43 +152,48 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center pt-8">
-      <h1 className="text-4xl pb-8">
-        Create Formation
-        <Popover>
-          <PopoverTrigger>
-            <p className="ml-4 text-xl w-4 h-8 underline">?</p>
-          </PopoverTrigger>
-          <PopoverContent>
-            <ul className="p-4 list-disc">
-              <li>
-                Click on a character to select it, then click on a slot to
-                place it.
-              </li>
-              <li>
-                Click on a character in a slot to select it, then click on a
-                different slot to swap them.
-              </li>
-              <li>
-                Click on a character in a slot to select it, then click on the
-                character to remove it.
-              </li>
-            </ul>
-          </PopoverContent>
-        </Popover>
-      </h1>
+      <Popover>
+        <PopoverTrigger>
+          <p className="text-xl underline absolute top-4 end-8">?</p>
+        </PopoverTrigger>
+        <PopoverContent>
+          <ul className="p-4 list-disc">
+            <li>
+              Click on a character to select it, then click on a slot to
+              place it.
+            </li>
+            <li>
+              Click on a character in a slot to select it, then click on a
+              different slot to swap them.
+            </li>
+            <li>
+              Click on a character in a slot to select it, then click on the
+              character to remove it.
+            </li>
+            <li>
+              Click on the spell icon to change the formation spell.
+            </li>
+          </ul>
+        </PopoverContent>
+      </Popover>
+
+      <div className="mx-4 flex flex-col items-center mb-4">
+        <Image src={tekLogo} alt="Tekken Emblem" className="w-56" />
+      </div>
+
       <div className="flex flex-col items-center mr-6">
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-2">
           <CharacterSlot index={0} onClick={() => onCharacterSlotClick(0)} />
           <CharacterSlot index={1} onClick={() => onCharacterSlotClick(1)} />
           <CharacterSlot index={2} onClick={() => onCharacterSlotClick(2)} />
         </div>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-2">
           <CharacterSlot index={3} onClick={() => onCharacterSlotClick(3)} />
           <CharacterSlot index={4} onClick={() => onCharacterSlotClick(4)} />
           <CharacterSlot index={5} onClick={() => onCharacterSlotClick(5)} />
           <CharacterSlot index={6} onClick={() => onCharacterSlotClick(6)} />
         </div>
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-5 gap-2">
           <div className="invisible h-14 w-14 bg-gray-400 rounded-full"></div>
           <CharacterSlot index={7} onClick={() => onCharacterSlotClick(7)} />
           <CharacterSlot index={8} onClick={() => onCharacterSlotClick(8)} />
@@ -169,8 +203,26 @@ export default function Home() {
             onClick={() => onCharacterSlotClick(10)}
           />
         </div>
-        <div className="grid grid-cols-4 gap-4">
-          <div className="invisible h-14 w-14 bg-gray-400 rounded-full"></div>
+        <div className="grid grid-cols-4 gap-2">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <div className="h-16 w-14">
+                <Image src={spellImages[spell]} alt={spell} className="object-contain" />
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-48">
+              <DropdownMenuSeparator />
+              <DropdownMenuRadioGroup value={spell} onValueChange={setSpell}>
+                <DropdownMenuRadioItem value="awakening"><Image height={36} src={awakening} alt="awakening" className="mr-2" />Awakening</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="blazing"><Image height={36} src={blazing} alt="blazing" className="mr-2" />Blazing</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="confining"><Image height={36} src={confining} alt="confining" className="mr-2" />Confining</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="enlightening"><Image height={36} src={enlightening} alt="enlightening" className="mr-2" />Enlightening</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="ironwall"><Image height={36} src={ironwall} alt="ironwall" className="mr-2" />Ironwall</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="starshard"><Image height={36} src={starshard} alt="starshard" className="mr-2" />Starshard</DropdownMenuRadioItem>
+              </DropdownMenuRadioGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <div className="invisible h-14 w-14 bg-gray-400 rounded-full"></div>
           <CharacterSlot
             index={11}
