@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, createRef } from "react";
 import { useQueryState } from "nuqs";
 import { Characters, getCharacterImage } from "@/lib/characters";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import emptySlot from "@/public/emptySlot.png";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -23,6 +23,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import {
+  toPng
+} from "html-to-image";
 
 import { spellImages, tekImages, slotImages, characterImages } from "@/lib/images";
 
@@ -46,6 +49,7 @@ export default function Home() {
     serialize: (spell: string) => btoa(spell),
     defaultValue: 'blazing',
   });
+  const formationRef = createRef<HTMLDivElement>();
   
   function updateFormation(slot: number, character: string) {
     const characterInSlot = formation[slot];
@@ -102,7 +106,7 @@ export default function Home() {
       const className = `rounded h-16 w-16 ${isSelected ? "border border-yellow-400 border-4" : ""}`;
       return (
         <div className={className} onClick={props.onClick}>
-          <Image src={characterImages[character.toLowerCase()]} alt={character} className="-mt-1" />
+          <Image src={characterImages[character.toLowerCase()]} alt={character} className="-mt-1" style={{width: 64}} width={64} />
         </div>
       );
     }
@@ -111,7 +115,8 @@ export default function Home() {
         <Image
           src={slotImages[`Tile${props.index}`] || emptySlot}
           alt="Empty Slot"
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "cover", width: 64 }}
+          width={64}
           className="-mt-1"
         />
       </div>
@@ -163,7 +168,7 @@ export default function Home() {
         <Image src={tekImages['tekLogo']} alt="Tekken Emblem" className="w-56" />
       </div>
 
-      <div className="flex flex-col items-center mr-6 my-4">
+      <div className="flex flex-col items-center mr-6 my-4" ref={formationRef}>
         <div className="grid grid-cols-3 gap-2">
           <CharacterSlot index={10} onClick={() => onCharacterSlotClick(10)} />
           <CharacterSlot index={12} onClick={() => onCharacterSlotClick(12)} />
@@ -238,6 +243,12 @@ export default function Home() {
       <div className="pt-2">
         <Button
           onClick={() => {
+            toPng(formationRef.current!, { height: 300, style: { marginLeft: '-1rem' }}).then((dataUrl) => {
+              const link = document.createElement("a");
+              link.download = "formation.png";
+              link.href = dataUrl;
+              link.click();
+            })
             navigator.clipboard.writeText(window.location.href);
             toast("Formation link copied to clipboard");
           }}
