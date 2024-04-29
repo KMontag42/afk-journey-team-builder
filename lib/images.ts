@@ -24,6 +24,8 @@ import Tile12 from "@/public/slots/Tile12.png";
 import Tile13 from "@/public/slots/Tile13.png";
 
 import EironHex from "@/public/characters/EironHex.png";
+import SatranaHex from "@/public/characters/SatranaHex.png";
+import ViperianHex from "@/public/characters/ViperianHex.png";
 
 export const spellImages: { [key: string]: StaticImageData } = {
   "awakening": awakening,
@@ -90,7 +92,7 @@ export const characterImages: { [key: string]: StaticImageData } = {
   "rhys": EironHex,
   "rowan": EironHex,
   "salazer": EironHex,
-  "satrana": EironHex,
+  "satrana": SatranaHex,
   "scarlita": EironHex,
   "seth": EironHex,
   "shakir": EironHex,
@@ -100,7 +102,7 @@ export const characterImages: { [key: string]: StaticImageData } = {
   "thoran": EironHex,
   "vala": EironHex,
   "valen": EironHex,
-  "viperian": EironHex,
+  "viperian": ViperianHex,
   "walker": EironHex,
 };
 
