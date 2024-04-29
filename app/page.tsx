@@ -217,7 +217,7 @@ export default function Home() {
         </div>
       </div>
       
-      <ScrollArea className="h-56 flex flex-col items-center w-full">
+      <ScrollArea className="h-56 flex flex-col items-center">
         <div className={`grid grid-cols-5 gap-2 pt-4 mx-6`}>
           {characters.map((character) => {
             const isSelected = selectedCharacter === character;
