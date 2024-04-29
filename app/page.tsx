@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useQueryState } from 'nuqs';
+import { useQueryState } from "nuqs";
 import { Characters, getCharacterImage } from "@/lib/characters";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -15,23 +15,23 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { toast } from "sonner";
+import { Suspense } from "react";
 
 export default function Home() {
   const [selectedCharacter, setSelectedCharacter] = useState<string | null>(
     null,
   );
-  const [formation, setFormation] = useQueryState<string[]>(
-    "formation",
-    {
-      parse: (query: string): string[] => atob(query).split(","),
-      serialize: (formation: string[]) => btoa(formation.join(",")),
-      defaultValue: new Array<string>(13).fill(""),
-    },
-  );
+  const [formation, setFormation] = useQueryState<string[]>("formation", {
+    parse: (query: string): string[] => atob(query).split(","),
+    serialize: (formation: string[]) => btoa(formation.join(",")),
+    defaultValue: new Array<string>(13).fill(""),
+  });
   const charactersNotInFormation = Characters.filter(
     (character) => !formation.includes(character),
-  )
-  const [characters, setCharacters] = useState<string[]>(charactersNotInFormation.sort());
+  );
+  const [characters, setCharacters] = useState<string[]>(
+    charactersNotInFormation.sort(),
+  );
 
   function updateFormation(slot: number, character: string) {
     const characterInSlot = formation[slot];
@@ -123,93 +123,104 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center pt-8">
-      <h1 className="text-4xl pb-8">
-        Create Formation
-        <Popover>
-          <PopoverTrigger>
-            <p className="ml-4 text-xl w-4 h-8 underline">?</p>
-          </PopoverTrigger>
-          <PopoverContent>
-            <ul className="p-4 list-disc">
-              <li>
-                Click on a character to select it, then click on a slot to place
-                it.
-              </li>
-              <li>
-                Click on a character in a slot to select it, then click on a
-                different slot to swap them.
-              </li>
-              <li>
-                Click on a character in a slot to select it, then click on the
-                character to remove it.
-              </li>
-            </ul>
-          </PopoverContent>
-        </Popover>
-      </h1>
-      <div className="flex flex-col items-center mr-6">
-        <div className="grid grid-cols-3 gap-4">
-          <CharacterSlot index={0} onClick={() => onCharacterSlotClick(0)} />
-          <CharacterSlot index={1} onClick={() => onCharacterSlotClick(1)} />
-          <CharacterSlot index={2} onClick={() => onCharacterSlotClick(2)} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <h1 className="text-4xl pb-8">
+          Create Formation
+          <Popover>
+            <PopoverTrigger>
+              <p className="ml-4 text-xl w-4 h-8 underline">?</p>
+            </PopoverTrigger>
+            <PopoverContent>
+              <ul className="p-4 list-disc">
+                <li>
+                  Click on a character to select it, then click on a slot to
+                  place it.
+                </li>
+                <li>
+                  Click on a character in a slot to select it, then click on a
+                  different slot to swap them.
+                </li>
+                <li>
+                  Click on a character in a slot to select it, then click on the
+                  character to remove it.
+                </li>
+              </ul>
+            </PopoverContent>
+          </Popover>
+        </h1>
+        <div className="flex flex-col items-center mr-6">
+          <div className="grid grid-cols-3 gap-4">
+            <CharacterSlot index={0} onClick={() => onCharacterSlotClick(0)} />
+            <CharacterSlot index={1} onClick={() => onCharacterSlotClick(1)} />
+            <CharacterSlot index={2} onClick={() => onCharacterSlotClick(2)} />
+          </div>
+          <div className="grid grid-cols-4 gap-4">
+            <CharacterSlot index={3} onClick={() => onCharacterSlotClick(3)} />
+            <CharacterSlot index={4} onClick={() => onCharacterSlotClick(4)} />
+            <CharacterSlot index={5} onClick={() => onCharacterSlotClick(5)} />
+            <CharacterSlot index={6} onClick={() => onCharacterSlotClick(6)} />
+          </div>
+          <div className="grid grid-cols-5 gap-4">
+            <div className="invisible h-14 w-14 bg-gray-400 rounded-full"></div>
+            <CharacterSlot index={7} onClick={() => onCharacterSlotClick(7)} />
+            <CharacterSlot index={8} onClick={() => onCharacterSlotClick(8)} />
+            <CharacterSlot index={9} onClick={() => onCharacterSlotClick(9)} />
+            <CharacterSlot
+              index={10}
+              onClick={() => onCharacterSlotClick(10)}
+            />
+          </div>
+          <div className="grid grid-cols-4 gap-4">
+            <div className="invisible h-14 w-14 bg-gray-400 rounded-full"></div>
+            <div className="invisible h-14 w-14 bg-gray-400 rounded-full"></div>
+            <CharacterSlot
+              index={11}
+              onClick={() => onCharacterSlotClick(11)}
+            />
+            <CharacterSlot
+              index={12}
+              onClick={() => onCharacterSlotClick(12)}
+            />
+          </div>
         </div>
-        <div className="grid grid-cols-4 gap-4">
-          <CharacterSlot index={3} onClick={() => onCharacterSlotClick(3)} />
-          <CharacterSlot index={4} onClick={() => onCharacterSlotClick(4)} />
-          <CharacterSlot index={5} onClick={() => onCharacterSlotClick(5)} />
-          <CharacterSlot index={6} onClick={() => onCharacterSlotClick(6)} />
+        <ScrollArea className="h-56 flex flex-col items-center">
+          <div className={`grid grid-cols-5 gap-2 pt-4`}>
+            {characters.map((character) => {
+              const isSelected = selectedCharacter === character;
+              const className = `w-14 h-14 ${isSelected ? "border border-yellow-400 border-4" : ""}`;
+              return (
+                <Avatar
+                  className={className}
+                  onClick={() => onCharacterClick(character)}
+                  key={character}
+                >
+                  <AvatarImage src={getCharacterImage(character)} />
+                  <AvatarFallback>{character}</AvatarFallback>
+                </Avatar>
+              );
+            })}
+          </div>
+        </ScrollArea>
+        <div className="pt-2">
+          <Button
+            onClick={() => {
+              navigator.clipboard.writeText(window.location.href);
+              toast("Formation link copied to clipboard");
+            }}
+          >
+            Share this formation
+          </Button>
         </div>
-        <div className="grid grid-cols-5 gap-4">
-          <div className="invisible h-14 w-14 bg-gray-400 rounded-full"></div>
-          <CharacterSlot index={7} onClick={() => onCharacterSlotClick(7)} />
-          <CharacterSlot index={8} onClick={() => onCharacterSlotClick(8)} />
-          <CharacterSlot index={9} onClick={() => onCharacterSlotClick(9)} />
-          <CharacterSlot index={10} onClick={() => onCharacterSlotClick(10)} />
-        </div>
-        <div className="grid grid-cols-4 gap-4">
-          <div className="invisible h-14 w-14 bg-gray-400 rounded-full"></div>
-          <div className="invisible h-14 w-14 bg-gray-400 rounded-full"></div>
-          <CharacterSlot index={11} onClick={() => onCharacterSlotClick(11)} />
-          <CharacterSlot index={12} onClick={() => onCharacterSlotClick(12)} />
-        </div>
-      </div>
-      <ScrollArea className="h-56 flex flex-col items-center">
-        <div className={`grid grid-cols-5 gap-2 pt-4`}>
-          {characters.map((character) => {
-            const isSelected = selectedCharacter === character;
-            const className = `w-14 h-14 ${isSelected ? "border border-yellow-400 border-4" : ""}`;
-            return (
-              <Avatar
-                className={className}
-                onClick={() => onCharacterClick(character)}
-                key={character}
-              >
-                <AvatarImage src={getCharacterImage(character)} />
-                <AvatarFallback>{character}</AvatarFallback>
-              </Avatar>
-            );
-          })}
-        </div>
-      </ScrollArea>
-      <div className="pt-2">
-        <Button
-          onClick={() => {
-            navigator.clipboard.writeText(window.location.href);
-            toast("Formation link copied to clipboard");
-          }}
-        >
-          Share this formation
-        </Button>
-      </div>
-      <p className="mt-1">
-        Made with &hearts; by{" "}
-        <Link
-          className="underline"
-          href={"https://discordapp.com/users/89367326989770752"}
-        >
-          0xKRM
-        </Link>
-      </p>
+        <p className="mt-1">
+          Made with &hearts; by{" "}
+          <Link
+            className="underline"
+            href={"https://discordapp.com/users/89367326989770752"}
+          >
+            0xKRM
+          </Link>
+        </p>
+      </Suspense>
     </main>
   );
 }
