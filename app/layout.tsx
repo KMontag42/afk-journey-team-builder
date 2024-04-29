@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 
 import Providers from "@/components/Providers";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,10 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, 'dark')}>
-        <Providers>
-          {children}
-        </Providers>
+      <body className={cn(inter.className, "dark")}>
+        <Providers>{children}</Providers>
+        <Analytics />
       </body>
     </html>
   );
