@@ -50,7 +50,7 @@ export default function Home() {
     defaultValue: 'blazing',
   });
   const formationRef = createRef<HTMLDivElement>();
-  
+
   function updateFormation(slot: number, character: string) {
     const characterInSlot = formation[slot];
     const characterIndex = formation.indexOf(character);
@@ -106,7 +106,7 @@ export default function Home() {
       const className = `rounded h-16 w-16 ${isSelected ? "border border-yellow-400 border-4" : ""}`;
       return (
         <div className={className} onClick={props.onClick}>
-          <Image src={characterImages[character.toLowerCase()]} alt={character} className="-mt-1" style={{width: 64}} width={64} />
+          <Image src={characterImages[character.toLowerCase()]} alt={character} className="-mt-1" style={{ width: 64 }} width={64} />
         </div>
       );
     }
@@ -221,9 +221,9 @@ export default function Home() {
           />
         </div>
       </div>
-      
-      <ScrollArea className="h-56 flex flex-col items-center">
-        <div className={`grid grid-cols-5 gap-2 pt-4 mx-6`}>
+
+      <ScrollArea className="h-[35vh] flex flex-col items-center" style={{ height: 'calc(100vh - 382px - 65px)' }}>
+        <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-4 mx-6`}>
           {characters.map((character) => {
             const isSelected = selectedCharacter === character;
             const className = `w-14 h-14 ${isSelected ? "border border-yellow-400 border-4" : ""}`;
@@ -243,7 +243,7 @@ export default function Home() {
       <div className="pt-2">
         <Button
           onClick={() => {
-            toPng(formationRef.current!, { height: 300, style: { marginLeft: '-1rem' }}).then((dataUrl) => {
+            toPng(formationRef.current!, { height: 300, style: { marginLeft: '-1rem' } }).then((dataUrl) => {
               const link = document.createElement("a");
               link.download = "formation.png";
               link.href = dataUrl;
