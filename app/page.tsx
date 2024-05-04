@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, createRef } from "react";
+import { useState, createRef, useCallback } from "react";
 import { useQueryState } from "nuqs";
 import { Characters, getCharacterImage } from "@/lib/characters";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -22,12 +22,15 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import {
-  toPng
-} from "html-to-image";
+} from "@/components/ui/dropdown-menu";
+import { toPng } from "html-to-image";
 
-import { spellImages, tekImages, slotImages, characterImages } from "@/lib/images";
+import {
+  spellImages,
+  tekImages,
+  slotImages,
+  characterImages,
+} from "@/lib/images";
 
 export default function Home() {
   const [selectedCharacter, setSelectedCharacter] = useState<string | null>(
@@ -47,7 +50,7 @@ export default function Home() {
   const [spell, setSpell] = useQueryState<string>("spell", {
     parse: (query: string): string => atob(query),
     serialize: (spell: string) => btoa(spell),
-    defaultValue: 'blazing',
+    defaultValue: "blazing",
   });
   const formationRef = createRef<HTMLDivElement>();
 
@@ -98,6 +101,20 @@ export default function Home() {
     setCharacters(newCharacters.sort());
   }
 
+  const onDownloadButtonClick = useCallback(() => {
+    toPng(formationRef.current!, {
+      height: 300,
+      style: { marginLeft: "-1rem" },
+      includeQueryParams: true,
+      cacheBust: true,
+    }).then((dataUrl) => {
+      const link = document.createElement("a");
+      link.download = "formation.png";
+      link.href = dataUrl;
+      link.click();
+    });
+  }, [formationRef]);
+
   function CharacterSlot(props: { index: number; onClick?: () => void }) {
     const slotNumber = props.index - 1;
     const character = formation[slotNumber];
@@ -106,7 +123,13 @@ export default function Home() {
       const className = `rounded h-16 w-16 ${isSelected ? "border border-yellow-400 border-4" : ""}`;
       return (
         <div className={className} onClick={props.onClick}>
-          <Image src={characterImages[character.toLowerCase()]} alt={character} className="-mt-1" style={{ width: 64 }} width={64} />
+          <Image
+            src={characterImages[character.toLowerCase()]}
+            alt={character}
+            className="-mt-1"
+            style={{ width: 64 }}
+            width={64}
+          />
         </div>
       );
     }
@@ -146,8 +169,8 @@ export default function Home() {
         <PopoverContent>
           <ul className="p-4 list-disc">
             <li>
-              Click on a character to select it, then click on a slot to
-              place it.
+              Click on a character to select it, then click on a slot to place
+              it.
             </li>
             <li>
               Click on a character in a slot to select it, then click on a
@@ -157,15 +180,17 @@ export default function Home() {
               Click on a character in a slot to select it, then click on the
               character to remove it.
             </li>
-            <li>
-              Click on the spell icon to change the formation spell.
-            </li>
+            <li>Click on the spell icon to change the formation spell.</li>
           </ul>
         </PopoverContent>
       </Popover>
 
       <div className="flex flex-col items-center">
-        <Image src={tekImages['tekLogo']} alt="Tekken Emblem" className="w-56" />
+        <Image
+          src={tekImages["tekLogo"]}
+          alt="Tekken Emblem"
+          className="w-56"
+        />
       </div>
 
       <div className="flex flex-col items-center mr-6 my-4" ref={formationRef}>
@@ -176,7 +201,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-4 gap-2">
           <CharacterSlot index={5} onClick={() => onCharacterSlotClick(5)} />
-          <CharacterSlot index={6} onClick={() => onCharacterSlotClick(6)} />
+          <CharacterSlot index={7} onClick={() => onCharacterSlotClick(7)} />
           <CharacterSlot index={9} onClick={() => onCharacterSlotClick(9)} />
           <CharacterSlot index={11} onClick={() => onCharacterSlotClick(11)} />
         </div>
@@ -184,45 +209,100 @@ export default function Home() {
           <div className="invisible h-14 w-14 bg-gray-400 rounded-full"></div>
           <CharacterSlot index={2} onClick={() => onCharacterSlotClick(2)} />
           <CharacterSlot index={4} onClick={() => onCharacterSlotClick(4)} />
-          <CharacterSlot index={7} onClick={() => onCharacterSlotClick(7)} />
-          <CharacterSlot
-            index={8}
-            onClick={() => onCharacterSlotClick(8)}
-          />
+          <CharacterSlot index={6} onClick={() => onCharacterSlotClick(6)} />
+          <CharacterSlot index={8} onClick={() => onCharacterSlotClick(8)} />
         </div>
         <div className="grid grid-cols-4 gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <div className="h-16 w-14">
-                <Image src={spellImages[spell]} alt={spell} className="object-contain" />
+                <Image
+                  src={spellImages[spell]}
+                  alt={spell}
+                  className="object-contain"
+                />
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-48">
               <DropdownMenuSeparator />
               <DropdownMenuRadioGroup value={spell} onValueChange={setSpell}>
-                <DropdownMenuRadioItem value="awakening"><Image height={36} src={spellImages["awakening"]} alt="awakening" className="mr-2" />Awakening</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="blazing"><Image height={36} src={spellImages["blazing"]} alt="blazing" className="mr-2" />Blazing</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="confining"><Image height={36} src={spellImages["confining"]} alt="confining" className="mr-2" />Confining</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="enlightening"><Image height={36} src={spellImages["enlightening"]} alt="enlightening" className="mr-2" />Enlightening</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="ironwall"><Image height={36} src={spellImages["ironwall"]} alt="ironwall" className="mr-2" />Ironwall</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="starshard"><Image height={36} src={spellImages["starshard"]} alt="starshard" className="mr-2" />Starshard</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="awakening">
+                  <Image
+                    height={36}
+                    src={spellImages["awakening"]}
+                    alt="awakening"
+                    className="mr-2"
+                  />
+                  Awakening
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="blazing">
+                  <Image
+                    height={36}
+                    src={spellImages["blazing"]}
+                    alt="blazing"
+                    className="mr-2"
+                  />
+                  Blazing
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="confining">
+                  <Image
+                    height={36}
+                    src={spellImages["confining"]}
+                    alt="confining"
+                    className="mr-2"
+                  />
+                  Confining
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="enlightening">
+                  <Image
+                    height={36}
+                    src={spellImages["enlightening"]}
+                    alt="enlightening"
+                    className="mr-2"
+                  />
+                  Enlightening
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="ironwall">
+                  <Image
+                    height={36}
+                    src={spellImages["ironwall"]}
+                    alt="ironwall"
+                    className="mr-2"
+                  />
+                  Ironwall
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="starshard">
+                  <Image
+                    height={36}
+                    src={spellImages["starshard"]}
+                    alt="starshard"
+                    className="mr-2"
+                  />
+                  Starshard
+                </DropdownMenuRadioItem>
               </DropdownMenuRadioGroup>
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <div className="invisible h-14 w-14 bg-gray-400 rounded-full"></div>
-          <CharacterSlot
-            index={1}
-            onClick={() => onCharacterSlotClick(1)}
-          />
-          <CharacterSlot
-            index={3}
-            onClick={() => onCharacterSlotClick(3)}
-          />
+          <div
+            className="h-16 w-16 grid grid-cols-1 place-items-center opacity-30"
+            id="watermark-logo"
+          >
+            <Image
+              src={tekImages["logoAnimated"]}
+              alt="Empty Slot"
+              className="w-1/2 -ml-1"
+            />
+          </div>
+          <CharacterSlot index={1} onClick={() => onCharacterSlotClick(1)} />
+          <CharacterSlot index={3} onClick={() => onCharacterSlotClick(3)} />
         </div>
       </div>
 
-      <ScrollArea className="h-[35vh] flex flex-col items-center" style={{ height: 'calc(100vh - 382px - 65px)' }}>
+      <ScrollArea
+        className="flex flex-col items-center"
+        style={{ height: "calc(100vh - 382px - 65px)" }}
+      >
         <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-4 mx-6`}>
           {characters.map((character) => {
             const isSelected = selectedCharacter === character;
@@ -240,21 +320,18 @@ export default function Home() {
           })}
         </div>
       </ScrollArea>
-      <div className="pt-2">
+      <div className="pt-2 flex gap-2">
         <Button
           onClick={() => {
-            toPng(formationRef.current!, { height: 300, style: { marginLeft: '-1rem' } }).then((dataUrl) => {
-              const link = document.createElement("a");
-              link.download = "formation.png";
-              link.href = dataUrl;
-              link.click();
-            })
             navigator.clipboard.writeText(window.location.href);
             toast("Formation link copied to clipboard");
           }}
           className="h-8"
         >
           Share this formation
+        </Button>
+        <Button onClick={onDownloadButtonClick} className="h-8">
+          Download as Image
         </Button>
       </div>
       <p className="mt-1 text-xs">
