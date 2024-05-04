@@ -102,14 +102,12 @@ export default function Home() {
   }
 
   const onDownloadButtonClick = useCallback(() => {
-    document.getElementById("watermark-logo")!.classList.remove("invisible");
     toPng(formationRef.current!, {
       height: 300,
       style: { marginLeft: "-1rem" },
       includeQueryParams: true,
       cacheBust: true,
     }).then((dataUrl) => {
-      document.getElementById("watermark-logo")!.classList.add("invisible");
       const link = document.createElement("a");
       link.download = "formation.png";
       link.href = dataUrl;
@@ -287,7 +285,7 @@ export default function Home() {
           </DropdownMenu>
 
           <div
-            className="h-16 w-16 invisible grid grid-cols-1 place-items-center"
+            className="h-16 w-16 grid grid-cols-1 place-items-center opacity-30"
             id="watermark-logo"
           >
             <Image
@@ -302,7 +300,7 @@ export default function Home() {
       </div>
 
       <ScrollArea
-        className="h-[35vh] flex flex-col items-center"
+        className="flex flex-col items-center"
         style={{ height: "calc(100vh - 382px - 65px)" }}
       >
         <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-4 mx-6`}>
