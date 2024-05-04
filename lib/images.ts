@@ -9,6 +9,8 @@ import Starshard from "@/public/artifacts/Starshard.png";
 
 import tekLogo from "@/public/tekLogo.png";
 import AnalyticaOfficialLogo from "@/public/AnalyticaOfficialLogo.png";
+import LogoBlack from "@/public/LogoBlack.png";
+import LogoAnimationV2 from "@/public/LogoAnimationV2.gif";
 
 import Tile1 from "@/public/slots/Tile1.png";
 import Tile2 from "@/public/slots/Tile2.png";
@@ -83,7 +85,9 @@ export const spellImages: { [key: string]: StaticImageData } = {
 
 export const tekImages: { [key: string]: StaticImageData } = {
   tekLogo: tekLogo,
-  logoAnimated: AnalyticaOfficialLogo,
+  logo: AnalyticaOfficialLogo,
+  logoBlack: LogoBlack,
+  logoAnimated: LogoAnimationV2,
 };
 
 export const slotImages: { [key: string]: StaticImageData } = {
