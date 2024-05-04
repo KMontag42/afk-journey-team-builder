@@ -164,7 +164,9 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center pt-8">
       <Popover>
         <PopoverTrigger>
-          <p className="text-xl underline absolute top-4 end-6 sm:end-48">?</p>
+          <p className="text-xl underline absolute top-4 end-6 sm:end-48 md:end-1/4">
+            ?
+          </p>
         </PopoverTrigger>
         <PopoverContent>
           <ul className="p-4 list-disc">
@@ -188,7 +190,7 @@ export default function Home() {
       <Link
         href="https://afkanalytica.com"
         target="_blank"
-        className="text-2xl absolute top-4 left-4 sm:left-48"
+        className="text-2xl absolute top-4 left-4 sm:left-48 md:left-1/4"
       >
         <Image
           src={tekImages["logoAnimated"]}
