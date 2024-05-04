@@ -286,8 +286,15 @@ export default function Home() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <div className="h-16 w-16 invisible grid grid-cols-1 place-items-center" id="watermark-logo">
-            <Image src={tekImages['logoAnimated']} alt="Empty Slot" className="w-1/2 -ml-1"/>
+          <div
+            className="h-16 w-16 invisible grid grid-cols-1 place-items-center"
+            id="watermark-logo"
+          >
+            <Image
+              src={tekImages["logoAnimated"]}
+              alt="Empty Slot"
+              className="w-1/2 -ml-1"
+            />
           </div>
           <CharacterSlot index={1} onClick={() => onCharacterSlotClick(1)} />
           <CharacterSlot index={3} onClick={() => onCharacterSlotClick(3)} />
