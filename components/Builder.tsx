@@ -18,6 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { toPng } from "html-to-image";
+import { track } from '@vercel/analytics';
 
 import {
   spellImages,
@@ -25,6 +26,7 @@ import {
   slotImages,
   characterImages,
 } from "@/lib/images";
+
 
 export default function Builder() {
   const [selectedCharacter, setSelectedCharacter] = useState<string | null>(
@@ -106,6 +108,7 @@ export default function Builder() {
       link.download = "formation.png";
       link.href = dataUrl;
       link.click();
+      track("formation_downloaded", {"formation": formation.join(","), "spell": spell, "url": window.location.href});
     });
   }, [formationRef]);
 
@@ -288,6 +291,7 @@ export default function Builder() {
           onClick={() => {
             navigator.clipboard.writeText(window.location.href);
             toast("Formation link copied to clipboard");
+            track("formation_shared", {"formation": formation.join(","), "spell": spell, "url": window.location.href});
           }}
           className="h-8"
         >
