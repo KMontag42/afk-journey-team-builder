@@ -185,9 +185,16 @@ export default function Home() {
         </PopoverContent>
       </Popover>
 
-
-      <Link href="https://afkanalytica.com" target="_blank" className="text-2xl absolute top-4 left-4 sm:left-48">
-        <Image src={tekImages["logoAnimated"]} alt="AFK Analytica" className="w-8" />
+      <Link
+        href="https://afkanalytica.com"
+        target="_blank"
+        className="text-2xl absolute top-4 left-4 sm:left-48"
+      >
+        <Image
+          src={tekImages["logoAnimated"]}
+          alt="AFK Analytica"
+          className="w-8"
+        />
       </Link>
 
       <div className="flex flex-col items-center">
