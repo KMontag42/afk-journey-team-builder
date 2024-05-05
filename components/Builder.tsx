@@ -5,28 +5,12 @@ import { useQueryState } from "nuqs";
 import { Characters, getCharacterImage } from "@/lib/characters";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import Image from "next/image";
-import emptySlot from "@/public/emptySlot.png";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { toPng } from "html-to-image";
-import { track } from '@vercel/analytics';
+import { track } from "@vercel/analytics";
 
-import {
-  spellImages,
-  tekImages,
-  slotImages,
-  characterImages,
-} from "@/lib/images";
-
+import BaseLayout from "./layouts/base";
 
 export default function Builder() {
   const [selectedCharacter, setSelectedCharacter] = useState<string | null>(
@@ -108,40 +92,13 @@ export default function Builder() {
       link.download = "formation.png";
       link.href = dataUrl;
       link.click();
-      track("formation_downloaded", {"formation": formation.join(","), "spell": spell, "url": window.location.href});
+      track("formation_downloaded", {
+        formation: formation.join(","),
+        spell: spell,
+        url: window.location.href,
+      });
     });
   }, [formationRef]);
-
-  function CharacterSlot(props: { index: number; onClick?: () => void }) {
-    const slotNumber = props.index - 1;
-    const character = formation[slotNumber];
-    if (character) {
-      const isSelected = selectedCharacter === character;
-      const className = `rounded h-16 w-16 ${isSelected ? "border border-yellow-400 border-4" : ""}`;
-      return (
-        <div className={className} onClick={props.onClick}>
-          <Image
-            src={characterImages[character.toLowerCase()]}
-            alt={character}
-            className="-mt-1"
-            style={{ width: 64 }}
-            width={64}
-          />
-        </div>
-      );
-    }
-    return (
-      <div className="h-16 w-16" onClick={props.onClick}>
-        <Image
-          src={slotImages[`Tile${props.index}`] || emptySlot}
-          alt="Empty Slot"
-          style={{ objectFit: "cover", width: 64 }}
-          width={64}
-          className="-mt-1"
-        />
-      </div>
-    );
-  }
 
   function onCharacterClick(character: string) {
     setSelectedCharacter(character);
@@ -160,109 +117,13 @@ export default function Builder() {
   return (
     <>
       <div className="flex flex-col items-center mr-6 my-4" ref={formationRef}>
-        <div className="grid grid-cols-3 gap-2">
-          <CharacterSlot index={10} onClick={() => onCharacterSlotClick(10)} />
-          <CharacterSlot index={12} onClick={() => onCharacterSlotClick(12)} />
-          <CharacterSlot index={13} onClick={() => onCharacterSlotClick(13)} />
-        </div>
-        <div className="grid grid-cols-4 gap-2">
-          <CharacterSlot index={5} onClick={() => onCharacterSlotClick(5)} />
-          <CharacterSlot index={7} onClick={() => onCharacterSlotClick(7)} />
-          <CharacterSlot index={9} onClick={() => onCharacterSlotClick(9)} />
-          <CharacterSlot index={11} onClick={() => onCharacterSlotClick(11)} />
-        </div>
-        <div className="grid grid-cols-5 gap-2">
-          <div className="invisible h-14 w-14 bg-gray-400 rounded-full"></div>
-          <CharacterSlot index={2} onClick={() => onCharacterSlotClick(2)} />
-          <CharacterSlot index={4} onClick={() => onCharacterSlotClick(4)} />
-          <CharacterSlot index={6} onClick={() => onCharacterSlotClick(6)} />
-          <CharacterSlot index={8} onClick={() => onCharacterSlotClick(8)} />
-        </div>
-        <div className="grid grid-cols-4 gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <div className="h-16 w-14">
-                <Image
-                  src={spellImages[spell]}
-                  alt={spell}
-                  className="object-contain"
-                />
-              </div>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-48">
-              <DropdownMenuSeparator />
-              <DropdownMenuRadioGroup value={spell} onValueChange={setSpell}>
-                <DropdownMenuRadioItem value="awakening">
-                  <Image
-                    height={36}
-                    src={spellImages["awakening"]}
-                    alt="awakening"
-                    className="mr-2"
-                  />
-                  Awakening
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="blazing">
-                  <Image
-                    height={36}
-                    src={spellImages["blazing"]}
-                    alt="blazing"
-                    className="mr-2"
-                  />
-                  Blazing
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="confining">
-                  <Image
-                    height={36}
-                    src={spellImages["confining"]}
-                    alt="confining"
-                    className="mr-2"
-                  />
-                  Confining
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="enlightening">
-                  <Image
-                    height={36}
-                    src={spellImages["enlightening"]}
-                    alt="enlightening"
-                    className="mr-2"
-                  />
-                  Enlightening
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="ironwall">
-                  <Image
-                    height={36}
-                    src={spellImages["ironwall"]}
-                    alt="ironwall"
-                    className="mr-2"
-                  />
-                  Ironwall
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="starshard">
-                  <Image
-                    height={36}
-                    src={spellImages["starshard"]}
-                    alt="starshard"
-                    className="mr-2"
-                  />
-                  Starshard
-                </DropdownMenuRadioItem>
-              </DropdownMenuRadioGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <div
-            className="h-16 w-16 grid grid-cols-1 place-items-center opacity-30"
-            id="watermark-logo"
-          >
-            <Image
-              src={tekImages["logo"]}
-              alt="Empty Slot"
-              className="w-1/2 -ml-1"
-            />
-          </div>
-          <CharacterSlot index={1} onClick={() => onCharacterSlotClick(1)} />
-          <CharacterSlot index={3} onClick={() => onCharacterSlotClick(3)} />
-        </div>
+        <BaseLayout
+          onCharacterSlotClick={onCharacterSlotClick}
+          spell={spell}
+          setSpell={setSpell}
+          formation={formation}
+          selectedCharacter={selectedCharacter!}
+        />
       </div>
 
       <ScrollArea
@@ -286,12 +147,17 @@ export default function Builder() {
           })}
         </div>
       </ScrollArea>
+
       <div className="pt-2 flex gap-2">
         <Button
           onClick={() => {
             navigator.clipboard.writeText(window.location.href);
             toast("Formation link copied to clipboard");
-            track("formation_shared", {"formation": formation.join(","), "spell": spell, "url": window.location.href});
+            track("formation_shared", {
+              formation: formation.join(","),
+              spell: spell,
+              url: window.location.href,
+            });
           }}
           className="h-8"
         >
