@@ -1,3 +1,5 @@
+'use server';
+
 import Builder from "@/components/Builder";
 import Link from "next/link";
 import Image from "next/image";
