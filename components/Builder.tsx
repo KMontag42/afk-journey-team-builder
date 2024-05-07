@@ -10,7 +10,51 @@ import { toast } from "sonner";
 import { toPng } from "html-to-image";
 import { track } from "@vercel/analytics";
 
-import BaseLayout from "./layouts/base";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
+import BaseLayout from "@/components/layouts/base";
+import Arena1Layout from "@/components/layouts/Arena1";
+import Arena2Layout from "@/components/layouts/Arena2";
+import Arena3Layout from "@/components/layouts/Arena3";
+import Arena4Layout from "@/components/layouts/Arena4";
+
+const layouts: { [key: number]: any } = {
+  0: BaseLayout,
+  1: Arena1Layout,
+  2: Arena2Layout,
+  3: Arena3Layout,
+  4: Arena4Layout,
+};
+
+const layoutHeights: { [key: number]: number } = {
+  0: 24,
+  1: 24,
+  2: 32,
+  3: 32,
+  4: 32,
+};
+
+const layoutExportWidths: { [key: number]: number } = {
+  0: 360,
+  1: 360,
+  2: 300,
+  3: 360,
+  4: 460,
+};
+
+const layoutExportMargins: { [key: number]: string } = {
+  0: "-1rem",
+  1: "-1rem",
+  2: "1rem",
+  3: "-1rem",
+  4: "0",
+};
 
 export default function Builder() {
   const [selectedCharacter, setSelectedCharacter] = useState<string | null>(
@@ -31,6 +75,11 @@ export default function Builder() {
     parse: (query: string): string => atob(query),
     serialize: (spell: string) => btoa(spell),
     defaultValue: "blazing",
+  });
+  const [layout, setLayout] = useQueryState<number>("map", {
+    parse: (query: string): number => parseInt(query),
+    serialize: (layout: number) => layout.toString(),
+    defaultValue: 0,
   });
   const formationRef = createRef<HTMLDivElement>();
 
@@ -83,8 +132,9 @@ export default function Builder() {
 
   const onDownloadButtonClick = useCallback(() => {
     toPng(formationRef.current!, {
-      height: 300,
-      style: { marginLeft: "-1rem" },
+      height: (layoutHeights[layout] ?? 24) * 13, // 16px per rem
+      width: layoutExportWidths[layout] ?? 420,
+      style: { marginLeft: layoutExportMargins[layout] ?? "-1rem" },
       includeQueryParams: true,
       cacheBust: true,
     }).then((dataUrl) => {
@@ -114,10 +164,26 @@ export default function Builder() {
     }
   }
 
+  const Layout: any = layouts[layout] ?? BaseLayout;
+
   return (
     <>
+      <div className="flex justify-center items-center gap-2">
+        <Select onValueChange={(e) => setLayout(parseInt(e))} value={layout.toString()}>
+          <SelectTrigger>
+            <SelectValue placeholder="Map Layout" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="0">Default</SelectItem>
+            <SelectItem value="1">Arena 1</SelectItem>
+            <SelectItem value="2">Arena 2</SelectItem>
+            <SelectItem value="3">Arena 3</SelectItem>
+            <SelectItem value="4">Arena 4</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
       <div className="flex flex-col items-center mr-6 my-4" ref={formationRef}>
-        <BaseLayout
+        <Layout
           onCharacterSlotClick={onCharacterSlotClick}
           spell={spell}
           setSpell={setSpell}
@@ -128,7 +194,7 @@ export default function Builder() {
 
       <ScrollArea
         className="flex flex-col items-center"
-        style={{ height: "calc(100vh - 382px - 65px)" }}
+        style={{ height: `calc(100vh - ${layoutHeights[layout] ?? '24'}rem - 6.5rem)` }}
       >
         <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-4 mx-6`}>
           {characters.map((character) => {
