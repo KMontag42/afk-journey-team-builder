@@ -1,4 +1,5 @@
 export const Characters = [
+  "Alsa",
   "Antandra",
   "Arden",
   "Atalanta",
@@ -40,6 +41,7 @@ export const Characters = [
   "Shakir",
   "Silvina",
   "Smokey",
+  "Soren",
   "Temesia",
   "Thoran",
   "Vala",

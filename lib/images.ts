@@ -26,6 +26,7 @@ import Tile11 from "@/public/slots/Tile11.png";
 import Tile12 from "@/public/slots/Tile12.png";
 import Tile13 from "@/public/slots/Tile13.png";
 
+import Alsa from "@/public/characters/Alsa.png";
 import Antandra from "@/public/characters/Antandra.png";
 import Arden from "@/public/characters/Arden.png";
 import Atalanta from "@/public/characters/Atalanta.png";
@@ -67,6 +68,7 @@ import Seth from "@/public/characters/Seth.png";
 import Shakir from "@/public/characters/Shakir.png";
 import Silvina from "@/public/characters/Silvina.png";
 import Smokey from "@/public/characters/Smokey.png";
+import Soren from "@/public/characters/Soren.png";
 import Temesia from "@/public/characters/Temesia.png";
 import Thoran from "@/public/characters/Thoran.png";
 import Vala from "@/public/characters/Vala.png";
@@ -107,6 +109,7 @@ export const slotImages: { [key: string]: StaticImageData } = {
 };
 
 export const characterImages: { [key: string]: StaticImageData } = {
+  alsa: Alsa,
   antandra: Antandra,
   arden: Arden,
   atalanta: Atalanta,
@@ -148,6 +151,7 @@ export const characterImages: { [key: string]: StaticImageData } = {
   shakir: Shakir,
   silvina: Silvina,
   smokey: Smokey,
+  soren: Soren,
   temesia: Temesia,
   thoran: Thoran,
   vala: Vala,

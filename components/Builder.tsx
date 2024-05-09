@@ -174,11 +174,11 @@ export default function Builder() {
             <SelectValue placeholder="Map Layout" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="0">Default</SelectItem>
-            <SelectItem value="1">Arena 1</SelectItem>
-            <SelectItem value="2">Arena 2</SelectItem>
-            <SelectItem value="3">Arena 3</SelectItem>
-            <SelectItem value="4">Arena 4</SelectItem>
+            <SelectItem value="0">Default/Arena 1</SelectItem>
+            <SelectItem value="1">Arena 2</SelectItem>
+            <SelectItem value="2">Arena 3</SelectItem>
+            <SelectItem value="3">Arena 4</SelectItem>
+            <SelectItem value="4">Arena 5</SelectItem>
           </SelectContent>
         </Select>
       </div>
