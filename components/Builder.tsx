@@ -5,28 +5,56 @@ import { useQueryState } from "nuqs";
 import { Characters, getCharacterImage } from "@/lib/characters";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import Image from "next/image";
-import emptySlot from "@/public/emptySlot.png";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { toPng } from "html-to-image";
-import { track } from '@vercel/analytics';
+import { track } from "@vercel/analytics";
 
 import {
-  spellImages,
-  tekImages,
-  slotImages,
-  characterImages,
-} from "@/lib/images";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
+import BaseLayout from "@/components/layouts/base";
+import Arena1Layout from "@/components/layouts/Arena1";
+import Arena2Layout from "@/components/layouts/Arena2";
+import Arena3Layout from "@/components/layouts/Arena3";
+import Arena4Layout from "@/components/layouts/Arena4";
+
+const layouts: { [key: number]: any } = {
+  0: BaseLayout,
+  1: Arena1Layout,
+  2: Arena2Layout,
+  3: Arena3Layout,
+  4: Arena4Layout,
+};
+
+const layoutHeights: { [key: number]: number } = {
+  0: 24,
+  1: 24,
+  2: 32,
+  3: 32,
+  4: 32,
+};
+
+const layoutExportWidths: { [key: number]: number } = {
+  0: 360,
+  1: 360,
+  2: 300,
+  3: 360,
+  4: 460,
+};
+
+const layoutExportMargins: { [key: number]: string } = {
+  0: "-1rem",
+  1: "-1rem",
+  2: "1rem",
+  3: "-1rem",
+  4: "0",
+};
 
 export default function Builder() {
   const [selectedCharacter, setSelectedCharacter] = useState<string | null>(
@@ -47,6 +75,11 @@ export default function Builder() {
     parse: (query: string): string => atob(query),
     serialize: (spell: string) => btoa(spell),
     defaultValue: "blazing",
+  });
+  const [layout, setLayout] = useQueryState<number>("map", {
+    parse: (query: string): number => parseInt(query),
+    serialize: (layout: number) => layout.toString(),
+    defaultValue: 0,
   });
   const formationRef = createRef<HTMLDivElement>();
 
@@ -99,8 +132,9 @@ export default function Builder() {
 
   const onDownloadButtonClick = useCallback(() => {
     toPng(formationRef.current!, {
-      height: 300,
-      style: { marginLeft: "-1rem" },
+      height: (layoutHeights[layout] ?? 24) * 13, // 16px per rem
+      width: layoutExportWidths[layout] ?? 420,
+      style: { marginLeft: layoutExportMargins[layout] ?? "-1rem" },
       includeQueryParams: true,
       cacheBust: true,
     }).then((dataUrl) => {
@@ -108,40 +142,13 @@ export default function Builder() {
       link.download = "formation.png";
       link.href = dataUrl;
       link.click();
-      track("formation_downloaded", {"formation": formation.join(","), "spell": spell, "url": window.location.href});
+      track("formation_downloaded", {
+        formation: formation.join(","),
+        spell: spell,
+        url: window.location.href,
+      });
     });
   }, [formationRef]);
-
-  function CharacterSlot(props: { index: number; onClick?: () => void }) {
-    const slotNumber = props.index - 1;
-    const character = formation[slotNumber];
-    if (character) {
-      const isSelected = selectedCharacter === character;
-      const className = `rounded h-16 w-16 ${isSelected ? "border border-yellow-400 border-4" : ""}`;
-      return (
-        <div className={className} onClick={props.onClick}>
-          <Image
-            src={characterImages[character.toLowerCase()]}
-            alt={character}
-            className="-mt-1"
-            style={{ width: 64 }}
-            width={64}
-          />
-        </div>
-      );
-    }
-    return (
-      <div className="h-16 w-16" onClick={props.onClick}>
-        <Image
-          src={slotImages[`Tile${props.index}`] || emptySlot}
-          alt="Empty Slot"
-          style={{ objectFit: "cover", width: 64 }}
-          width={64}
-          className="-mt-1"
-        />
-      </div>
-    );
-  }
 
   function onCharacterClick(character: string) {
     setSelectedCharacter(character);
@@ -157,117 +164,37 @@ export default function Builder() {
     }
   }
 
+  const Layout: any = layouts[layout] ?? BaseLayout;
+
   return (
     <>
+      <div className="flex justify-center items-center gap-2">
+        <Select onValueChange={(e) => setLayout(parseInt(e))} value={layout.toString()}>
+          <SelectTrigger>
+            <SelectValue placeholder="Map Layout" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="0">Default/Arena 1</SelectItem>
+            <SelectItem value="1">Arena 2</SelectItem>
+            <SelectItem value="2">Arena 3</SelectItem>
+            <SelectItem value="3">Arena 4</SelectItem>
+            <SelectItem value="4">Arena 5</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
       <div className="flex flex-col items-center mr-6 my-4" ref={formationRef}>
-        <div className="grid grid-cols-3 gap-2">
-          <CharacterSlot index={10} onClick={() => onCharacterSlotClick(10)} />
-          <CharacterSlot index={12} onClick={() => onCharacterSlotClick(12)} />
-          <CharacterSlot index={13} onClick={() => onCharacterSlotClick(13)} />
-        </div>
-        <div className="grid grid-cols-4 gap-2">
-          <CharacterSlot index={5} onClick={() => onCharacterSlotClick(5)} />
-          <CharacterSlot index={7} onClick={() => onCharacterSlotClick(7)} />
-          <CharacterSlot index={9} onClick={() => onCharacterSlotClick(9)} />
-          <CharacterSlot index={11} onClick={() => onCharacterSlotClick(11)} />
-        </div>
-        <div className="grid grid-cols-5 gap-2">
-          <div className="invisible h-14 w-14 bg-gray-400 rounded-full"></div>
-          <CharacterSlot index={2} onClick={() => onCharacterSlotClick(2)} />
-          <CharacterSlot index={4} onClick={() => onCharacterSlotClick(4)} />
-          <CharacterSlot index={6} onClick={() => onCharacterSlotClick(6)} />
-          <CharacterSlot index={8} onClick={() => onCharacterSlotClick(8)} />
-        </div>
-        <div className="grid grid-cols-4 gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <div className="h-16 w-14">
-                <Image
-                  src={spellImages[spell]}
-                  alt={spell}
-                  className="object-contain"
-                />
-              </div>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-48">
-              <DropdownMenuSeparator />
-              <DropdownMenuRadioGroup value={spell} onValueChange={setSpell}>
-                <DropdownMenuRadioItem value="awakening">
-                  <Image
-                    height={36}
-                    src={spellImages["awakening"]}
-                    alt="awakening"
-                    className="mr-2"
-                  />
-                  Awakening
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="blazing">
-                  <Image
-                    height={36}
-                    src={spellImages["blazing"]}
-                    alt="blazing"
-                    className="mr-2"
-                  />
-                  Blazing
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="confining">
-                  <Image
-                    height={36}
-                    src={spellImages["confining"]}
-                    alt="confining"
-                    className="mr-2"
-                  />
-                  Confining
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="enlightening">
-                  <Image
-                    height={36}
-                    src={spellImages["enlightening"]}
-                    alt="enlightening"
-                    className="mr-2"
-                  />
-                  Enlightening
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="ironwall">
-                  <Image
-                    height={36}
-                    src={spellImages["ironwall"]}
-                    alt="ironwall"
-                    className="mr-2"
-                  />
-                  Ironwall
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="starshard">
-                  <Image
-                    height={36}
-                    src={spellImages["starshard"]}
-                    alt="starshard"
-                    className="mr-2"
-                  />
-                  Starshard
-                </DropdownMenuRadioItem>
-              </DropdownMenuRadioGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <div
-            className="h-16 w-16 grid grid-cols-1 place-items-center opacity-30"
-            id="watermark-logo"
-          >
-            <Image
-              src={tekImages["logo"]}
-              alt="Empty Slot"
-              className="w-1/2 -ml-1"
-            />
-          </div>
-          <CharacterSlot index={1} onClick={() => onCharacterSlotClick(1)} />
-          <CharacterSlot index={3} onClick={() => onCharacterSlotClick(3)} />
-        </div>
+        <Layout
+          onCharacterSlotClick={onCharacterSlotClick}
+          spell={spell}
+          setSpell={setSpell}
+          formation={formation}
+          selectedCharacter={selectedCharacter!}
+        />
       </div>
 
       <ScrollArea
         className="flex flex-col items-center"
-        style={{ height: "calc(100vh - 382px - 65px)" }}
+        style={{ height: `calc(100vh - ${layoutHeights[layout] ?? '24'}rem - 6.5rem)` }}
       >
         <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-4 mx-6`}>
           {characters.map((character) => {
@@ -286,12 +213,17 @@ export default function Builder() {
           })}
         </div>
       </ScrollArea>
+
       <div className="pt-2 flex gap-2">
         <Button
           onClick={() => {
             navigator.clipboard.writeText(window.location.href);
             toast("Formation link copied to clipboard");
-            track("formation_shared", {"formation": formation.join(","), "spell": spell, "url": window.location.href});
+            track("formation_shared", {
+              formation: formation.join(","),
+              spell: spell,
+              url: window.location.href,
+            });
           }}
           className="h-8"
         >
