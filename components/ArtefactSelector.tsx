@@ -25,7 +25,7 @@ export default function ArtefactSelector({ active, onChange }: Props) {
           <Image src={ARTEFACTS[active].image} alt={active} className="object-contain" />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className='DropdownMenuContent overflow-auto'collisionPadding={8}>
         <DropdownMenuSeparator />
         <div className="flex gap-2">
           <DropdownMenuRadioGroup value={active} onValueChange={onChange}>
