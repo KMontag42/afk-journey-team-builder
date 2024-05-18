@@ -24,12 +24,12 @@ import Arena2Layout from "@/components/layouts/Arena2";
 import Arena3Layout from "@/components/layouts/Arena3";
 import Arena4Layout from "@/components/layouts/Arena4";
 
-const layouts: { [key: number]: any } = {
-  0: BaseLayout,
-  1: Arena1Layout,
-  2: Arena2Layout,
-  3: Arena3Layout,
-  4: Arena4Layout,
+const layouts: { [key: number]: { Component: React.ElementType, numTiles: number} } = {
+  0: { Component: BaseLayout, numTiles: 13 },
+  1: { Component: Arena1Layout, numTiles: 10 },
+  2: { Component: Arena2Layout, numTiles: 10 },
+  3: { Component: Arena3Layout, numTiles: 9 },
+  4: { Component: Arena4Layout, numTiles: 11 },
 };
 
 const layoutHeights: { [key: number]: number } = {
@@ -81,6 +81,21 @@ export default function Builder() {
     serialize: (layout: number) => layout.toString(),
     defaultValue: 0,
   });
+
+  const changeLayout = (newLayoutId: number) => {
+    const existingLayoutTiles = layouts[layout].numTiles;
+    const newLayoutTiles = layouts[newLayoutId].numTiles;
+
+    if (newLayoutTiles < existingLayoutTiles) {
+      setFormation((formation) => formation.slice(0, newLayoutTiles));
+      setCharacters((characters) =>
+        [...characters, ...formation.slice(newLayoutTiles)].filter((character) => character !== "").sort()
+      );
+    }
+    else if (newLayoutTiles > existingLayoutTiles) setFormation(Array.from({length: newLayoutTiles}).map((_,i) => formation[i]));
+    setLayout(newLayoutId)
+  }
+  
   const formationRef = createRef<HTMLDivElement>();
 
   function updateFormation(slot: number, character: string) {
@@ -164,12 +179,12 @@ export default function Builder() {
     }
   }
 
-  const Layout: any = layouts[layout] ?? BaseLayout;
+  const Layout: any = layouts[layout]?.Component ?? BaseLayout;
 
   return (
     <>
       <div className="flex justify-center items-center gap-2">
-        <Select onValueChange={(e) => setLayout(parseInt(e))} value={layout.toString()}>
+        <Select onValueChange={(e) => changeLayout(parseInt(e))} value={layout.toString()}>
           <SelectTrigger>
             <SelectValue placeholder="Map Layout" />
           </SelectTrigger>
