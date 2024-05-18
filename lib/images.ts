@@ -6,14 +6,14 @@ import Confining from "@/public/artifacts/Confining.png";
 import Enlightening from "@/public/artifacts/Enlightening.png";
 import Ironwall from "@/public/artifacts/Ironwall.png";
 import Starshard from "@/public/artifacts/Starshard.png";
-// import Lightheal from "@/public/artifacts/Lightheal.png";
-// import Crescent from "@/public/artifacts/Crescent.png";
-// import Quickblade from "@/public/artifacts/Quickblade.png";
-// import Stormcaller from "@/public/artifacts/Stormcaller.png";
-// import Cascade from "@/public/artifacts/Cascade.png";
-// import Evocation from "@/public/artifacts/Evocation.png";
-// import Thunderbolt from "@/public/artifacts/Thunderbolt.png";
-// import Dashing from "@/public/artifacts/Dashing.png";
+import Lightheal from "@/public/artifacts/Lightheal.png";
+import Crescent from "@/public/artifacts/Crescent.png";
+import Quickblade from "@/public/artifacts/Quickblade.png";
+import Stormcaller from "@/public/artifacts/Stormcaller.png";
+import Cascade from "@/public/artifacts/Cascade.png";
+import Evocation from "@/public/artifacts/Evocation.png";
+import Thunderbolt from "@/public/artifacts/Thunderbolt.png";
+import Dashing from "@/public/artifacts/Dashing.png";
 
 import tekLogo from "@/public/tekLogo.png";
 import AnalyticaOfficialLogo from "@/public/AnalyticaOfficialLogo.png";
@@ -85,14 +85,14 @@ import Viperian from "@/public/characters/Viperian.png";
 import Walker from "@/public/characters/Walker.png";
 
 export const spellImages: { [key: string]: StaticImageData } = {
-  lightheal: Awakening, //Lightheal,
-  crescent: Awakening, //Crescent,
-  quickblade: Awakening, //Quickblade,
-  stormcaller: Awakening, //Stormcaller,
-  cascade: Awakening, //Cascade,
-  evocation: Awakening, //Evocation,
-  thunderbolt: Awakening, //Thunderbolt,
-  dashing: Awakening, //Dashing,
+  lightheal: Lightheal,
+  crescent: Crescent,
+  quickblade: Quickblade,
+  stormcaller: Stormcaller,
+  cascade: Cascade,
+  evocation: Evocation,
+  thunderbolt: Thunderbolt,
+  dashing: Dashing,
   awakening: Awakening,
   blazing: Blazing,
   confining: Confining,
