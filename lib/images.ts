@@ -1,4 +1,4 @@
-import { StaticImageData } from "next/image";
+import { type StaticImageData } from "next/image";
 
 import Awakening from "@/public/artifacts/Awakening.png";
 import Blazing from "@/public/artifacts/Blazing.png";
@@ -84,7 +84,9 @@ import Valen from "@/public/characters/Valen.png";
 import Viperian from "@/public/characters/Viperian.png";
 import Walker from "@/public/characters/Walker.png";
 
-export const spellImages: { [key: string]: StaticImageData } = {
+export const artefactImages: {
+  [key: string]: StaticImageData;
+} = {
   lightheal: Lightheal,
   crescent: Crescent,
   quickblade: Quickblade,

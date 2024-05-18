@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { artefacts } from "@/lib/images";
+import { ARTEFACTS } from "@/lib/artefacts";
 
 type Props = {
   active: string;
@@ -16,13 +16,13 @@ type Props = {
 };
 
 export default function ArtefactSelector({ active, onChange }: Props) {
-  const seasonalArtefacts = Object.values(artefacts).filter((artefact) => artefact.category === "seasonal");
-  const permanentArtefacts = Object.values(artefacts).filter((artefact) => artefact.category === "permanent");
+  const seasonalArtefacts = Object.values(ARTEFACTS).filter((artefact) => artefact.category === "seasonal");
+  const permanentArtefacts = Object.values(ARTEFACTS).filter((artefact) => artefact.category === "permanent");
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className="h-16 w-14">
-          <Image src={artefacts[active].image} alt={active} className="object-contain" />
+          <Image src={ARTEFACTS[active].image} alt={active} className="object-contain" />
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
