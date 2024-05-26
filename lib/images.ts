@@ -1,4 +1,5 @@
 import { type StaticImageData } from "next/image";
+import { Faction, CharacterClass } from "@/lib/characters";
 
 import Awakening from "@/public/artifacts/Awakening.png";
 import Blazing from "@/public/artifacts/Blazing.png";
@@ -83,6 +84,20 @@ import Vala from "@/public/characters/Vala.png";
 import Valen from "@/public/characters/Valen.png";
 import Viperian from "@/public/characters/Viperian.png";
 import Walker from "@/public/characters/Walker.png";
+
+import CELESTIAL from "@/public/faction_icons/CELESTIAL.png";
+import GRAVEBORN from "@/public/faction_icons/GRAVEBORN.png";
+import HYPOGEAN from "@/public/faction_icons/HYPOGEAN.png";
+import LIGHTBEARER from "@/public/faction_icons/LIGHTBEARER.png";
+import MAULER from "@/public/faction_icons/MAULER.png";
+import WILDER from "@/public/faction_icons/WILDER.png";
+
+import Mage from "@/public/class_icons/Mage.png";
+import Marksman from "@/public/class_icons/Marksman.png";
+import Rogue from "@/public/class_icons/Rogue.png";
+import Support from "@/public/class_icons/Support.png";
+import Tank from "@/public/class_icons/Tank.png";
+import Warrior from "@/public/class_icons/Warrior.png";
 
 export const artefactImages: {
   [key: string]: StaticImageData;
@@ -177,3 +192,21 @@ export const characterImages: { [key: string]: StaticImageData } = {
   viperian: Viperian,
   walker: Walker,
 };
+
+export const FactionImages: { [key: string]: StaticImageData } = {
+  [Faction.Celestial.toString()]: CELESTIAL,
+  [Faction.Graveborn.toString()]: GRAVEBORN,
+  [Faction.Hypogean.toString()]: HYPOGEAN,
+  [Faction.Lightbearer.toString()]: LIGHTBEARER,
+  [Faction.Mauler.toString()]: MAULER,
+  [Faction.Wilder.toString()]: WILDER
+};
+
+export const ClassImages: { [key: string]: StaticImageData } = {
+  [CharacterClass.Mage.toString()]: Mage,
+  [CharacterClass.Marksman.toString()]: Marksman,
+  [CharacterClass.Rogue.toString()]: Rogue,
+  [CharacterClass.Support.toString()]: Support,
+  [CharacterClass.Tank.toString()]: Tank,
+  [CharacterClass.Warrior.toString()]: Warrior,
+}

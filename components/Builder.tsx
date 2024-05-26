@@ -9,9 +9,12 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { toPng } from "html-to-image";
 import { track } from "@vercel/analytics";
+import { cn } from "@/lib/utils";
 
 import { Filter } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import Image from "next/image";
+import { ClassImages, FactionImages } from "@/lib/images";
 
 import {
   Select,
@@ -27,7 +30,7 @@ import Arena2Layout from "@/components/layouts/Arena2";
 import Arena3Layout from "@/components/layouts/Arena3";
 import Arena4Layout from "@/components/layouts/Arena4";
 
-const layouts: { [key: number]: { Component: React.ElementType, numTiles: number} } = {
+const layouts: { [key: number]: { Component: React.ElementType, numTiles: number } } = {
   0: { Component: BaseLayout, numTiles: 13 },
   1: { Component: Arena1Layout, numTiles: 10 },
   2: { Component: Arena2Layout, numTiles: 10 },
@@ -101,10 +104,10 @@ export default function Builder() {
         Characters.filter((character) => !formation.includes(character.name)),
       );
     }
-    else if (newLayoutTiles > existingLayoutTiles) setFormation(Array.from({length: newLayoutTiles}).map((_,i) => formation[i]));
+    else if (newLayoutTiles > existingLayoutTiles) setFormation(Array.from({ length: newLayoutTiles }).map((_, i) => formation[i]));
     setLayout(newLayoutId)
   }
-  
+
   const formationRef = createRef<HTMLDivElement>();
 
   function updateFormation(slot: number, character: Character) {
@@ -259,21 +262,21 @@ export default function Builder() {
           </PopoverTrigger>
           <PopoverContent side="left" className="bg-slate-400">
             <div className="grid grid-cols-7 gap-2">
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: Faction.Celestial })}>Ce</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: Faction.Graveborn })}>Gr</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: Faction.Hypogean})}>Hy</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: Faction.Lightbearer })}>Li</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: Faction.Mauler })}>Ma</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: Faction.Wilder })}>Wi</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: "All" })}>All</Button>
+              <Image src={FactionImages[Faction.Celestial.toString()]} width={64} height={64} alt="Celestial" onClick={() => updateCharacterFilter({ ...characterFilter, faction: Faction.Celestial })} />
+              <Image src={FactionImages[Faction.Graveborn.toString()]} width={64} height={64} alt="Graveborn" onClick={() => updateCharacterFilter({ ...characterFilter, faction: Faction.Graveborn })} />
+              <Image src={FactionImages[Faction.Hypogean.toString()]} width={64} height={64} alt="Hypogean" onClick={() => updateCharacterFilter({ ...characterFilter, faction: Faction.Hypogean })} />
+              <Image src={FactionImages[Faction.Lightbearer.toString()]} width={64} height={64} alt="Lightbearer" onClick={() => updateCharacterFilter({ ...characterFilter, faction: Faction.Lightbearer })} />
+              <Image src={FactionImages[Faction.Mauler.toString()]} width={64} height={64} alt="Mauler" onClick={() => updateCharacterFilter({ ...characterFilter, faction: Faction.Mauler })} />
+              <Image src={FactionImages[Faction.Wilder.toString()]} width={64} height={64} alt="Wilder" onClick={() => updateCharacterFilter({ ...characterFilter, faction: Faction.Wilder })} />
+              <Button variant={characterFilter.faction === 'All' ? 'secondary' : 'ghost'} className="py-0 h-auto" onClick={() => updateCharacterFilter({ ...characterFilter, faction: "All" })}>All</Button>
 
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: CharacterClass.Mage })}>Ma</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: CharacterClass.Marksman })}>Mr</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: CharacterClass.Rogue })}>Ro</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: CharacterClass.Tank })}>Ta</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: CharacterClass.Support })}>Su</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: CharacterClass.Warrior })}>Wa</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: "All" })}>All</Button>
+              <Image src={ClassImages[CharacterClass.Mage.toString()]} width={64} height={64} alt="Mage" onClick={() => updateCharacterFilter({ ...characterFilter, class: CharacterClass.Mage })} />
+              <Image src={ClassImages[CharacterClass.Marksman.toString()]} width={64} height={64} alt="Marksman" onClick={() => updateCharacterFilter({ ...characterFilter, class: CharacterClass.Marksman })} />
+              <Image src={ClassImages[CharacterClass.Rogue.toString()]} width={64} height={64} alt="Rogue" onClick={() => updateCharacterFilter({ ...characterFilter, class: CharacterClass.Rogue })} />
+              <Image src={ClassImages[CharacterClass.Support.toString()]} width={64} height={64} alt="Support" onClick={() => updateCharacterFilter({ ...characterFilter, class: CharacterClass.Support })} />
+              <Image src={ClassImages[CharacterClass.Tank.toString()]} width={64} height={64} alt="Tank" onClick={() => updateCharacterFilter({ ...characterFilter, class: CharacterClass.Tank })} />
+              <Image src={ClassImages[CharacterClass.Warrior.toString()]} width={64} height={64} alt="Warrior" onClick={() => updateCharacterFilter({ ...characterFilter, class: CharacterClass.Warrior })} />
+              <Button variant={characterFilter.class === 'All' ? 'secondary' : 'ghost'} className="py-0 h-auto" onClick={() => updateCharacterFilter({ ...characterFilter, class: "All" })}>All</Button>
             </div>
           </PopoverContent>
         </Popover>
