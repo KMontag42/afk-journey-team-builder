@@ -98,23 +98,23 @@ export default function Builder() {
   
   const formationRef = createRef<HTMLDivElement>();
 
-  function updateFormation(slot: number, character: string) {
+  function updateFormation(slot: number, character: Character) {
     const characterInSlot = formation[slot];
-    const characterIndex = formation.indexOf(character);
+    const characterIndex = formation.indexOf(character.name);
     const formationCharacters = formation.filter(
       (character) => character !== "",
     );
     const formationCopy = [...formation];
     let newCharacters = [...characters];
 
-    if (characterInSlot === character) {
+    if (characterInSlot === character.name) {
       formationCopy[slot] = "";
       newCharacters.push(character);
     } else if (characterIndex !== -1) {
-      formationCopy[slot] = character;
+      formationCopy[slot] = character.name;
       formationCopy[characterIndex] = characterInSlot;
       newCharacters = newCharacters.filter(
-        (character) => character !== characterInSlot,
+        (character) => character.name !== characterInSlot,
       );
       newCharacters = newCharacters.filter(
         (character) => character !== selectedCharacter,
@@ -125,16 +125,16 @@ export default function Builder() {
       );
 
       if (characterInSlot !== "") {
-        newCharacters.push(characterInSlot);
+        newCharacters.push(Characters.find(x => x.name === characterInSlot)!);
       }
 
-      formationCopy[slot] = character;
+      formationCopy[slot] = character.name;
     } else if (formationCharacters.length === 5 && characterInSlot !== "") {
       newCharacters = newCharacters.filter(
         (character) => character !== selectedCharacter,
       );
-      newCharacters.push(characterInSlot);
-      formationCopy[slot] = character;
+      newCharacters.push(Characters.find(x => x.name === characterInSlot)!);
+      formationCopy[slot] = character.name;
     }
 
     newCharacters = newCharacters.filter(
@@ -172,14 +172,12 @@ export default function Builder() {
   function onCharacterSlotClick(slot: number) {
     const slotNumber = slot - 1;
     if (selectedCharacter) {
-      updateFormation(slotNumber, selectedCharacter.name);
+      updateFormation(slotNumber, selectedCharacter);
       setSelectedCharacter(null);
     } else if (formation[slotNumber]) {
-      console.log("formation[slotNumber]", formation[slotNumber]);
       const _character = Characters.find(
         (character) => character.name === formation[slotNumber],
       );
-      console.log("_character", _character);
       setSelectedCharacter(_character!);
     }
   }
