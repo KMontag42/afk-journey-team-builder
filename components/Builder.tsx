@@ -154,18 +154,18 @@ export default function Builder() {
     );
 
     setFormation(formationCopy);
-    setCharacters(newCharacters.sort());
+    setCharacters(newCharacters.sort((a, b) => a.name.localeCompare(b.name)));
   }
 
   function updateCharacterFilter(filter: CharacterFilter) {
     setCharacterFilter(filter);
     setCharacters(
-      Characters.filter((character) => {
+      charactersNotInFormation.filter((character) => {
         return (
           (filter.faction === "All" || character.faction === filter.faction) &&
           (filter.class === "All" || character.class === filter.class)
         );
-      }),
+      }).sort(),
     );
   }
 
