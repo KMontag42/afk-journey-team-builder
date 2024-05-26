@@ -175,7 +175,12 @@ export default function Builder() {
       updateFormation(slotNumber, selectedCharacter.name);
       setSelectedCharacter(null);
     } else if (formation[slotNumber]) {
-      setSelectedCharacter(characters.find(x => x.name === formation[slotNumber])!);
+      console.log("formation[slotNumber]", formation[slotNumber]);
+      const _character = Characters.find(
+        (character) => character.name === formation[slotNumber],
+      );
+      console.log("_character", _character);
+      setSelectedCharacter(_character!);
     }
   }
 
