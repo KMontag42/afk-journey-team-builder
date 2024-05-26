@@ -2,7 +2,7 @@
 
 import { useState, createRef, useCallback } from "react";
 import { useQueryState } from "nuqs";
-import { type Character, Characters, getCharacterImage } from "@/lib/characters";
+import { type Character, Faction, CharacterClass, Characters, getCharacterImage } from "@/lib/characters";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
@@ -60,8 +60,8 @@ const layoutExportMargins: { [key: number]: string } = {
 };
 
 type CharacterFilter = {
-  class: string;
-  faction: string;
+  class: CharacterClass | "All";
+  faction: Faction | "All";
 };
 
 export default function Builder() {
@@ -259,19 +259,20 @@ export default function Builder() {
           </PopoverTrigger>
           <PopoverContent side="left" className="bg-slate-400">
             <div className="grid grid-cols-7 gap-2">
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: "Lightbearer" })}>LB</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: "Graveborn" })}>GB</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: "Wilder" })}>WI</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: "Mauler" })}>MA</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: "Hypogean" })}>HY</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: "Celestial" })}>CE</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: Faction.Celestial })}>Ce</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: Faction.Graveborn })}>Gr</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: Faction.Hypogean})}>Hy</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: Faction.Lightbearer })}>Li</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: Faction.Mauler })}>Ma</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: Faction.Wilder })}>Wi</Button>
               <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: "All" })}>All</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: "Mage" })}>MA</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: "Warrior" })}>WA</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: "Support" })}>SU</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: "Tank" })}>TA</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: "Rogue" })}>RO</Button>
-              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: "Marksman" })}>MR</Button>
+
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: CharacterClass.Mage })}>Ma</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: CharacterClass.Marksman })}>Mr</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: CharacterClass.Rogue })}>Ro</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: CharacterClass.Tank })}>Ta</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: CharacterClass.Support })}>Su</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: CharacterClass.Warrior })}>Wa</Button>
               <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: "All" })}>All</Button>
             </div>
           </PopoverContent>
