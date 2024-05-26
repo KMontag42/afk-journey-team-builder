@@ -10,6 +10,9 @@ import { toast } from "sonner";
 import { toPng } from "html-to-image";
 import { track } from "@vercel/analytics";
 
+import { Filter } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+
 import {
   Select,
   SelectContent,
@@ -56,6 +59,11 @@ const layoutExportMargins: { [key: number]: string } = {
   4: "0",
 };
 
+type CharacterFilter = {
+  class: string;
+  faction: string;
+};
+
 export default function Builder() {
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null,
@@ -81,6 +89,7 @@ export default function Builder() {
     serialize: (layout: number) => layout.toString(),
     defaultValue: 0,
   });
+  const [characterFilter, setCharacterFilter] = useState<CharacterFilter>({ class: "All", faction: "All" });
 
   const changeLayout = (newLayoutId: number) => {
     const existingLayoutTiles = layouts[layout].numTiles;
@@ -143,6 +152,18 @@ export default function Builder() {
 
     setFormation(formationCopy);
     setCharacters(newCharacters.sort());
+  }
+
+  function updateCharacterFilter(filter: CharacterFilter) {
+    setCharacterFilter(filter);
+    setCharacters(
+      Characters.filter((character) => {
+        return (
+          (filter.faction === "All" || character.faction === filter.faction) &&
+          (filter.class === "All" || character.class === filter.class)
+        );
+      }),
+    );
   }
 
   const onDownloadButtonClick = useCallback(() => {
@@ -230,6 +251,31 @@ export default function Builder() {
             );
           })}
         </div>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button className="absolute bottom-0 right-8 rounded-full px-2">
+              <Filter size={24} />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent side="left" className="bg-slate-400">
+            <div className="grid grid-cols-7 gap-2">
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: "Lightbearer" })}>LB</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: "Graveborn" })}>GB</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: "Wilder" })}>WI</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: "Mauler" })}>MA</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: "Hypogean" })}>HY</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: "Celestial" })}>CE</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, faction: "All" })}>All</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: "Mage" })}>MA</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: "Warrior" })}>WA</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: "Support" })}>SU</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: "Tank" })}>TA</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: "Rogue" })}>RO</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: "Marksman" })}>MR</Button>
+              <Button variant={'secondary'} className="rounded-full" onClick={() => updateCharacterFilter({...characterFilter, class: "All" })}>All</Button>
+            </div>
+          </PopoverContent>
+        </Popover>
       </ScrollArea>
 
       <div className="pt-2 flex gap-2">
