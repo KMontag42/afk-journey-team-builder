@@ -2,13 +2,14 @@ import CharacterSlot from "@/components/CharacterSlot";
 import Image from "next/image";
 import { tekImages } from "@/lib/images";
 import ArtefactSelector from "@/components/ArtefactSelector";
+import { Character } from "@/lib/characters";
 
 export default function Arena3Layout(props: {
   onCharacterSlotClick: (index: number) => void;
   spell: string;
   setSpell: (spell: string) => void;
   formation: string[];
-  selectedCharacter: string;
+  selectedCharacter: Character | null;
 }) {
   return (
     <>

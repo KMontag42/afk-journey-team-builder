@@ -2,13 +2,15 @@
 
 import { useState, createRef, useCallback } from "react";
 import { useQueryState } from "nuqs";
-import { Characters, getCharacterImage } from "@/lib/characters";
+import { type Character, Characters, getCharacterImage } from "@/lib/characters";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { toPng } from "html-to-image";
 import { track } from "@vercel/analytics";
+
+import CharacterFilter, { CharacterFilterType } from "@/components/CharacterFilter";
 
 import {
   Select,
@@ -24,7 +26,7 @@ import Arena2Layout from "@/components/layouts/Arena2";
 import Arena3Layout from "@/components/layouts/Arena3";
 import Arena4Layout from "@/components/layouts/Arena4";
 
-const layouts: { [key: number]: { Component: React.ElementType, numTiles: number} } = {
+const layouts: { [key: number]: { Component: React.ElementType, numTiles: number } } = {
   0: { Component: BaseLayout, numTiles: 13 },
   1: { Component: Arena1Layout, numTiles: 10 },
   2: { Component: Arena2Layout, numTiles: 10 },
@@ -57,7 +59,7 @@ const layoutExportMargins: { [key: number]: string } = {
 };
 
 export default function Builder() {
-  const [selectedCharacter, setSelectedCharacter] = useState<string | null>(
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null,
   );
   const [formation, setFormation] = useQueryState<string[]>("formation", {
@@ -66,9 +68,9 @@ export default function Builder() {
     defaultValue: new Array<string>(13).fill(""),
   });
   const charactersNotInFormation = Characters.filter(
-    (character) => !formation.includes(character),
+    (character) => !formation.includes(character.name),
   );
-  const [characters, setCharacters] = useState<string[]>(
+  const [characters, setCharacters] = useState<Character[]>(
     charactersNotInFormation.sort(),
   );
   const [spell, setSpell] = useQueryState<string>("spell", {
@@ -81,6 +83,7 @@ export default function Builder() {
     serialize: (layout: number) => layout.toString(),
     defaultValue: 0,
   });
+  const [characterFilter, setCharacterFilter] = useState<CharacterFilterType>({ class: "All", faction: "All" });
 
   const changeLayout = (newLayoutId: number) => {
     const existingLayoutTiles = layouts[layout].numTiles;
@@ -88,33 +91,33 @@ export default function Builder() {
 
     if (newLayoutTiles < existingLayoutTiles) {
       setFormation((formation) => formation.slice(0, newLayoutTiles));
-      setCharacters((characters) =>
-        [...characters, ...formation.slice(newLayoutTiles)].filter((character) => character !== "").sort()
+      setCharacters(
+        Characters.filter((character) => !formation.includes(character.name)),
       );
     }
-    else if (newLayoutTiles > existingLayoutTiles) setFormation(Array.from({length: newLayoutTiles}).map((_,i) => formation[i]));
+    else if (newLayoutTiles > existingLayoutTiles) setFormation(Array.from({ length: newLayoutTiles }).map((_, i) => formation[i]));
     setLayout(newLayoutId)
   }
-  
+
   const formationRef = createRef<HTMLDivElement>();
 
-  function updateFormation(slot: number, character: string) {
+  function updateFormation(slot: number, character: Character) {
     const characterInSlot = formation[slot];
-    const characterIndex = formation.indexOf(character);
+    const characterIndex = formation.indexOf(character.name);
     const formationCharacters = formation.filter(
       (character) => character !== "",
     );
     const formationCopy = [...formation];
     let newCharacters = [...characters];
 
-    if (characterInSlot === character) {
+    if (characterInSlot === character.name) {
       formationCopy[slot] = "";
       newCharacters.push(character);
     } else if (characterIndex !== -1) {
-      formationCopy[slot] = character;
+      formationCopy[slot] = character.name;
       formationCopy[characterIndex] = characterInSlot;
       newCharacters = newCharacters.filter(
-        (character) => character !== characterInSlot,
+        (character) => character.name !== characterInSlot,
       );
       newCharacters = newCharacters.filter(
         (character) => character !== selectedCharacter,
@@ -125,16 +128,16 @@ export default function Builder() {
       );
 
       if (characterInSlot !== "") {
-        newCharacters.push(characterInSlot);
+        newCharacters.push(Characters.find(x => x.name === characterInSlot)!);
       }
 
-      formationCopy[slot] = character;
+      formationCopy[slot] = character.name;
     } else if (formationCharacters.length === 5 && characterInSlot !== "") {
       newCharacters = newCharacters.filter(
         (character) => character !== selectedCharacter,
       );
-      newCharacters.push(characterInSlot);
-      formationCopy[slot] = character;
+      newCharacters.push(Characters.find(x => x.name === characterInSlot)!);
+      formationCopy[slot] = character.name;
     }
 
     newCharacters = newCharacters.filter(
@@ -142,7 +145,19 @@ export default function Builder() {
     );
 
     setFormation(formationCopy);
-    setCharacters(newCharacters.sort());
+    setCharacters(newCharacters.sort((a, b) => a.name.localeCompare(b.name)));
+  }
+
+  function updateCharacterFilter(filter: CharacterFilterType) {
+    setCharacterFilter(filter);
+    setCharacters(
+      charactersNotInFormation.filter((character) => {
+        return (
+          (filter.faction === "All" || character.faction === filter.faction) &&
+          (filter.class === "All" || character.class === filter.class)
+        );
+      }).sort(),
+    );
   }
 
   const onDownloadButtonClick = useCallback(() => {
@@ -165,7 +180,7 @@ export default function Builder() {
     });
   }, [formationRef]);
 
-  function onCharacterClick(character: string) {
+  function onCharacterClick(character: Character) {
     setSelectedCharacter(character);
   }
 
@@ -175,7 +190,10 @@ export default function Builder() {
       updateFormation(slotNumber, selectedCharacter);
       setSelectedCharacter(null);
     } else if (formation[slotNumber]) {
-      setSelectedCharacter(formation[slotNumber]);
+      const _character = Characters.find(
+        (character) => character.name === formation[slotNumber],
+      );
+      setSelectedCharacter(_character!);
     }
   }
 
@@ -219,14 +237,19 @@ export default function Builder() {
               <Avatar
                 className={className}
                 onClick={() => onCharacterClick(character)}
-                key={character}
+                key={character.name}
               >
                 <AvatarImage src={getCharacterImage(character)} />
-                <AvatarFallback>{character}</AvatarFallback>
+                <AvatarFallback>{character.name}</AvatarFallback>
               </Avatar>
             );
           })}
         </div>
+        <CharacterFilter
+          characterFilter={characterFilter}
+          updateCharacterFilter={updateCharacterFilter}
+          className="absolute bottom-0 right-8"
+        />
       </ScrollArea>
 
       <div className="pt-2 flex gap-2">
