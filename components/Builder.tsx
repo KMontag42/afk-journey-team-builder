@@ -2,19 +2,15 @@
 
 import { useState, createRef, useCallback } from "react";
 import { useQueryState } from "nuqs";
-import { type Character, Faction, CharacterClass, Characters, getCharacterImage } from "@/lib/characters";
+import { type Character, Characters, getCharacterImage } from "@/lib/characters";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { toPng } from "html-to-image";
 import { track } from "@vercel/analytics";
-import { cn } from "@/lib/utils";
 
-import { Filter } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import Image from "next/image";
-import { ClassImages, FactionImages } from "@/lib/images";
+import CharacterFilter, { CharacterFilterType } from "@/components/CharacterFilter";
 
 import {
   Select,
@@ -62,11 +58,6 @@ const layoutExportMargins: { [key: number]: string } = {
   4: "0",
 };
 
-type CharacterFilter = {
-  class: CharacterClass | "All";
-  faction: Faction | "All";
-};
-
 export default function Builder() {
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null,
@@ -92,7 +83,7 @@ export default function Builder() {
     serialize: (layout: number) => layout.toString(),
     defaultValue: 0,
   });
-  const [characterFilter, setCharacterFilter] = useState<CharacterFilter>({ class: "All", faction: "All" });
+  const [characterFilter, setCharacterFilter] = useState<CharacterFilterType>({ class: "All", faction: "All" });
 
   const changeLayout = (newLayoutId: number) => {
     const existingLayoutTiles = layouts[layout].numTiles;
@@ -157,7 +148,7 @@ export default function Builder() {
     setCharacters(newCharacters.sort((a, b) => a.name.localeCompare(b.name)));
   }
 
-  function updateCharacterFilter(filter: CharacterFilter) {
+  function updateCharacterFilter(filter: CharacterFilterType) {
     setCharacterFilter(filter);
     setCharacters(
       charactersNotInFormation.filter((character) => {
@@ -254,32 +245,11 @@ export default function Builder() {
             );
           })}
         </div>
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button className="absolute bottom-0 right-8 rounded-full px-2">
-              <Filter size={24} />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent side="left" className="bg-slate-400">
-            <div className="grid grid-cols-7 gap-2">
-              <Image src={FactionImages[Faction.Celestial.toString()]} width={64} height={64} alt="Celestial" onClick={() => updateCharacterFilter({ ...characterFilter, faction: Faction.Celestial })} />
-              <Image src={FactionImages[Faction.Graveborn.toString()]} width={64} height={64} alt="Graveborn" onClick={() => updateCharacterFilter({ ...characterFilter, faction: Faction.Graveborn })} />
-              <Image src={FactionImages[Faction.Hypogean.toString()]} width={64} height={64} alt="Hypogean" onClick={() => updateCharacterFilter({ ...characterFilter, faction: Faction.Hypogean })} />
-              <Image src={FactionImages[Faction.Lightbearer.toString()]} width={64} height={64} alt="Lightbearer" onClick={() => updateCharacterFilter({ ...characterFilter, faction: Faction.Lightbearer })} />
-              <Image src={FactionImages[Faction.Mauler.toString()]} width={64} height={64} alt="Mauler" onClick={() => updateCharacterFilter({ ...characterFilter, faction: Faction.Mauler })} />
-              <Image src={FactionImages[Faction.Wilder.toString()]} width={64} height={64} alt="Wilder" onClick={() => updateCharacterFilter({ ...characterFilter, faction: Faction.Wilder })} />
-              <Button variant={characterFilter.faction === 'All' ? 'secondary' : 'ghost'} className="py-0 h-auto" onClick={() => updateCharacterFilter({ ...characterFilter, faction: "All" })}>All</Button>
-
-              <Image src={ClassImages[CharacterClass.Mage.toString()]} width={64} height={64} alt="Mage" onClick={() => updateCharacterFilter({ ...characterFilter, class: CharacterClass.Mage })} />
-              <Image src={ClassImages[CharacterClass.Marksman.toString()]} width={64} height={64} alt="Marksman" onClick={() => updateCharacterFilter({ ...characterFilter, class: CharacterClass.Marksman })} />
-              <Image src={ClassImages[CharacterClass.Rogue.toString()]} width={64} height={64} alt="Rogue" onClick={() => updateCharacterFilter({ ...characterFilter, class: CharacterClass.Rogue })} />
-              <Image src={ClassImages[CharacterClass.Support.toString()]} width={64} height={64} alt="Support" onClick={() => updateCharacterFilter({ ...characterFilter, class: CharacterClass.Support })} />
-              <Image src={ClassImages[CharacterClass.Tank.toString()]} width={64} height={64} alt="Tank" onClick={() => updateCharacterFilter({ ...characterFilter, class: CharacterClass.Tank })} />
-              <Image src={ClassImages[CharacterClass.Warrior.toString()]} width={64} height={64} alt="Warrior" onClick={() => updateCharacterFilter({ ...characterFilter, class: CharacterClass.Warrior })} />
-              <Button variant={characterFilter.class === 'All' ? 'secondary' : 'ghost'} className="py-0 h-auto" onClick={() => updateCharacterFilter({ ...characterFilter, class: "All" })}>All</Button>
-            </div>
-          </PopoverContent>
-        </Popover>
+        <CharacterFilter
+          characterFilter={characterFilter}
+          updateCharacterFilter={updateCharacterFilter}
+          className="absolute bottom-0 right-8"
+        />
       </ScrollArea>
 
       <div className="pt-2 flex gap-2">
