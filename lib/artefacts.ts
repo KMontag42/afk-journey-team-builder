@@ -23,4 +23,5 @@ export const ARTEFACTS: {
   enlightening: { value: 'enlightening', image: artefactImages.enlightening, label: 'Enlightening', category: 'permanent' },
   ironwall: { value: 'ironwall', image: artefactImages.ironwall, label: 'Ironwall', category: 'permanent' },
   starshard: { value: 'starshard', image: artefactImages.starshard, label: 'Starshard', category: 'permanent' },
+  random: { value: 'random', image: artefactImages.random, label: 'Random', category: 'permanent' },
 };

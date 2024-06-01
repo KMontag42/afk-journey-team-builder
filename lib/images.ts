@@ -15,6 +15,7 @@ import Cascade from "@/public/artifacts/Cascade.png";
 import Evocation from "@/public/artifacts/Evocation.png";
 import Thunderbolt from "@/public/artifacts/Thunderbolt.png";
 import Dashing from "@/public/artifacts/Dashing.png";
+import Random from "@/public/artifacts/Random.png";
 
 import tekLogo from "@/public/tekLogo.png";
 import AnalyticaOfficialLogo from "@/public/AnalyticaOfficialLogo.png";
@@ -116,6 +117,7 @@ export const artefactImages: {
   enlightening: Enlightening,
   ironwall: Ironwall,
   starshard: Starshard,
+  random: Random
 };
 
 export const tekImages: { [key: string]: StaticImageData } = {
