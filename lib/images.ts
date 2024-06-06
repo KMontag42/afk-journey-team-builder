@@ -69,6 +69,7 @@ import Niru from "@/public/characters/Niru.png";
 import Odie from "@/public/characters/Odie.png";
 import Parisa from "@/public/characters/Parisa.png";
 import Phraesto from "@/public/characters/Phraesto.png";
+import PhraestoClone from "@/public/characters/PhraestoClone.png";
 import Reinier from "@/public/characters/Reinier.png";
 import Rhys from "@/public/characters/Rhys.png";
 import Rowan from "@/public/characters/Rowan.png";
@@ -178,6 +179,7 @@ export const characterImages: { [key: string]: StaticImageData } = {
   odie: Odie,
   parisa: Parisa,
   phraesto: Phraesto,
+  phraestoclone: PhraestoClone,
   reinier: Reinier,
   rhys: Rhys,
   rowan: Rowan,

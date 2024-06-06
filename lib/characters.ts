@@ -20,6 +20,7 @@ export type Character = {
   name: string;
   class: CharacterClass;
   faction: Faction;
+  hide?: boolean;
 }
 
 export const Characters: Character[] = [
@@ -56,6 +57,7 @@ export const Characters: Character[] = [
   { name: "Odie", faction: Faction.Mauler, class: CharacterClass.Marksman },
   { name: "Parisa", faction: Faction.Wilder, class: CharacterClass.Mage },
   { name: "Phraesto", faction: Faction.Hypogean, class: CharacterClass.Tank },
+  { name: "PhraestoClone", faction: Faction.Hypogean, class: CharacterClass.Tank, hide: true },
   { name: "Reinier", faction: Faction.Hypogean, class: CharacterClass.Support },
   { name: "Rhys", faction: Faction.Mauler, class: CharacterClass.Marksman },
   { name: "Rowan", faction: Faction.Lightbearer, class: CharacterClass.Mage },

@@ -2,8 +2,7 @@
 
 import { useState, createRef, useCallback } from "react";
 import { useQueryState } from "nuqs";
-import { type Character, Characters, getCharacterImage } from "@/lib/characters";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { type Character, Characters } from "@/lib/characters";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -110,12 +109,23 @@ export default function Builder() {
       (character) => character !== "",
     );
     const formationCopy = [...formation];
+    const formationHasPhraesto = formation.includes("Phraesto");
     let newCharacters = [...characters];
+    let maxCharacters = formationHasPhraesto ? 6 : 5;
 
     if (characterInSlot === character.name) {
+      // remove character from slot, add back to characters
       formationCopy[slot] = "";
       newCharacters.push(character);
+
+      if (formationHasPhraesto) {
+        // remove Phraesto from formation
+        formationCopy[formationCopy.indexOf("Phraesto")] = "";
+        formationCopy[formationCopy.indexOf("PhraestoClone")] = "";
+        newCharacters.push(Characters.find(x => x.name === "Phraesto")!);
+      }
     } else if (characterIndex !== -1) {
+      // swap characters
       formationCopy[slot] = character.name;
       formationCopy[characterIndex] = characterInSlot;
       newCharacters = newCharacters.filter(
@@ -124,7 +134,8 @@ export default function Builder() {
       newCharacters = newCharacters.filter(
         (character) => character !== selectedCharacter,
       );
-    } else if (formationCharacters.length < 5) {
+    } else if (formationCharacters.length < maxCharacters) {
+      // add character to slot
       newCharacters = newCharacters.filter(
         (character) => character !== selectedCharacter,
       );
@@ -134,14 +145,22 @@ export default function Builder() {
       }
 
       formationCopy[slot] = character.name;
-    } else if (formationCharacters.length === 5 && characterInSlot !== "") {
+
+      if (character.name === "Phraesto") {
+        const firstOpenSlot = formationCopy.indexOf("");
+        formationCopy[firstOpenSlot] = "PhraestoClone";
+      }
+    } else if (formationCharacters.length === maxCharacters && characterInSlot !== "") {
+      // swap characters
       newCharacters = newCharacters.filter(
         (character) => character !== selectedCharacter,
       );
       newCharacters.push(Characters.find(x => x.name === characterInSlot)!);
+
       formationCopy[slot] = character.name;
     }
 
+    // remove duplicates
     newCharacters = newCharacters.filter(
       (value, index, self) => self.indexOf(value) === index,
     );
@@ -233,6 +252,7 @@ export default function Builder() {
       >
         <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-4 mx-6`}>
           {characters.map((character) => {
+            if (character.hide) return null;
             const isSelected = selectedCharacter === character;
             const className = `w-14 h-16 ${isSelected ? "outline rounded outline-yellow-400 outline-4" : ""}`;
             return (
