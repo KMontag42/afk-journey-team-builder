@@ -55,6 +55,7 @@ export const Characters: Character[] = [
   { name: "Niru", faction: Faction.Graveborn, class: CharacterClass.Support },
   { name: "Odie", faction: Faction.Mauler, class: CharacterClass.Marksman },
   { name: "Parisa", faction: Faction.Wilder, class: CharacterClass.Mage },
+  { name: "Phraesto", faction: Faction.Hypogean, class: CharacterClass.Tank },
   { name: "Reinier", faction: Faction.Hypogean, class: CharacterClass.Support },
   { name: "Rhys", faction: Faction.Mauler, class: CharacterClass.Marksman },
   { name: "Rowan", faction: Faction.Lightbearer, class: CharacterClass.Mage },

@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { toPng } from "html-to-image";
 import { track } from "@vercel/analytics";
+import Image from "next/image";
 
 import CharacterFilter, { CharacterFilterType } from "@/components/CharacterFilter";
 
@@ -25,6 +26,7 @@ import Arena1Layout from "@/components/layouts/Arena1";
 import Arena2Layout from "@/components/layouts/Arena2";
 import Arena3Layout from "@/components/layouts/Arena3";
 import Arena4Layout from "@/components/layouts/Arena4";
+import { characterImages } from "@/lib/images";
 
 const layouts: { [key: number]: { Component: React.ElementType, numTiles: number } } = {
   0: { Component: BaseLayout, numTiles: 13 },
@@ -232,16 +234,14 @@ export default function Builder() {
         <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-4 mx-6`}>
           {characters.map((character) => {
             const isSelected = selectedCharacter === character;
-            const className = `w-14 h-14 ${isSelected ? "border border-yellow-400 border-4" : ""}`;
+            const className = `w-14 h-16 ${isSelected ? "outline rounded outline-yellow-400 outline-4" : ""}`;
             return (
-              <Avatar
-                className={className}
-                onClick={() => onCharacterClick(character)}
+              <Image
                 key={character.name}
-              >
-                <AvatarImage src={getCharacterImage(character)} />
-                <AvatarFallback>{character.name}</AvatarFallback>
-              </Avatar>
+                src={characterImages[character.name.toLowerCase()]}
+                alt={character.name}
+                className={className}
+                onClick={() => onCharacterClick(character)} />
             );
           })}
         </div>
