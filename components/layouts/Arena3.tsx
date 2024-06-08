@@ -13,7 +13,7 @@ export default function Arena3Layout(props: {
 }) {
   return (
     <>
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3">
         <CharacterSlot
           index={9}
           onClick={() => props.onCharacterSlotClick(9)}
@@ -21,7 +21,7 @@ export default function Arena3Layout(props: {
           selectedCharacter={props.selectedCharacter}
         />
       </div>
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-4 -mt-2">
         <CharacterSlot
           index={7}
           onClick={() => props.onCharacterSlotClick(7)}
@@ -35,10 +35,10 @@ export default function Arena3Layout(props: {
           selectedCharacter={props.selectedCharacter}
         />
       </div>
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3 -mt-2">
         <div className="h-16" />
       </div>
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-4 -mt-2">
         <div />
         <div />
         <CharacterSlot
@@ -48,7 +48,7 @@ export default function Arena3Layout(props: {
           selectedCharacter={props.selectedCharacter}
         />
       </div>
-      <div className="grid grid-cols-5 gap-2">
+      <div className="grid grid-cols-5 -mt-2">
         <div />
         <div />
         <CharacterSlot
@@ -70,7 +70,7 @@ export default function Arena3Layout(props: {
           selectedCharacter={props.selectedCharacter}
         />
       </div>
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-4 -mt-2">
         <ArtefactSelector active={props.spell} onChange={props.setSpell} />
 
         <div

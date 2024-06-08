@@ -13,7 +13,7 @@ export default function Arena4Layout(props: {
 }) {
   return (
     <>
-      <div className="grid grid-cols-5 gap-2">
+      <div className="grid grid-cols-5">
         <CharacterSlot
           index={11}
           onClick={() => props.onCharacterSlotClick(11)}
@@ -21,7 +21,7 @@ export default function Arena4Layout(props: {
           selectedCharacter={props.selectedCharacter}
         />
       </div>
-      <div className="grid grid-cols-6 gap-2">
+      <div className="grid grid-cols-6 -mt-2">
         <CharacterSlot
           index={8}
           onClick={() => props.onCharacterSlotClick(8)}
@@ -29,7 +29,7 @@ export default function Arena4Layout(props: {
           selectedCharacter={props.selectedCharacter}
         />
       </div>
-      <div className="grid grid-cols-5 gap-2">
+      <div className="grid grid-cols-5 -mt-2">
         <CharacterSlot
           index={6}
           onClick={() => props.onCharacterSlotClick(6)}
@@ -44,7 +44,7 @@ export default function Arena4Layout(props: {
           selectedCharacter={props.selectedCharacter}
         />
       </div>
-      <div className="grid grid-cols-6 gap-2">
+      <div className="grid grid-cols-6 -mt-2">
         <CharacterSlot
           index={4}
           onClick={() => props.onCharacterSlotClick(4)}
@@ -62,7 +62,7 @@ export default function Arena4Layout(props: {
           selectedCharacter={props.selectedCharacter}
         />
       </div>
-      <div className="grid grid-cols-5 gap-2">
+      <div className="grid grid-cols-5 -mt-2">
         <CharacterSlot
           index={2}
           onClick={() => props.onCharacterSlotClick(2)}
@@ -84,7 +84,7 @@ export default function Arena4Layout(props: {
           selectedCharacter={props.selectedCharacter}
         />
       </div>
-      <div className="grid grid-cols-6 gap-2">
+      <div className="grid grid-cols-6 -mt-2">
         <ArtefactSelector active={props.spell} onChange={props.setSpell} />
 
         <div className="h-16 w-16 grid grid-cols-1 place-items-center opacity-30" id="watermark-logo">

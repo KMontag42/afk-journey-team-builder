@@ -13,7 +13,7 @@ export default function Arena1Layout(props: {
 }) {
   return (
     <>
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3">
         <CharacterSlot
           index={9}
           onClick={() => props.onCharacterSlotClick(9)}
@@ -27,7 +27,7 @@ export default function Arena1Layout(props: {
           selectedCharacter={props.selectedCharacter}
         />
       </div>
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-4 -mt-2">
         <CharacterSlot
           index={5}
           onClick={() => props.onCharacterSlotClick(5)}
@@ -41,7 +41,7 @@ export default function Arena1Layout(props: {
           selectedCharacter={props.selectedCharacter}
         />
       </div>
-      <div className="grid grid-cols-5 gap-2">
+      <div className="grid grid-cols-5 -mt-2">
         <div className="invisible h-14 w-14 bg-gray-400 rounded-full"></div>
         <CharacterSlot
           index={2}
@@ -68,7 +68,7 @@ export default function Arena1Layout(props: {
           selectedCharacter={props.selectedCharacter}
         />
       </div>
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-4 -mt-2">
         <ArtefactSelector active={props.spell} onChange={props.setSpell} />
 
         <div className="h-16 w-16 grid grid-cols-1 place-items-center opacity-30" id="watermark-logo">

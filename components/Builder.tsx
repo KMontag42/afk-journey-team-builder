@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { toPng } from "html-to-image";
 import { track } from "@vercel/analytics";
 import Image from "next/image";
+import { Share, Download } from "lucide-react";
 
 import CharacterFilter, { CharacterFilterType } from "@/components/CharacterFilter";
 
@@ -246,11 +247,36 @@ export default function Builder() {
         />
       </div>
 
+      <div className="flex gap-2 justify-center items-center">
+        <Button
+          onClick={() => {
+            navigator.clipboard.writeText(window.location.href);
+            toast("Formation link copied to clipboard");
+            track("formation_shared", {
+              formation: formation.join(","),
+              spell: spell,
+              url: window.location.href,
+            });
+          }}
+          className="h-8 px-2"
+        >
+          <Share />
+        </Button>
+        <Button onClick={onDownloadButtonClick} className="h-8 px-2">
+          <Download />
+        </Button>
+        <CharacterFilter
+          characterFilter={characterFilter}
+          updateCharacterFilter={updateCharacterFilter}
+          className="relative -ml-12 left-[4.5rem] md:left-[10.5rem]"
+        />
+      </div>
+
       <ScrollArea
         className="flex flex-col items-center"
-        style={{ height: `calc(100vh - ${layoutHeights[layout] ?? '24'}rem - 6.5rem)` }}
+        style={{ height: `calc(100vh - ${layoutHeights[layout] ?? '24'}rem - 5rem)` }}
       >
-        <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-4 mx-6`}>
+        <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-2 mx-6`}>
           {characters.map((character) => {
             if (character.hide) return null;
             const isSelected = selectedCharacter === character;
@@ -265,32 +291,7 @@ export default function Builder() {
             );
           })}
         </div>
-        <CharacterFilter
-          characterFilter={characterFilter}
-          updateCharacterFilter={updateCharacterFilter}
-          className="absolute bottom-0 right-8"
-        />
       </ScrollArea>
-
-      <div className="pt-2 flex gap-2">
-        <Button
-          onClick={() => {
-            navigator.clipboard.writeText(window.location.href);
-            toast("Formation link copied to clipboard");
-            track("formation_shared", {
-              formation: formation.join(","),
-              spell: spell,
-              url: window.location.href,
-            });
-          }}
-          className="h-8"
-        >
-          Share this formation
-        </Button>
-        <Button onClick={onDownloadButtonClick} className="h-8">
-          Download as Image
-        </Button>
-      </div>
     </>
   );
 }
