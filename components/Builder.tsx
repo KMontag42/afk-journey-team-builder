@@ -274,9 +274,9 @@ export default function Builder() {
 
       <ScrollArea
         className="flex flex-col items-center"
-        style={{ height: `calc(100vh - ${layoutHeights[layout] ?? '24'}rem - 4.5rem)` }}
+        style={{ height: `calc(100vh - ${layoutHeights[layout] ?? '24'}rem - 5rem)` }}
       >
-        <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-4 mx-6`}>
+        <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-2 mx-6`}>
           {characters.map((character) => {
             if (character.hide) return null;
             const isSelected = selectedCharacter === character;
