@@ -25,7 +25,7 @@ export default function CharacterFilter(props: {
           <Filter size={24} />
         </Button>
       </PopoverTrigger>
-      <PopoverContent side="left" className="bg-slate-400">
+      <PopoverContent side="bottom" className="bg-slate-400">
         <div className="grid grid-cols-7 gap-2">
           <Image src={FactionImages[Faction.Celestial.toString()]} width={64} height={64} alt="Celestial" onClick={() => props.updateCharacterFilter({ ...props.characterFilter, faction: Faction.Celestial })} />
           <Image src={FactionImages[Faction.Graveborn.toString()]} width={64} height={64} alt="Graveborn" onClick={() => props.updateCharacterFilter({ ...props.characterFilter, faction: Faction.Graveborn })} />

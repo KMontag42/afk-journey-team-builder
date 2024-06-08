@@ -247,7 +247,7 @@ export default function Builder() {
         />
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex gap-2 justify-center items-center">
         <Button
           onClick={() => {
             navigator.clipboard.writeText(window.location.href);
@@ -265,6 +265,11 @@ export default function Builder() {
         <Button onClick={onDownloadButtonClick} className="h-8 px-2">
           <Download />
         </Button>
+        <CharacterFilter
+          characterFilter={characterFilter}
+          updateCharacterFilter={updateCharacterFilter}
+          className="relative -ml-12 left-24 md:left-44"
+        />
       </div>
 
       <ScrollArea
@@ -286,11 +291,6 @@ export default function Builder() {
             );
           })}
         </div>
-        <CharacterFilter
-          characterFilter={characterFilter}
-          updateCharacterFilter={updateCharacterFilter}
-          className="absolute bottom-0 right-8"
-        />
       </ScrollArea>
     </>
   );
