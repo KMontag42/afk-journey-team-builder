@@ -268,7 +268,7 @@ export default function Builder() {
         <CharacterFilter
           characterFilter={characterFilter}
           updateCharacterFilter={updateCharacterFilter}
-          className="relative -ml-12 left-24 md:left-44"
+          className="relative -ml-12 left-[4.5rem] md:left-[10.5rem]"
         />
       </div>
 
