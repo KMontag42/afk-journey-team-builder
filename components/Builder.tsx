@@ -119,7 +119,7 @@ export default function Builder() {
       formationCopy[slot] = "";
       newCharacters.push(character);
 
-      if (formationHasPhraesto) {
+      if (character.name === "Phraesto" || character.name === "PhraestoClone") {
         // remove Phraesto from formation
         formationCopy[formationCopy.indexOf("Phraesto")] = "";
         formationCopy[formationCopy.indexOf("PhraestoClone")] = "";
