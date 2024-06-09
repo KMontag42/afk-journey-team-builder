@@ -2,11 +2,17 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+
+import { buttonVariants } from "@/components/ui/button";
 
 import { tekImages } from "@/lib/images";
+
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export default function Navbar() {
+  const pathname = usePathname();
+
   return (
     <>
       <Link
@@ -20,9 +26,18 @@ export default function Navbar() {
           className="w-8"
         />
       </Link>
-      <Link href="/">Home</Link>
-      <Link href="/builder">Builder</Link>
-      <Link href="/popular">Popular</Link>
+      <div>
+        <Link href="/" className={buttonVariants({variant: pathname === "/" ? 'secondary' : 'link'})}>Home</Link>
+      </div>
+      <div>
+        <Link href="/builder" className={buttonVariants({variant: pathname === "/builder" ? 'secondary' : 'link'})}>Builder</Link>
+      </div>
+      <div>
+        <Link href="/popular" className={buttonVariants({variant: pathname === "/popular" ? 'secondary' : 'link'})}>Popular</Link>
+      </div>
+      <div>
+        <Link href="/search" className={buttonVariants({variant: pathname === "/search" ? 'secondary' : 'link'})}>Search</Link>
+      </div>
       <div className="pt-2 justify-self-end">
         <SignedOut>
           <SignInButton />

@@ -260,7 +260,7 @@ export default function Builder() {
           </SelectContent>
         </Select>
         <Popover>
-          <PopoverTrigger className="absolute left-[80vw] md:left-[60vw]">
+          <PopoverTrigger className="absolute left-[80vw] md:left-[70vw]">
             <p className="text-xl underline">?</p>
           </PopoverTrigger>
           <PopoverContent>
@@ -292,7 +292,7 @@ export default function Builder() {
         />
       </div>
 
-      <div className="flex gap-2 justify-center items-center">
+      <div className="flex gap-2 justify-center items-center pb-2">
         <Button
           onClick={() => {
             navigator.clipboard.writeText(window.location.href);
@@ -320,7 +320,7 @@ export default function Builder() {
       <ScrollArea
         className="flex flex-col items-center"
         style={{
-          height: `calc(100vh - ${layoutHeights[layout] ?? "24"}rem - 2.5rem)`,
+          height: `calc(100vh - ${layoutHeights[layout] ?? "24"}rem - 3.5rem)`,
         }}
       >
         <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-2 mx-6`}>
