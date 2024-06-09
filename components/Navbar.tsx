@@ -66,12 +66,14 @@ export default function Navbar() {
           Search
         </Link>
       </div>
-      <div className="pt-2 justify-self-end">
+      <div className="justify-self-end">
         <SignedOut>
           <SignInButton />
         </SignedOut>
         <SignedIn>
-          <UserButton />
+          <div className="pt-2">
+            <UserButton />
+          </div>
         </SignedIn>
       </div>
     </>

@@ -9,12 +9,13 @@ import { toast } from "sonner";
 import { toPng } from "html-to-image";
 import { track } from "@vercel/analytics";
 import Image from "next/image";
-import { Share, Download } from "lucide-react";
+import { Share, Download, Save } from "lucide-react";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useUser } from "@clerk/nextjs";
 
 import CharacterFilter, {
   CharacterFilterType,
@@ -98,6 +99,7 @@ export default function Builder() {
     class: "All",
     faction: "All",
   });
+  const { isSignedIn } = useUser();
 
   const changeLayout = (newLayoutId: number) => {
     const existingLayoutTiles = layouts[layout].numTiles;
@@ -293,20 +295,27 @@ export default function Builder() {
       </div>
 
       <div className="flex gap-2 justify-center items-center pb-2">
-        <Button
-          onClick={() => {
-            navigator.clipboard.writeText(window.location.href);
-            toast("Formation link copied to clipboard");
-            track("formation_shared", {
-              formation: formation.join(","),
-              spell: spell,
-              url: window.location.href,
-            });
-          }}
-          className="h-8 px-2"
-        >
-          <Share />
-        </Button>
+        {isSignedIn && (
+          <>
+            <Button className="h-8 px-2">
+              <Save />
+            </Button>
+            <Button
+              onClick={() => {
+                navigator.clipboard.writeText(window.location.href);
+                toast("Formation link copied to clipboard");
+                track("formation_shared", {
+                  formation: formation.join(","),
+                  spell: spell,
+                  url: window.location.href,
+                });
+              }}
+              className="h-8 px-2"
+            >
+              <Share />
+            </Button>
+          </>
+        )}
         <Button onClick={onDownloadButtonClick} className="h-8 px-2">
           <Download />
         </Button>
