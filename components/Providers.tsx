@@ -1,16 +1,13 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { DndContext } from '@dnd-kit/core';
+import React from "react";
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 
 export default function Providers({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
-  return (
-    <DndContext>
-      {children}
-    </DndContext>
-  )
+  return <ClerkProvider appearance={{baseTheme: dark}}>{children}</ClerkProvider>;
 }

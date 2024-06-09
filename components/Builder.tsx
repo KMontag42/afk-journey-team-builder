@@ -10,8 +10,15 @@ import { toPng } from "html-to-image";
 import { track } from "@vercel/analytics";
 import Image from "next/image";
 import { Share, Download } from "lucide-react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
-import CharacterFilter, { CharacterFilterType } from "@/components/CharacterFilter";
+import CharacterFilter, {
+  CharacterFilterType,
+} from "@/components/CharacterFilter";
 
 import {
   Select,
@@ -19,7 +26,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
 import BaseLayout from "@/components/layouts/base";
 import Arena1Layout from "@/components/layouts/Arena1";
@@ -28,7 +35,9 @@ import Arena3Layout from "@/components/layouts/Arena3";
 import Arena4Layout from "@/components/layouts/Arena4";
 import { characterImages } from "@/lib/images";
 
-const layouts: { [key: number]: { Component: React.ElementType, numTiles: number } } = {
+const layouts: {
+  [key: number]: { Component: React.ElementType; numTiles: number };
+} = {
   0: { Component: BaseLayout, numTiles: 13 },
   1: { Component: Arena1Layout, numTiles: 10 },
   2: { Component: Arena2Layout, numTiles: 10 },
@@ -85,7 +94,10 @@ export default function Builder() {
     serialize: (layout: number) => layout.toString(),
     defaultValue: 0,
   });
-  const [characterFilter, setCharacterFilter] = useState<CharacterFilterType>({ class: "All", faction: "All" });
+  const [characterFilter, setCharacterFilter] = useState<CharacterFilterType>({
+    class: "All",
+    faction: "All",
+  });
 
   const changeLayout = (newLayoutId: number) => {
     const existingLayoutTiles = layouts[layout].numTiles;
@@ -96,10 +108,12 @@ export default function Builder() {
       setCharacters(
         Characters.filter((character) => !formation.includes(character.name)),
       );
-    }
-    else if (newLayoutTiles > existingLayoutTiles) setFormation(Array.from({ length: newLayoutTiles }).map((_, i) => formation[i]));
-    setLayout(newLayoutId)
-  }
+    } else if (newLayoutTiles > existingLayoutTiles)
+      setFormation(
+        Array.from({ length: newLayoutTiles }).map((_, i) => formation[i]),
+      );
+    setLayout(newLayoutId);
+  };
 
   const formationRef = createRef<HTMLDivElement>();
 
@@ -123,7 +137,7 @@ export default function Builder() {
         // remove Phraesto from formation
         formationCopy[formationCopy.indexOf("Phraesto")] = "";
         formationCopy[formationCopy.indexOf("PhraestoClone")] = "";
-        newCharacters.push(Characters.find(x => x.name === "Phraesto")!);
+        newCharacters.push(Characters.find((x) => x.name === "Phraesto")!);
       }
     } else if (characterIndex !== -1) {
       // swap characters
@@ -142,7 +156,7 @@ export default function Builder() {
       );
 
       if (characterInSlot !== "") {
-        newCharacters.push(Characters.find(x => x.name === characterInSlot)!);
+        newCharacters.push(Characters.find((x) => x.name === characterInSlot)!);
       }
 
       formationCopy[slot] = character.name;
@@ -151,12 +165,15 @@ export default function Builder() {
         const firstOpenSlot = formationCopy.indexOf("");
         formationCopy[firstOpenSlot] = "PhraestoClone";
       }
-    } else if (formationCharacters.length === maxCharacters && characterInSlot !== "") {
+    } else if (
+      formationCharacters.length === maxCharacters &&
+      characterInSlot !== ""
+    ) {
       // swap characters
       newCharacters = newCharacters.filter(
         (character) => character !== selectedCharacter,
       );
-      newCharacters.push(Characters.find(x => x.name === characterInSlot)!);
+      newCharacters.push(Characters.find((x) => x.name === characterInSlot)!);
 
       formationCopy[slot] = character.name;
     }
@@ -173,12 +190,15 @@ export default function Builder() {
   function updateCharacterFilter(filter: CharacterFilterType) {
     setCharacterFilter(filter);
     setCharacters(
-      charactersNotInFormation.filter((character) => {
-        return (
-          (filter.faction === "All" || character.faction === filter.faction) &&
-          (filter.class === "All" || character.class === filter.class)
-        );
-      }).sort(),
+      charactersNotInFormation
+        .filter((character) => {
+          return (
+            (filter.faction === "All" ||
+              character.faction === filter.faction) &&
+            (filter.class === "All" || character.class === filter.class)
+          );
+        })
+        .sort(),
     );
   }
 
@@ -223,8 +243,11 @@ export default function Builder() {
 
   return (
     <>
-      <div className="flex justify-center items-center gap-2">
-        <Select onValueChange={(e) => changeLayout(parseInt(e))} value={layout.toString()}>
+      <div className="flex justify-center items-center">
+        <Select
+          onValueChange={(e) => changeLayout(parseInt(e))}
+          value={layout.toString()}
+        >
           <SelectTrigger>
             <SelectValue placeholder="Map Layout" />
           </SelectTrigger>
@@ -236,6 +259,28 @@ export default function Builder() {
             <SelectItem value="4">Arena 5</SelectItem>
           </SelectContent>
         </Select>
+        <Popover>
+          <PopoverTrigger className="absolute left-[80vw] md:left-[60vw]">
+            <p className="text-xl underline">?</p>
+          </PopoverTrigger>
+          <PopoverContent>
+            <ul className="p-4 list-disc">
+              <li>
+                Click on a character to select it, then click on a slot to place
+                it.
+              </li>
+              <li>
+                Click on a character in a slot to select it, then click on a
+                different slot to swap them.
+              </li>
+              <li>
+                Click on a character in a slot to select it, then click on the
+                character to remove it.
+              </li>
+              <li>Click on the spell icon to change the formation spell.</li>
+            </ul>
+          </PopoverContent>
+        </Popover>
       </div>
       <div className="flex flex-col items-center mr-6 my-4" ref={formationRef}>
         <Layout
@@ -274,7 +319,9 @@ export default function Builder() {
 
       <ScrollArea
         className="flex flex-col items-center"
-        style={{ height: `calc(100vh - ${layoutHeights[layout] ?? '24'}rem - 5rem)` }}
+        style={{
+          height: `calc(100vh - ${layoutHeights[layout] ?? "24"}rem - 2.5rem)`,
+        }}
       >
         <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-2 mx-6`}>
           {characters.map((character) => {
@@ -287,7 +334,8 @@ export default function Builder() {
                 src={characterImages[character.name.toLowerCase()]}
                 alt={character.name}
                 className={className}
-                onClick={() => onCharacterClick(character)} />
+                onClick={() => onCharacterClick(character)}
+              />
             );
           })}
         </div>
