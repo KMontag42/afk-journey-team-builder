@@ -27,16 +27,44 @@ export default function Navbar() {
         />
       </Link>
       <div>
-        <Link href="/" className={buttonVariants({variant: pathname === "/" ? 'secondary' : 'link'})}>Home</Link>
+        <Link
+          href="/"
+          className={buttonVariants({
+            variant: pathname === "/" ? "secondary" : "link",
+          })}
+        >
+          Home
+        </Link>
       </div>
       <div>
-        <Link href="/builder" className={buttonVariants({variant: pathname === "/builder" ? 'secondary' : 'link'})}>Builder</Link>
+        <Link
+          href="/builder"
+          className={buttonVariants({
+            variant: pathname === "/builder" ? "secondary" : "link",
+          })}
+        >
+          Builder
+        </Link>
       </div>
       <div>
-        <Link href="/popular" className={buttonVariants({variant: pathname === "/popular" ? 'secondary' : 'link'})}>Popular</Link>
+        <Link
+          href="/popular"
+          className={buttonVariants({
+            variant: pathname === "/popular" ? "secondary" : "link",
+          })}
+        >
+          Popular
+        </Link>
       </div>
       <div>
-        <Link href="/search" className={buttonVariants({variant: pathname === "/search" ? 'secondary' : 'link'})}>Search</Link>
+        <Link
+          href="/search"
+          className={buttonVariants({
+            variant: pathname === "/search" ? "secondary" : "link",
+          })}
+        >
+          Search
+        </Link>
       </div>
       <div className="pt-2 justify-self-end">
         <SignedOut>

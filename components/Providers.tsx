@@ -9,5 +9,7 @@ export default function Providers({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <ClerkProvider appearance={{baseTheme: dark}}>{children}</ClerkProvider>;
+  return (
+    <ClerkProvider appearance={{ baseTheme: dark }}>{children}</ClerkProvider>
+  );
 }
