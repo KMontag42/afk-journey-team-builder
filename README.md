@@ -42,4 +42,3 @@ cd afk-journey-team-builder
 pnpm install
 pnpm dev
 ```
-

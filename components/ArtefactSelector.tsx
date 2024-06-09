@@ -16,23 +16,42 @@ type Props = {
 };
 
 export default function ArtefactSelector({ active, onChange }: Props) {
-  const seasonalArtefacts = Object.values(ARTEFACTS).filter((artefact) => artefact.category === "seasonal");
-  const permanentArtefacts = Object.values(ARTEFACTS).filter((artefact) => artefact.category === "permanent");
+  const seasonalArtefacts = Object.values(ARTEFACTS).filter(
+    (artefact) => artefact.category === "seasonal",
+  );
+  const permanentArtefacts = Object.values(ARTEFACTS).filter(
+    (artefact) => artefact.category === "permanent",
+  );
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className="h-16 w-14">
-          <Image src={ARTEFACTS[active].image} alt={active} className="object-contain" />
+          <Image
+            src={ARTEFACTS[active].image}
+            alt={active}
+            className="object-contain"
+          />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className='DropdownMenuContent overflow-auto'collisionPadding={8}>
+      <DropdownMenuContent
+        className="DropdownMenuContent overflow-auto"
+        collisionPadding={8}
+      >
         <DropdownMenuSeparator />
         <div className="flex gap-2">
           <DropdownMenuRadioGroup value={active} onValueChange={onChange}>
             <DropdownMenuLabel>Seasonal</DropdownMenuLabel>
             {seasonalArtefacts.map((artefact) => (
-              <DropdownMenuRadioItem value={artefact.value} key={artefact.label}>
-                <Image height={36} src={artefact.image} alt={artefact.label} className="mr-2" />
+              <DropdownMenuRadioItem
+                value={artefact.value}
+                key={artefact.label}
+              >
+                <Image
+                  height={36}
+                  src={artefact.image}
+                  alt={artefact.label}
+                  className="mr-2"
+                />
                 {artefact.label}
               </DropdownMenuRadioItem>
             ))}
@@ -40,8 +59,16 @@ export default function ArtefactSelector({ active, onChange }: Props) {
           <DropdownMenuRadioGroup value={active} onValueChange={onChange}>
             <DropdownMenuLabel>Permanent</DropdownMenuLabel>
             {permanentArtefacts.map((artefact) => (
-              <DropdownMenuRadioItem value={artefact.value} key={artefact.label}>
-                <Image height={36} src={artefact.image} alt={artefact.label} className="mr-2" />
+              <DropdownMenuRadioItem
+                value={artefact.value}
+                key={artefact.label}
+              >
+                <Image
+                  height={36}
+                  src={artefact.image}
+                  alt={artefact.label}
+                  className="mr-2"
+                />
                 {artefact.label}
               </DropdownMenuRadioItem>
             ))}

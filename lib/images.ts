@@ -119,7 +119,7 @@ export const artefactImages: {
   enlightening: Enlightening,
   ironwall: Ironwall,
   starshard: Starshard,
-  random: Random
+  random: Random,
 };
 
 export const tekImages: { [key: string]: StaticImageData } = {
@@ -205,7 +205,7 @@ export const FactionImages: { [key: string]: StaticImageData } = {
   [Faction.Hypogean.toString()]: HYPOGEAN,
   [Faction.Lightbearer.toString()]: LIGHTBEARER,
   [Faction.Mauler.toString()]: MAULER,
-  [Faction.Wilder.toString()]: WILDER
+  [Faction.Wilder.toString()]: WILDER,
 };
 
 export const ClassImages: { [key: string]: StaticImageData } = {
@@ -215,4 +215,4 @@ export const ClassImages: { [key: string]: StaticImageData } = {
   [CharacterClass.Support.toString()]: Support,
   [CharacterClass.Tank.toString()]: Tank,
   [CharacterClass.Warrior.toString()]: Warrior,
-}
+};
