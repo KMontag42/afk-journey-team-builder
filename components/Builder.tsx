@@ -330,10 +330,7 @@ export default function Builder() {
         <Button onClick={onDownloadButtonClick} className="h-8 px-2">
           <Download />
         </Button>
-        <Button
-          className="h-8 px-2"
-          onClick={clearFormation}
-        >
+        <Button className="h-8 px-2" onClick={clearFormation}>
           <CircleX />
         </Button>
         <CharacterFilter
