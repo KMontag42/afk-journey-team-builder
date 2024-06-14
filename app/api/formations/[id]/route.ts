@@ -18,3 +18,17 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
     status: 200,
   });
 }
+
+export async function DELETE(
+  _: Request,
+  { params }: { params: { id: string } }
+) {
+  const { id } = params;
+
+  await turso.execute({
+    sql: "DELETE FROM formations WHERE id = ?",
+    args: [id],
+  });
+
+  return new Response(null, { status: 204 });
+}

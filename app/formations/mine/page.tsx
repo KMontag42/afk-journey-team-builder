@@ -30,6 +30,7 @@ export default async function MyFormations() {
             data={formation as any}
             className="mb-4"
             hideUser
+            showDelete
           />
         ))}
       </ScrollArea>

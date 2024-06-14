@@ -57,6 +57,16 @@ export default function Navbar() {
           Search
         </Link>
       </div>
+      <div>
+        <Link
+          href="/formations/mine"
+          className={buttonVariants({
+            variant: pathname === "/formations/mine" ? "secondary" : "link",
+          })}
+        >
+          My Formations
+        </Link>
+      </div>
       <div className="justify-self-end">
         <SignedOut>
           <SignInButton />

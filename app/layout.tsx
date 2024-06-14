@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(inter.className, "dark")}>
         <Providers>
-          <header className="grid grid-cols-5 items-center justify-center text-center px-2 md:px-16 h-[6vh] border-b-1 border">
+          <header className="grid grid-cols-6 items-center justify-center text-center px-2 md:px-16 h-[6vh] border-b-1 border">
             <Navbar />
           </header>
           <main className="flex h-[94vh] flex-col items-center pt-2">

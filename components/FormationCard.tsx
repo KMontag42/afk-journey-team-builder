@@ -25,12 +25,14 @@ type FormationCardProps = {
   };
   hideUser?: boolean;
   className?: string;
+  showDelete?: boolean;
 };
 
 export default function FormationCard({
   data,
   hideUser,
   className,
+  showDelete,
 }: FormationCardProps) {
   const { id, formation, spell, layout, user_id, user_image, name, tag } = data;
 
@@ -58,8 +60,8 @@ export default function FormationCard({
           </div>
         </Link>
       </CardContent>
-      {!hideUser && (
         <CardFooter>
+      {!hideUser && (
           <div className="flex items-center gap-2">
             <Avatar>
               <AvatarImage src={user_image} alt={user_id} />
@@ -67,8 +69,21 @@ export default function FormationCard({
             </Avatar>
             {user_id}
           </div>
-        </CardFooter>
       )}
+      {showDelete && (
+          <button
+            className="text-red-500"
+            onClick={async () => {
+              await fetch(`/api/formations/${id}`, {
+                method: "DELETE",
+              });
+              window.location.reload();
+            }}
+          >
+            Delete
+          </button>
+      )}
+        </CardFooter>
     </Card>
   );
 }
