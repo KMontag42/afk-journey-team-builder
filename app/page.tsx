@@ -19,6 +19,7 @@ export default async function Home() {
       <p>Register to save and make searchable.</p>
 
       <Separator className="my-2" />
+
       <h2 className="mb-4 text-2xl">New Formations</h2>
       <ScrollArea className="h-[65vh] px-4">
         <NewestFormations />

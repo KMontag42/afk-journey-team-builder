@@ -22,7 +22,7 @@ export default async function MyFormations() {
   return (
     <div>
       <h1 className="text-4xl text-center">My Formations</h1>
-      <Separator className="my-4"/>
+      <Separator className="my-4" />
       <ScrollArea className="h-[81vh] flex flex-col px-4">
         {data.map((formation) => (
           <FormationCard

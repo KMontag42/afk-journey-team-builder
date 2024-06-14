@@ -40,7 +40,11 @@ export default async function NewestFormations() {
   return (
     <>
       {data.formations.map((formation) => (
-        <FormationCard key={formation.id!.toString()} data={formation as any} className="mb-4" />
+        <FormationCard
+          key={formation.id!.toString()}
+          data={formation as any}
+          className="mb-4"
+        />
       ))}
     </>
   );

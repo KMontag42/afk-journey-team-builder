@@ -27,7 +27,11 @@ type FormationCardProps = {
   className?: string;
 };
 
-export default function FormationCard({ data, hideUser, className }: FormationCardProps) {
+export default function FormationCard({
+  data,
+  hideUser,
+  className,
+}: FormationCardProps) {
   const { id, formation, spell, layout, user_id, user_image, name, tag } = data;
 
   const LayoutComponent = layouts[layout as keyof typeof layouts];
