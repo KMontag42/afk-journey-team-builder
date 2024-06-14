@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { toPng } from "html-to-image";
 import { track } from "@vercel/analytics";
 import Image from "next/image";
-import { Share, Download, Save } from "lucide-react";
+import { Share, Download, Save, CircleX } from "lucide-react";
 import {
   Popover,
   PopoverContent,
@@ -243,6 +243,12 @@ export default function Builder() {
     }
   }
 
+  function clearFormation() {
+    setFormation(new Array<string>(13).fill(""));
+    setCharacters(Characters);
+    setSelectedCharacter(null);
+  }
+
   const Layout: any = layouts[layout]?.Component ?? BaseLayout;
 
   return (
@@ -299,12 +305,12 @@ export default function Builder() {
       <div className="flex gap-2 justify-center items-center pb-2">
         {isSignedIn && (
           <>
-            <SaveButton 
+            <SaveButton
               formation={formation}
               spell={spell}
               layout={layout}
               user={user}
-              className="h-8 px-2" />
+            />
             <Button
               onClick={() => {
                 navigator.clipboard.writeText(window.location.href);
@@ -324,10 +330,16 @@ export default function Builder() {
         <Button onClick={onDownloadButtonClick} className="h-8 px-2">
           <Download />
         </Button>
+        <Button
+          className="h-8 px-2"
+          onClick={clearFormation}
+        >
+          <CircleX />
+        </Button>
         <CharacterFilter
           characterFilter={characterFilter}
           updateCharacterFilter={updateCharacterFilter}
-          className="relative -ml-12 left-[4.5rem] md:left-[10.5rem]"
+          className="relative -ml-12 left-[3.5rem] md:left-[7.5rem]"
         />
       </div>
 

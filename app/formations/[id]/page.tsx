@@ -20,21 +20,27 @@ const layouts: {
   4: { Component: Arena4Layout, numTiles: 11 },
 };
 
-export default async function FormationPage({params}: { params: {id: string }}) {
+export default async function FormationPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const { id } = params;
 
   const response = await turso.execute({
-    sql: 'SELECT * FROM formations WHERE id = ?',
+    sql: "SELECT * FROM formations WHERE id = ?",
     args: [id],
   });
 
   if (!response.rows.length) {
-    return new Response(JSON.stringify({ error: "Not found" }), { status: 404 });
+    return new Response(JSON.stringify({ error: "Not found" }), {
+      status: 404,
+    });
   }
 
   const formation = response.rows[0];
   const Layout = layouts[formation.layout?.toString()!].Component;
-  const formationArray = formation.formation?.toString().split(',');
+  const formationArray = formation.formation?.toString().split(",");
   const user = await clerkClient.users.getUser(formation.user_id!.toString());
 
   return (

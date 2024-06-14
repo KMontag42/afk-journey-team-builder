@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
 import { FormEvent, useState } from "react";
 
 import { Save } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 import {
   Drawer,
   DrawerClose,
@@ -15,19 +15,24 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer"
+} from "@/components/ui/drawer";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { track } from "@vercel/analytics";
 
 type SaveButtonProps = {
   formation: string[];
   spell: string;
   layout: number;
   user: { id: string };
-  className?: string;
 };
 
-export default function SaveButton({ formation, spell, layout, user, className }: SaveButtonProps) {
+export default function SaveButton({
+  formation,
+  spell,
+  layout,
+  user,
+}: SaveButtonProps) {
   const [open, setOpen] = useState(false);
 
   const handleSave = async (e: FormEvent) => {
@@ -37,6 +42,20 @@ export default function SaveButton({ formation, spell, layout, user, className }
       name: { value: string };
       tag: { value: string };
     };
+
+    if (formation.filter((x) => x != "").length === 0) {
+      toast.error("Formation is empty!");
+      setOpen(false);
+      track("formation_save_error", {
+        formation: formation.join(","),
+        spell: spell,
+        layout: layout,
+        user_id: user.id,
+        name: name.value,
+        tag: tag.value,
+      });
+      return;
+    }
 
     await fetch("/api/formations", {
       method: "POST",
@@ -55,7 +74,15 @@ export default function SaveButton({ formation, spell, layout, user, className }
 
     toast.success("Formation saved!");
     setOpen(false);
-  }
+    track("formation_saved", {
+      formation: formation.join(","),
+      spell: spell,
+      layout: layout,
+      user_id: user.id,
+      name: name.value,
+      tag: tag.value,
+    });
+  };
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
@@ -66,37 +93,42 @@ export default function SaveButton({ formation, spell, layout, user, className }
       </DrawerTrigger>
       <DrawerContent>
         <div className="container">
-        <DrawerHeader className="text-left">
-          <DrawerTitle>Save Formation</DrawerTitle>
-          <DrawerDescription>
-            Save this formation with a name, description, and tag.
-          </DrawerDescription>
-        </DrawerHeader>
-        <SaveFormationForm className="px-4" onSubmit={handleSave} />
-        <DrawerFooter className="pt-2">
-          <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
-          </DrawerClose>
-        </DrawerFooter>
+          <DrawerHeader className="text-left">
+            <DrawerTitle>Save Formation</DrawerTitle>
+            <DrawerDescription>
+              Save this formation with a name, description, and tag.
+            </DrawerDescription>
+          </DrawerHeader>
+          <SaveFormationForm className="px-4" onSubmit={handleSave} />
+          <DrawerFooter className="pt-2">
+            <DrawerClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DrawerClose>
+          </DrawerFooter>
         </div>
       </DrawerContent>
     </Drawer>
-  )
+  );
 }
- 
-function SaveFormationForm({ className, onSubmit }: React.ComponentProps<"form">) {
+
+function SaveFormationForm({
+  className,
+  onSubmit,
+}: React.ComponentProps<"form">) {
   return (
-    <form className={cn("grid items-center gap-4", className)} onSubmit={onSubmit}>
+    <form
+      className={cn("grid items-center gap-4", className)}
+      onSubmit={onSubmit}
+    >
       <div className="grid gap-2">
         <Label htmlFor="name">Formation Name</Label>
-        <Input type="text" id="name" placeholder="Good Team" />
+        <Input type="text" id="name" placeholder="f2p Team" required />
       </div>
       <div className="grid gap-2">
         <Label htmlFor="tags">Tag</Label>
         <Input type="text" id="tag" placeholder="abyss:450" />
       </div>
-      <Button type="submit">Save changes</Button>
+      <Button type="submit">Save formation</Button>
     </form>
-  )
+  );
 }
-

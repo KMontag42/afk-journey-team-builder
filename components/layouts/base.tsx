@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import CharacterSlot from "@/components/CharacterSlot";
 import ArtefactSelector from "@/components/ArtefactSelector";
