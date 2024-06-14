@@ -57,31 +57,44 @@ export default function SaveButton({
       return;
     }
 
-    await fetch("/api/formations", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        formation: formation,
+    setOpen(false);
+
+    try {
+      await fetch("/api/formations", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          formation: formation,
+          spell: spell,
+          layout: layout.toString(),
+          user_id: user.id,
+          name: name.value,
+          tag: tag.value,
+        }),
+      });
+
+      toast.success("Formation saved!");
+      track("formation_saved", {
+        formation: formation.join(","),
         spell: spell,
-        layout: layout.toString(),
+        layout: layout,
         user_id: user.id,
         name: name.value,
         tag: tag.value,
-      }),
-    });
-
-    toast.success("Formation saved!");
-    setOpen(false);
-    track("formation_saved", {
-      formation: formation.join(","),
-      spell: spell,
-      layout: layout,
-      user_id: user.id,
-      name: name.value,
-      tag: tag.value,
-    });
+      });
+    } catch (error) {
+      toast.error("Failed to save formation!");
+      track("formation_save_error", {
+        formation: formation.join(","),
+        spell: spell,
+        layout: layout,
+        user_id: user.id,
+        name: name.value,
+        tag: tag.value,
+      });
+    }
   };
 
   return (
