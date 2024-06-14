@@ -39,9 +39,8 @@ export default async function NewestFormations() {
 
   return (
     <>
-      <h2 className="mb-4 text-2xl">Newest Saved Formations</h2>
       {data.formations.map((formation) => (
-        <FormationCard key={formation.id!.toString()} data={formation as any} />
+        <FormationCard key={formation.id!.toString()} data={formation as any} className="mb-4" />
       ))}
     </>
   );

@@ -24,9 +24,10 @@ type FormationCardProps = {
     tag: string;
   };
   hideUser?: boolean;
+  className?: string;
 };
 
-export default function FormationCard({ data, hideUser }: FormationCardProps) {
+export default function FormationCard({ data, hideUser, className }: FormationCardProps) {
   const { id, formation, spell, layout, user_id, user_image, name, tag } = data;
 
   const LayoutComponent = layouts[layout as keyof typeof layouts];
@@ -35,7 +36,7 @@ export default function FormationCard({ data, hideUser }: FormationCardProps) {
   const setSpell = (_: string) => {};
 
   return (
-    <Card>
+    <Card className={className}>
       <CardHeader>
         <CardTitle>{name}</CardTitle>
         <CardDescription>{tag}</CardDescription>

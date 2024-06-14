@@ -9,6 +9,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { tekImages } from "@/lib/images";
 
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { PersonStanding } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -62,7 +63,13 @@ export default function Navbar() {
         </SignedOut>
         <SignedIn>
           <div className="pt-2">
-            <UserButton />
+            <UserButton afterSignOutUrl="/">
+              <UserButton.UserProfileLink
+                label="My Layouts"
+                url="/formations/mine"
+                labelIcon={<PersonStanding />}
+              />
+            </UserButton>
           </div>
         </SignedIn>
       </div>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { tekImages } from "@/lib/images";
 import NewestFormations from "@/components/NewestFormations";
 import { Separator } from "@/components/ui/separator";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default async function Home() {
   return (
@@ -18,8 +19,10 @@ export default async function Home() {
       <p>Register to save and make searchable.</p>
 
       <Separator className="my-2" />
-
-      <NewestFormations />
+      <h2 className="mb-4 text-2xl">New Formations</h2>
+      <ScrollArea className="h-[65vh] px-4">
+        <NewestFormations />
+      </ScrollArea>
     </div>
   );
 }
