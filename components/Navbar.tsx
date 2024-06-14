@@ -48,16 +48,6 @@ export default function Navbar() {
       </div>
       <div>
         <Link
-          href="/popular"
-          className={buttonVariants({
-            variant: pathname === "/popular" ? "secondary" : "link",
-          })}
-        >
-          Popular
-        </Link>
-      </div>
-      <div>
-        <Link
           href="/search"
           className={buttonVariants({
             variant: pathname === "/search" ? "secondary" : "link",
