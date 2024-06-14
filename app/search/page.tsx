@@ -26,7 +26,7 @@ export default function SearchPage() {
   };
 
   return (
-    <div className="container md:w-[30vw] mx-auto">
+    <div className="container md:w-[40vw] mx-auto">
       <form onSubmit={handleSearch} className="flex flex-col gap-2">
         <Label htmlFor="name" className="text-2xl">
           Search
