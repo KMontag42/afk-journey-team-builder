@@ -28,7 +28,9 @@ export default function SearchPage() {
   return (
     <div className="container md:w-[30vw] mx-auto">
       <form onSubmit={handleSearch} className="flex flex-col gap-2">
-        <Label htmlFor="name" className="text-4xl">Search by name</Label>
+        <Label htmlFor="name" className="text-4xl">
+          Search by name
+        </Label>
         <Input
           id="name"
           value={search}
@@ -43,7 +45,11 @@ export default function SearchPage() {
       {loading && <p>Loading...</p>}
       <ScrollArea className="mt-4 h-[73vh] px-4">
         {results.map((result: any) => (
-          <FormationCard key={result.id.toString()!} data={result as any} className="mb-4" />
+          <FormationCard
+            key={result.id.toString()!}
+            data={result as any}
+            className="mb-4"
+          />
         ))}
       </ScrollArea>
     </div>
