@@ -43,7 +43,7 @@ export default function FormationCard({ data, hideUser, className }: FormationCa
       </CardHeader>
       <CardContent>
         <Link href={`/formations/${id}`}>
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center">
             <LayoutComponent
               formation={formation.split(",")}
               spell={spell}
