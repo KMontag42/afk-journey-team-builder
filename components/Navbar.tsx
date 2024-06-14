@@ -46,7 +46,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="flex h-[7vh] w-full items-center justify-between px-4 md:px-6">
+    <header className="flex h-[7vh] w-full items-center justify-between px-4 md:px-6 border">
       <Link
         href="/"
       >

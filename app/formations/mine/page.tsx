@@ -22,10 +22,8 @@ export default async function MyFormations() {
   const data = response.rows;
 
   return (
-    <div>
-      <h1 className="text-4xl text-center">My Formations</h1>
-      <Separator className="my-4" />
-      <ScrollArea className="h-[81vh] flex flex-col px-4">
+    <>
+      <ScrollArea className="h-[89vh] flex flex-col px-4">
         {data.map((formation) => (
           <FormationCard
             key={formation.id?.toString()}
@@ -36,6 +34,6 @@ export default async function MyFormations() {
           />
         ))}
       </ScrollArea>
-    </div>
+    </>
   );
 }
