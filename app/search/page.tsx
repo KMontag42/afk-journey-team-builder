@@ -28,14 +28,14 @@ export default function SearchPage() {
   return (
     <div className="container md:w-[30vw] mx-auto">
       <form onSubmit={handleSearch} className="flex flex-col gap-2">
-        <Label htmlFor="name" className="text-4xl">
-          Search by name
+        <Label htmlFor="name" className="text-2xl">
+          Search
         </Label>
         <Input
           id="name"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Name"
+          placeholder="Name, tag, or hero"
         />
         <Button type="submit">Search</Button>
       </form>

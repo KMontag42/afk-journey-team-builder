@@ -13,8 +13,8 @@ export async function GET(request: NextRequest) {
   }
 
   const formation = await turso.execute({
-    sql: "SELECT * FROM formations WHERE name LIKE ?",
-    args: [`%${query}%`],
+    sql: "SELECT * FROM formations WHERE name LIKE (:q) OR tag LIKE (:q) OR formation LIKE (:q)",
+    args: { q:`%${query}%` },
   });
 
   if (!formation.rows.length) {
