@@ -29,6 +29,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+import SaveButton from "@/components/SaveButton";
+
 import BaseLayout from "@/components/layouts/base";
 import Arena1Layout from "@/components/layouts/Arena1";
 import Arena2Layout from "@/components/layouts/Arena2";
@@ -297,28 +299,12 @@ export default function Builder() {
       <div className="flex gap-2 justify-center items-center pb-2">
         {isSignedIn && (
           <>
-            <Button className="h-8 px-2" onClick={() => {
-              fetch("/api/formations", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  formation: formation,
-                  spell: spell,
-                  layout: layout.toString(),
-                  user_id: user.id
-                }),
-              }).then((res) => {
-                if (res.ok) {
-                  toast("Formation saved");
-                } else {
-                  toast("Failed to save formation");
-                }
-              });
-            }}>
-              <Save />
-            </Button>
+            <SaveButton 
+              formation={formation}
+              spell={spell}
+              layout={layout}
+              user={user}
+              className="h-8 px-2" />
             <Button
               onClick={() => {
                 navigator.clipboard.writeText(window.location.href);
