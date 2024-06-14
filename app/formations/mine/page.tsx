@@ -8,9 +8,11 @@ import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default async function MyFormations() {
-  auth().protect();
-
   const { userId } = auth();
+
+  if (!userId) {
+    auth().redirectToSignIn();
+  }
 
   const response = await turso.execute({
     sql: "SELECT * FROM formations WHERE user_id = ?",

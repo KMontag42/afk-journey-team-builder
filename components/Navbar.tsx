@@ -9,21 +9,12 @@ import { buttonVariants } from "@/components/ui/button";
 import { tekImages } from "@/lib/images";
 
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
+import { Sheet, SheetTrigger, SheetContent, SheetClose } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button";
 import { MenuIcon } from "lucide-react";
 
 function Links({ pathname }: { pathname: string }) {
-  return (
-    <>
-      <Link
-        href="/"
-        className={buttonVariants({
-          variant: pathname === "/" ? "secondary" : "link",
-        })}
-      >
-        Home
-      </Link>
+  return [
       <Link
         href="/builder"
         className={buttonVariants({
@@ -31,7 +22,7 @@ function Links({ pathname }: { pathname: string }) {
         })}
       >
         Builder
-      </Link>
+      </Link>,
       <Link
         href="/search"
         className={buttonVariants({
@@ -39,19 +30,16 @@ function Links({ pathname }: { pathname: string }) {
         })}
       >
         Search
+      </Link>,
+      <Link
+        href="/formations/mine"
+        className={buttonVariants({
+          variant: pathname === "/formations/mine" ? "secondary" : "link",
+        })}
+      >
+        My Formations
       </Link>
-      <SignedIn>
-        <Link
-          href="/formations/mine"
-          className={buttonVariants({
-            variant: pathname === "/formations/mine" ? "secondary" : "link",
-          })}
-        >
-          My Formations
-        </Link>
-      </SignedIn>
-    </>
-  )
+  ]
 }
 
 export default function Navbar() {
@@ -60,8 +48,7 @@ export default function Navbar() {
   return (
     <header className="flex h-[7vh] w-full items-center justify-between px-4 md:px-6">
       <Link
-        href="https://afkanalytica.com"
-        target="_blank"
+        href="/"
       >
         <Image
           src={tekImages["logoAnimated"]}
@@ -70,7 +57,7 @@ export default function Navbar() {
         />
       </Link>
       <nav className="hidden items-center gap-6 md:flex">
-        <Links pathname={pathname} />
+        {Links({ pathname })}
       </nav>
       <SignedOut>
         <SignInButton />
@@ -89,7 +76,9 @@ export default function Navbar() {
         </SheetTrigger>
         <SheetContent side="right">
           <div className="grid gap-4 p-4">
-            <Links pathname={pathname} />
+            {Links({ pathname }).map((link, i) => (
+              <SheetClose key={i} asChild>{link}</SheetClose>
+            ))}
           </div>
         </SheetContent>
       </Sheet>
