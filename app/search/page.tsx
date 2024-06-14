@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import FormationCard from "@/components/FormationCard";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { Label } from "@/components/ui/label";
 
 export default function SearchPage() {
   const [search, setSearch] = useState("");
@@ -26,9 +27,10 @@ export default function SearchPage() {
 
   return (
     <div className="container md:w-[30vw] mx-auto">
-      <h1 className="text-4xl text-center mb-2">Search</h1>
       <form onSubmit={handleSearch} className="flex flex-col gap-2">
+        <Label htmlFor="name" className="text-4xl">Search by name</Label>
         <Input
+          id="name"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Name"
@@ -40,7 +42,7 @@ export default function SearchPage() {
 
       {loading && <p>Loading...</p>}
       <ScrollArea className="mt-4 h-[73vh] px-4">
-        {results.map((result) => (
+        {results.map((result: any) => (
           <FormationCard key={result.id.toString()!} data={result as any} className="mb-4" />
         ))}
       </ScrollArea>
