@@ -25,7 +25,6 @@ function Links({ pathname }: { pathname: string }) {
       className={buttonVariants({
         variant: pathname === "/builder" ? "secondary" : "link",
       })}
-      prefetch={false}
     >
       Builder
     </Link>,
@@ -42,7 +41,6 @@ function Links({ pathname }: { pathname: string }) {
       className={buttonVariants({
         variant: pathname === "/formations/mine" ? "secondary" : "link",
       })}
-      prefetch={false}
     >
       My Formations
     </Link>,
@@ -54,7 +52,7 @@ export default function Navbar() {
 
   return (
     <header className="flex h-[7vh] w-full items-center justify-between px-4 md:px-6 border">
-      <Link href="/">
+      <Link href="/" prefetch={false}>
         <Image
           src={tekImages["logoAnimated"]}
           alt="AFK Analytica"

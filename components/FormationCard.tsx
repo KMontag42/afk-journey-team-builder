@@ -33,7 +33,6 @@ type FormationCardProps = {
     user_id: string;
     user_image: string;
     name: string;
-    tag: string;
   };
   hideUser?: boolean;
   className?: string;
@@ -46,7 +45,7 @@ export default function FormationCard({
   className,
   showDelete,
 }: FormationCardProps) {
-  const { id, formation, spell, layout, user_id, user_image, name, tag } = data;
+  const { id, formation, spell, layout, user_id, user_image, name } = data;
 
   const LayoutComponent = layouts[layout as keyof typeof layouts];
 
@@ -57,7 +56,6 @@ export default function FormationCard({
     <Card className={className}>
       <CardHeader>
         <CardTitle>{name}</CardTitle>
-        <CardDescription>{tag}</CardDescription>
       </CardHeader>
       <CardContent>
         <Link href={`/formations/${id}`}>
