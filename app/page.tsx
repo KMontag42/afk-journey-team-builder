@@ -1,10 +1,10 @@
-"use server";
-
 import Image from "next/image";
 import { tekImages } from "@/lib/images";
 import NewestFormations from "@/components/NewestFormations";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
+
+export const revalidate = 0;
 
 export default async function Home() {
   return (

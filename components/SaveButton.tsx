@@ -38,21 +38,15 @@ export default function SaveButton({
   const handleSave = async (e: FormEvent) => {
     e.preventDefault();
 
-    const { name, tag } = e.target as typeof e.target & {
+    const { name } = e.target as typeof e.target & {
       name: { value: string };
-      tag: { value: string };
     };
 
     if (formation.filter((x) => x != "").length === 0) {
       toast.error("Formation is empty!");
       setOpen(false);
       track("formation_save_error", {
-        formation: formation.join(","),
-        spell: spell,
-        layout: layout,
-        user_id: user.id,
-        name: name.value,
-        tag: tag.value,
+        error: "Formation is empty",
       });
       return;
     }
@@ -71,7 +65,6 @@ export default function SaveButton({
           layout: layout.toString(),
           user_id: user.id,
           name: name.value,
-          tag: tag.value,
         }),
       });
 
@@ -82,17 +75,11 @@ export default function SaveButton({
         layout: layout,
         user_id: user.id,
         name: name.value,
-        tag: tag.value,
       });
-    } catch (error) {
+    } catch (error: any) {
       toast.error("Failed to save formation!");
       track("formation_save_error", {
-        formation: formation.join(","),
-        spell: spell,
-        layout: layout,
-        user_id: user.id,
-        name: name.value,
-        tag: tag.value,
+        error,
       });
     }
   };
@@ -136,10 +123,6 @@ function SaveFormationForm({
       <div className="grid gap-2">
         <Label htmlFor="name">Formation Name</Label>
         <Input type="text" id="name" placeholder="f2p Team" required />
-      </div>
-      <div className="grid gap-2">
-        <Label htmlFor="tags">Tag</Label>
-        <Input type="text" id="tag" placeholder="abyss:450" />
       </div>
       <Button type="submit">Save formation</Button>
     </form>

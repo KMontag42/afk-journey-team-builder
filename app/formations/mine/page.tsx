@@ -4,7 +4,6 @@ import { turso } from "@/lib/turso";
 import { auth } from "@clerk/nextjs/server";
 
 import FormationCard from "@/components/FormationCard";
-import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default async function MyFormations() {

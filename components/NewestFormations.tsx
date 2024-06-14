@@ -3,7 +3,6 @@
 import FormationCard from "@/components/FormationCard";
 import { getRecentFormations } from "@/lib/formations";
 
-
 export default async function NewestFormations() {
   const data = await getRecentFormations();
 

@@ -11,6 +11,18 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import Link from "next/link";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Trash } from "lucide-react";
 
 type FormationCardProps = {
   data: {
@@ -60,8 +72,8 @@ export default function FormationCard({
           </div>
         </Link>
       </CardContent>
-        <CardFooter>
-      {!hideUser && (
+      <CardFooter>
+        {!hideUser && (
           <div className="flex items-center gap-2">
             <Avatar>
               <AvatarImage src={user_image} alt={user_id} />
@@ -69,21 +81,37 @@ export default function FormationCard({
             </Avatar>
             {user_id}
           </div>
-      )}
-      {showDelete && (
-          <button
-            className="text-red-500"
-            onClick={async () => {
-              await fetch(`/api/formations/${id}`, {
-                method: "DELETE",
-              });
-              window.location.reload();
-            }}
-          >
-            Delete
-          </button>
-      )}
-        </CardFooter>
+        )}
+        {showDelete && (
+          <AlertDialog>
+            <AlertDialogTrigger className="text-red-400">
+              <Trash />
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete
+                  this formation and remove it from our database.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction
+                  onClick={async () => {
+                    await fetch(`/api/formations/${id}`, {
+                      method: "DELETE",
+                    });
+                    window.location.reload();
+                  }}
+                >
+                  Continue
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        )}
+      </CardFooter>
     </Card>
   );
 }

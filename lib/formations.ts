@@ -1,7 +1,7 @@
-'use server';
-
 import { turso } from "@/lib/turso";
 import { clerkClient } from "@clerk/nextjs/server";
+import "server-only";
+import { cache } from "react";
 
 async function getUser(id: string) {
   const user = await clerkClient.users.getUser(id);
@@ -12,7 +12,7 @@ async function getUser(id: string) {
   };
 }
 
-export async function getRecentFormations() {
+export const getRecentFormations = cache(async () => {
   const formation = await turso.execute(
     "SELECT * FROM formations ORDER BY id DESC LIMIT 3",
   );
@@ -32,22 +32,22 @@ export async function getRecentFormations() {
         formation: formation.formation,
         spell: formation.spell,
         layout: formation.layout,
-        ...user
+        ...user,
       };
     }),
   );
 
   return { formations };
-}
+});
 
 export async function searchFormations(query: string) {
   const formation = await turso.execute({
     sql: "SELECT * FROM formations WHERE name LIKE (:q) OR tag LIKE (:q) OR formation LIKE (:q)",
-    args: { q:`%${query}%` },
+    args: { q: `%${query}%` },
   });
 
   if (!formation.rows.length) {
-    return []
+    return [];
   }
 
   const formations = await Promise.all(
@@ -56,7 +56,7 @@ export async function searchFormations(query: string) {
 
       return {
         ...formation,
-        ...user
+        ...user,
       };
     }),
   );
