@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "AFKJourney Team Builder",
-  description: "A team builder for AFKJourney, by KRM",
+  description: "A team builder for AFKJourney, by 0xKRM",
 };
 
 export default function RootLayout({
@@ -25,13 +25,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(inter.className, "dark")}>
         <Providers>
-          <header className="grid grid-cols-6 items-center justify-center text-center px-2 md:px-16 h-[6vh] border-b-1 border">
-            <Navbar />
-          </header>
-          <main className="flex h-[94vh] flex-col items-center pt-2">
+          <Navbar />
+          <main className="flex h-[90vh] flex-col items-center pt-2">
             {children}
           </main>
-          <footer className="flex absolute bottom-0 justify-center w-full pb-2">
+          <footer className="flex h-[3vh] absolute bottom-0 justify-center w-full pb-2">
             <Footer />
           </footer>
           <Toaster />
