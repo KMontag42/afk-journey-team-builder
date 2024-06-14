@@ -35,7 +35,7 @@ export default function SearchPage() {
           id="name"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Name, tag, or hero"
+          placeholder="Name, tag or hero"
         />
         <Button type="submit">Search</Button>
       </form>
