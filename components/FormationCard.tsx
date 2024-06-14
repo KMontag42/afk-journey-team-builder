@@ -23,9 +23,10 @@ type FormationCardProps = {
     name: string;
     tag: string;
   };
+  hideUser?: boolean;
 };
 
-export default function FormationCard({ data }: FormationCardProps) {
+export default function FormationCard({ data, hideUser }: FormationCardProps) {
   const { id, formation, spell, layout, user_id, user_image, name, tag } = data;
 
   const LayoutComponent = layouts[layout as keyof typeof layouts];
@@ -41,26 +42,28 @@ export default function FormationCard({ data }: FormationCardProps) {
       </CardHeader>
       <CardContent>
         <Link href={`/formations/${id}`}>
-        <div className="flex flex-col items-center gap-2">
-          <LayoutComponent
-            formation={formation.split(",")}
-            spell={spell}
-            selectedCharacter={null}
-            onCharacterSlotClick={onCharacterSlotClick}
-            setSpell={setSpell}
-          />
-        </div>
+          <div className="flex flex-col items-center gap-2">
+            <LayoutComponent
+              formation={formation.split(",")}
+              spell={spell}
+              selectedCharacter={null}
+              onCharacterSlotClick={onCharacterSlotClick}
+              setSpell={setSpell}
+            />
+          </div>
         </Link>
       </CardContent>
-      <CardFooter>
-        <div className="flex items-center gap-2">
-          <Avatar>
-            <AvatarImage src={user_image} alt={user_id} />
-            <AvatarFallback>{user_id}</AvatarFallback>
-          </Avatar>
-          {user_id}
-        </div>
-      </CardFooter>
+      {!hideUser && (
+        <CardFooter>
+          <div className="flex items-center gap-2">
+            <Avatar>
+              <AvatarImage src={user_image} alt={user_id} />
+              <AvatarFallback>{user_id}</AvatarFallback>
+            </Avatar>
+            {user_id}
+          </div>
+        </CardFooter>
+      )}
     </Card>
   );
 }

@@ -1,4 +1,4 @@
-'use server';
+"use server";
 
 import { turso } from "@/lib/turso";
 import { clerkClient } from "@clerk/nextjs/server";
@@ -24,21 +24,17 @@ export default async function FormationPage({
   }
 
   const formation = response.rows[0]!;
-  const user = await clerkClient.users.getUser(
-    formation.user_id?.toString()!,
-  );
+  const user = await clerkClient.users.getUser(formation.user_id?.toString()!);
 
   const data = {
     ...formation,
     user_id: user.username,
     user_image: user.imageUrl,
-  }
+  };
 
   return (
     <div className="flex flex-col items-center mr-6 my-4">
-      <FormationCard
-        data={data as any}
-      />
+      <FormationCard data={data as any} />
       <p>Stats and voting coming soon :)</p>
     </div>
   );
