@@ -22,6 +22,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Trash } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type FormationCardProps = {
   data: {
@@ -52,11 +53,11 @@ export default function FormationCard({
   const setSpell = (_: string) => {};
 
   return (
-    <Card className={className}>
+    <Card className={cn(className, "w-full")}>
       <CardHeader>
         <CardTitle>{name}</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pr-2 pl-0">
         <Link href={`/formations/${id}`}>
           <div className="flex flex-col items-center">
             <LayoutComponent
