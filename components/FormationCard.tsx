@@ -1,11 +1,20 @@
-'use client';
+"use client";
 
 import { layouts } from "@/lib/layouts";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import Link from "next/link";
 
 type FormationCardProps = {
   data: {
+    id: string;
     formation: string;
     spell: string;
     layout: number;
@@ -13,11 +22,11 @@ type FormationCardProps = {
     user_image: string;
     name: string;
     tag: string;
-  }
+  };
 };
 
 export default function FormationCard({ data }: FormationCardProps) {
-  const { formation, spell, layout, user_id, user_image, name, tag } = data;
+  const { id, formation, spell, layout, user_id, user_image, name, tag } = data;
 
   const LayoutComponent = layouts[layout as keyof typeof layouts];
 
@@ -25,24 +34,33 @@ export default function FormationCard({ data }: FormationCardProps) {
   const setSpell = (_: string) => {};
 
   return (
-    <div>
-      <div>{name} <Badge>{tag}</Badge></div>
-      <div className="flex flex-col items-center mr-6 my-4 border p-4">
-        <LayoutComponent 
-          formation={formation.split(",")} 
-          spell={spell} 
-          selectedCharacter={null}
-          onCharacterSlotClick={onCharacterSlotClick}
-          setSpell={setSpell}
-        />
-      </div>
-      <div className="flex items-center gap-2">
-        <Avatar>
-          <AvatarImage src={user_image} alt={user_id} />
-          <AvatarFallback>{user_id}</AvatarFallback>
-        </Avatar>
-        {user_id}
-      </div>
-    </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>{name}</CardTitle>
+        <CardDescription>{tag}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Link href={`/formations/${id}`}>
+        <div className="flex flex-col items-center gap-2">
+          <LayoutComponent
+            formation={formation.split(",")}
+            spell={spell}
+            selectedCharacter={null}
+            onCharacterSlotClick={onCharacterSlotClick}
+            setSpell={setSpell}
+          />
+        </div>
+        </Link>
+      </CardContent>
+      <CardFooter>
+        <div className="flex items-center gap-2">
+          <Avatar>
+            <AvatarImage src={user_image} alt={user_id} />
+            <AvatarFallback>{user_id}</AvatarFallback>
+          </Avatar>
+          {user_id}
+        </div>
+      </CardFooter>
+    </Card>
   );
 }

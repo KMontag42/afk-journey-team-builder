@@ -1,24 +1,9 @@
-import { turso } from "@/lib/turso";
+'use server';
 
+import { turso } from "@/lib/turso";
 import { clerkClient } from "@clerk/nextjs/server";
 
-import BaseLayout from "@/components/layouts/base";
-import Arena1Layout from "@/components/layouts/Arena1";
-import Arena2Layout from "@/components/layouts/Arena2";
-import Arena3Layout from "@/components/layouts/Arena3";
-import Arena4Layout from "@/components/layouts/Arena4";
-
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-
-const layouts: {
-  [key: string]: { Component: React.ElementType; numTiles: number };
-} = {
-  0: { Component: BaseLayout, numTiles: 13 },
-  1: { Component: Arena1Layout, numTiles: 10 },
-  2: { Component: Arena2Layout, numTiles: 10 },
-  3: { Component: Arena3Layout, numTiles: 9 },
-  4: { Component: Arena4Layout, numTiles: 11 },
-};
+import FormationCard from "@/components/FormationCard";
 
 export default async function FormationPage({
   params,
@@ -38,19 +23,23 @@ export default async function FormationPage({
     });
   }
 
-  const formation = response.rows[0];
-  const Layout = layouts[formation.layout?.toString()!].Component;
-  const formationArray = formation.formation?.toString().split(",");
-  const user = await clerkClient.users.getUser(formation.user_id!.toString());
+  const formation = response.rows[0]!;
+  const user = await clerkClient.users.getUser(
+    formation.user_id?.toString()!,
+  );
+
+  const data = {
+    ...formation,
+    user_id: user.username,
+    user_image: user.imageUrl,
+  }
 
   return (
     <div className="flex flex-col items-center mr-6 my-4">
-      <Layout formation={formationArray} spell={formation.spell} />
-      <p className="pt-4">{user.username}</p>
-      <Avatar>
-        <AvatarImage src={user.imageUrl} />
-        <AvatarFallback>{user.username}</AvatarFallback>
-      </Avatar>
+      <FormationCard
+        data={data as any}
+      />
+      <p>Stats and voting coming soon :)</p>
     </div>
   );
 }
