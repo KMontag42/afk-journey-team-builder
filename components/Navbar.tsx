@@ -65,7 +65,7 @@ export default function Navbar() {
           <div className="pt-2">
             <UserButton afterSignOutUrl="/">
               <UserButton.UserProfileLink
-                label="My Layouts"
+                label="My Formations"
                 url="/formations/mine"
                 labelIcon={<PersonStanding />}
               />
