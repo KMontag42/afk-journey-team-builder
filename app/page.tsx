@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { tekImages } from "@/lib/images";
+import NewestFormations from "@/components/NewestFormations";
+import { Separator } from "@/components/ui/separator";
 
 export default async function Home() {
   return (
@@ -10,6 +12,10 @@ export default async function Home() {
       <p>Build formations and share them.</p>
       <p>Download formations as images, or share as a link.</p>
       <p>Register to save formations, which makes them searchable.</p>
+
+      <Separator className="my-4"/>
+
+      <NewestFormations />
     </div>
   );
 }

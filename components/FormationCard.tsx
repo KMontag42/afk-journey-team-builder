@@ -1,6 +1,8 @@
 'use client';
 
 import { layouts } from "@/lib/layouts";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 
 type FormationCardProps = {
   data: {
@@ -8,13 +10,14 @@ type FormationCardProps = {
     spell: string;
     layout: number;
     user_id: string;
+    user_image: string;
     name: string;
     tag: string;
   }
 };
 
 export default function FormationCard({ data }: FormationCardProps) {
-  const { formation, spell, layout, user_id, name, tag } = data;
+  const { formation, spell, layout, user_id, user_image, name, tag } = data;
 
   const LayoutComponent = layouts[layout as keyof typeof layouts];
 
@@ -23,9 +26,8 @@ export default function FormationCard({ data }: FormationCardProps) {
 
   return (
     <div>
-      <h1>{name}</h1>
-      <p>{tag}</p>
-      <div className="flex flex-col items-center mr-6 my-4">
+      <div>{name} <Badge>{tag}</Badge></div>
+      <div className="flex flex-col items-center mr-6 my-4 border p-4">
         <LayoutComponent 
           formation={formation.split(",")} 
           spell={spell} 
@@ -34,7 +36,13 @@ export default function FormationCard({ data }: FormationCardProps) {
           setSpell={setSpell}
         />
       </div>
-      <p>{user_id}</p>
+      <div className="flex items-center gap-2">
+        <Avatar>
+          <AvatarImage src={user_image} alt={user_id} />
+          <AvatarFallback>{user_id}</AvatarFallback>
+        </Avatar>
+        {user_id}
+      </div>
     </div>
   );
 }
