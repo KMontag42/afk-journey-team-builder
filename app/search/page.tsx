@@ -26,8 +26,8 @@ export default function SearchPage() {
   };
 
   return (
-    <div className="container md:w-[40vw] mx-auto">
-      <form onSubmit={handleSearch} className="flex flex-col gap-2">
+    <div className="md:px-0 md:container md:w-[40vw] mx-auto">
+      <form onSubmit={handleSearch} className="flex flex-col gap-2 px-2">
         <Label htmlFor="name" className="text-2xl">
           Search
         </Label>
@@ -43,7 +43,8 @@ export default function SearchPage() {
       <Separator className="my-4" />
 
       {loading && <p>Loading...</p>}
-      <ScrollArea className="mt-4 h-[73vh] px-4">
+
+      <ScrollArea className="mt-4 md:px-4">
         {results.map((result: any) => (
           <FormationCard
             key={result.id.toString()!}

@@ -44,6 +44,14 @@ function Links({ pathname }: { pathname: string }) {
     >
       My Formations
     </Link>,
+    <Link
+      href="/about"
+      className={buttonVariants({
+        variant: pathname === "/about" ? "secondary" : "link",
+      })}
+    >
+      About
+    </Link>,
   ];
 }
 
@@ -51,7 +59,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="flex h-[7vh] w-full items-center justify-between px-4 md:px-6 border">
+    <header className="flex h-[7vh] w-full items-center justify-between px-4 md:px-6 border sticky top-0 bg-slate-900 z-40">
       <Link href="/" prefetch={false}>
         <Image
           src={tekImages["logoAnimated"]}

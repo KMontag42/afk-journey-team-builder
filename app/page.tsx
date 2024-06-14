@@ -2,7 +2,6 @@ import Image from "next/image";
 import { tekImages } from "@/lib/images";
 import NewestFormations from "@/components/NewestFormations";
 import { Separator } from "@/components/ui/separator";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const revalidate = 0;
 
@@ -21,9 +20,7 @@ export default async function Home() {
       <Separator className="my-2" />
 
       <h2 className="mb-4 text-2xl">New Formations</h2>
-      <ScrollArea className="h-[60vh] md:h-[63vh] px-4">
-        <NewestFormations />
-      </ScrollArea>
+      <NewestFormations />
     </div>
   );
 }

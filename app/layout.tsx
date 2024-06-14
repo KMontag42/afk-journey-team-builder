@@ -23,15 +23,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, "dark")}>
+      <body className={cn(inter.className, "dark h-dvh")}>
         <Providers>
           <Navbar />
           <main className="flex h-[90vh] flex-col items-center pt-2">
             {children}
           </main>
-          <footer className="flex h-[3vh] absolute bottom-0 justify-center w-full pb-2">
-            <Footer />
-          </footer>
           <Toaster />
         </Providers>
         <Analytics />
