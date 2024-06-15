@@ -15,8 +15,8 @@ export default async function AboutPage() {
       <p>
         This website is a work in progress.
       </p>
-      <p>I'm adding features and fixing bugs as I find them.</p>
-      <p>I'm also open to suggestions for new features.</p> 
+      <p>I&apos;m adding features and fixing bugs as I find them.</p>
+      <p>I&apos;m also open to suggestions for new features.</p> 
       <p className="text-center mt-2">
       <Link 
         href="https://discord.com/channels/731929330896338995/1239184444926201906" 
