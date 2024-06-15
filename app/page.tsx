@@ -7,7 +7,7 @@ export const revalidate = 0;
 
 export default async function Home() {
   return (
-    <div className="flex flex-col items-center pt-2 gap-2 md:w-[40vw]">
+    <div className="flex flex-col items-center pt-2 gap-2 w-[90vw] md:w-[50vw] lg:w-[40vw]">
       <Image
         src={tekImages["tekLogo"]}
         alt="Tekken Emblem"
