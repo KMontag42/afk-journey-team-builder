@@ -73,15 +73,23 @@ export default function Navbar() {
       </Link>
       <nav className="hidden items-center gap-6 md:flex">
         {Links({ pathname })}
+        <SignedOut>
+          <SignInButton />
+        </SignedOut>
+        <SignedIn>
+          <div className="pt-2">
+            <UserButton />
+          </div>
+        </SignedIn>
       </nav>
-      <SignedOut>
-        <SignInButton />
-      </SignedOut>
-      <SignedIn>
-        <div className="pt-2">
+      <div className="md:hidden pt-2">
+        <SignedOut>
+          <SignInButton />
+        </SignedOut>
+        <SignedIn>
           <UserButton />
-        </div>
-      </SignedIn>
+        </SignedIn>
+      </div>
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon" className="md:hidden">

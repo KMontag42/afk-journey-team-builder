@@ -4,7 +4,6 @@ import { turso } from "@/lib/turso";
 import { auth } from "@clerk/nextjs/server";
 
 import FormationCard from "@/components/FormationCard";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default async function MyFormations() {
   const { userId } = auth();
@@ -21,8 +20,7 @@ export default async function MyFormations() {
   const data = response.rows;
 
   return (
-    <>
-      <ScrollArea className="h-[89vh] flex flex-col px-4">
+    <div className="md:w-[40vw]">
         {data.map((formation) => (
           <FormationCard
             key={formation.id?.toString()}
@@ -32,7 +30,6 @@ export default async function MyFormations() {
             showDelete
           />
         ))}
-      </ScrollArea>
-    </>
+    </div>
   );
 }

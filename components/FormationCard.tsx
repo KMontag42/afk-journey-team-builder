@@ -53,7 +53,7 @@ export default function FormationCard({
   const setSpell = (_: string) => {};
 
   return (
-    <Card className={cn(className, "w-full")}>
+    <Card className={cn("w-full", className)}>
       <CardHeader>
         <CardTitle>{name}</CardTitle>
       </CardHeader>
