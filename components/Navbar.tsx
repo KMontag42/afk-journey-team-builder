@@ -25,6 +25,7 @@ function Links({ pathname }: { pathname: string }) {
       className={buttonVariants({
         variant: pathname === "/builder" ? "secondary" : "link",
       })}
+      key="builder"
     >
       Builder
     </Link>,
@@ -33,6 +34,7 @@ function Links({ pathname }: { pathname: string }) {
       className={buttonVariants({
         variant: pathname === "/search" ? "secondary" : "link",
       })}
+      key="search"
     >
       Search
     </Link>,
@@ -41,6 +43,7 @@ function Links({ pathname }: { pathname: string }) {
       className={buttonVariants({
         variant: pathname === "/formations/mine" ? "secondary" : "link",
       })}
+      key="mine"
     >
       My Formations
     </Link>,
@@ -49,6 +52,7 @@ function Links({ pathname }: { pathname: string }) {
       className={buttonVariants({
         variant: pathname === "/about" ? "secondary" : "link",
       })}
+      key="about"
     >
       About
     </Link>,
