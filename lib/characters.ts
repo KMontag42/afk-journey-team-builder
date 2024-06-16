@@ -62,7 +62,7 @@ export const Characters: Character[] = [
     faction: Faction.Lightbearer,
     class: CharacterClass.Support,
   },
-  { name: "Hewynn", faction: Faction.Wilder, class: CharacterClass.Mage },
+  { name: "Hewynn", faction: Faction.Wilder, class: CharacterClass.Support },
   { name: "Igor", faction: Faction.Graveborn, class: CharacterClass.Warrior },
   { name: "Kafra", faction: Faction.Wilder, class: CharacterClass.Warrior },
   { name: "Kokko", faction: Faction.Mauler, class: CharacterClass.Support },
