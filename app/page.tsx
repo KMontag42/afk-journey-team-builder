@@ -1,74 +1,26 @@
-"use server";
-
-import Builder from "@/components/Builder";
-import Link from "next/link";
 import Image from "next/image";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { tekImages } from "@/lib/images";
+import NewestFormations from "@/components/NewestFormations";
+import { Separator } from "@/components/ui/separator";
+
+export const revalidate = 0;
 
 export default async function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center pt-8">
-      <Popover>
-        <PopoverTrigger>
-          <p className="text-xl underline absolute top-4 end-6 sm:end-48 md:end-1/4">
-            ?
-          </p>
-        </PopoverTrigger>
-        <PopoverContent>
-          <ul className="p-4 list-disc">
-            <li>
-              Click on a character to select it, then click on a slot to place
-              it.
-            </li>
-            <li>
-              Click on a character in a slot to select it, then click on a
-              different slot to swap them.
-            </li>
-            <li>
-              Click on a character in a slot to select it, then click on the
-              character to remove it.
-            </li>
-            <li>Click on the spell icon to change the formation spell.</li>
-          </ul>
-        </PopoverContent>
-      </Popover>
+    <div className="flex flex-col items-center pt-2 gap-2 w-[90vw] md:w-[50vw] lg:w-[40vw]">
+      <Image
+        src={tekImages["tekLogo"]}
+        alt="Tekken Emblem"
+        className="w-56 mx-auto"
+      />
+      <p>Build formations and share them.</p>
+      <p>Download as images, or share as links.</p>
+      <p>Register to save and make searchable.</p>
 
-      <Link
-        href="https://afkanalytica.com"
-        target="_blank"
-        className="text-2xl absolute top-4 left-4 sm:left-48 md:left-1/4"
-      >
-        <Image
-          src={tekImages["logoAnimated"]}
-          alt="AFK Analytica"
-          className="w-8"
-        />
-      </Link>
+      <Separator className="my-2" />
 
-      <div className="flex flex-col items-center">
-        <Image
-          src={tekImages["tekLogo"]}
-          alt="Tekken Emblem"
-          className="w-56"
-        />
-      </div>
-
-      <Builder />
-
-      <p className="mt-1 text-xs">
-        Made with &hearts; by{" "}
-        <Link
-          className="underline"
-          href={"https://discordapp.com/users/89367326989770752"}
-        >
-          0xKRM
-        </Link>
-      </p>
-    </main>
+      <h2 className="mb-4 text-2xl">New Formations</h2>
+      <NewestFormations />
+    </div>
   );
 }
