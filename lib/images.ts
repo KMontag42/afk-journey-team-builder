@@ -83,6 +83,7 @@ import Smokey from "@/public/characters/Smokey.png";
 import Soren from "@/public/characters/Soren.png";
 import Temesia from "@/public/characters/Temesia.png";
 import Thoran from "@/public/characters/Thoran.png";
+import Ulmus from "@/public/characters/Ulmus.png";
 import Vala from "@/public/characters/Vala.png";
 import Valen from "@/public/characters/Valen.png";
 import Viperian from "@/public/characters/Viperian.png";
@@ -193,6 +194,7 @@ export const characterImages: { [key: string]: StaticImageData } = {
   soren: Soren,
   temesia: Temesia,
   thoran: Thoran,
+  ulmus: Ulmus,
   vala: Vala,
   valen: Valen,
   viperian: Viperian,

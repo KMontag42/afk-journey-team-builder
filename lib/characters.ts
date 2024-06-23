@@ -71,6 +71,7 @@ export const Characters: Character[] = [
   { name: "Soren", faction: Faction.Mauler, class: CharacterClass.Rogue },
   { name: "Temesia", faction: Faction.Lightbearer, class: CharacterClass.Tank },
   { name: "Thoran", faction: Faction.Graveborn, class: CharacterClass.Tank },
+  { name: "Ulmus", faction: Faction.Wilder, class: CharacterClass.Tank },
   { name: "Vala", faction: Faction.Lightbearer, class: CharacterClass.Rogue },
   { name: "Valen", faction: Faction.Lightbearer, class: CharacterClass.Warrior },
   { name: "Viperian", faction: Faction.Graveborn, class: CharacterClass.Mage },
