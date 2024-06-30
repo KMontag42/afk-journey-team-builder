@@ -13,13 +13,13 @@ export default function CharmCalculator() {
   const availableClasses = Heroes.Classes.map((classType) => classType.Class);
   const [selectedClass, setSelectedClass] = useState<String>(availableClasses[0]);
 
-  const [availableHeroes, setAvailableHeroes] = useState<any[] | null>(null);
-  const [selectedHero, setSelectedHero] = useState<String>(Heroes.Classes[0].Heroes[0].Name);
+  const [availableHeroes, setAvailableHeroes] = useState<any[] | undefined>(undefined);
+  const [selectedHero, setSelectedHero] = useState<String | undefined>(undefined);
 
-  const [availableCharms, setAvailableCharms] = useState<Charm[] | null>(null);
-  const [selectedLeftCharm, setSelectedLeftCharm] = useState<Charm | null>(null);
-  const [selectedMidCharm, setSelectedMidCharm] = useState<Charm | null>(null);
-  const [selectedRightCharm, setSelectedRightCharm] = useState<Charm | null>(null);
+  const [availableCharms, setAvailableCharms] = useState<Charm[] | undefined>(undefined);
+  const [selectedLeftCharm, setSelectedLeftCharm] = useState<Charm | undefined>(undefined);
+  const [selectedMidCharm, setSelectedMidCharm] = useState<Charm | undefined>(undefined);
+  const [selectedRightCharm, setSelectedRightCharm] = useState<Charm | undefined>(undefined);
 
   const [statsSummary, setStatsSummary] = useState<StatSummary[]>([]);
 
@@ -31,6 +31,7 @@ export default function CharmCalculator() {
   function setClass(chosenClass: String): void {
     // set class, then set available heroes based on that class
     setSelectedClass(chosenClass);
+    setSelectedHero(undefined);
 
     Heroes.Classes.find((classType) => {
       if (classType.Class === chosenClass) {
@@ -47,9 +48,9 @@ export default function CharmCalculator() {
   function setHero(heroName: String): void {
     // set hero, then get list of available charms based on that hero
     setSelectedHero(heroName);
-    setSelectedLeftCharm(null);
-    setSelectedMidCharm(null);
-    setSelectedRightCharm(null);
+    setSelectedLeftCharm(undefined);
+    setSelectedMidCharm(undefined);
+    setSelectedRightCharm(undefined);
 
     Heroes.Classes.find((classType) => {
       if (classType.Class === selectedClass) {
@@ -73,30 +74,27 @@ export default function CharmCalculator() {
    * @param position | CharmPosition (enum) | Left/Mid/Right
    */
   function setCharm(charmName: string, position: CharmPosition): void {
-    console.log(charmName);
-
     // Get charm and set that selectedCharm to the current charm.
     availableCharms?.find((charm) => {
       if (charm.name === charmName) {
         switch (position) {
           case CharmPosition.Left:
             setSelectedLeftCharm(charm);
+            setStatsSummary(GetStatSummary(charm, selectedMidCharm, selectedRightCharm));
             break;
           case CharmPosition.Mid:
             setSelectedMidCharm(charm);
+            setStatsSummary(GetStatSummary(selectedLeftCharm, charm, selectedRightCharm));
             break;
           case CharmPosition.Right:
             setSelectedRightCharm(charm);
+            setStatsSummary(GetStatSummary(selectedLeftCharm, selectedMidCharm, charm));
             break;
           default:
             break;
         }
       }
     });
-
-    // Reacalculate stat summary each time a charm changes
-    setStatsSummary(GetStatSummary(selectedLeftCharm, selectedMidCharm, selectedRightCharm));
-    console.log(selectedLeftCharm);
   }
 
   return (
@@ -114,7 +112,7 @@ export default function CharmCalculator() {
             ))}
           </SelectContent>
         </Select>
-        <Select disabled={availableHeroes === null || availableHeroes.length <= 0} onValueChange={(e) => setHero(e)}>
+        <Select disabled={!availableHeroes} onValueChange={(e) => setHero(e)}>
           <SelectTrigger>
             <SelectValue placeholder="Hero" />
           </SelectTrigger>
@@ -129,7 +127,7 @@ export default function CharmCalculator() {
       </div>
       <div id="charms" className="flex flex-row py-4 gap-x-1">
         <Select
-          disabled={availableCharms === null || availableCharms.length <= 0}
+          disabled={!availableCharms}
           onValueChange={(e) => setCharm(e, CharmPosition.Left)}
         >
           <SelectTrigger>
@@ -144,7 +142,7 @@ export default function CharmCalculator() {
           </SelectContent>
         </Select>
         <Select
-          disabled={availableCharms === null || availableCharms.length <= 0}
+          disabled={!availableCharms}
           onValueChange={(e) => setCharm(e, CharmPosition.Mid)}
         >
           <SelectTrigger>
@@ -159,7 +157,7 @@ export default function CharmCalculator() {
           </SelectContent>
         </Select>
         <Select
-          disabled={availableCharms === null || availableCharms.length <= 0}
+          disabled={!availableCharms}
           onValueChange={(e) => setCharm(e, CharmPosition.Right)}
         >
           <SelectTrigger>
@@ -195,12 +193,6 @@ export default function CharmCalculator() {
           </Table>
         </div>
       )}
-
-      <h2>{selectedClass}</h2>
-      <h2>{selectedHero}</h2>
-      <h2>{selectedLeftCharm?.name}</h2>
-      <h2>{selectedMidCharm?.name}</h2>
-      <h2>{selectedRightCharm?.name}</h2>
     </>
   );
 }
