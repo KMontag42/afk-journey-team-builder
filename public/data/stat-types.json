@@ -1,0 +1,19 @@
+{
+    "StatTypes": [
+        { "Stat": "ATK", "Format": "Percentage" },
+        { "Stat": "ATK SPD", "Format": "Percentage" },
+        { "Stat": "Crit", "Format": "Percentage" },
+        { "Stat": "Crit DMG Boost", "Format": "Number" },
+        { "Stat": "Crit Resist", "Format": "Percentage" },
+        { "Stat": "Energy on Hit", "Format": "Number" },
+        { "Stat": "Execution", "Format": "Number" },
+        { "Stat": "Haste", "Format": "Number" },
+        { "Stat": "Healing", "Format": "Number" },
+        { "Stat": "HP", "Format": "Percentage" },
+        { "Stat": "Life Drain", "Format": "Percentage" },
+        { "Stat": "Phys & Magic DEF", "Format": "Percentage" },
+        { "Stat": "Skill Power", "Format": "Number" },
+        { "Stat": "Ultimate Strength", "Format": "Number" },
+        { "Stat": "Vitality", "Format": "Number" }
+    ]
+}

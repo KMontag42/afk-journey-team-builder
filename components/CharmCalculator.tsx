@@ -1,0 +1,198 @@
+"use client";
+
+import { useState } from "react";
+
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
+import Heroes from "../public/data/heroes.json";
+
+import { Charm, CharmPosition, StatSummary, GetStatSummary } from "@/lib/charm";
+
+export default function CharmCalculator() {
+  const availableClasses = Heroes.Classes.map((classType) => classType.Class);
+  const [selectedClass, setSelectedClass] = useState<String>(availableClasses[0]);
+
+  const [availableHeroes, setAvailableHeroes] = useState<any[] | undefined>(undefined);
+  const [selectedHero, setSelectedHero] = useState<String | undefined>(undefined);
+
+  const [availableCharms, setAvailableCharms] = useState<Charm[] | undefined>(undefined);
+  const [selectedLeftCharm, setSelectedLeftCharm] = useState<Charm | undefined>(undefined);
+  const [selectedMidCharm, setSelectedMidCharm] = useState<Charm | undefined>(undefined);
+  const [selectedRightCharm, setSelectedRightCharm] = useState<Charm | undefined>(undefined);
+
+  const [statsSummary, setStatsSummary] = useState<StatSummary[]>([]);
+
+  /** Sets the current class and clears the currently selected hero and available charms
+   *  Sets available heroes based on selected class
+   *
+   * @param chosenClass | String
+   */
+  function setClass(chosenClass: String): void {
+    // set class, then set available heroes based on that class
+    setSelectedClass(chosenClass);
+    setSelectedHero(undefined);
+
+    Heroes.Classes.find((classType) => {
+      if (classType.Class === chosenClass) {
+        setAvailableHeroes(classType.Heroes.map((hero) => hero.Name));
+      }
+    });
+  }
+
+  /** Sets the current hero and clears the selected charms
+   *  Sets the available charms based on selected hero
+   *
+   * @param heroName | String
+   */
+  function setHero(heroName: String): void {
+    // set hero, then get list of available charms based on that hero
+    setSelectedHero(heroName);
+    setSelectedLeftCharm(undefined);
+    setSelectedMidCharm(undefined);
+    setSelectedRightCharm(undefined);
+
+    Heroes.Classes.find((classType) => {
+      if (classType.Class === selectedClass) {
+        classType.Heroes.find((hero) => {
+          if (hero.Name === heroName) {
+            let charms: Charm[] = [];
+            hero.Charms.forEach((charm) => {
+              charms.push(new Charm(charm.Name, charm.Stats));
+            });
+            setAvailableCharms(charms);
+          }
+        });
+      }
+    });
+  }
+
+  /** Sets the charm that you selected for the given position
+   *  Any time a charm is changed, recalculate the summary
+   *
+   * @param charmName | String
+   * @param position | CharmPosition (enum) | Left/Mid/Right
+   */
+  function setCharm(charmName: string, position: CharmPosition): void {
+    // Get charm and set that selectedCharm to the current charm.
+    availableCharms?.find((charm) => {
+      if (charm.name === charmName) {
+        switch (position) {
+          case CharmPosition.Left:
+            setSelectedLeftCharm(charm);
+            setStatsSummary(GetStatSummary(charm, selectedMidCharm, selectedRightCharm));
+            break;
+          case CharmPosition.Mid:
+            setSelectedMidCharm(charm);
+            setStatsSummary(GetStatSummary(selectedLeftCharm, charm, selectedRightCharm));
+            break;
+          case CharmPosition.Right:
+            setSelectedRightCharm(charm);
+            setStatsSummary(GetStatSummary(selectedLeftCharm, selectedMidCharm, charm));
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  }
+
+  return (
+    <>
+      <div id="options" className="flex flex-row pt-8 gap-x-2">
+        <Select onValueChange={(e) => setClass(e)}>
+          <SelectTrigger>
+            <SelectValue placeholder="Class" />
+          </SelectTrigger>
+          <SelectContent>
+            {availableClasses.map((type) => (
+              <SelectItem value={type} key={type}>
+                {type}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <Select disabled={!availableHeroes} onValueChange={(e) => setHero(e)}>
+          <SelectTrigger>
+            <SelectValue placeholder="Hero" />
+          </SelectTrigger>
+          <SelectContent>
+            {availableHeroes?.map((name) => (
+              <SelectItem value={name} key={name}>
+                {name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      <div id="charms" className="flex flex-row py-4 gap-x-1">
+        <Select
+          disabled={!availableCharms}
+          onValueChange={(e) => setCharm(e, CharmPosition.Left)}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Left Charm" />
+          </SelectTrigger>
+          <SelectContent>
+            {availableCharms?.map((charm) => (
+              <SelectItem value={charm.name} key={charm.name}>
+                {charm.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <Select
+          disabled={!availableCharms}
+          onValueChange={(e) => setCharm(e, CharmPosition.Mid)}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Mid Charm" />
+          </SelectTrigger>
+          <SelectContent>
+            {availableCharms?.map((charm) => (
+              <SelectItem value={charm.name} key={charm.name}>
+                {charm.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <Select
+          disabled={!availableCharms}
+          onValueChange={(e) => setCharm(e, CharmPosition.Right)}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Right Charm" />
+          </SelectTrigger>
+          <SelectContent>
+            {availableCharms?.map((charm) => (
+              <SelectItem value={charm.name} key={charm.name}>
+                {charm.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      {statsSummary.length > 0 && (
+        <div>
+          <h3>Charm Stats Summary</h3>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Attribute</TableHead>
+                <TableHead>Stat</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {statsSummary.map((stats) => (
+                <TableRow key={stats.name}>
+                  <TableCell>{stats.name}</TableCell>
+                  <TableCell>{stats.value}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      )}
+    </>
+  );
+}

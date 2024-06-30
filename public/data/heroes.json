@@ -1,0 +1,7558 @@
+{
+	"Classes": [
+		{
+			"Class": "Tank",
+			"Heroes": [
+				{
+					"ID": 10,
+					"Faction": "Graveborn",
+					"Name": "Thoran",
+					"EliteSet": "Recovers 3% HP per second for 4s and reduces damage taken by 10% when the HP ratio drops below 30% for the first time.",
+					"EpicSet": "Recovers 3% HP per second for 8s and reduces damage taken by 20% when the HP ratio drops below 30% for the first time.",
+					"LegMythicSet": "Recovers 3% HP per second for 8s and reduces damage taken by 20% when the HP ratio drops below 30% for the first time. This healing is triggered again after 15s, but at a reduced rate, recovering only 2% HP per second.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 2,
+								"Phys & Magic DEF": 2.7
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 2,
+								"Phys & Magic DEF": 3.3,
+								"Crit Resist": 2.3
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 3.3,
+								"ATK": 1.7,
+								"Phys & Magic DEF": 4,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"HP": 13,
+								"Skill Power": 1,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Bear Charm",
+							"ImagePath": "Bear-min.png",
+							"Stats": {
+								"HP": 13,
+								"Healing": 5,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Healer Charm",
+							"ImagePath": "Healer-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Vitality": 5,
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Phys & Magic DEF": 24.8,
+								"Energy on Hit": 15,
+								"HP": 5.3,
+								"ATK": 3,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Phys & Magic DEF": 24.8,
+								"Crit Resist": 14.7,
+								"HP": 5.3,
+								"ATK": 3
+							}
+						},
+						{
+							"Name": "Glory Charm",
+							"ImagePath": "Glory-min.png",
+							"Stats": {
+								"HP": 13,
+								"ATK SPD": 8,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 13,
+								"ATK": 3,
+								"Phys & Magic DEF": 24.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 5.3,
+								"ATK": 8,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 13,
+								"ATK": 8,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						}
+					]
+				},
+				{
+					"ID": 11,
+					"Faction": "Lightbearer",
+					"Name": "Temesia",
+					"EliteSet": "Recovers 3% HP per second for 4s and reduces damage taken by 10% when the HP ratio drops below 30% for the first time.",
+					"EpicSet": "Recovers 3% HP per second for 8s and reduces damage taken by 20% when the HP ratio drops below 30% for the first time.",
+					"LegMythicSet": "Recovers 3% HP per second for 8s and reduces damage taken by 20% when the HP ratio drops below 30% for the first time. This healing is triggered again after 15s, but at a reduced rate, recovering only 2% HP per second.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 2,
+								"Phys & Magic DEF": 2.7
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 2,
+								"Phys & Magic DEF": 3.3,
+								"Crit Resist": 2.3
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 3.3,
+								"ATK": 1.7,
+								"Phys & Magic DEF": 4,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"HP": 13,
+								"Ultimate Strength": 1,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Bear Charm",
+							"ImagePath": "Bear-min.png",
+							"Stats": {
+								"HP": 13,
+								"Healing": 5,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Overloaded Charm",
+							"ImagePath": "Overloaded-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Crit DMG Boost": 14,
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Ruthless Charm",
+							"ImagePath": "Ruthless-min.png",
+							"Stats": {
+								"Crit": 10,
+								"ATK SPD": 8,
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"HP": 13,
+								"Skill Power": 1,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"HP": 13,
+								"Energy on Hit": 15,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Glory Charm",
+							"ImagePath": "Glory-min.png",
+							"Stats": {
+								"HP": 13,
+								"ATK SPD": 8,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 13,
+								"ATK": 3,
+								"Phys & Magic DEF": 24.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 5.3,
+								"ATK": 8,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 13,
+								"ATK": 8,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						}
+					]
+				},
+				{
+					"ID": 12,
+					"Faction": "Mauler",
+					"Name": "Antandra",
+					"EliteSet": "Recovers 3% HP per second for 4s and reduces damage taken by 10% when the HP ratio drops below 30% for the first time.",
+					"EpicSet": "Recovers 3% HP per second for 8s and reduces damage taken by 20% when the HP ratio drops below 30% for the first time.",
+					"LegMythicSet": "Recovers 3% HP per second for 8s and reduces damage taken by 20% when the HP ratio drops below 30% for the first time. This healing is triggered again after 15s, but at a reduced rate, recovering only 2% HP per second.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 2,
+								"Phys & Magic DEF": 2.7
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 2,
+								"Phys & Magic DEF": 3.3,
+								"Crit Resist": 2.3
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 3.3,
+								"ATK": 1.7,
+								"Phys & Magic DEF": 4,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"HP": 13,
+								"Ultimate Strength": 1,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"HP": 13,
+								"Energy on Hit": 15,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"HP": 13,
+								"Skill Power": 1,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Phys & Magic DEF": 24.8,
+								"Crit Resist": 14.7,
+								"HP": 5.3,
+								"ATK": 3
+							}
+						},
+						{
+							"Name": "Glory Charm",
+							"ImagePath": "Glory-min.png",
+							"Stats": {
+								"HP": 13,
+								"ATK SPD": 8,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 13,
+								"ATK": 3,
+								"Phys & Magic DEF": 24.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Reaper Charm",
+							"ImagePath": "Reaper-min.png",
+							"Stats": {
+								"ATK": 8,
+								"Execution": 10,
+								"HP": 5.3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Butcher Charm",
+							"ImagePath": "Butcher-min.png",
+							"Stats": {
+								"Crit": 10,
+								"Crit DMG Boost": 14,
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 13,
+								"ATK": 8,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						}
+					]
+				},
+				{
+					"ID": 13,
+					"Faction": "Lightbearer",
+					"Name": "Lucius",
+					"EliteSet": "Recovers 3% HP per second for 4s and reduces damage taken by 10% when the HP ratio drops below 30% for the first time.",
+					"EpicSet": "Recovers 3% HP per second for 8s and reduces damage taken by 20% when the HP ratio drops below 30% for the first time.",
+					"LegMythicSet": "Recovers 3% HP per second for 8s and reduces damage taken by 20% when the HP ratio drops below 30% for the first time. This healing is triggered again after 15s, but at a reduced rate, recovering only 2% HP per second.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 2,
+								"Phys & Magic DEF": 2.7
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 2,
+								"Phys & Magic DEF": 3.3,
+								"Crit Resist": 2.3
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 3.3,
+								"ATK": 1.7,
+								"Phys & Magic DEF": 4,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Wizard Charm",
+							"ImagePath": "Wizard-min.png",
+							"Stats": {
+								"Vitality": 5,
+								"Ultimate Strength": 1,
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Bear Charm",
+							"ImagePath": "Bear-min.png",
+							"Stats": {
+								"HP": 13,
+								"Healing": 5,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Gale Charm",
+							"ImagePath": "Gale-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 5.3,
+								"ATK": 8,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Skill Power": 1,
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Recovering Charm",
+							"ImagePath": "Recovering-min.png",
+							"Stats": {
+								"Vitality": 5,
+								"Skill Power": 1,
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"HP": 13,
+								"Energy on Hit": 15,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Phys & Magic DEF": 24.8,
+								"Crit Resist": 14.7,
+								"HP": 5.3,
+								"ATK": 3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 13,
+								"ATK": 3,
+								"Phys & Magic DEF": 24.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 5.3,
+								"ATK": 8,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 13,
+								"ATK": 8,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						}
+					]
+				},
+				{
+					"ID": 14,
+					"Faction": "Wilder",
+					"Name": "Granny Dahnie",
+					"EliteSet": "Recovers 3% HP per second for 4s and reduces damage taken by 10% when the HP ratio drops below 30% for the first time.",
+					"EpicSet": "Recovers 3% HP per second for 8s and reduces damage taken by 20% when the HP ratio drops below 30% for the first time.",
+					"LegMythicSet": "Recovers 3% HP per second for 8s and reduces damage taken by 20% when the HP ratio drops below 30% for the first time. This healing is triggered again after 15s, but at a reduced rate, recovering only 2% HP per second.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 2,
+								"Phys & Magic DEF": 2.7
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 2,
+								"Phys & Magic DEF": 3.3,
+								"Crit Resist": 2.3
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 3.3,
+								"ATK": 1.7,
+								"Phys & Magic DEF": 4,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"HP": 13,
+								"Energy on Hit": 15,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Bear Charm",
+							"ImagePath": "Bear-min.png",
+							"Stats": {
+								"HP": 13,
+								"Healing": 5,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Resolute Charm",
+							"ImagePath": "Resolute-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"Ultimate Strength": 1,
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Energy Charm",
+							"ImagePath": "Energy-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Energy on Hit": 15,
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"HP": 13,
+								"Ultimate Strength": 1,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Phys & Magic DEF": 24.8,
+								"Crit Resist": 14.7,
+								"HP": 5.3,
+								"ATK": 3
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 5.3,
+								"ATK": 8,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Acute Charm",
+							"ImagePath": "Acute-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 5.3,
+								"ATK": 8,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 13,
+								"ATK": 8,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						}
+					]
+				},
+				{
+					"ID": 15,
+					"Faction": "Mauler",
+					"Name": "Lumont",
+					"EliteSet": "Recovers 3% HP per second for 4s and reduces damage taken by 10% when the HP ratio drops below 30% for the first time.",
+					"EpicSet": "Recovers 3% HP per second for 8s and reduces damage taken by 20% when the HP ratio drops below 30% for the first time.",
+					"LegMythicSet": "Recovers 3% HP per second for 8s and reduces damage taken by 20% when the HP ratio drops below 30% for the first time. This healing is triggered again after 15s, but at a reduced rate, recovering only 2% HP per second.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 2,
+								"Phys & Magic DEF": 2.7
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 2,
+								"Phys & Magic DEF": 3.3,
+								"Crit Resist": 2.3
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 3.3,
+								"ATK": 1.7,
+								"Phys & Magic DEF": 4,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Skill Power": 1,
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 13,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Resolute Charm",
+							"ImagePath": "Resolute-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"Ultimate Strength": 1,
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 13,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 13,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Bear Charm",
+							"ImagePath": "Bear-min.png",
+							"Stats": {
+								"Healing": 5,
+								"HP": 13,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 24.8,
+								"Crit Resist": 14.7
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 5.3,
+								"ATK": 8,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 13,
+								"ATK": 8,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						}
+					]
+				},
+				{
+					"ID": 56,
+					"Faction": "Hypogean",
+					"Name": "Phraesto",
+					"EliteSet": "Recovers 3% HP per second for 4s and reduces damage taken by 10% when the HP ratio drops below 30% for the first time.",
+					"EpicSet": "Recovers 3% HP per second for 8s and reduces damage taken by 20% when the HP ratio drops below 30% for the first time.",
+					"LegMythicSet": "Recovers 3% HP per second for 8s and reduces damage taken by 20% when the HP ratio drops below 30% for the first time. This healing is triggered again after 15s, but at a reduced rate, recovering only 2% HP per second.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 2,
+								"Phys & Magic DEF": 2.7
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 2,
+								"Phys & Magic DEF": 3.3,
+								"Crit Resist": 2.3
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 3.3,
+								"ATK": 1.7,
+								"Phys & Magic DEF": 4,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 13,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 13,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Gale Charm",
+							"ImagePath": "Gale-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 5.3,
+								"ATK": 8,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 13,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Bear Charm",
+							"ImagePath": "Bear-min.png",
+							"Stats": {
+								"Healing": 5,
+								"HP": 13,
+								"ATK": 3,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"HP": 5.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 24.8,
+								"Crit Resist": 14.7
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 13,
+								"ATK": 3,
+								"Phys & Magic DEF": 24.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 5.3,
+								"ATK": 8,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Titanic Charm",
+							"ImagePath": "Titanic-min.png",
+							"Stats": {
+								"Crit": 10,
+								"HP": 5.3,
+								"ATK": 8,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 13,
+								"ATK": 8,
+								"Phys & Magic DEF": 6.8,
+								"Crit Resist": 2.7
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"Class": "Warrior",
+			"Heroes": [
+				{
+					"ID": 16,
+					"Faction": "Mauler",
+					"Name": "Brutus",
+					"EliteSet": "In the first 20s of a battle, increases damage dealt by 10% if the HP ratio is above 50%, or increases 10 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"EpicSet": "In the first 20s of a battle, increases damage dealt by 20% if the HP ratio is above 50%, or increases 25 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"LegMythicSet": "In the first 35s of a battle, increases damage dealt by 20% if the HP ratio is above 50%, or increases 25 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"ATK": 2.2,
+								"Phys & Magic DEF": 2.3
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.7,
+								"ATK": 2.2,
+								"Phys & Magic DEF": 2.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 2.5,
+								"Phys & Magic DEF": 3.3,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"Skill Power": 1,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Resolute Charm",
+							"ImagePath": "Resolute-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"Ultimate Strength": 1,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Energy Charm",
+							"ImagePath": "Energy-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Energy on Hit": 15,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"Haste": 5,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Phys & Magic DEF": 24,
+								"Energy on Hit": 15,
+								"HP": 4,
+								"ATK": 4.7,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Phys & Magic DEF": 24,
+								"Crit Resist": 12,
+								"HP": 4,
+								"ATK": 4.7,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"Phys & Magic DEF": 24,
+								"ATK": 4.7,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Titanic Charm",
+							"ImagePath": "Titanic-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 9.7,
+								"Crit": 10,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Acute Charm",
+							"ImagePath": "Acute-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 4,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 17,
+					"Faction": "Celestial",
+					"Name": "Scarlita",
+					"EliteSet": "In the first 20s of a battle, increases damage dealt by 10% if the HP ratio is above 50%, or increases 10 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"EpicSet": "In the first 20s of a battle, increases damage dealt by 20% if the HP ratio is above 50%, or increases 25 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"LegMythicSet": "In the first 35s of a battle, increases damage dealt by 20% if the HP ratio is above 50%, or increases 25 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"ATK": 2.2,
+								"Phys & Magic DEF": 2.3
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.7,
+								"ATK": 2.2,
+								"Phys & Magic DEF": 2.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 2.5,
+								"Phys & Magic DEF": 3.3,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Healer Charm",
+							"ImagePath": "Healer-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Vitality": 5,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Reaper Charm",
+							"ImagePath": "Reaper-min.png",
+							"Stats": {
+								"Execution": 10,
+								"HP": 4,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Destructive Charm",
+							"ImagePath": "Destructive-min.png",
+							"Stats": {
+								"Execution": 10,
+								"Ultimate Strength": 1,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 11.7,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 11.7,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 24,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Crit Resist": 12,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 24,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Bloodlust Charm",
+							"ImagePath": "Bloodlust-min.png",
+							"Stats": {
+								"Life Drain": 6,
+								"HP": 4,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 18,
+					"Faction": "Lightbearer",
+					"Name": "Korin",
+					"EliteSet": "In the first 20s of a battle, increases damage dealt by 10% if the HP ratio is above 50%, or increases 10 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"EpicSet": "In the first 20s of a battle, increases damage dealt by 20% if the HP ratio is above 50%, or increases 25 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"LegMythicSet": "In the first 35s of a battle, increases damage dealt by 20% if the HP ratio is above 50%, or increases 25 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"ATK": 2.2,
+								"Phys & Magic DEF": 2.3
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.7,
+								"ATK": 2.2,
+								"Phys & Magic DEF": 2.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 2.5,
+								"Phys & Magic DEF": 3.3,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"Haste": 5,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Glory Charm",
+							"ImagePath": "Glory-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK SPD": 8,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Resolute Charm",
+							"ImagePath": "Resolute-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"Ultimate Strength": 1,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Healer Charm",
+							"ImagePath": "Healer-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Vitality": 5,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 24,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Crit Resist": 12,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 24,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Bloodlust Charm",
+							"ImagePath": "Bloodlust-min.png",
+							"Stats": {
+								"Life Drain": 6,
+								"HP": 4,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 19,
+					"Faction": "Graveborn",
+					"Name": "Igor",
+					"EliteSet": "In the first 20s of a battle, increases damage dealt by 10% if the HP ratio is above 50%, or increases 10 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"EpicSet": "In the first 20s of a battle, increases damage dealt by 20% if the HP ratio is above 50%, or increases 25 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"LegMythicSet": "In the first 35s of a battle, increases damage dealt by 20% if the HP ratio is above 50%, or increases 25 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"ATK": 2.2,
+								"Phys & Magic DEF": 2.3
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.7,
+								"ATK": 2.2,
+								"Phys & Magic DEF": 2.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 2.5,
+								"Phys & Magic DEF": 3.3,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Reaper Charm",
+							"ImagePath": "Reaper-min.png",
+							"Stats": {
+								"Execution": 10,
+								"HP": 4,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Butcher Charm",
+							"ImagePath": "Butcher-min.png",
+							"Stats": {
+								"Crit": 10,
+								"Crit DMG Boost": 14,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 11.7,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 11.7,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Bear Charm",
+							"ImagePath": "Bear-min.png",
+							"Stats": {
+								"Healing": 5,
+								"HP": 11.7,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 24,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Crit Resist": 12,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 24,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Titanic Charm",
+							"ImagePath": "Titanic-min.png",
+							"Stats": {
+								"Crit": 10,
+								"HP": 4,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 20,
+					"Faction": "Mauler",
+					"Name": "Kruger",
+					"EliteSet": "In the first 20s of a battle, increases damage dealt by 10% if the HP ratio is above 50%, or increases 10 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"EpicSet": "In the first 20s of a battle, increases damage dealt by 20% if the HP ratio is above 50%, or increases 25 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"LegMythicSet": "In the first 35s of a battle, increases damage dealt by 20% if the HP ratio is above 50%, or increases 25 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"ATK": 2.2,
+								"Phys & Magic DEF": 2.3
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.7,
+								"ATK": 2.2,
+								"Phys & Magic DEF": 2.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 2.5,
+								"Phys & Magic DEF": 3.3,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"Haste": 5,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 24,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 24,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Crit Resist": 12,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 24,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 4,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Titanic Charm",
+							"ImagePath": "Titanic-min.png",
+							"Stats": {
+								"Crit": 10,
+								"HP": 4,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Reaper Charm",
+							"ImagePath": "Reaper-min.png",
+							"Stats": {
+								"Execution": 10,
+								"HP": 4,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Bloodlust Charm",
+							"ImagePath": "Bloodlust-min.png",
+							"Stats": {
+								"Life Drain": 6,
+								"HP": 4,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 21,
+					"Faction": "Wilder",
+					"Name": "Florabelle",
+					"EliteSet": "In the first 20s of a battle, increases damage dealt by 10% if the HP ratio is above 50%, or increases 10 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"EpicSet": "In the first 20s of a battle, increases damage dealt by 20% if the HP ratio is above 50%, or increases 25 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"LegMythicSet": "In the first 35s of a battle, increases damage dealt by 20% if the HP ratio is above 50%, or increases 25 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"ATK": 2.2,
+								"Phys & Magic DEF": 2.3
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.7,
+								"ATK": 2.2,
+								"Phys & Magic DEF": 2.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 2.5,
+								"Phys & Magic DEF": 3.3,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 11.7,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Resolute Charm",
+							"ImagePath": "Resolute-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"Ultimate Strength": 1,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Gale Charm",
+							"ImagePath": "Gale-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 4,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 11.7,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"Haste": 5,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 24,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 4,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 22,
+					"Faction": "Lightbearer",
+					"Name": "Valen",
+					"EliteSet": "In the first 20s of a battle, increases damage dealt by 10% if the HP ratio is above 50%, or increases 10 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"EpicSet": "In the first 20s of a battle, increases damage dealt by 20% if the HP ratio is above 50%, or increases 25 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"LegMythicSet": "In the first 35s of a battle, increases damage dealt by 20% if the HP ratio is above 50%, or increases 25 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"ATK": 2.2,
+								"Phys & Magic DEF": 2.3
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.7,
+								"ATK": 2.2,
+								"Phys & Magic DEF": 2.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 2.5,
+								"Phys & Magic DEF": 3.3,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Energy Charm",
+							"ImagePath": "Energy-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Energy on Hit": 15,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 4,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Combative Charm",
+							"ImagePath": "Combative-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Crit": 10,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 11.7,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"Haste": 5,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 24,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 24,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Titanic Charm",
+							"ImagePath": "Titanic-min.png",
+							"Stats": {
+								"Crit": 10,
+								"HP": 4,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 23,
+					"Faction": "Wilder",
+					"Name": "Kafra",
+					"EliteSet": "In the first 20s of a battle, increases damage dealt by 10% if the HP ratio is above 50%, or increases 10 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"EpicSet": "In the first 20s of a battle, increases damage dealt by 20% if the HP ratio is above 50%, or increases 25 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"LegMythicSet": "In the first 35s of a battle, increases damage dealt by 20% if the HP ratio is above 50%, or increases 25 Life Drain if the HP ratio is equal or below 50%. Applied to the caster and summons.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"ATK": 2.2,
+								"Phys & Magic DEF": 2.3
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.7,
+								"ATK": 2.2,
+								"Phys & Magic DEF": 2.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 2.5,
+								"Phys & Magic DEF": 3.3,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Crit Resist": 2.7
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 11.7,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 11.7,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Overloaded Charm",
+							"ImagePath": "Overloaded-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Crit DMG Boost": 14,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 11.7,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 11.7,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Crit Resist": 12,
+								"HP": 4,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 24,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 4.7,
+								"Phys & Magic DEF": 24,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Reaper Charm",
+							"ImagePath": "Reaper-min.png",
+							"Stats": {
+								"Execution": 10,
+								"HP": 4,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Bloodlust Charm",
+							"ImagePath": "Bloodlust-min.png",
+							"Stats": {
+								"Life Drain": 6,
+								"HP": 11.7,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged Def": 2.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 9.7,
+								"Phys & Magic DEF": 6,
+								"Ranged DEF": 2.3
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"Class": "Support",
+			"Heroes": [
+				{
+					"ID": 24,
+					"Faction": "Wilder",
+					"Name": "Damian",
+					"EliteSet": "Restores 80% HP for the weakest ally every 8s. The healed ally will only receive 20% healing when again by this skill within 5s.",
+					"EpicSet": "Restores 100% HP for the weakest ally every 5s. The healed ally will only receive 20% healing when again by this skill within 5s.",
+					"LegMythicSet": "Restores 100% HP for the 2 weakest allies every 5s. However, if allies have been healed by this skill within the last 5s, the will only recover 20% HP.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1.8,
+								"Vitality": 1.3
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.8,
+								"ATK": 1.1,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.8,
+								"ATK": 2.3,
+								"Phys & Magic DEF": 2.2,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Wizard Charm",
+							"ImagePath": "Wizard-min.png",
+							"Stats": {
+								"Vitality": 6.7,
+								"Ultimate Strength": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"HP": 12.7,
+								"Haste": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Gale Charm",
+							"ImagePath": "Gale-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 5,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Glory Charm",
+							"ImagePath": "Glory-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 22.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Titanic Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Crit": 10,
+								"HP": 5,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Butcher Charm",
+							"ImagePath": "Butcher-min.png",
+							"Stats": {
+								"Crit": 10,
+								"Crit DMG Boost": 14,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12.7,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						}
+					]
+				},
+				{
+					"ID": 25,
+					"Faction": "Mauler",
+					"Name": "Smokey & Meerky",
+					"EliteSet": "Restores 80% HP for the weakest ally every 8s. The healed ally will only receive 20% healing when again by this skill within 5s.",
+					"EpicSet": "Restores 100% HP for the weakest ally every 5s. The healed ally will only receive 20% healing when again by this skill within 5s.",
+					"LegMythicSet": "Restores 100% HP for the 2 weakest allies every 5s. However, if allies have been healed by this skill within the last 5s, the will only recover 20% HP.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1.8,
+								"Vitality": 1.3
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.8,
+								"ATK": 1.1,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.8,
+								"ATK": 2.3,
+								"Phys & Magic DEF": 2.2,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Recovering Charm",
+							"ImagePath": "Recovering-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 6.7
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Energy Charm",
+							"ImagePath": "Energy-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Energy on Hit": 15,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Healer Charm",
+							"ImagePath": "Healer-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 6.7
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Crit Resist": 12,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 22.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 22.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 5,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12.7,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						}
+					]
+				},
+				{
+					"ID": 26,
+					"Faction": "Lightbearer",
+					"Name": "Rowan",
+					"EliteSet": "Restores 80% HP for the weakest ally every 8s. The healed ally will only receive 20% healing when again by this skill within 5s.",
+					"EpicSet": "Restores 100% HP for the weakest ally every 5s. The healed ally will only receive 20% healing when again by this skill within 5s.",
+					"LegMythicSet": "Restores 100% HP for the 2 weakest allies every 5s. However, if allies have been healed by this skill within the last 5s, the will only recover 20% HP.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1.8,
+								"Vitality": 1.3
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.8,
+								"ATK": 1.1,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.8,
+								"ATK": 2.3,
+								"Phys & Magic DEF": 2.2,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Wizard Charm",
+							"ImagePath": "Wizard-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 6.7
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Resolute Charm",
+							"ImagePath": "Resolute-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"Ultimate Strength": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Crit Resist": 12,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 22.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Glory Charm",
+							"ImagePath": "Glory-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 22.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Acute Charm",
+							"ImagePath": "Acute-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 5,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12.7,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						}
+					]
+				},
+				{
+					"ID": 27,
+					"Faction": "Mauler",
+					"Name": "Koko",
+					"EliteSet": "Restores 80% HP for the weakest ally every 8s. The healed ally will only receive 20% healing when again by this skill within 5s.",
+					"EpicSet": "Restores 100% HP for the weakest ally every 5s. The healed ally will only receive 20% healing when again by this skill within 5s.",
+					"LegMythicSet": "Restores 100% HP for the 2 weakest allies every 5s. However, if allies have been healed by this skill within the last 5s, the will only recover 20% HP.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1.8,
+								"Vitality": 1.3
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.8,
+								"ATK": 1.1,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.8,
+								"ATK": 2.3,
+								"Phys & Magic DEF": 2.2,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Recovering Charm",
+							"ImagePath": "Recovering-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 6.7
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 22.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Crit Resist": 12,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 22.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 22.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 5,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12.7,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						}
+					]
+				},
+				{
+					"ID": 28,
+					"Faction": "Hypogean",
+					"Name": "Reinier",
+					"EliteSet": "Restores 80% HP for the weakest ally every 8s. The healed ally will only receive 20% healing when again by this skill within 5s.",
+					"EpicSet": "Restores 100% HP for the weakest ally every 5s. The healed ally will only receive 20% healing when again by this skill within 5s.",
+					"LegMythicSet": "Restores 100% HP for the 2 weakest allies every 5s. However, if allies have been healed by this skill within the last 5s, the will only recover 20% HP.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1.8,
+								"Vitality": 1.3
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.8,
+								"ATK": 1.1,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.8,
+								"ATK": 2.3,
+								"Phys & Magic DEF": 2.2,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Skill Power": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Resolute Charm",
+							"ImagePath": "Resolute-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"Ultimate Strength": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Healer Charm",
+							"ImagePath": "Healer-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 6.7
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Glory Charm",
+							"ImagePath": "Glory-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 22.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Reaper Charm",
+							"ImagePath": "Reaper-min.png",
+							"Stats": {
+								"Execution": 10,
+								"HP": 5,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12.7,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						}
+					]
+				},
+				{
+					"ID": 29,
+					"Faction": "Graveborn",
+					"Name": "Niru",
+					"EliteSet": "Restores 80% HP for the weakest ally every 8s. The healed ally will only receive 20% healing when again by this skill within 5s.",
+					"EpicSet": "Restores 100% HP for the weakest ally every 5s. The healed ally will only receive 20% healing when again by this skill within 5s.",
+					"LegMythicSet": "Restores 100% HP for the 2 weakest allies every 5s. However, if allies have been healed by this skill within the last 5s, the will only recover 20% HP.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1.8,
+								"Vitality": 1.3
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.8,
+								"ATK": 1.1,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.8,
+								"ATK": 2.3,
+								"Phys & Magic DEF": 2.2,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Recovering Charm",
+							"ImagePath": "Recovering-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 6.7
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Wizard Charm",
+							"ImagePath": "Wizard-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 6.7
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 22.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 22.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Titanic Charm",
+							"ImagePath": "Titanic-min.png",
+							"Stats": {
+								"Crit": 10,
+								"HP": 5,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Reaper Charm",
+							"ImagePath": "Reaper-min.png",
+							"Stats": {
+								"Execution": 10,
+								"HP": 5,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12.7,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						}
+					]
+				},
+				{
+					"ID": 30,
+					"Faction": "Wilder",
+					"Name": "Hewynn",
+					"EliteSet": "Restores 80% HP for the weakest ally every 8s. The healed ally will only receive 20% healing when again by this skill within 5s.",
+					"EpicSet": "Restores 100% HP for the weakest ally every 5s. The healed ally will only receive 20% healing when again by this skill within 5s.",
+					"LegMythicSet": "Restores 100% HP for the 2 weakest allies every 5s. However, if allies have been healed by this skill within the last 5s, the will only recover 20% HP.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1.8,
+								"Vitality": 1.3
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.8,
+								"ATK": 1.1,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.8,
+								"ATK": 2.3,
+								"Phys & Magic DEF": 2.2,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Recovering Charm",
+							"ImagePath": "Recovering-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 6.7
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Crit Resist": 12,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 22.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 22.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 5,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12.7,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						}
+					]
+				},
+				{
+					"ID": 31,
+					"Faction": "Lightbearer",
+					"Name": "Fay",
+					"EliteSet": "Restores 80% HP for the weakest ally every 8s. The healed ally will only receive 20% healing when again by this skill within 5s.",
+					"EpicSet": "Restores 100% HP for the weakest ally every 5s. The healed ally will only receive 20% healing when again by this skill within 5s.",
+					"LegMythicSet": "Restores 100% HP for the 2 weakest allies every 5s. However, if allies have been healed by this skill within the last 5s, the will only recover 20% HP.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1.8,
+								"Vitality": 1.3
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.8,
+								"ATK": 1.1,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.8,
+								"ATK": 2.3,
+								"Phys & Magic DEF": 2.2,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Recovering Charm",
+							"ImagePath": "Recovering-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 6.7
+							}
+						},
+						{
+							"Name": "Acute Charm",
+							"ImagePath": "Acute-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 5,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Energy Charm",
+							"ImagePath": "Energy-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Energy on Hit": 15,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Combative Charm",
+							"ImagePath": "Combative-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Crit": 10,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Wizard Charm",
+							"ImagePath": "Wizard-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 6.7
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 5,
+								"ATK": 4,
+								"Phys & Magic DEF": 22.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12.7,
+								"ATK": 4,
+								"Phys & Magic DEF": 22.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 5,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12.7,
+								"ATK": 9,
+								"Phys & Magic DEF": 4.8,
+								"Vitality": 1.7
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"Class": "Marksman",
+			"Heroes": [
+				{
+					"ID": 32,
+					"Faction": "Mauler",
+					"Name": "Odie",
+					"EliteSet": "Increases the damage dealt by 5% 15s into a battle. Grants 15 ATK SPD 40s into battle.",
+					"EpicSet": "Increases the damage dealt by 8% 15s into a battle. Grants 20 ATK SPD 40s into battle.",
+					"LegMythicSet": "Increases the damage dealt by 8% 15s into a battle. Grants 20 ATK SPD 40s and 20 Crit DMG Boost after 65s into a battle.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1.5,
+								"ATK": 1.5
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.7,
+								"ATK": 1.9,
+								"Crit": 1.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.7,
+								"ATK": 2.8,
+								"Phys & Magic DEF": 2.7,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Gale Charm",
+							"ImagePath": "Gale-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Glory Charm",
+							"ImagePath": "Glory-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 22.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Titanic Charm",
+							"ImagePath": "Titanic-min.png",
+							"Stats": {
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 7.3
+							}
+						},
+						{
+							"Name": "Bloodlust Charm",
+							"ImagePath": "Bloodlust-min.png",
+							"Stats": {
+								"Life Drain": 6,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12.2,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 33,
+					"Faction": "Lightbearer",
+					"Name": "Marilee",
+					"EliteSet": "Increases the damage dealt by 5% 15s into a battle. Grants 15 ATK SPD 40s into battle.",
+					"EpicSet": "Increases the damage dealt by 8% 15s into a battle. Grants 20 ATK SPD 40s into battle.",
+					"LegMythicSet": "Increases the damage dealt by 8% 15s into a battle. Grants 20 ATK SPD 40s and 20 Crit DMG Boost after 65s into a battle.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1.5,
+								"ATK": 1.5
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.7,
+								"ATK": 1.9,
+								"Crit": 1.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.7,
+								"ATK": 2.8,
+								"Phys & Magic DEF": 2.7,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Combative Charm",
+							"ImagePath": "Combative-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 12.3
+							}
+						},
+						{
+							"Name": "Glory Charm",
+							"ImagePath": "Glory-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Overloaded Charm",
+							"ImagePath": "Overloaded-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Crit DMG Boost": 14,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Skill Power": 1,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 22.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Reaper Charm",
+							"ImagePath": "Reaper-min.png",
+							"Stats": {
+								"Execution": 10,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Acute Charm",
+							"ImagePath": "Acute-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12.2,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 34,
+					"Faction": "Graveborn",
+					"Name": "Cecia",
+					"EliteSet": "Increases the damage dealt by 5% 15s into a battle. Grants 15 ATK SPD 40s into battle.",
+					"EpicSet": "Increases the damage dealt by 8% 15s into a battle. Grants 20 ATK SPD 40s into battle.",
+					"LegMythicSet": "Increases the damage dealt by 8% 15s into a battle. Grants 20 ATK SPD 40s and 20 Crit DMG Boost after 65s into a battle.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1.5,
+								"ATK": 1.5
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.7,
+								"ATK": 1.9,
+								"Crit": 1.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.7,
+								"ATK": 2.8,
+								"Phys & Magic DEF": 2.7,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Gale Charm",
+							"ImagePath": "Gale-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Resolute Charm",
+							"ImagePath": "Resolute-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"Ultimate Strength": 1,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 22.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Glory Charm",
+							"ImagePath": "Glory-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 22.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Bloodlust Charm",
+							"ImagePath": "Bloodlust-min.png",
+							"Stats": {
+								"Life Drain": 6,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 35,
+					"Faction": "Wilder",
+					"Name": "Lyca",
+					"EliteSet": "Increases the damage dealt by 5% 15s into a battle. Grants 15 ATK SPD 40s into battle.",
+					"EpicSet": "Increases the damage dealt by 8% 15s into a battle. Grants 20 ATK SPD 40s into battle.",
+					"LegMythicSet": "Increases the damage dealt by 8% 15s into a battle. Grants 20 ATK SPD 40s and 20 Crit DMG Boost after 65s into a battle.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1.5,
+								"ATK": 1.5
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.7,
+								"ATK": 1.9,
+								"Crit": 1.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.7,
+								"ATK": 2.8,
+								"Phys & Magic DEF": 2.7,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Skill Power": 1,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Swift Charm",
+							"ImagePath": "Swift-min.png",
+							"Stats": {
+								"Haste": 5,
+								"ATK SPD": 8,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Ruthless Charm",
+							"ImagePath": "Ruthless-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 12.3
+							}
+						},
+						{
+							"Name": "Combative Charm",
+							"ImagePath": "Combative-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 12.3
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 22.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12.2,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 36,
+					"Faction": "Wilder",
+					"Name": "Bryon",
+					"EliteSet": "Increases the damage dealt by 5% 15s into a battle. Grants 15 ATK SPD 40s into battle.",
+					"EpicSet": "Increases the damage dealt by 8% 15s into a battle. Grants 20 ATK SPD 40s into battle.",
+					"LegMythicSet": "Increases the damage dealt by 8% 15s into a battle. Grants 20 ATK SPD 40s and 20 Crit DMG Boost after 65s into a battle.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1.5,
+								"ATK": 1.5
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.7,
+								"ATK": 1.9,
+								"Crit": 1.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.7,
+								"ATK": 2.8,
+								"Phys & Magic DEF": 2.7,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Ruthless Charm",
+							"ImagePath": "Ruthless-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 12.3
+							}
+						},
+						{
+							"Name": "Gale Charm",
+							"ImagePath": "Gale-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Swift Charm",
+							"ImagePath": "Swift-min.png",
+							"Stats": {
+								"Haste": 5,
+								"ATK SPD": 8,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 22.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Titanic Charm",
+							"ImagePath": "Titanic-min.png",
+							"Stats": {
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 12.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12.2,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 37,
+					"Faction": "Lightbearer",
+					"Name": "Atalanta",
+					"EliteSet": "Increases the damage dealt by 5% 15s into a battle. Grants 15 ATK SPD 40s into battle.",
+					"EpicSet": "Increases the damage dealt by 8% 15s into a battle. Grants 20 ATK SPD 40s into battle.",
+					"LegMythicSet": "Increases the damage dealt by 8% 15s into a battle. Grants 20 ATK SPD 40s and 20 Crit DMG Boost after 65s into a battle.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1.5,
+								"ATK": 1.5
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.7,
+								"ATK": 1.9,
+								"Crit": 1.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.7,
+								"ATK": 2.8,
+								"Phys & Magic DEF": 2.7,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Combative Charm",
+							"ImagePath": "Combative-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 12.3
+							}
+						},
+						{
+							"Name": "Butcher Charm",
+							"ImagePath": "Butcher-min.png",
+							"Stats": {
+								"Crit DMG Boost": 14,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 12.3
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Overloaded Charm",
+							"ImagePath": "Overloaded-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Crit DMG Boost": 14,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 22.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Titanic Charm",
+							"ImagePath": "Titanic-min.png",
+							"Stats": {
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 12.3
+							}
+						},
+						{
+							"Name": "Acute Charm",
+							"ImagePath": "Acute-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12.2,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 38,
+					"Faction": "Mauler",
+					"Name": "Rhys",
+					"EliteSet": "Increases the damage dealt by 5% 15s into a battle. Grants 15 ATK SPD 40s into battle.",
+					"EpicSet": "Increases the damage dealt by 8% 15s into a battle. Grants 20 ATK SPD 40s into battle.",
+					"LegMythicSet": "Increases the damage dealt by 8% 15s into a battle. Grants 20 ATK SPD 40s and 20 Crit DMG Boost after 65s into a battle.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1.5,
+								"ATK": 1.5
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.7,
+								"ATK": 1.9,
+								"Crit": 1.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.7,
+								"ATK": 2.8,
+								"Phys & Magic DEF": 2.7,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Titanic Charm",
+							"ImagePath": "Titanic-min.png",
+							"Stats": {
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 12.3
+							}
+						},
+						{
+							"Name": "Butcher Charm",
+							"ImagePath": "Butcher-min.png",
+							"Stats": {
+								"Crit DMG Boost": 14,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 12.3
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Destructive Charm",
+							"ImagePath": "Destructive-min.png",
+							"Stats": {
+								"Execution": 10,
+								"Ultimate Strength": 1,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Glory Charm",
+							"ImagePath": "Glory-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 22.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12.2,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 39,
+					"Faction": "Celestial",
+					"Name": "Dionel",
+					"EliteSet": "Increases the damage dealt by 5% 15s into a battle. Grants 15 ATK SPD 40s into battle.",
+					"EpicSet": "Increases the damage dealt by 8% 15s into a battle. Grants 20 ATK SPD 40s into battle.",
+					"LegMythicSet": "Increases the damage dealt by 8% 15s into a battle. Grants 20 ATK SPD 40s and 20 Crit DMG Boost after 65s into a battle.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1.5,
+								"ATK": 1.5
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.7,
+								"ATK": 1.9,
+								"Crit": 1.7
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.7,
+								"ATK": 2.8,
+								"Phys & Magic DEF": 2.7,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Gale Charm",
+							"ImagePath": "Gale-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Butcher Charm",
+							"ImagePath": "Butcher-min.png",
+							"Stats": {
+								"Crit DMG Boost": 14,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 12.3
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 4.5,
+								"ATK": 5,
+								"Phys & Magic DEF": 22.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Glory Charm",
+							"ImagePath": "Glory-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12.2,
+								"ATK": 5,
+								"Phys & Magic DEF": 22.9,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Titanic Charm",
+							"ImagePath": "Titanic-min.png",
+							"Stats": {
+								"HP": 4.5,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 12.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12.2,
+								"ATK": 10,
+								"Phys & Magic DEF": 4.9,
+								"Crit": 2.3
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"Class": "Mage",
+			"Heroes": [
+				{
+					"ID": 40,
+					"Faction": "Mauler",
+					"Name": "Alsa",
+					"EliteSet": "Gains 120 Energy after casting an ultimate. Triggers once at most every 8s.",
+					"EpicSet": "Gains 250 Energy after casting an ultimate. Triggers once at most every 8s.",
+					"LegMythicSet": "Increases the damage dealt by 20%, and gains 20 Execution for 5s when casting Ultimate. Also recovers 250 Energy after casting Ultimate. Triggers once at most every 8s.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"ATK": 1.5,
+								"Haste": 1
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.3,
+								"ATK": 1.8,
+								"Haste": 1
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 2.3,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Energy Charm",
+							"ImagePath": "Energy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Destructive Charm",
+							"ImagePath": "Destructive-min.png",
+							"Stats": {
+								"Execution": 10,
+								"Ultimate Strength": 1,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Overloaded Charm",
+							"ImagePath": "Overloaded-min.png",
+							"Stats": {
+								"Crit DMG Boost": 14,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Gale Charm",
+							"ImagePath": "Gale-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 4.3,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 20.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 20.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Titanic Charm",
+							"ImagePath": "Titanic-min.png",
+							"Stats": {
+								"Crit": 10,
+								"HP": 4.3,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Bloodlust Charm",
+							"ImagePath": "Bloodlust-min.png",
+							"Stats": {
+								"Life Drain": 6,
+								"HP": 4.3,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 41,
+					"Faction": "Wilder",
+					"Name": "Arden",
+					"EliteSet": "Gains 120 Energy after casting an ultimate. Triggers once at most every 8s.",
+					"EpicSet": "Gains 250 Energy after casting an ultimate. Triggers once at most every 8s.",
+					"LegMythicSet": "Increases the damage dealt by 20%, and gains 20 Execution for 5s when casting Ultimate. Also recovers 250 Energy after casting Ultimate. Triggers once at most every 8s.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"ATK": 1.5,
+								"Haste": 1
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.3,
+								"ATK": 1.8,
+								"Haste": 1
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 2.3,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4.3,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Destructive Charm",
+							"ImagePath": "Destructive-min.png",
+							"Stats": {
+								"Execution": 10,
+								"Ultimate Strength": 1,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 20.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 20.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 4.3,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Acute Charm",
+							"ImagePath": "Acute-min.png",
+							"Stats": {
+								"HP": 4.3,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 42,
+					"Faction": "Graveborn",
+					"Name": "Viperian",
+					"EliteSet": "Gains 120 Energy after casting an ultimate. Triggers once at most every 8s.",
+					"EpicSet": "Gains 250 Energy after casting an ultimate. Triggers once at most every 8s.",
+					"LegMythicSet": "Increases the damage dealt by 20%, and gains 20 Execution for 5s when casting Ultimate. Also recovers 250 Energy after casting Ultimate. Triggers once at most every 8s.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"ATK": 1.5,
+								"Haste": 1
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.3,
+								"ATK": 1.8,
+								"Haste": 1
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 2.3,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Resolute Charm",
+							"ImagePath": "Resolute-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"Ultimate Strength": 1,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Bear Charm",
+							"ImagePath": "Bear-min.png",
+							"Stats": {
+								"Healing": 5,
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 20.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 4.3,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Titanic Charm",
+							"ImagePath": "Titanic-min.png",
+							"Stats": {
+								"Crit": 10,
+								"HP": 4.3,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 43,
+					"Faction": "Graveborn",
+					"Name": "Carolina",
+					"EliteSet": "Gains 120 Energy after casting an ultimate. Triggers once at most every 8s.",
+					"EpicSet": "Gains 250 Energy after casting an ultimate. Triggers once at most every 8s.",
+					"LegMythicSet": "Increases the damage dealt by 20%, and gains 20 Execution for 5s when casting Ultimate. Also recovers 250 Energy after casting Ultimate. Triggers once at most every 8s.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"ATK": 1.5,
+								"Haste": 1
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.3,
+								"ATK": 1.8,
+								"Haste": 1
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 2.3,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4.3,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Butcher Charm",
+							"ImagePath": "Butcher-min.png",
+							"Stats": {
+								"Crit": 10,
+								"Crit DMG Boost": 14,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Resolute Charm",
+							"ImagePath": "Resolute-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"Ultimate Strength": 1,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Overloaded Charm",
+							"ImagePath": "Overloaded-min.png",
+							"Stats": {
+								"Crit DMG Boost": 14,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 20.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 4.3,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 44,
+					"Faction": "Lightbearer",
+					"Name": "Cassadee",
+					"EliteSet": "Gains 120 Energy after casting an ultimate. Triggers once at most every 8s.",
+					"EpicSet": "Gains 250 Energy after casting an ultimate. Triggers once at most every 8s.",
+					"LegMythicSet": "Increases the damage dealt by 20%, and gains 20 Execution for 5s when casting Ultimate. Also recovers 250 Energy after casting Ultimate. Triggers once at most every 8s.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"ATK": 1.5,
+								"Haste": 1
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.3,
+								"ATK": 1.8,
+								"Haste": 1
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 2.3,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4.3,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Overloaded Charm",
+							"ImagePath": "Overloaded-min.png",
+							"Stats": {
+								"Crit DMG Boost": 14,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Ruthless Charm",
+							"ImagePath": "Ruthless-min.png",
+							"Stats": {
+								"Crit": 10,
+								"ATK SPD": 8,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 20.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Acute Charm",
+							"ImagePath": "Acute-min.png",
+							"Stats": {
+								"HP": 4.3,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 45,
+					"Faction": "Lightbearer",
+					"Name": "Mirael",
+					"EliteSet": "Gains 120 Energy after casting an ultimate. Triggers once at most every 8s.",
+					"EpicSet": "Gains 250 Energy after casting an ultimate. Triggers once at most every 8s.",
+					"LegMythicSet": "Increases the damage dealt by 20%, and gains 20 Execution for 5s when casting Ultimate. Also recovers 250 Energy after casting Ultimate. Triggers once at most every 8s.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"ATK": 1.5,
+								"Haste": 1
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.3,
+								"ATK": 1.8,
+								"Haste": 1
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 2.3,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Swift Charm",
+							"ImagePath": "Swift-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Acute Charm",
+							"ImagePath": "Acute-min.png",
+							"Stats": {
+								"HP": 4.3,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Gale Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Combative Charm",
+							"ImagePath": "Combative-min.png",
+							"Stats": {
+								"Crit": 10,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Glory Charm",
+							"ImagePath": "Glory-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 20.7,
+								"Haste": 1.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 46,
+					"Faction": "Wilder",
+					"Name": "Parisa",
+					"EliteSet": "Gains 120 Energy after casting an ultimate. Triggers once at most every 8s.",
+					"EpicSet": "Gains 250 Energy after casting an ultimate. Triggers once at most every 8s.",
+					"LegMythicSet": "Increases the damage dealt by 20%, and gains 20 Execution for 5s when casting Ultimate. Also recovers 250 Energy after casting Ultimate. Triggers once at most every 8s.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"ATK": 1.5,
+								"Haste": 1
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.3,
+								"ATK": 1.8,
+								"Haste": 1
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 2.3,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Gale Charm",
+							"ImagePath": "Gale-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 4.3,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Swift Charm",
+							"ImagePath": "Swift-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Energy Charm",
+							"ImagePath": "Energy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 20.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Glory Charm",
+							"ImagePath": "Glory-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 20.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4.3,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						}
+					]
+				},
+				{
+					"ID": 47,
+					"Faction": "Mauler",
+					"Name": "Satrana",
+					"EliteSet": "Gains 120 Energy after casting an ultimate. Triggers once at most every 8s.",
+					"EpicSet": "Gains 250 Energy after casting an ultimate. Triggers once at most every 8s.",
+					"LegMythicSet": "Increases the damage dealt by 20%, and gains 20 Execution for 5s when casting Ultimate. Also recovers 250 Energy after casting Ultimate. Triggers once at most every 8s.",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"ATK": 1.5,
+								"Haste": 1
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.3,
+								"ATK": 1.8,
+								"Haste": 1
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 3,
+								"Phys & Magic DEF": 2.3,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Bear Charm",
+							"ImagePath": "Bear-min.png",
+							"Stats": {
+								"Healing": 5,
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Overloaded Charm",
+							"ImagePath": "Overloaded-min.png",
+							"Stats": {
+								"Crit DMG Boost": 14,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 6.3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 20.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4.3,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Butcher Charm",
+							"ImagePath": "Butcher-min.png",
+							"Stats": {
+								"Crit": 10,
+								"Crit DMG Boost": 14,
+								"HP": 4.3,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 12,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 2.7,
+								"Haste": 1.3
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"Class": "Rogue",
+			"Heroes": [
+				{
+					"ID": 48,
+					"Faction": "Wilder",
+					"Name": "Eironn",
+					"EliteSet": "Receives 50 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 8%, stacks up to 3 times.",
+					"EpicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times.",
+					"LegMythicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times. Gains a shield that absorbs 200% damage for 10s after the first Assist or Kill",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1,
+								"ATK": 2
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.3,
+								"ATK": 2,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 2.9,
+								"Phys & Magic DEF": 3,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Acute Charm",
+							"ImagePath": "Acute-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Resolute Charm",
+							"ImagePath": "Resolute-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"Ultimate Strength": 1,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Energy Charm",
+							"ImagePath": "Energy-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Energy on Hit": 15,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Bear Charm",
+							"ImagePath": "Bear-min.png",
+							"Stats": {
+								"Healing": 5,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 23,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 23,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Titanic Charm",
+							"ImagePath": "Titanic-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 13
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						}
+					]
+				},
+				{
+					"ID": 49,
+					"Faction": "Lightbearer",
+					"Name": "Vala",
+					"EliteSet": "Receives 50 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 8%, stacks up to 3 times.",
+					"EpicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times.",
+					"LegMythicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times. Gains a shield that absorbs 200% damage for 10s after the first Assist or Kill",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1,
+								"ATK": 2
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.3,
+								"ATK": 2,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 2.9,
+								"Phys & Magic DEF": 3,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Reaper Charm",
+							"ImagePath": "Reaper-min.png",
+							"Stats": {
+								"Execution": 10,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Butcher Charm",
+							"ImagePath": "Butcher-min.png",
+							"Stats": {
+								"Crit DMG Boost": 14,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 13
+							}
+						},
+						{
+							"Name": "Destructive Charm",
+							"ImagePath": "Destructive-min.png",
+							"Stats": {
+								"Execution": 10,
+								"Ultimate Strength": 1,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Overloaded Charm",
+							"ImagePath": "Overloaded-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Crit DMG Boost": 14,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Combative Charm",
+							"ImagePath": "Combative-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 13
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 23,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Bloodlust Charm",
+							"ImagePath": "Bloodlust-min.png",
+							"Stats": {
+								"Life Drain": 6,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						}
+					]
+				},
+				{
+					"ID": 50,
+					"Faction": "Mauler",
+					"Name": "Shakir",
+					"EliteSet": "Receives 50 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 8%, stacks up to 3 times.",
+					"EpicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times.",
+					"LegMythicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times. Gains a shield that absorbs 200% damage for 10s after the first Assist or Kill",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1,
+								"ATK": 2
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.3,
+								"ATK": 2,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 2.9,
+								"Phys & Magic DEF": 3,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Resolute Charm",
+							"ImagePath": "Resolute-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"Ultimate Strength": 1,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Overloaded Charm",
+							"ImagePath": "Overloaded-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Crit DMG Boost": 14,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Ruthless Charm",
+							"ImagePath": "Ruthless-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 13
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Crit Resist": 12,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 23,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 23,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Bloodlust Charm",
+							"ImagePath": "Bloodlust-min.png",
+							"Stats": {
+								"Life Drain": 6,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						}
+					]
+				},
+				{
+					"ID": 51,
+					"Faction": "Graveborn",
+					"Name": "Silvina",
+					"EliteSet": "Receives 50 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 8%, stacks up to 3 times.",
+					"EpicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times.",
+					"LegMythicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times. Gains a shield that absorbs 200% damage for 10s after the first Assist or Kill",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1,
+								"ATK": 2
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.3,
+								"ATK": 2,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 2.9,
+								"Phys & Magic DEF": 3,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Gale Charm",
+							"ImagePath": "Gale-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Combative Charm",
+							"ImagePath": "Combative-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 13
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 23,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Glory Charm",
+							"ImagePath": "Glory-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 23,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Blast Charm",
+							"ImagePath": "Blast-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Reaper Charm",
+							"ImagePath": "Reaper-min.png",
+							"Stats": {
+								"Execution": 10,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						}
+					]
+				},
+				{
+					"ID": 52,
+					"Faction": "Graveborn",
+					"Name": "Salazer",
+					"EliteSet": "Receives 50 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 8%, stacks up to 3 times.",
+					"EpicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times.",
+					"LegMythicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times. Gains a shield that absorbs 200% damage for 10s after the first Assist or Kill",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1,
+								"ATK": 2
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.3,
+								"ATK": 2,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 2.9,
+								"Phys & Magic DEF": 3,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Cheetah Charm",
+							"ImagePath": "Cheetah-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Bear Charm",
+							"ImagePath": "Bear-min.png",
+							"Stats": {
+								"Healing": 5,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Resolute Charm",
+							"ImagePath": "Resolute-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"Ultimate Strength": 1,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Ruthless Charm",
+							"ImagePath": "Ruthless-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 13
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 23,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Crit Resist": 12,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 23,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Titanic Charm",
+							"ImagePath": "Titanic-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 13
+							}
+						},
+						{
+							"Name": "Bloodlust Charm",
+							"ImagePath": "Bloodlust-min.png",
+							"Stats": {
+								"Life Drain": 6,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						}
+					]
+				},
+				{
+					"ID": 53,
+					"Faction": "Lightbearer",
+					"Name": "Walker",
+					"EliteSet": "Receives 50 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 8%, stacks up to 3 times.",
+					"EpicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times.",
+					"LegMythicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times. Gains a shield that absorbs 200% damage for 10s after the first Assist or Kill",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1,
+								"ATK": 2
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.3,
+								"ATK": 2,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 2.9,
+								"Phys & Magic DEF": 3,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Butcher Charm",
+							"ImagePath": "Butcher-min.png",
+							"Stats": {
+								"Crit DMG Boost": 14,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 13
+							}
+						},
+						{
+							"Name": "Destructive Charm",
+							"ImagePath": "Destructive-min.png",
+							"Stats": {
+								"Execution": 10,
+								"Ultimate Strength": 1,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Focus Charm",
+							"ImagePath": "Focus-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 23,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Glory Charm",
+							"ImagePath": "Glory-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 23,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Reaper Charm",
+							"ImagePath": "Reaper-min.png",
+							"Stats": {
+								"Execution": 10,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Bloodlust Charm",
+							"ImagePath": "Bloodlust-min.png",
+							"Stats": {
+								"Life Drain": 6,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						}
+					]
+				},
+				{
+					"ID": 54,
+					"Faction": "Mauler",
+					"Name": "Seth",
+					"EliteSet": "Receives 50 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 8%, stacks up to 3 times.",
+					"EpicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times.",
+					"LegMythicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times. Gains a shield that absorbs 200% damage for 10s after the first Assist or Kill",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1,
+								"ATK": 2
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.3,
+								"ATK": 2,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 2.9,
+								"Phys & Magic DEF": 3,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Reaper Charm",
+							"ImagePath": "Reaper-min.png",
+							"Stats": {
+								"Execution": 10,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Resolute Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"Ultimate Strength": 1,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Ruthless Charm",
+							"ImagePath": "Ruthless-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 13
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Bear Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"Healing": 5,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Crit Resist": 12,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 23,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Acute Charm",
+							"ImagePath": "Acute-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						}
+					]
+				},
+				{
+					"ID": 55,
+					"Faction": "Hypogean",
+					"Name": "Berial",
+					"EliteSet": "Receives 50 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 8%, stacks up to 3 times.",
+					"EpicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times.",
+					"LegMythicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times. Gains a shield that absorbs 200% damage for 10s after the first Assist or Kill",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1,
+								"ATK": 2
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.3,
+								"ATK": 2,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 2.9,
+								"Phys & Magic DEF": 3,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Resolute Charm",
+							"ImagePath": "Resolute-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"Ultimate Strength": 1,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Energy Charm",
+							"ImagePath": "Energy-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Energy on Hit": 15,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Combative Charm",
+							"ImagePath": "Combative-min.png",
+							"Stats": {
+								"Haste": 5,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 13
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Bear Charm",
+							"ImagePath": "Bear-min.png",
+							"Stats": {
+								"Healing": 5,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Vigorous Charm",
+							"ImagePath": "Vigorous-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 23,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Reaper Charm",
+							"ImagePath": "Reaper-min.png",
+							"Stats": {
+								"Execution": 10,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Butcher Charm",
+							"ImagePath": "Butcher-min.png",
+							"Stats": {
+								"Crit DMG Boost": 14,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 13
+							}
+						},
+						{
+							"Name": "Balanced Charm",
+							"ImagePath": "Balanced-min.png",
+							"Stats": {
+								"HP": 11.7,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						}
+					]
+				},
+				{
+					"ID": 57,
+					"Faction": "Mauler",
+					"Name": "Soren",
+					"EliteSet": "Receives 50 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 8%, stacks up to 3 times.",
+					"EpicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times.",
+					"LegMythicSet": "Receives 100 Energy for each Assist or Kill of an enemy hero, increasing damage dealt by 15%, stacks up to 3 times. Gains a shield that absorbs 200% damage for 10s after the first Assist or Kill",
+					"Charms": [
+						{
+							"Name": "Hardwood Amulet",
+							"ImagePath": "Hardwood-min.png",
+							"Stats": {
+								"HP": 1,
+								"ATK": 2
+							}
+						},
+						{
+							"Name": "Black Iron Amulet",
+							"ImagePath": "BlackIron-min.png",
+							"Stats": {
+								"HP": 1.3,
+								"ATK": 2,
+								"Crit": 2.3
+							}
+						},
+						{
+							"Name": "Silverite Amulet",
+							"ImagePath": "Silverite-min.png",
+							"Stats": {
+								"HP": 2.3,
+								"ATK": 2.9,
+								"Phys & Magic DEF": 3,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Goldhex Amulet",
+							"ImagePath": "Goldhex-min.png",
+							"Stats": {
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Prophet Charm",
+							"ImagePath": "Prophet-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Arcane Charm",
+							"ImagePath": "Arcane-min.png",
+							"Stats": {
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Sorcery Charm",
+							"ImagePath": "Sorcery-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Resolute Charm",
+							"ImagePath": "Resolute-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"Ultimate Strength": 1,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Mystic Charm",
+							"ImagePath": "Mystic-min.png",
+							"Stats": {
+								"Haste": 5,
+								"Skill Power": 1,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Eagle Charm",
+							"ImagePath": "Eagle-min.png",
+							"Stats": {
+								"Ultimate Strength": 1,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Sturdy Charm",
+							"ImagePath": "Sturdy-min.png",
+							"Stats": {
+								"Energy on Hit": 15,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Ironwall Charm",
+							"ImagePath": "Ironwall-min.png",
+							"Stats": {
+								"Crit Resist": 12,
+								"HP": 4,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 23,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Glory Charm",
+							"ImagePath": "Energy-min.png",
+							"Stats": {
+								"ATK SPD": 8,
+								"HP": 11.7,
+								"ATK": 5.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						},
+						{
+							"Name": "Bloodlust Charm",
+							"ImagePath": "Bloodlust-min.png",
+							"Stats": {
+								"Life Drain": 6,
+								"HP": 4,
+								"ATK": 10.3,
+								"Phys & Magic DEF": 5,
+								"Crit": 3
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}
