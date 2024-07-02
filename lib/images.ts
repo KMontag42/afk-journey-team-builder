@@ -1,5 +1,4 @@
 import { type StaticImageData } from "next/image";
-import { Faction, CharacterClass } from "@/lib/characters";
 
 import tekLogo from "@/public/tekLogo.png";
 import AnalyticaOfficialLogo from "@/public/AnalyticaOfficialLogo.png";
