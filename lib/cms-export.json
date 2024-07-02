@@ -1,24 +1,23 @@
 {
+  "maps": {
+    "default": { "name": "Default/Arena 1", "layout": [[0,10,12,13,0,0],[0,5,7,9,11,0],[0,2,4,6,8,0],[0,0,1,3,0,0]] }
+  },
   "spells": {
-    "permanent": {
-      "awakening": { "value": "awakening", "image": "", "label": "Awakening" },
-      "blazing": { "value": "blazing", "image": "", "label": "Blazing" },
-      "confining": { "value": "confining", "image": "", "label": "Confining" },
-      "enlightening": { "value": "enlightening", "image": "", "label": "Enlightening" },
-      "ironwall": { "value": "ironwall", "image": "", "label": "Ironwall" },
-      "starshard": { "value": "starshard", "image": "", "label": "Starshard" },
-      "random": { "value": "random", "image": "", "label": "Random" }
-    },
-    "seasonal": {
-      "lightheal": { "value": "lightheal", "image": "", "label": "Lightheal" },
-      "crescent": { "value": "crescent", "image": "", "label": "Crescent" },
-      "quickblade": { "value": "quickblade", "image": "", "label": "Quickblade" },
-      "stormcaller": { "value": "stormcaller", "image": "", "label": "Stormcaller" },
-      "cascade": { "value": "cascade", "image": "", "label": "Cascade" },
-      "evocation": { "value": "evocation", "image": "", "label": "Evocation" },
-      "thunderbolt": { "value": "thunderbolt", "image": "", "label": "Thunderbolt" },
-      "dashing": { "value": "dashing", "image": "", "label": "Dashing" }
-    }
+    "awakening": { "value": "awakening", "image": "https://i.imgur.com/MQqFd32.png", "label": "Awakening", "category": "permanent" },
+    "blazing": { "value": "blazing", "image": "https://i.imgur.com/lHL7Esk.png", "label": "Blazing", "category": "permanent" },
+    "confining": { "value": "confining", "image": "https://i.imgur.com/cfkpwKJ.png", "label": "Confining", "category": "permanent" },
+    "enlightening": { "value": "enlightening", "image": "https://i.imgur.com/Lc6E6cz.png", "label": "Enlightening", "category": "permanent" },
+    "ironwall": { "value": "ironwall", "image": "https://i.imgur.com/sdsgONa.png", "label": "Ironwall", "category": "permanent" },
+    "starshard": { "value": "starshard", "image": "https://i.imgur.com/FStAqvi.png", "label": "Starshard", "category": "permanent" },
+    "random": { "value": "random", "image": "https://i.imgur.com/pPxkbpi.png", "label": "Random", "category": "permanent" },
+    "lightheal": { "value": "lightheal", "image": "https://i.imgur.com/NDR1QuO.png", "label": "Lightheal", "category": "seasonal" },
+    "crescent": { "value": "crescent", "image": "https://i.imgur.com/5U7YhLU.png", "label": "Crescent", "category": "seasonal" },
+    "quickblade": { "value": "quickblade", "image": "https://i.imgur.com/4iEGtex.png", "label": "Quickblade", "category": "seasonal" },
+    "stormcaller": { "value": "stormcaller", "image": "https://i.imgur.com/zhuCYgf.png", "label": "Stormcaller", "category": "seasonal" },
+    "cascade": { "value": "cascade", "image": "https://i.imgur.com/Epo1dqe.png", "label": "Cascade", "category": "seasonal" },
+    "evocation": { "value": "evocation", "image": "https://i.imgur.com/qwv2V4Y.png", "label": "Evocation", "category": "seasonal" },
+    "thunderbolt": { "value": "thunderbolt", "image": "https://i.imgur.com/51jST6B.png", "label": "Thunderbolt", "category": "seasonal" },
+    "dashing": { "value": "dashing", "image": "https://i.imgur.com/5HgpyHE.png", "label": "Dashing", "category": "seasonal" }
   },
   "factions": [
     "Mauler",

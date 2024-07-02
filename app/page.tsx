@@ -11,6 +11,8 @@ import {
 import { tekImages } from "@/lib/images";
 
 export default async function Home() {
+  const jsonData = await (await fetch(`https://simplejsoncms.com/api/${process.env.NEXT_PUBLIC_SIMPLEJSONCMS_ID}`)).json()
+
   return (
     <main className="flex min-h-screen flex-col items-center pt-8">
       <Popover>
@@ -58,7 +60,7 @@ export default async function Home() {
         />
       </div>
 
-      <Builder />
+      <Builder data={jsonData} />
 
       <p className="mt-1 text-xs">
         Made with &hearts; by{" "}

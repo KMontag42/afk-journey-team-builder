@@ -60,7 +60,7 @@ const layoutExportMargins: { [key: number]: string } = {
   4: "0",
 };
 
-export default function Builder() {
+export default function Builder({ data }: { data: any }) {
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null,
   );
@@ -244,6 +244,7 @@ export default function Builder() {
           setSpell={setSpell}
           formation={formation}
           selectedCharacter={selectedCharacter!}
+          spells={data.spells}
         />
       </div>
 
