@@ -1,0 +1,458 @@
+{
+  "spells": {
+    "permanent": {
+      "awakening": { "value": "awakening", "image": "", "label": "Awakening" },
+      "blazing": { "value": "blazing", "image": "", "label": "Blazing" },
+      "confining": { "value": "confining", "image": "", "label": "Confining" },
+      "enlightening": { "value": "enlightening", "image": "", "label": "Enlightening" },
+      "ironwall": { "value": "ironwall", "image": "", "label": "Ironwall" },
+      "starshard": { "value": "starshard", "image": "", "label": "Starshard" },
+      "random": { "value": "random", "image": "", "label": "Random" }
+    },
+    "seasonal": {
+      "lightheal": { "value": "lightheal", "image": "", "label": "Lightheal" },
+      "crescent": { "value": "crescent", "image": "", "label": "Crescent" },
+      "quickblade": { "value": "quickblade", "image": "", "label": "Quickblade" },
+      "stormcaller": { "value": "stormcaller", "image": "", "label": "Stormcaller" },
+      "cascade": { "value": "cascade", "image": "", "label": "Cascade" },
+      "evocation": { "value": "evocation", "image": "", "label": "Evocation" },
+      "thunderbolt": { "value": "thunderbolt", "image": "", "label": "Thunderbolt" },
+      "dashing": { "value": "dashing", "image": "", "label": "Dashing" }
+    }
+  },
+  "factions": [
+    "Mauler",
+    "Wilder",
+    "Lightbearer",
+    "Graveborn",
+    "Celestial",
+    "Hypogean"
+  ],
+  "classes": [
+    "Mage",
+    "Warrior",
+    "Marksman",
+    "Rogue",
+    "Tank",
+    "Support"
+  ],
+  "characters": {
+    "alsa": {
+      "name": "Alsa",
+      "faction": "Mauler",
+      "class": "Mage",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "antandra": {
+      "name": "Antandra",
+      "faction": "Mauler",
+      "class": "Tank",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "arden": {
+      "name": "Arden",
+      "faction": "Wilder",
+      "class": "Mage",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "atalanta": {
+      "name": "Atalanta",
+      "faction": "Lightbearer",
+      "class": "Marksman",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "berial": {
+      "name": "Berial",
+      "faction": "Hypogean",
+      "class": "Rogue",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "brutus": {
+      "name": "Brutus",
+      "faction": "Mauler",
+      "class": "Warrior",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "bryon": {
+      "name": "Bryon",
+      "faction": "Wilder",
+      "class": "Marksman",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "carolina": {
+      "name": "Carolina",
+      "faction": "Graveborn",
+      "class": "Mage",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "cassadee": {
+      "name": "Cassadee",
+      "faction": "Lightbearer",
+      "class": "Mage",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "cecia": {
+      "name": "Cecia",
+      "faction": "Graveborn",
+      "class": "Marksman",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "chippy": {
+      "name": "Chippy",
+      "faction": "Lightbearer",
+      "class": "Tank",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "damian": {
+      "name": "Damian",
+      "faction": "Wilder",
+      "class": "Support",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "dionel": {
+      "name": "Dionel",
+      "faction": "Celestial",
+      "class": "Marksman",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "eironn": {
+      "name": "Eironn",
+      "faction": "Wilder",
+      "class": "Rogue",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "fay": {
+      "name": "Fay",
+      "faction": "Lightbearer",
+      "class": "Support",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "florabelle": {
+      "name": "Florabelle",
+      "faction": "Wilder",
+      "class": "Warrior",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "granny": {
+      "name": "Granny",
+      "faction": "Wilder",
+      "class": "Tank",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "hammie": {
+      "name": "Hammie",
+      "faction": "Lightbearer",
+      "class": "Support",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "hewynn": {
+      "name": "Hewynn",
+      "faction": "Wilder",
+      "class": "Support",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "igor": {
+      "name": "Igor",
+      "faction": "Graveborn",
+      "class": "Warrior",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "kafra": {
+      "name": "Kafra",
+      "faction": "Wilder",
+      "class": "Warrior",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "kokko": {
+      "name": "Kokko",
+      "faction": "Mauler",
+      "class": "Support",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "korin": {
+      "name": "Korin",
+      "faction": "Lightbearer",
+      "class": "Warrior",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "kruger": {
+      "name": "Kruger",
+      "faction": "Mauler",
+      "class": "Warrior",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "lucius": {
+      "name": "Lucius",
+      "faction": "Lightbearer",
+      "class": "Tank",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "lumont": {
+      "name": "Lumont",
+      "faction": "Mauler",
+      "class": "Tank",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "lyca": {
+      "name": "Lyca",
+      "faction": "Wilder",
+      "class": "Marksman",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "marilee": {
+      "name": "Marilee",
+      "faction": "Lightbearer",
+      "class": "Marksman",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "mirael": {
+      "name": "Mirael",
+      "faction": "Lightbearer",
+      "class": "Mage",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "niru": {
+      "name": "Niru",
+      "faction": "Graveborn",
+      "class": "Support",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "odie": {
+      "name": "Odie",
+      "faction": "Mauler",
+      "class": "Marksman",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "parisa": {
+      "name": "Parisa",
+      "faction": "Wilder",
+      "class": "Mage",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "phraesto": {
+      "name": "Phraesto",
+      "faction": "Hypogean",
+      "class": "Tank",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "phraestoClone": {
+      "name": "PhraestoClone",
+      "faction": "Hypogean",
+      "class": "Tank",
+      "hide": true,
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "reinier": {
+      "name": "Reinier",
+      "faction": "Hypogean",
+      "class": "Support",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "rhys": {
+      "name": "Rhys",
+      "faction": "Mauler",
+      "class": "Marksman",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "rowan": {
+      "name": "Rowan",
+      "faction": "Lightbearer",
+      "class": "Support",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "salazer": {
+      "name": "Salazer",
+      "faction": "Graveborn",
+      "class": "Rogue",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "satrana": {
+      "name": "Satrana",
+      "faction": "Mauler",
+      "class": "Mage",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "scarlita": {
+      "name": "Scarlita",
+      "faction": "Celestial",
+      "class": "Warrior",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "seth": {
+      "name": "Seth",
+      "faction": "Mauler",
+      "class": "Rogue",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "shakir": {
+      "name": "Shakir",
+      "faction": "Mauler",
+      "class": "Rogue",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "silvina": {
+      "name": "Silvina",
+      "faction": "Graveborn",
+      "class": "Rogue",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "smokey": {
+      "name": "Smokey",
+      "faction": "Mauler",
+      "class": "Support",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "soren": {
+      "name": "Soren",
+      "faction": "Mauler",
+      "class": "Rogue",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "temesia": {
+      "name": "Temesia",
+      "faction": "Lightbearer",
+      "class": "Tank",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "thoran": {
+      "name": "Thoran",
+      "faction": "Graveborn",
+      "class": "Tank",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "ulmus": {
+      "name": "Ulmus",
+      "faction": "Wilder",
+      "class": "Tank",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "vala": {
+      "name": "Vala",
+      "faction": "Lightbearer",
+      "class": "Rogue",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "valen": {
+      "name": "Valen",
+      "faction": "Lightbearer",
+      "class": "Warrior",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "viperian": {
+      "name": "Viperian",
+      "faction": "Graveborn",
+      "class": "Mage",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    },
+    "walker": {
+      "name": "Walker",
+      "faction": "Lightbearer",
+      "class": "Rogue",
+      "charms": [],
+      "tileUrl": "",
+      "imageUrl": ""
+    }
+  }
+}
