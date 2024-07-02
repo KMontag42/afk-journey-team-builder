@@ -1,19 +1,19 @@
 export enum Faction {
-  Mauler = "Mauler",
-  Wilder = "Wilder",
-  Lightbearer = "Lightbearer",
-  Graveborn = "Graveborn",
-  Celestial = "Celestial",
-  Hypogean = "Hypogean"
+  Mauler = "mauler",
+  Wilder = "wilder",
+  Lightbearer = "lightbearer",
+  Graveborn = "graveborn",
+  Celestial = "celestial",
+  Hypogean = "hypogean"
 };
 
 export enum CharacterClass {
-  Mage = "Mage",
-  Warrior = "Warrior",
-  Marksman = "Marksman",
-  Rogue = "Rogue",
-  Tank = "Tank",
-  Support = "Support"
+  Mage = "mage",
+  Warrior = "warrior",
+  Marksman = "marksman",
+  Rogue = "rogue",
+  Tank = "tank",
+  Support = "support"
 };
 
 export type Character = {

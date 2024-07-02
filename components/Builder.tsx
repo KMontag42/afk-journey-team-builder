@@ -267,6 +267,8 @@ export default function Builder({ data }: { data: any }) {
           <Download />
         </Button>
         <CharacterFilter
+          classes={data.classes}
+          factions={data.factions}
           characterFilter={characterFilter}
           updateCharacterFilter={updateCharacterFilter}
           className="relative -ml-12 left-[4.5rem] md:left-[10.5rem]"

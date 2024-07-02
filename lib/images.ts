@@ -1,22 +1,6 @@
 import { type StaticImageData } from "next/image";
 import { Faction, CharacterClass } from "@/lib/characters";
 
-import Awakening from "@/public/artifacts/Awakening.png";
-import Blazing from "@/public/artifacts/Blazing.png";
-import Confining from "@/public/artifacts/Confining.png";
-import Enlightening from "@/public/artifacts/Enlightening.png";
-import Ironwall from "@/public/artifacts/Ironwall.png";
-import Starshard from "@/public/artifacts/Starshard.png";
-import Lightheal from "@/public/artifacts/Lightheal.png";
-import Crescent from "@/public/artifacts/Crescent.png";
-import Quickblade from "@/public/artifacts/Quickblade.png";
-import Stormcaller from "@/public/artifacts/Stormcaller.png";
-import Cascade from "@/public/artifacts/Cascade.png";
-import Evocation from "@/public/artifacts/Evocation.png";
-import Thunderbolt from "@/public/artifacts/Thunderbolt.png";
-import Dashing from "@/public/artifacts/Dashing.png";
-import Random from "@/public/artifacts/Random.png";
-
 import tekLogo from "@/public/tekLogo.png";
 import AnalyticaOfficialLogo from "@/public/AnalyticaOfficialLogo.png";
 import LogoBlack from "@/public/LogoBlack.png";
@@ -88,40 +72,6 @@ import Vala from "@/public/characters/Vala.png";
 import Valen from "@/public/characters/Valen.png";
 import Viperian from "@/public/characters/Viperian.png";
 import Walker from "@/public/characters/Walker.png";
-
-import CELESTIAL from "@/public/faction_icons/CELESTIAL.png";
-import GRAVEBORN from "@/public/faction_icons/GRAVEBORN.png";
-import HYPOGEAN from "@/public/faction_icons/HYPOGEAN.png";
-import LIGHTBEARER from "@/public/faction_icons/LIGHTBEARER.png";
-import MAULER from "@/public/faction_icons/MAULER.png";
-import WILDER from "@/public/faction_icons/WILDER.png";
-
-import Mage from "@/public/class_icons/Mage.png";
-import Marksman from "@/public/class_icons/Marksman.png";
-import Rogue from "@/public/class_icons/Rogue.png";
-import Support from "@/public/class_icons/Support.png";
-import Tank from "@/public/class_icons/Tank.png";
-import Warrior from "@/public/class_icons/Warrior.png";
-
-export const artefactImages: {
-  [key: string]: StaticImageData;
-} = {
-  lightheal: Lightheal,
-  crescent: Crescent,
-  quickblade: Quickblade,
-  stormcaller: Stormcaller,
-  cascade: Cascade,
-  evocation: Evocation,
-  thunderbolt: Thunderbolt,
-  dashing: Dashing,
-  awakening: Awakening,
-  blazing: Blazing,
-  confining: Confining,
-  enlightening: Enlightening,
-  ironwall: Ironwall,
-  starshard: Starshard,
-  random: Random
-};
 
 export const tekImages: { [key: string]: StaticImageData } = {
   tekLogo: tekLogo,
@@ -200,21 +150,3 @@ export const characterImages: { [key: string]: StaticImageData } = {
   viperian: Viperian,
   walker: Walker,
 };
-
-export const FactionImages: { [key: string]: StaticImageData } = {
-  [Faction.Celestial.toString()]: CELESTIAL,
-  [Faction.Graveborn.toString()]: GRAVEBORN,
-  [Faction.Hypogean.toString()]: HYPOGEAN,
-  [Faction.Lightbearer.toString()]: LIGHTBEARER,
-  [Faction.Mauler.toString()]: MAULER,
-  [Faction.Wilder.toString()]: WILDER
-};
-
-export const ClassImages: { [key: string]: StaticImageData } = {
-  [CharacterClass.Mage.toString()]: Mage,
-  [CharacterClass.Marksman.toString()]: Marksman,
-  [CharacterClass.Rogue.toString()]: Rogue,
-  [CharacterClass.Support.toString()]: Support,
-  [CharacterClass.Tank.toString()]: Tank,
-  [CharacterClass.Warrior.toString()]: Warrior,
-}
