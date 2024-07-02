@@ -131,27 +131,27 @@
   "classes": {
     "mage": {
       "name": "Mage",
-      "imageUrl": ""
+      "imageUrl": "https://i.imgur.com/eER9zhK.png"
     },
     "warrior": {
       "name": "Warrior",
-      "imageUrl": ""
+      "imageUrl": "https://i.imgur.com/6UBTz4i.png"
     },
     "marksman": {
       "name": "Marksman",
-      "imageUrl": ""
+      "imageUrl": "https://i.imgur.com/gOWtMZX.png"
     },
     "rogue": {
       "name": "Rogue",
-      "imageUrl": ""
+      "imageUrl": "https://i.imgur.com/7pWYPW9.png"
     },
     "tank": {
       "name": "Tank",
-      "imageUrl": ""
+      "imageUrl": "https://i.imgur.com/TbI5KuG.png"
     },
     "support": {
       "name": "Support",
-      "imageUrl": ""
+      "imageUrl": "https://i.imgur.com/Ht1QdFf.png"
     }
   },
   "characters": {
@@ -574,5 +574,3 @@
     }
   }
 }
-
-
