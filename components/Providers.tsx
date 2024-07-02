@@ -1,13 +1,9 @@
-import React from 'react';
+import React from "react";
 
 export default async function Providers({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
-  return (
-    <>
-      {children}
-    </>
-  )
+  return <>{children}</>;
 }

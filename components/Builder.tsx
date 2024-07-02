@@ -11,7 +11,9 @@ import { track } from "@vercel/analytics";
 import Image from "next/image";
 import { Share, Download } from "lucide-react";
 
-import CharacterFilter, { CharacterFilterType } from "@/components/CharacterFilter";
+import CharacterFilter, {
+  CharacterFilterType,
+} from "@/components/CharacterFilter";
 
 import {
   Select,
@@ -19,7 +21,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
 import BaseLayout from "@/components/layouts/base";
 import Arena1Layout from "@/components/layouts/Arena1";
@@ -28,7 +30,9 @@ import Arena3Layout from "@/components/layouts/Arena3";
 import Arena4Layout from "@/components/layouts/Arena4";
 import { characterImages } from "@/lib/images";
 
-const layouts: { [key: number]: { Component: React.ElementType, numTiles: number } } = {
+const layouts: {
+  [key: number]: { Component: React.ElementType; numTiles: number };
+} = {
   0: { Component: BaseLayout, numTiles: 13 },
   1: { Component: Arena1Layout, numTiles: 10 },
   2: { Component: Arena2Layout, numTiles: 10 },
@@ -85,7 +89,10 @@ export default function Builder({ data }: { data: any }) {
     serialize: (layout: number) => layout.toString(),
     defaultValue: 0,
   });
-  const [characterFilter, setCharacterFilter] = useState<CharacterFilterType>({ class: "All", faction: "All" });
+  const [characterFilter, setCharacterFilter] = useState<CharacterFilterType>({
+    class: "All",
+    faction: "All",
+  });
 
   const changeLayout = (newLayoutId: number) => {
     const existingLayoutTiles = layouts[layout].numTiles;
@@ -96,10 +103,12 @@ export default function Builder({ data }: { data: any }) {
       setCharacters(
         Characters.filter((character) => !formation.includes(character.name)),
       );
-    }
-    else if (newLayoutTiles > existingLayoutTiles) setFormation(Array.from({ length: newLayoutTiles }).map((_, i) => formation[i]));
-    setLayout(newLayoutId)
-  }
+    } else if (newLayoutTiles > existingLayoutTiles)
+      setFormation(
+        Array.from({ length: newLayoutTiles }).map((_, i) => formation[i]),
+      );
+    setLayout(newLayoutId);
+  };
 
   const formationRef = createRef<HTMLDivElement>();
 
@@ -123,7 +132,7 @@ export default function Builder({ data }: { data: any }) {
         // remove Phraesto from formation
         formationCopy[formationCopy.indexOf("Phraesto")] = "";
         formationCopy[formationCopy.indexOf("PhraestoClone")] = "";
-        newCharacters.push(Characters.find(x => x.name === "Phraesto")!);
+        newCharacters.push(Characters.find((x) => x.name === "Phraesto")!);
       }
     } else if (characterIndex !== -1) {
       // swap characters
@@ -142,7 +151,7 @@ export default function Builder({ data }: { data: any }) {
       );
 
       if (characterInSlot !== "") {
-        newCharacters.push(Characters.find(x => x.name === characterInSlot)!);
+        newCharacters.push(Characters.find((x) => x.name === characterInSlot)!);
       }
 
       formationCopy[slot] = character.name;
@@ -151,12 +160,15 @@ export default function Builder({ data }: { data: any }) {
         const firstOpenSlot = formationCopy.indexOf("");
         formationCopy[firstOpenSlot] = "PhraestoClone";
       }
-    } else if (formationCharacters.length === maxCharacters && characterInSlot !== "") {
+    } else if (
+      formationCharacters.length === maxCharacters &&
+      characterInSlot !== ""
+    ) {
       // swap characters
       newCharacters = newCharacters.filter(
         (character) => character !== selectedCharacter,
       );
-      newCharacters.push(Characters.find(x => x.name === characterInSlot)!);
+      newCharacters.push(Characters.find((x) => x.name === characterInSlot)!);
 
       formationCopy[slot] = character.name;
     }
@@ -173,12 +185,15 @@ export default function Builder({ data }: { data: any }) {
   function updateCharacterFilter(filter: CharacterFilterType) {
     setCharacterFilter(filter);
     setCharacters(
-      charactersNotInFormation.filter((character) => {
-        return (
-          (filter.faction === "All" || character.faction === filter.faction) &&
-          (filter.class === "All" || character.class === filter.class)
-        );
-      }).sort(),
+      charactersNotInFormation
+        .filter((character) => {
+          return (
+            (filter.faction === "All" ||
+              character.faction === filter.faction) &&
+            (filter.class === "All" || character.class === filter.class)
+          );
+        })
+        .sort(),
     );
   }
 
@@ -224,7 +239,10 @@ export default function Builder({ data }: { data: any }) {
   return (
     <>
       <div className="flex justify-center items-center gap-2">
-        <Select onValueChange={(e) => changeLayout(parseInt(e))} value={layout.toString()}>
+        <Select
+          onValueChange={(e) => changeLayout(parseInt(e))}
+          value={layout.toString()}
+        >
           <SelectTrigger>
             <SelectValue placeholder="Map Layout" />
           </SelectTrigger>
@@ -277,7 +295,9 @@ export default function Builder({ data }: { data: any }) {
 
       <ScrollArea
         className="flex flex-col items-center"
-        style={{ height: `calc(100vh - ${layoutHeights[layout] ?? '24'}rem - 5rem)` }}
+        style={{
+          height: `calc(100vh - ${layoutHeights[layout] ?? "24"}rem - 5rem)`,
+        }}
       >
         <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-2 mx-6`}>
           {characters.map((character) => {
@@ -290,7 +310,8 @@ export default function Builder({ data }: { data: any }) {
                 src={characterImages[character.name.toLowerCase()]}
                 alt={character.name}
                 className={className}
-                onClick={() => onCharacterClick(character)} />
+                onClick={() => onCharacterClick(character)}
+              />
             );
           })}
         </div>
