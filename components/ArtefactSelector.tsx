@@ -11,7 +11,7 @@ import {
 
 type Artefact = {
   value: string;
-  image: string;
+  imageUrl: string;
   label: string;
   category: "permanent" | "seasonal"
 };
@@ -30,7 +30,7 @@ export default function ArtefactSelector({ active, onChange, artefacts }: Props)
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className="h-16 w-14">
-          <Image src={artefacts[active].image} alt={active} className="object-contain" width={74} height={74} />
+          <Image src={artefacts[active].imageUrl} alt={active} className="object-contain" width={74} height={74} />
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='DropdownMenuContent overflow-auto'collisionPadding={8}>
@@ -40,7 +40,7 @@ export default function ArtefactSelector({ active, onChange, artefacts }: Props)
             <DropdownMenuLabel>Seasonal</DropdownMenuLabel>
             {seasonalArtefacts.map((artefact) => (
               <DropdownMenuRadioItem value={artefact.value} key={artefact.label}>
-                <Image height={36} width={31} src={artefact.image} alt={artefact.label} className="mr-2" />
+                <Image height={36} width={31} src={artefact.imageUrl} alt={artefact.label} className="mr-2" />
                 {artefact.label}
               </DropdownMenuRadioItem>
             ))}
@@ -49,7 +49,7 @@ export default function ArtefactSelector({ active, onChange, artefacts }: Props)
             <DropdownMenuLabel>Permanent</DropdownMenuLabel>
             {permanentArtefacts.map((artefact) => (
               <DropdownMenuRadioItem value={artefact.value} key={artefact.label}>
-                <Image height={36} width={31} src={artefact.image} alt={artefact.label} className="mr-2" />
+                <Image height={36} width={31} src={artefact.imageUrl} alt={artefact.label} className="mr-2" />
                 {artefact.label}
               </DropdownMenuRadioItem>
             ))}
