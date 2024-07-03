@@ -78,7 +78,7 @@ export default function Builder({ data }: { data: any }) {
     (character) => !formation.includes(character.name),
   );
   const charactersInFormation = formation.map(x => {
-    if (x === "") {
+    if (x === "" || x === undefined) {
       return undefined;
     }
     return Characters[x.toLowerCase()];
