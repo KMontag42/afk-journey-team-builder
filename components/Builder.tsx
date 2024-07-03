@@ -74,18 +74,6 @@ export default function Builder({ data }: { data: any }) {
     serialize: (formation: string[]) => btoa(formation.join(",")),
     defaultValue: new Array<string>(13).fill(""),
   });
-  const charactersNotInFormation = Object.values(Characters).filter(
-    (character) => !formation.includes(character.name),
-  );
-  const charactersInFormation = formation.map((x) => {
-    if (x === "" || x === undefined) {
-      return undefined;
-    }
-    return Characters[x.toLowerCase()];
-  });
-  const [characters, setCharacters] = useState<Character[]>(
-    charactersNotInFormation.sort(),
-  );
   const [spell, setSpell] = useQueryState<string>("spell", {
     parse: (query: string): string => atob(query),
     serialize: (spell: string) => btoa(spell),
@@ -100,6 +88,25 @@ export default function Builder({ data }: { data: any }) {
     class: "All",
     faction: "All",
   });
+  
+  const charactersNotInFormation = Object.values(Characters).filter(
+    (character) => !formation.includes(character.name),
+  );
+  const charactersInFormation = formation.map((x) => {
+    if (x === "" || x === undefined) {
+      return undefined;
+    }
+    return Characters[x.toLowerCase()];
+  });
+  const characters = charactersNotInFormation
+    .filter((character) => {
+      return (
+        (characterFilter.faction === "All" ||
+          character.faction === characterFilter.faction) &&
+        (characterFilter.class === "All" || character.class === characterFilter.class)
+      );
+    })
+    .sort()
 
   const changeLayout = (newLayoutId: number) => {
     const existingLayoutTiles = layouts[layout].numTiles;
@@ -107,15 +114,11 @@ export default function Builder({ data }: { data: any }) {
 
     if (newLayoutTiles < existingLayoutTiles) {
       setFormation((formation) => formation.slice(0, newLayoutTiles));
-      setCharacters(
-        Object.values(Characters).filter(
-          (character) => !formation.includes(character.name),
-        ),
-      );
-    } else if (newLayoutTiles > existingLayoutTiles)
+    } else if (newLayoutTiles > existingLayoutTiles) {
       setFormation(
         Array.from({ length: newLayoutTiles }).map((_, i) => formation[i]),
       );
+    }
     setLayout(newLayoutId);
   };
 
@@ -188,22 +191,10 @@ export default function Builder({ data }: { data: any }) {
     );
 
     setFormation(formationCopy);
-    setCharacters(newCharacters.sort((a, b) => a.name.localeCompare(b.name)));
   }
 
   function updateCharacterFilter(filter: CharacterFilterType) {
     setCharacterFilter(filter);
-    setCharacters(
-      charactersNotInFormation
-        .filter((character) => {
-          return (
-            (filter.faction === "All" ||
-              character.faction === filter.faction) &&
-            (filter.class === "All" || character.class === filter.class)
-          );
-        })
-        .sort(),
-    );
   }
 
   const onDownloadButtonClick = useCallback(() => {
