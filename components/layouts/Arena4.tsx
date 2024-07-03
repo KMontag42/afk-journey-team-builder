@@ -7,8 +7,8 @@ import { type AllArtefacts } from "@/lib/artefacts";
 
 export default function Arena4Layout(props: {
   onCharacterSlotClick: (index: number) => void;
-  spell: string;
-  setSpell: (spell: string) => void;
+  artefact: string;
+  setArtefact: (artefact: string) => void;
   formation: Character[];
   selectedCharacter: Character | null;
   artefacts: AllArtefacts;
@@ -88,8 +88,8 @@ export default function Arena4Layout(props: {
       </div>
       <div className="grid grid-cols-6 -mt-2">
         <ArtefactSelector
-          active={props.spell}
-          onChange={props.setSpell}
+          active={props.artefact}
+          onChange={props.setArtefact}
           artefacts={props.artefacts}
         />
 

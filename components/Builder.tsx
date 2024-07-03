@@ -2,19 +2,20 @@
 
 import { useState, createRef, useCallback } from "react";
 import { useQueryState } from "nuqs";
-import { type Character } from "@/lib/characters";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { toPng } from "html-to-image";
 import { track } from "@vercel/analytics";
 import Image from "next/image";
 import { Share, Download } from "lucide-react";
 
+import { type Character } from "@/lib/characters";
+import { updateSlotInFormation } from "@/lib/formations";
+
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button } from "@/components/ui/button";
 import CharacterFilter, {
   CharacterFilterType,
 } from "@/components/CharacterFilter";
-
 import {
   Select,
   SelectContent,
@@ -22,7 +23,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
 import BaseLayout from "@/components/layouts/base";
 import Arena1Layout from "@/components/layouts/Arena1";
 import Arena2Layout from "@/components/layouts/Arena2";
@@ -74,9 +74,9 @@ export default function Builder({ data }: { data: any }) {
     serialize: (formation: string[]) => btoa(formation.join(",")),
     defaultValue: new Array<string>(13).fill(""),
   });
-  const [spell, setSpell] = useQueryState<string>("spell", {
+  const [artefact, setArtefact] = useQueryState<string>("artefact", {
     parse: (query: string): string => atob(query),
-    serialize: (spell: string) => btoa(spell),
+    serialize: (artefact: string) => btoa(artefact),
     defaultValue: "blazing",
   });
   const [layout, setLayout] = useQueryState<number>("map", {
@@ -88,7 +88,7 @@ export default function Builder({ data }: { data: any }) {
     class: "All",
     faction: "All",
   });
-  
+
   const charactersNotInFormation = Object.values(Characters).filter(
     (character) => !formation.includes(character.name),
   );
@@ -103,10 +103,11 @@ export default function Builder({ data }: { data: any }) {
       return (
         (characterFilter.faction === "All" ||
           character.faction === characterFilter.faction) &&
-        (characterFilter.class === "All" || character.class === characterFilter.class)
+        (characterFilter.class === "All" ||
+          character.class === characterFilter.class)
       );
     })
-    .sort()
+    .sort();
 
   const changeLayout = (newLayoutId: number) => {
     const existingLayoutTiles = layouts[layout].numTiles;
@@ -125,76 +126,7 @@ export default function Builder({ data }: { data: any }) {
   const formationRef = createRef<HTMLDivElement>();
 
   function updateFormation(slot: number, character: Character) {
-    const characterInSlot = formation[slot];
-    const characterIndex = formation.indexOf(character.name);
-    const formationCharacters = formation.filter(
-      (character) => character !== "",
-    );
-    const formationCopy = [...formation];
-    const formationHasPhraesto = formation.includes("Phraesto");
-    let newCharacters = [...characters];
-    let maxCharacters = formationHasPhraesto ? 6 : 5;
-
-    if (characterInSlot === character.name) {
-      // remove character from slot, add back to characters
-      formationCopy[slot] = "";
-      newCharacters.push(character);
-
-      if (character.name === "Phraesto" || character.name === "PhraestoClone") {
-        // remove Phraesto from formation
-        formationCopy[formationCopy.indexOf("Phraesto")] = "";
-        formationCopy[formationCopy.indexOf("PhraestoClone")] = "";
-        newCharacters.push(Characters["phraesto"]);
-      }
-    } else if (characterIndex !== -1) {
-      // swap characters
-      formationCopy[slot] = character.name;
-      formationCopy[characterIndex] = characterInSlot;
-      newCharacters = newCharacters.filter(
-        (character) => character.name !== characterInSlot,
-      );
-      newCharacters = newCharacters.filter(
-        (character) => character !== selectedCharacter,
-      );
-    } else if (formationCharacters.length < maxCharacters) {
-      // add character to slot
-      newCharacters = newCharacters.filter(
-        (character) => character !== selectedCharacter,
-      );
-
-      if (characterInSlot !== "") {
-        newCharacters.push(Characters[characterInSlot.toLowerCase()]);
-      }
-
-      formationCopy[slot] = character.name;
-
-      if (character.name === "Phraesto") {
-        const firstOpenSlot = formationCopy.indexOf("");
-        formationCopy[firstOpenSlot] = "PhraestoClone";
-      }
-    } else if (
-      formationCharacters.length === maxCharacters &&
-      characterInSlot !== ""
-    ) {
-      // swap characters
-      newCharacters = newCharacters.filter(
-        (character) => character !== selectedCharacter,
-      );
-      newCharacters.push(Characters[characterInSlot.toLowerCase()]);
-
-      formationCopy[slot] = character.name;
-    }
-
-    // remove duplicates
-    newCharacters = newCharacters.filter(
-      (value, index, self) => self.indexOf(value) === index,
-    );
-
-    setFormation(formationCopy);
-  }
-
-  function updateCharacterFilter(filter: CharacterFilterType) {
-    setCharacterFilter(filter);
+    setFormation(updateSlotInFormation(formation, slot, character));
   }
 
   const onDownloadButtonClick = useCallback(() => {
@@ -211,23 +143,23 @@ export default function Builder({ data }: { data: any }) {
       link.click();
       track("formation_downloaded", {
         formation: formation.join(","),
-        spell,
+        artefact,
         layout,
         url: window.location.href,
       });
     });
-  }, [formationRef, formation, layout, spell]);
+  }, [formationRef, formation, layout, artefact]);
 
   const onShareButtonClick = useCallback(() => {
     navigator.clipboard.writeText(window.location.href);
     toast("Formation link copied to clipboard");
     track("formation_shared", {
       formation: formation.join(","),
-      spell,
+      artefact,
       layout,
       url: window.location.href,
     });
-  }, [formation, spell, layout]);
+  }, [formation, artefact, layout]);
 
   function onCharacterClick(character: Character) {
     setSelectedCharacter(character);
@@ -240,7 +172,7 @@ export default function Builder({ data }: { data: any }) {
       setSelectedCharacter(null);
     } else if (formation[slotNumber]) {
       const _character = Characters[formation[slotNumber].toLowerCase()];
-      setSelectedCharacter(_character!);
+      setSelectedCharacter(_character);
     }
   }
 
@@ -268,8 +200,8 @@ export default function Builder({ data }: { data: any }) {
       <div className="flex flex-col items-center mr-6 my-4" ref={formationRef}>
         <Layout
           onCharacterSlotClick={onCharacterSlotClick}
-          spell={spell}
-          setSpell={setSpell}
+          artefact={artefact}
+          setArtefact={setArtefact}
           formation={charactersInFormation}
           selectedCharacter={selectedCharacter!}
           artefacts={data.artefacts}
@@ -287,7 +219,7 @@ export default function Builder({ data }: { data: any }) {
           classes={data.classes}
           factions={data.factions}
           characterFilter={characterFilter}
-          updateCharacterFilter={updateCharacterFilter}
+          updateCharacterFilter={setCharacterFilter}
           className="relative -ml-12 left-[4.5rem] md:left-[10.5rem]"
         />
       </div>
