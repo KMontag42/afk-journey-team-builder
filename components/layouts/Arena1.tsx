@@ -3,13 +3,15 @@ import ArtefactSelector from "@/components/ArtefactSelector";
 import Image from "next/image";
 import { tekImages } from "@/lib/images";
 import { Character } from "@/lib/characters";
+import { type AllArtefacts } from "@/lib/artefacts";
 
 export default function Arena1Layout(props: {
   onCharacterSlotClick: (index: number) => void;
   spell: string;
   setSpell: (spell: string) => void;
-  formation: string[];
+  formation: Character[];
   selectedCharacter: Character | null;
+  artefacts: AllArtefacts;
 }) {
   return (
     <>
@@ -69,7 +71,11 @@ export default function Arena1Layout(props: {
         />
       </div>
       <div className="grid grid-cols-4 -mt-2">
-        <ArtefactSelector active={props.spell} onChange={props.setSpell} />
+        <ArtefactSelector
+          active={props.spell}
+          onChange={props.setSpell}
+          artefacts={props.artefacts}
+        />
 
         <div className="h-16 w-16 grid grid-cols-1 place-items-center opacity-30" id="watermark-logo">
           <Image src={tekImages["logo"]} alt="Empty Slot" className="w-1/2 -ml-1" />
