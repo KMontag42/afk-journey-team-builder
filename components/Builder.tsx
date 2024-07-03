@@ -218,11 +218,23 @@ export default function Builder({ data }: { data: any }) {
       link.click();
       track("formation_downloaded", {
         formation: formation.join(","),
-        spell: spell,
+        spell,
+        layout,
         url: window.location.href,
       });
     });
   }, [formationRef, formation, layout, spell]);
+
+  const onShareButtonClick = useCallback(() => {
+    navigator.clipboard.writeText(window.location.href);
+    toast("Formation link copied to clipboard");
+    track("formation_shared", {
+      formation: formation.join(","),
+      spell,
+      layout,
+      url: window.location.href,
+    });
+  }, [formation, spell, layout])
 
   function onCharacterClick(character: Character) {
     setSelectedCharacter(character);
@@ -272,18 +284,7 @@ export default function Builder({ data }: { data: any }) {
       </div>
 
       <div className="flex gap-2 justify-center items-center">
-        <Button
-          onClick={() => {
-            navigator.clipboard.writeText(window.location.href);
-            toast("Formation link copied to clipboard");
-            track("formation_shared", {
-              formation: formation.join(","),
-              spell: spell,
-              url: window.location.href,
-            });
-          }}
-          className="h-8 px-2"
-        >
+        <Button onClick={onShareButtonClick} className="h-8 px-2">
           <Share />
         </Button>
         <Button onClick={onDownloadButtonClick} className="h-8 px-2">
