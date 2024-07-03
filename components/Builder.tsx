@@ -10,7 +10,12 @@ import { Share, Download } from "lucide-react";
 
 import { type Character } from "@/lib/characters";
 import { updateSlotInFormation } from "@/lib/formations";
-import { layouts, layoutHeights, layoutExportMargins, layoutExportWidths } from "@/lib/layouts";
+import {
+  layouts,
+  layoutHeights,
+  layoutExportMargins,
+  layoutExportWidths,
+} from "@/lib/layouts";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
