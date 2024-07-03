@@ -19,59 +19,6 @@ import Tile11 from "@/public/slots/Tile11.png";
 import Tile12 from "@/public/slots/Tile12.png";
 import Tile13 from "@/public/slots/Tile13.png";
 
-import Alsa from "@/public/characters/Alsa.png";
-import Antandra from "@/public/characters/Antandra.png";
-import Arden from "@/public/characters/Arden.png";
-import Atalanta from "@/public/characters/Atalanta.png";
-import Berial from "@/public/characters/Berial.png";
-import Brutus from "@/public/characters/Brutus.png";
-import Bryon from "@/public/characters/Bryon.png";
-import Carolina from "@/public/characters/Carolina.png";
-import Cassadee from "@/public/characters/Cassadee.png";
-import Cecia from "@/public/characters/Cecia.png";
-import Chippy from "@/public/characters/Chippy.png";
-import Damian from "@/public/characters/Damian.png";
-import Dionel from "@/public/characters/Dionel.png";
-import Eironn from "@/public/characters/Eironn.png";
-import Fay from "@/public/characters/Fay.png";
-import Florabelle from "@/public/characters/Florabelle.png";
-import Granny from "@/public/characters/Granny.png";
-import Hammie from "@/public/characters/Hammie.png";
-import Hewynn from "@/public/characters/Hewynn.png";
-import Igor from "@/public/characters/Igor.png";
-import Kafra from "@/public/characters/Kafra.png";
-import Kokko from "@/public/characters/Kokko.png";
-import Korin from "@/public/characters/Korin.png";
-import Kruger from "@/public/characters/Kruger.png";
-import Lucius from "@/public/characters/Lucius.png";
-import Lumont from "@/public/characters/Lumont.png";
-import Lyca from "@/public/characters/Lyca.png";
-import Marilee from "@/public/characters/Marilee.png";
-import Mirael from "@/public/characters/Mirael.png";
-import Niru from "@/public/characters/Niru.png";
-import Odie from "@/public/characters/Odie.png";
-import Parisa from "@/public/characters/Parisa.png";
-import Phraesto from "@/public/characters/Phraesto.png";
-import PhraestoClone from "@/public/characters/PhraestoClone.png";
-import Reinier from "@/public/characters/Reinier.png";
-import Rhys from "@/public/characters/Rhys.png";
-import Rowan from "@/public/characters/Rowan.png";
-import Salazer from "@/public/characters/Salazer.png";
-import Satrana from "@/public/characters/Satrana.png";
-import Scarlita from "@/public/characters/Scarlita.png";
-import Seth from "@/public/characters/Seth.png";
-import Shakir from "@/public/characters/Shakir.png";
-import Silvina from "@/public/characters/Silvina.png";
-import Smokey from "@/public/characters/Smokey.png";
-import Soren from "@/public/characters/Soren.png";
-import Temesia from "@/public/characters/Temesia.png";
-import Thoran from "@/public/characters/Thoran.png";
-import Ulmus from "@/public/characters/Ulmus.png";
-import Vala from "@/public/characters/Vala.png";
-import Valen from "@/public/characters/Valen.png";
-import Viperian from "@/public/characters/Viperian.png";
-import Walker from "@/public/characters/Walker.png";
-
 export const tekImages: { [key: string]: StaticImageData } = {
   tekLogo: tekLogo,
   logo: AnalyticaOfficialLogo,
@@ -93,59 +40,4 @@ export const slotImages: { [key: string]: StaticImageData } = {
   Tile11: Tile11,
   Tile12: Tile12,
   Tile13: Tile13,
-};
-
-export const characterImages: { [key: string]: StaticImageData } = {
-  alsa: Alsa,
-  antandra: Antandra,
-  arden: Arden,
-  atalanta: Atalanta,
-  berial: Berial,
-  brutus: Brutus,
-  bryon: Bryon,
-  carolina: Carolina,
-  cassadee: Cassadee,
-  cecia: Cecia,
-  chippy: Chippy,
-  damian: Damian,
-  dionel: Dionel,
-  eironn: Eironn,
-  fay: Fay,
-  florabelle: Florabelle,
-  granny: Granny,
-  hammie: Hammie,
-  hewynn: Hewynn,
-  igor: Igor,
-  kafra: Kafra,
-  kokko: Kokko,
-  korin: Korin,
-  kruger: Kruger,
-  lucius: Lucius,
-  lumont: Lumont,
-  lyca: Lyca,
-  marilee: Marilee,
-  mirael: Mirael,
-  niru: Niru,
-  odie: Odie,
-  parisa: Parisa,
-  phraesto: Phraesto,
-  phraestoclone: PhraestoClone,
-  reinier: Reinier,
-  rhys: Rhys,
-  rowan: Rowan,
-  salazer: Salazer,
-  satrana: Satrana,
-  scarlita: Scarlita,
-  seth: Seth,
-  shakir: Shakir,
-  silvina: Silvina,
-  smokey: Smokey,
-  soren: Soren,
-  temesia: Temesia,
-  thoran: Thoran,
-  ulmus: Ulmus,
-  vala: Vala,
-  valen: Valen,
-  viperian: Viperian,
-  walker: Walker,
 };

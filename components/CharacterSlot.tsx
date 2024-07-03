@@ -1,6 +1,6 @@
 import Image from "next/image";
 import emptySlot from "@/public/emptySlot.png";
-import { characterImages, slotImages } from "@/lib/images";
+import { slotImages } from "@/lib/images";
 import { Character } from "@/lib/characters";
 
 export default function CharacterSlot(props: {

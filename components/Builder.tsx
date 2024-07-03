@@ -28,7 +28,6 @@ import Arena1Layout from "@/components/layouts/Arena1";
 import Arena2Layout from "@/components/layouts/Arena2";
 import Arena3Layout from "@/components/layouts/Arena3";
 import Arena4Layout from "@/components/layouts/Arena4";
-import { characterImages } from "@/lib/images";
 
 const layouts: {
   [key: number]: { Component: React.ElementType; numTiles: number };
@@ -223,7 +222,7 @@ export default function Builder({ data }: { data: any }) {
         url: window.location.href,
       });
     });
-  }, [formationRef]);
+  }, [formationRef, formation, layout, spell]);
 
   function onCharacterClick(character: Character) {
     setSelectedCharacter(character);
