@@ -49,7 +49,7 @@ export default function CharacterFilter(props: {
               onClick={() =>
                 props.updateCharacterFilter({
                   ...props.characterFilter,
-                  faction: name,
+                  faction: data.name,
                 })
               }
             />
@@ -79,7 +79,7 @@ export default function CharacterFilter(props: {
               onClick={() =>
                 props.updateCharacterFilter({
                   ...props.characterFilter,
-                  class: name,
+                  class: data.name,
                 })
               }
             />

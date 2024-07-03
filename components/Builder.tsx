@@ -2,7 +2,7 @@
 
 import { useState, createRef, useCallback } from "react";
 import { useQueryState } from "nuqs";
-import { type Character, Characters } from "@/lib/characters";
+import { type Character } from "@/lib/characters";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -65,6 +65,8 @@ const layoutExportMargins: { [key: number]: string } = {
 };
 
 export default function Builder({ data }: { data: any }) {
+  const Characters: { [key: string]: Character } = data.characters;
+
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null,
   );
@@ -73,9 +75,15 @@ export default function Builder({ data }: { data: any }) {
     serialize: (formation: string[]) => btoa(formation.join(",")),
     defaultValue: new Array<string>(13).fill(""),
   });
-  const charactersNotInFormation = Characters.filter(
+  const charactersNotInFormation = Object.values(Characters).filter(
     (character) => !formation.includes(character.name),
   );
+  const charactersInFormation = formation.map(x => {
+    if (x === "") {
+      return undefined;
+    }
+    return Characters[x.toLowerCase()];
+  })
   const [characters, setCharacters] = useState<Character[]>(
     charactersNotInFormation.sort(),
   );
@@ -101,7 +109,7 @@ export default function Builder({ data }: { data: any }) {
     if (newLayoutTiles < existingLayoutTiles) {
       setFormation((formation) => formation.slice(0, newLayoutTiles));
       setCharacters(
-        Characters.filter((character) => !formation.includes(character.name)),
+        Object.values(Characters).filter((character) => !formation.includes(character.name)),
       );
     } else if (newLayoutTiles > existingLayoutTiles)
       setFormation(
@@ -132,7 +140,7 @@ export default function Builder({ data }: { data: any }) {
         // remove Phraesto from formation
         formationCopy[formationCopy.indexOf("Phraesto")] = "";
         formationCopy[formationCopy.indexOf("PhraestoClone")] = "";
-        newCharacters.push(Characters.find((x) => x.name === "Phraesto")!);
+        newCharacters.push(Characters["phraesto"]);
       }
     } else if (characterIndex !== -1) {
       // swap characters
@@ -151,7 +159,7 @@ export default function Builder({ data }: { data: any }) {
       );
 
       if (characterInSlot !== "") {
-        newCharacters.push(Characters.find((x) => x.name === characterInSlot)!);
+        newCharacters.push(Characters[characterInSlot.toLowerCase()]);
       }
 
       formationCopy[slot] = character.name;
@@ -168,7 +176,7 @@ export default function Builder({ data }: { data: any }) {
       newCharacters = newCharacters.filter(
         (character) => character !== selectedCharacter,
       );
-      newCharacters.push(Characters.find((x) => x.name === characterInSlot)!);
+      newCharacters.push(Characters[characterInSlot.toLowerCase()]);
 
       formationCopy[slot] = character.name;
     }
@@ -227,9 +235,7 @@ export default function Builder({ data }: { data: any }) {
       updateFormation(slotNumber, selectedCharacter);
       setSelectedCharacter(null);
     } else if (formation[slotNumber]) {
-      const _character = Characters.find(
-        (character) => character.name === formation[slotNumber],
-      );
+      const _character = Characters[formation[slotNumber].toLowerCase()];
       setSelectedCharacter(_character!);
     }
   }
@@ -260,9 +266,9 @@ export default function Builder({ data }: { data: any }) {
           onCharacterSlotClick={onCharacterSlotClick}
           spell={spell}
           setSpell={setSpell}
-          formation={formation}
+          formation={charactersInFormation}
           selectedCharacter={selectedCharacter!}
-          spells={data.spells}
+          artefacts={data.artefacts}
         />
       </div>
 
@@ -303,11 +309,13 @@ export default function Builder({ data }: { data: any }) {
           {characters.map((character) => {
             if (character.hide) return null;
             const isSelected = selectedCharacter === character;
-            const className = `w-14 h-16 ${isSelected ? "outline rounded outline-yellow-400 outline-4" : ""}`;
+            const className = `w-14 h-16${isSelected ? " outline rounded outline-yellow-400 outline-4" : ""}`;
             return (
               <Image
                 key={character.name}
-                src={characterImages[character.name.toLowerCase()]}
+                src={character.tileUrl}
+                width={56}
+                height={64}
                 alt={character.name}
                 className={className}
                 onClick={() => onCharacterClick(character)}

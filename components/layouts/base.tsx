@@ -8,9 +8,9 @@ export default function BaseLayout(props: {
   onCharacterSlotClick: (index: number) => void;
   spell: string;
   setSpell: (spell: string) => void;
-  formation: string[];
+  formation: Character[];
   selectedCharacter: Character | null;
-  spells: any;
+  artefacts: any;
 }) {
   return (
     <>
@@ -91,7 +91,7 @@ export default function BaseLayout(props: {
         <ArtefactSelector
           active={props.spell}
           onChange={props.setSpell}
-          artefacts={props.spells}
+          artefacts={props.artefacts}
         />
 
         <div

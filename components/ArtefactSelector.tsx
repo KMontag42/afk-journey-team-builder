@@ -27,6 +27,7 @@ export default function ArtefactSelector({
   onChange,
   artefacts,
 }: Props) {
+  console.log({artefacts})
   const seasonalArtefacts: Artefact[] = Object.values(artefacts).filter(
     (artefact) => artefact.category === "seasonal",
   );
