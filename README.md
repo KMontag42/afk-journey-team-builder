@@ -18,7 +18,7 @@ Brought to you by AFK Analytica.
 
 ## Roadmap
 
-- [ ] Migrate characters and images to CMS
+- [x] Migrate characters and images to CMS
 - [ ] Save teams to local storage
 - [ ] Better mobile experience
 - [ ] Supreme Arena layouts
@@ -29,6 +29,7 @@ Brought to you by AFK Analytica.
 - [Next.js](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [shadcn/ui](https://ui.shadcn.com/)
+- [simplejsoncms](https://simplejsoncms.com/)
 
 ## Contributing
 
@@ -42,3 +43,17 @@ cd afk-journey-team-builder
 pnpm install
 pnpm dev
 ```
+
+### Updating Data in the CMS
+
+Go to [simplejsoncms](https://simplejsoncms.com/mdb18slfe7).
+
+Update data using their editor.
+
+Input the password.
+
+Hit save.
+
+The `lib/cms-export.json` file is not mandatory to update, but it helps to have.
+
+Be sure to pull in the data from the CMS into this file before making any edits.
