@@ -8,13 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-type Artefact = {
-  value: string;
-  imageUrl: string;
-  label: string;
-  category: "permanent" | "seasonal";
-};
+import { type Artefact } from "@/lib/artefacts";
 
 type Props = {
   active: string;
