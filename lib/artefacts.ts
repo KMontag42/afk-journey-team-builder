@@ -4,3 +4,7 @@ export type Artefact = {
   category: "permanent" | "seasonal";
   imageUrl: string;
 }
+
+export type AllArtefacts = {
+  [key: string]: Artefact
+}

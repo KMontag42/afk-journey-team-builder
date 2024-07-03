@@ -3,6 +3,7 @@ import ArtefactSelector from "@/components/ArtefactSelector";
 import Image from "next/image";
 import { tekImages } from "@/lib/images";
 import { Character } from "@/lib/characters";
+import { type AllArtefacts } from "@/lib/artefacts";
 
 export default function BaseLayout(props: {
   onCharacterSlotClick: (index: number) => void;
@@ -10,7 +11,7 @@ export default function BaseLayout(props: {
   setSpell: (spell: string) => void;
   formation: Character[];
   selectedCharacter: Character | null;
-  artefacts: any;
+  artefacts: AllArtefacts;
 }) {
   return (
     <>

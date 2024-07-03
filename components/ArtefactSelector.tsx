@@ -8,12 +8,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { type Artefact } from "@/lib/artefacts";
+import { type AllArtefacts, type Artefact } from "@/lib/artefacts";
 
 type Props = {
   active: string;
   onChange: (spell: string) => void;
-  artefacts: { [key: string]: Artefact };
+  artefacts: AllArtefacts;
 };
 
 export default function ArtefactSelector({
