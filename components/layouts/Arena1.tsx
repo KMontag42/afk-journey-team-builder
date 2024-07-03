@@ -77,8 +77,15 @@ export default function Arena1Layout(props: {
           artefacts={props.artefacts}
         />
 
-        <div className="h-16 w-16 grid grid-cols-1 place-items-center opacity-30" id="watermark-logo">
-          <Image src={tekImages["logo"]} alt="Empty Slot" className="w-1/2 -ml-1" />
+        <div
+          className="h-16 w-16 grid grid-cols-1 place-items-center opacity-30"
+          id="watermark-logo"
+        >
+          <Image
+            src={tekImages["logo"]}
+            alt="Empty Slot"
+            className="w-1/2 -ml-1"
+          />
         </div>
         <CharacterSlot
           index={1}

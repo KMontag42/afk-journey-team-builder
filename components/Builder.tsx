@@ -77,12 +77,12 @@ export default function Builder({ data }: { data: any }) {
   const charactersNotInFormation = Object.values(Characters).filter(
     (character) => !formation.includes(character.name),
   );
-  const charactersInFormation = formation.map(x => {
+  const charactersInFormation = formation.map((x) => {
     if (x === "" || x === undefined) {
       return undefined;
     }
     return Characters[x.toLowerCase()];
-  })
+  });
   const [characters, setCharacters] = useState<Character[]>(
     charactersNotInFormation.sort(),
   );
@@ -108,7 +108,9 @@ export default function Builder({ data }: { data: any }) {
     if (newLayoutTiles < existingLayoutTiles) {
       setFormation((formation) => formation.slice(0, newLayoutTiles));
       setCharacters(
-        Object.values(Characters).filter((character) => !formation.includes(character.name)),
+        Object.values(Characters).filter(
+          (character) => !formation.includes(character.name),
+        ),
       );
     } else if (newLayoutTiles > existingLayoutTiles)
       setFormation(
@@ -234,7 +236,7 @@ export default function Builder({ data }: { data: any }) {
       layout,
       url: window.location.href,
     });
-  }, [formation, spell, layout])
+  }, [formation, spell, layout]);
 
   function onCharacterClick(character: Character) {
     setSelectedCharacter(character);
