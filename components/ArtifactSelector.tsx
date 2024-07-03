@@ -8,24 +8,24 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { type AllArtefacts, type Artefact } from "@/lib/artefacts";
+import { type AllArtifacts, type Artifact } from "@/lib/artifacts";
 
 type Props = {
   active: string;
   onChange: (spell: string) => void;
-  artefacts: AllArtefacts;
+  artifacts: AllArtifacts;
 };
 
-export default function ArtefactSelector({
+export default function ArtifactSelector({
   active,
   onChange,
-  artefacts,
+  artifacts,
 }: Props) {
-  const seasonalArtefacts: Artefact[] = Object.values(artefacts).filter(
-    (artefact) => artefact.category === "seasonal",
+  const seasonalArtifacts: Artifact[] = Object.values(artifacts).filter(
+    (artifact) => artifact.category === "seasonal",
   );
-  const permanentArtefacts: Artefact[] = Object.values(artefacts).filter(
-    (artefact) => artefact.category === "permanent",
+  const permanentArtifacts: Artifact[] = Object.values(artifacts).filter(
+    (artifact) => artifact.category === "permanent",
   );
 
   return (
@@ -33,7 +33,7 @@ export default function ArtefactSelector({
       <DropdownMenuTrigger asChild>
         <div className="h-16 w-14">
           <Image
-            src={artefacts[active].imageUrl}
+            src={artifacts[active].imageUrl}
             alt={active}
             className="object-contain"
             width={74}
@@ -49,37 +49,37 @@ export default function ArtefactSelector({
         <div className="flex gap-2">
           <DropdownMenuRadioGroup value={active} onValueChange={onChange}>
             <DropdownMenuLabel>Seasonal</DropdownMenuLabel>
-            {seasonalArtefacts.map((artefact) => (
+            {seasonalArtifacts.map((artifact) => (
               <DropdownMenuRadioItem
-                value={artefact.value}
-                key={artefact.label}
+                value={artifact.value}
+                key={artifact.label}
               >
                 <Image
                   height={36}
                   width={31}
-                  src={artefact.imageUrl}
-                  alt={artefact.label}
+                  src={artifact.imageUrl}
+                  alt={artifact.label}
                   className="mr-2"
                 />
-                {artefact.label}
+                {artifact.label}
               </DropdownMenuRadioItem>
             ))}
           </DropdownMenuRadioGroup>
           <DropdownMenuRadioGroup value={active} onValueChange={onChange}>
             <DropdownMenuLabel>Permanent</DropdownMenuLabel>
-            {permanentArtefacts.map((artefact) => (
+            {permanentArtifacts.map((artifact) => (
               <DropdownMenuRadioItem
-                value={artefact.value}
-                key={artefact.label}
+                value={artifact.value}
+                key={artifact.label}
               >
                 <Image
                   height={36}
                   width={31}
-                  src={artefact.imageUrl}
-                  alt={artefact.label}
+                  src={artifact.imageUrl}
+                  alt={artifact.label}
                   className="mr-2"
                 />
-                {artefact.label}
+                {artifact.label}
               </DropdownMenuRadioItem>
             ))}
           </DropdownMenuRadioGroup>

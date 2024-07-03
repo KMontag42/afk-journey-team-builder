@@ -42,9 +42,9 @@ export default function Builder({ data }: { data: any }) {
     serialize: (formation: string[]) => btoa(formation.join(",")),
     defaultValue: new Array<string>(13).fill(""),
   });
-  const [artefact, setArtefact] = useQueryState<string>("artefact", {
+  const [artifact, setArtifact] = useQueryState<string>("artifact", {
     parse: (query: string): string => atob(query),
-    serialize: (artefact: string) => btoa(artefact),
+    serialize: (artifact: string) => btoa(artifact),
     defaultValue: "blazing",
   });
   const [layout, setLayout] = useQueryState<number>("map", {
@@ -111,23 +111,23 @@ export default function Builder({ data }: { data: any }) {
       link.click();
       track("formation_downloaded", {
         formation: formation.join(","),
-        artefact,
+        artifact,
         layout,
         url: window.location.href,
       });
     });
-  }, [formationRef, formation, layout, artefact]);
+  }, [formationRef, formation, layout, artifact]);
 
   const onShareButtonClick = useCallback(() => {
     navigator.clipboard.writeText(window.location.href);
     toast("Formation link copied to clipboard");
     track("formation_shared", {
       formation: formation.join(","),
-      artefact,
+      artifact,
       layout,
       url: window.location.href,
     });
-  }, [formation, artefact, layout]);
+  }, [formation, artifact, layout]);
 
   function onCharacterClick(character: Character) {
     setSelectedCharacter(character);
@@ -168,11 +168,11 @@ export default function Builder({ data }: { data: any }) {
       <div className="flex flex-col items-center mr-6 my-4" ref={formationRef}>
         <Layout
           onCharacterSlotClick={onCharacterSlotClick}
-          artefact={artefact}
-          setArtefact={setArtefact}
+          artifact={artifact}
+          setArtifact={setArtifact}
           formation={charactersInFormation}
           selectedCharacter={selectedCharacter!}
-          artefacts={data.artefacts}
+          artifacts={data.artifacts}
         />
       </div>
 

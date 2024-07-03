@@ -1,17 +1,17 @@
 import CharacterSlot from "@/components/CharacterSlot";
-import ArtefactSelector from "@/components/ArtefactSelector";
+import ArtifactSelector from "@/components/ArtifactSelector";
 import Image from "next/image";
 import { tekImages } from "@/lib/images";
 import { Character } from "@/lib/characters";
-import { type AllArtefacts } from "@/lib/artefacts";
+import { type AllArtifacts } from "@/lib/artifacts";
 
 export default function BaseLayout(props: {
   onCharacterSlotClick: (index: number) => void;
-  artefact: string;
-  setArtefact: (artefact: string) => void;
+  artifact: string;
+  setArtifact: (artifact: string) => void;
   formation: Character[];
   selectedCharacter: Character | null;
-  artefacts: AllArtefacts;
+  artifacts: AllArtifacts;
 }) {
   return (
     <>
@@ -89,10 +89,10 @@ export default function BaseLayout(props: {
         />
       </div>
       <div className="grid grid-cols-4 -mt-2">
-        <ArtefactSelector
-          active={props.artefact}
-          onChange={props.setArtefact}
-          artefacts={props.artefacts}
+        <ArtifactSelector
+          active={props.artifact}
+          onChange={props.setArtifact}
+          artifacts={props.artifacts}
         />
 
         <div

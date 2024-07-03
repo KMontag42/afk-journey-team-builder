@@ -1,10 +1,10 @@
-export type Artefact = {
+export type Artifact = {
   value: string;
   label: string;
   category: "permanent" | "seasonal";
   imageUrl: string;
 };
 
-export type AllArtefacts = {
-  [key: string]: Artefact;
+export type AllArtifacts = {
+  [key: string]: Artifact;
 };
