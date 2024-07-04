@@ -17,6 +17,7 @@ export enum CharacterClass {
 }
 
 export type Character = {
+  id: string;
   name: string;
   class: CharacterClass;
   faction: Faction;
@@ -25,3 +26,7 @@ export type Character = {
   charms: Array<string>;
   hide?: boolean;
 };
+
+// not a huge fan of this, but it is simple and easy
+export const PhraestoId = "33";
+export const PhraestoCloneId = "34";
