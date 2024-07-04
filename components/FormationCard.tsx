@@ -1,6 +1,14 @@
 "use client";
 
+import { useCallback, useState } from 'react';
+import Link from "next/link";
+import { Share, Trash, Heart } from "lucide-react";
+import { toast } from "sonner";
+import { useUser } from "@clerk/nextjs";
+
 import { layouts } from "@/lib/layouts";
+import { cn } from "@/lib/utils";
+
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import {
   Card,
@@ -9,7 +17,6 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import Link from "next/link";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -21,11 +28,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Share, Trash, Heart } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
-import { useUser } from "@clerk/nextjs";
 
 type FormationData = {
   id: string;
@@ -43,6 +46,7 @@ type FormationCardProps = {
   className?: string;
   hideUser?: boolean;
   showDelete?: boolean;
+  currentUserLiked?: boolean;
 };
 
 export default function FormationCard({
@@ -51,9 +55,11 @@ export default function FormationCard({
   className,
   showDelete,
   cmsData,
+  currentUserLiked
 }: FormationCardProps) {
   const { id, formation, artifact, layout, user_id, user_image, name } = data;
   const { isSignedIn, user: currentUser } = useUser();
+  const [ liked, setLiked ] = useState(!!currentUserLiked);
 
   const LayoutComponent = layouts[layout as keyof typeof layouts].Component;
 
@@ -63,29 +69,32 @@ export default function FormationCard({
     .split(",")
     .map((x) => cmsData.characters[x]);
 
-  // TODO: make this either #000 or #fff based on if the user has liked the formation
-  const heartFill = "#fff";
+  const heartFill = liked ? "#000" : "#fff";
 
-  function onHeartClick() {
+  const onHeartClick = useCallback(() => {
     if (!currentUser) {
       toast.error("You must be logged in to vote on formations");
       return;
     }
+    const method = liked ? "DELETE" : "POST";
+    const message = liked ? "unlike" : "like";
+
     fetch("/api/votes", {
-      method: "POST",
+      method,
       body: JSON.stringify({ formation_id: id, user_id: currentUser.id }),
     })
       .then((res) => {
         if (!res.ok) {
-          toast.error("Failed to like formation");
+          toast.error(`Failed to ${message} formation`);
           return;
         }
-        toast.success("Formation liked!");
+        toast.success(`Formation ${message}d!`);
+        setLiked(!liked);
       })
       .catch((_) => {
-        toast.error("Failed to like formation");
+        toast.error(`Failed to ${message} formation`);
       });
-  }
+  }, [liked, currentUser, id]);
 
   return (
     <Card className={cn("w-full", className)}>
