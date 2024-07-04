@@ -78,7 +78,8 @@ CREATE TABLE
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     formation_id INTEGER,
     user_id VARCHAR(255),
-    UNIQUE(formation_id, user_id) ON CONFLICT IGNORE
+    UNIQUE(formation_id, user_id),
+    FOREIGN KEY(formation_id) REFERENCES formations(id)
   );
 ```
 
