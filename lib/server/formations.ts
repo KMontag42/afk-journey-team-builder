@@ -93,7 +93,7 @@ export async function getFormationsForUserId(
             ON
                 f.id = v.formation_id
             AND
-                v.user_id = (:currentUserId);
+                v.user_id = (:currentUserId)
             WHERE f.user_id = (:userId);
             `,
       args: { userId, currentUserId },
