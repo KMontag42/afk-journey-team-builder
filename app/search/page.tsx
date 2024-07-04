@@ -5,5 +5,5 @@ export default async function SearchPage() {
     await fetch(`https://simplejsoncms.com/api/${process.env.SIMPLEJSONCMS_ID}`)
   ).json();
 
-  return <Search cmsData={cmsData} />;
+  return <div className="container"><Search cmsData={cmsData} /></div>;
 }
