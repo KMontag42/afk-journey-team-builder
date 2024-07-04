@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils";
 import Providers from "@/components/Providers";
 import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/components/ui/sonner";
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(inter.className, "dark")}>
         <Providers>
+          <Navbar />
           {children}
           <Toaster />
         </Providers>
