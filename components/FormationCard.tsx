@@ -24,20 +24,22 @@ import {
 import { Trash } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+type FormationData = {
+  id: string;
+  formation: string;
+  artifact: string;
+  layout: number;
+  name: string;
+  user_id?: string;
+  user_image?: string;
+};
+
 type FormationCardProps = {
-  data: {
-    id: string;
-    formation: string;
-    artifact: string;
-    layout: number;
-    user_id: string;
-    user_image: string;
-    name: string;
-  };
-  hideUser?: boolean;
-  className?: string;
-  showDelete?: boolean;
+  data: FormationData;
   cmsData: any;
+  className?: string;
+  hideUser?: boolean;
+  showDelete?: boolean;
 };
 
 export default function FormationCard({

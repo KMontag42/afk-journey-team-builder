@@ -17,7 +17,16 @@ export default async function MyFormations() {
     args: [userId],
   });
 
-  const data = response.rows;
+  const data = response.rows.map((row) => {
+    return {
+      id: row.id?.toString()!,
+      name: row.name?.toString()!,
+      formation: row.formation?.toString()!,
+      artifact: row.artifact?.toString()!,
+      layout: row.layout?.valueOf()! as number,
+    }
+  });
+
   const cmsData = await (
     await fetch(`https://simplejsoncms.com/api/${process.env.SIMPLEJSONCMS_ID}`)
   ).json();
@@ -27,7 +36,7 @@ export default async function MyFormations() {
       {data.map((formation) => (
         <FormationCard
           key={formation.id?.toString()}
-          data={formation as any}
+          data={formation}
           className="mb-4"
           hideUser
           showDelete
