@@ -1,21 +1,35 @@
 import "server-only";
 
-import { turso } from "@/lib/turso";
-import { auth, clerkClient } from "@clerk/nextjs/server";
-import { Value } from "@libsql/client";
+import { auth } from "@clerk/nextjs/server";
+import { Row } from "@libsql/client";
 
-export type DatabaseFormation = {
-  id: Value;
-  formation: Value;
-  artifact: Value;
-  layout: Value;
-  name: Value;
-  user_id: string;
+import { type ClerkUser, getUser } from "@/lib/users";
+import { turso } from "@/lib/turso";
+
+export type Formation = {
+  id: number;
+  formation: string;
+  artifact: string;
+  layout: number;
+  name: string;
+  user_id?: string;
   user_image: string;
-  currentUserLiked?: Value;
+  currentUserLiked?: number;
 };
 
-export async function getFormation(id: string): Promise<DatabaseFormation | false>{
+export function buildFormationJson(formation: Row, user: ClerkUser): Formation {
+  return {
+    id: parseInt(formation.id?.toString()!),
+    formation: formation.formation?.toString()!,
+    artifact: formation.artifact?.toString()!,
+    layout: parseInt(formation.layout?.toString()!),
+    name: formation.name?.toString()!,
+    currentUserLiked: parseInt(formation.currentUserLiked?.toString()!),
+    ...user
+  };
+}
+
+export async function getFormation(id: string): Promise<Formation | false>{
   const { userId } = auth();
   let formation;
 
@@ -55,23 +69,12 @@ export async function getFormation(id: string): Promise<DatabaseFormation | fals
     return false;
   }
 
-  const user = await clerkClient.users.getUser(formation.user_id?.toString()!);
+  const user = await getUser(formation.user_id?.toString()!);
 
-  formation = {
-    id: formation.id,
-    formation: formation.formation,
-    artifact: formation.artifact,
-    layout: formation.layout,
-    name: formation.name,
-    currentUserLiked: formation.currentUserLiked,
-    user_id: user.username!,
-    user_image: user.imageUrl!,
-  };
-
-  return formation;
+  return buildFormationJson(formation, user);
 }
 
-export async function getFormationsForUserId(userId: string): Promise<DatabaseFormation[]> {
+export async function getFormationsForUserId(userId: string): Promise<Formation[]> {
   const { userId: currentUserId } = auth();
   let formations;
 
@@ -99,20 +102,56 @@ export async function getFormationsForUserId(userId: string): Promise<DatabaseFo
 
   formations = await Promise.all(
     formations.rows.map(async (formation) => {
-      const user = await clerkClient.users.getUser(
+      const user = await getUser(
         formation.user_id?.toString()!,
       );
 
-      return {
-        id: formation.id,
-        formation: formation.formation,
-        artifact: formation.artifact,
-        layout: formation.layout,
-        name: formation.name,
-        currentUserLiked: formation.currentUserLiked,
-        user_id: user.username!,
-        user_image: user.imageUrl!,
-      };
+      return buildFormationJson(formation, user);
+    }),
+  );
+
+  return formations;
+}
+
+export async function searchFormations(query: string): Promise<Formation[]> {
+  // if there is a user, we need to join votes to get the user's votes
+  const { userId } = auth();
+  let queryResponse;
+
+  if (userId) {
+    queryResponse = await turso.execute({
+      sql: `
+        SELECT
+            f.*,
+            v.id AS currentUserLiked
+        FROM
+            formations f
+        LEFT JOIN
+            votes v
+        ON
+            f.id = v.formation_id
+        AND
+            v.user_id = (:userId)
+        WHERE f.name LIKE (:q) OR f.tag LIKE (:q) OR f.formation LIKE (:q);
+      `,
+      args: { q: `%${query}%`, userId },
+    });
+  } else {
+    queryResponse = await turso.execute({
+      sql: "SELECT * FROM formations WHERE name LIKE (:q) OR tag LIKE (:q) OR formation LIKE (:q)",
+      args: { q: `%${query}%` },
+    });
+  }
+
+  if (!queryResponse.rows.length) {
+    return [];
+  }
+
+  const formations = await Promise.all(
+    queryResponse.rows.map(async (formation) => {
+      const user = await getUser(formation.user_id?.toString()!);
+
+      return buildFormationJson(formation, user);
     }),
   );
 
