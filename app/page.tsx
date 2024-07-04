@@ -12,8 +12,12 @@ import { tekImages } from "@/lib/images";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export default async function Home({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
-  if (searchParams.refreshData === '1') {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  if (searchParams.refreshData === "1") {
     revalidatePath("/");
     redirect("/");
   }
