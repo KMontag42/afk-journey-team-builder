@@ -38,6 +38,15 @@ function Links({ pathname }: { pathname: string }) {
     >
       About
     </Link>,
+    <Link
+      href="/user-profile"
+      className={buttonVariants({
+        variant: pathname === "/user-profile" ? "secondary" : "link",
+      })}
+      key="user-profile"
+    >
+      Profile
+    </Link>,
   ];
 }
 
@@ -60,7 +69,10 @@ export default function Navbar() {
         </SignedOut>
         <SignedIn>
           <div className="pt-2">
-            <UserButton />
+            <UserButton
+              userProfileMode="navigation"
+              userProfileUrl="/user-profile"
+            />
           </div>
         </SignedIn>
       </nav>
@@ -69,7 +81,10 @@ export default function Navbar() {
           <SignInButton />
         </SignedOut>
         <SignedIn>
-          <UserButton />
+          <UserButton
+            userProfileMode="navigation"
+            userProfileUrl="/user-profile"
+          />
         </SignedIn>
       </div>
       <Sheet>

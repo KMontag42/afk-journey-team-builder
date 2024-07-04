@@ -11,6 +11,9 @@ importers:
       '@clerk/nextjs':
         specifier: ^5.2.1
         version: 5.2.1(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@clerk/themes':
+        specifier: ^2.1.10
+        version: 2.1.10
       '@radix-ui/react-avatar':
         specifier: ^1.1.0
         version: 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -143,6 +146,14 @@ packages:
         optional: true
       react-dom:
         optional: true
+
+  '@clerk/themes@2.1.10':
+    resolution: {integrity: sha512-1XlXVt+AhkiFJ4CXLSmnL7UFCLRLtHe6HV/2haabKpBuLgmleVYXf6dveTJnc8ZnHadGH91bbOz0le4Dl3wByw==}
+    engines: {node: '>=18.17.0'}
+
+  '@clerk/types@4.6.1':
+    resolution: {integrity: sha512-QFeNKPYDmTJ88l5QYG0SPwbABk42wRMalW3M/wAtr+wnQxBCXyX2XRZe9h4g2rH1VF+wG4Xe56abeeD+xE4iEw==}
+    engines: {node: '>=18.17.0'}
 
   '@clerk/types@4.7.0':
     resolution: {integrity: sha512-Gg4zEZLE7wgByMhgHMU69tkIEwfiFKNSbtRwdtAwrW+Pg0blpVpw7XuN0wHNAYFM2COrrKEUaGt8KWZmmdTFbg==}
@@ -2371,6 +2382,15 @@ snapshots:
     optionalDependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+
+  '@clerk/themes@2.1.10':
+    dependencies:
+      '@clerk/types': 4.6.1
+      tslib: 2.4.1
+
+  '@clerk/types@4.6.1':
+    dependencies:
+      csstype: 3.1.1
 
   '@clerk/types@4.7.0':
     dependencies:
