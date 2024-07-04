@@ -12,9 +12,12 @@ export default async function FormationPage({
   const formation = await getFormation(id);
 
   if (!formation) {
-    return new Response(JSON.stringify({ error: "Not found" }), {
-      status: 404,
-    });
+    return (
+      <div className="container md:w-[40vw] text-center">
+        <h1 className="text-2xl font-bold">Formation not found</h1>
+        <p>Check the URL</p>
+      </div>
+    );
   }
 
   const cmsData = await (
