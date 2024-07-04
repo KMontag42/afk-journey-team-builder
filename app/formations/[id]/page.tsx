@@ -28,7 +28,7 @@ export default async function FormationPage({
 
   const cmsData = await (
     await fetch(
-      `https://simplejsoncms.com/api/${process.env.NEXT_PUBLIC_SIMPLEJSONCMS_ID}`,
+      `https://simplejsoncms.com/api/${process.env.SIMPLEJSONCMS_ID}`,
     )
   ).json();
 
