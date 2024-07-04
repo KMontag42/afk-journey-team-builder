@@ -623,6 +623,15 @@
       "charms": [],
       "tileUrl": "https://i.imgur.com/T1KtSJA.png",
       "imageUrl": "https://i.imgur.com/T1KtSJA.png"
+    },
+    "53": {
+      "id": "53",
+      "name": "Talene",
+      "faction": "Celestial",
+      "class": "Mage",
+      "charms": [],
+      "tileUrl": "https://i.imgur.com/UpkHIr5.png",
+      "imageUrl": "https://i.imgur.com/UpkHIr5.png"
     }
   }
 }
