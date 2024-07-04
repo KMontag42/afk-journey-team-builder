@@ -24,7 +24,6 @@ export default async function FormationPage({
   return (
     <div className="container md:w-[40vw]">
       <FormationCard data={formation as any} cmsData={cmsData} />
-      <p>Stats and voting coming soon :)</p>
     </div>
   );
 }
