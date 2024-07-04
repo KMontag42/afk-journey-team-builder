@@ -22,9 +22,7 @@ export default async function Home({
     redirect("/");
   }
   const jsonData = await (
-    await fetch(
-      `https://simplejsoncms.com/api/${process.env.SIMPLEJSONCMS_ID}`,
-    )
+    await fetch(`https://simplejsoncms.com/api/${process.env.SIMPLEJSONCMS_ID}`)
   ).json();
 
   return (

@@ -19,9 +19,7 @@ export default async function MyFormations() {
 
   const data = response.rows;
   const cmsData = await (
-    await fetch(
-      `https://simplejsoncms.com/api/${process.env.SIMPLEJSONCMS_ID}`,
-    )
+    await fetch(`https://simplejsoncms.com/api/${process.env.SIMPLEJSONCMS_ID}`)
   ).json();
 
   return (

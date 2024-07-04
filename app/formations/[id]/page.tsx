@@ -27,9 +27,7 @@ export default async function FormationPage({
   const user = await clerkClient.users.getUser(formation.user_id?.toString()!);
 
   const cmsData = await (
-    await fetch(
-      `https://simplejsoncms.com/api/${process.env.SIMPLEJSONCMS_ID}`,
-    )
+    await fetch(`https://simplejsoncms.com/api/${process.env.SIMPLEJSONCMS_ID}`)
   ).json();
 
   const data = {
