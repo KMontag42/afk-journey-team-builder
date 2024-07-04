@@ -14,6 +14,7 @@ import {
   SignedOut,
   UserButton,
   ClerkLoaded,
+  useAuth
 } from "@clerk/nextjs";
 import {
   Sheet,
@@ -25,7 +26,9 @@ import { Button } from "@/components/ui/button";
 import { MenuIcon } from "lucide-react";
 
 function Links({ pathname }: { pathname: string }) {
-  return [
+  const { isSignedIn } = useAuth();
+
+  const defaultLinks = [
     <Link
       href="/"
       className={buttonVariants({
@@ -47,6 +50,24 @@ function Links({ pathname }: { pathname: string }) {
       About
     </Link>,
   ];
+
+  if (isSignedIn) {
+    return [
+      <Link
+        href="/formations/mine"
+        className={buttonVariants({
+          variant: pathname === "/formations/mine" ? "secondary" : "link",
+        })}
+        key="formations"
+        prefetch={true}
+      >
+        My Formations
+      </Link>,
+      ...defaultLinks
+    ];
+  }
+
+  return defaultLinks;
 }
 
 export default function Navbar() {
