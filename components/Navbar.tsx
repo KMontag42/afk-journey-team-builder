@@ -8,7 +8,13 @@ import { buttonVariants } from "@/components/ui/button";
 
 import { tekImages } from "@/lib/images";
 
-import { SignInButton, SignedIn, SignedOut, UserButton, ClerkLoaded } from "@clerk/nextjs";
+import {
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+  ClerkLoaded,
+} from "@clerk/nextjs";
 import {
   Sheet,
   SheetTrigger,

@@ -186,7 +186,8 @@ export default function Builder({ data }: { data: any }) {
             formation={formation}
             artifact={artifact}
             layout={layout}
-            user={user} />
+            user={user}
+          />
         )}
         <Button onClick={onShareButtonClick} className="h-8 px-2">
           <Share />

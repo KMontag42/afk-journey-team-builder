@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { layouts } from "@/lib/layouts";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -45,7 +45,7 @@ export default function FormationCard({
   hideUser,
   className,
   showDelete,
-  cmsData
+  cmsData,
 }: FormationCardProps) {
   const { id, formation, artifact, layout, user_id, user_image, name } = data;
 
@@ -53,7 +53,9 @@ export default function FormationCard({
 
   const onCharacterSlotClick = (_: number) => {};
   const setArtifact = (_: string) => {};
-  const formationCharacters = formation.split(",").map(x => cmsData.characters[x])
+  const formationCharacters = formation
+    .split(",")
+    .map((x) => cmsData.characters[x]);
 
   return (
     <Card className={cn("w-full", className)}>
