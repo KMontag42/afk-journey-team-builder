@@ -21,7 +21,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Share, Trash } from "lucide-react";
+import { Share, Trash, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -60,6 +60,9 @@ export default function FormationCard({
   const formationCharacters = formation
     .split(",")
     .map((x) => cmsData.characters[x]);
+
+  // TODO: make this either #000 or #fff based on if the user has liked the formation
+  const heartFill = "#fff";
 
   return (
     <Card className={cn("w-full", className)}>
@@ -119,16 +122,21 @@ export default function FormationCard({
             </AlertDialogContent>
           </AlertDialog>
         )}
-        <Button
-          onClick={() => {
-            navigator.clipboard.writeText(
-              `${window.location.origin}/formations/${id}`,
-            );
-            toast.success("Link copied to clipboard!");
-          }}
-        >
-          <Share />
-        </Button>
+        <div className="flex gap-x-2">
+          <Button
+            onClick={() => {
+              navigator.clipboard.writeText(
+                `${window.location.origin}/formations/${id}`,
+              );
+              toast.success("Link copied to clipboard!");
+            }}
+          >
+            <Share />
+          </Button>
+          <Button>
+            <Heart fill={heartFill} />
+          </Button>
+        </div>
       </CardFooter>
     </Card>
   );
