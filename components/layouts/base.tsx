@@ -1,15 +1,17 @@
 import CharacterSlot from "@/components/CharacterSlot";
-import ArtefactSelector from "@/components/ArtefactSelector";
+import ArtifactSelector from "@/components/ArtifactSelector";
 import Image from "next/image";
 import { tekImages } from "@/lib/images";
 import { Character } from "@/lib/characters";
+import { type AllArtifacts } from "@/lib/artifacts";
 
 export default function BaseLayout(props: {
   onCharacterSlotClick: (index: number) => void;
-  spell: string;
-  setSpell: (spell: string) => void;
-  formation: string[];
+  artifact: string;
+  setArtifact: (artifact: string) => void;
+  formation: Character[];
   selectedCharacter: Character | null;
+  artifacts: AllArtifacts;
 }) {
   return (
     <>
@@ -87,10 +89,21 @@ export default function BaseLayout(props: {
         />
       </div>
       <div className="grid grid-cols-4 -mt-2">
-        <ArtefactSelector active={props.spell} onChange={props.setSpell} />
-        
-        <div className="h-16 w-16 grid grid-cols-1 place-items-center opacity-30" id="watermark-logo">
-          <Image src={tekImages["logo"]} alt="Empty Slot" className="w-1/2 -ml-1" />
+        <ArtifactSelector
+          active={props.artifact}
+          onChange={props.setArtifact}
+          artifacts={props.artifacts}
+        />
+
+        <div
+          className="h-16 w-16 grid grid-cols-1 place-items-center opacity-30"
+          id="watermark-logo"
+        >
+          <Image
+            src={tekImages["logo"]}
+            alt="Empty Slot"
+            className="w-1/2 -ml-1"
+          />
         </div>
         <CharacterSlot
           index={1}
