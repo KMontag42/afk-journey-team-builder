@@ -8,7 +8,7 @@ import { buttonVariants } from "@/components/ui/button";
 
 import { tekImages } from "@/lib/images";
 
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignInButton, SignedIn, SignedOut, UserButton, ClerkLoaded } from "@clerk/nextjs";
 import {
   Sheet,
   SheetTrigger,
@@ -26,6 +26,7 @@ function Links({ pathname }: { pathname: string }) {
         variant: pathname === "/" ? "secondary" : "link",
       })}
       key="builder"
+      prefetch={true}
     >
       Builder
     </Link>,
@@ -35,6 +36,7 @@ function Links({ pathname }: { pathname: string }) {
         variant: pathname === "/about" ? "secondary" : "link",
       })}
       key="about"
+      prefetch={true}
     >
       About
     </Link>,
@@ -46,7 +48,7 @@ export default function Navbar() {
 
   return (
     <header className="flex h-[7vh] w-full items-center justify-between px-4 md:px-6 border sticky top-0 bg-slate-900 z-40">
-      <Link href="/" prefetch={false}>
+      <Link href="/" prefetch={true}>
         <Image
           src={tekImages["tekLogo"]}
           alt="AFK Analytica"
@@ -54,13 +56,15 @@ export default function Navbar() {
         />
       </Link>
       <nav className="hidden items-center gap-6 md:flex">
-        {Links({ pathname })}
-        <SignedOut>
-          <SignInButton />
-        </SignedOut>
-        <SignedIn>
-          <UserButton showName={true} />
-        </SignedIn>
+        <ClerkLoaded>
+          {Links({ pathname })}
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton showName={true} />
+          </SignedIn>
+        </ClerkLoaded>
       </nav>
       <div className="md:hidden">
         <SignedOut>
@@ -70,23 +74,25 @@ export default function Navbar() {
           <UserButton showName={true} />
         </SignedIn>
       </div>
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="md:hidden">
-            <MenuIcon className="h-6 w-6" />
-            <span className="sr-only">Toggle navigation menu</span>
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="right">
-          <div className="grid gap-4 p-4">
-            {Links({ pathname }).map((link, i) => (
-              <SheetClose key={i} asChild>
-                {link}
-              </SheetClose>
-            ))}
-          </div>
-        </SheetContent>
-      </Sheet>
+      <ClerkLoaded>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="icon" className="md:hidden">
+              <MenuIcon className="h-6 w-6" />
+              <span className="sr-only">Toggle navigation menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right">
+            <div className="grid gap-4 p-4">
+              {Links({ pathname }).map((link, i) => (
+                <SheetClose key={i} asChild>
+                  {link}
+                </SheetClose>
+              ))}
+            </div>
+          </SheetContent>
+        </Sheet>
+      </ClerkLoaded>
     </header>
   );
 }
