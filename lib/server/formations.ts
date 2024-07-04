@@ -2,8 +2,20 @@ import "server-only";
 
 import { turso } from "@/lib/turso";
 import { auth, clerkClient } from "@clerk/nextjs/server";
+import { Value } from "@libsql/client";
 
-export async function getFormation(id: string) {
+export type DatabaseFormation = {
+  id: Value;
+  formation: Value;
+  artifact: Value;
+  layout: Value;
+  name: Value;
+  user_id: string;
+  user_image: string;
+  currentUserLiked?: Value;
+};
+
+export async function getFormation(id: string): Promise<DatabaseFormation | false>{
   const { userId } = auth();
   let formation;
 
@@ -11,7 +23,12 @@ export async function getFormation(id: string) {
     formation = await turso.execute({
       sql: `
         SELECT
-            f.*,
+            f.id,
+            f.formation,
+            f.artifact,
+            f.layout,
+            f.name,
+            f.user_id,
             v.id AS currentUserLiked
         FROM
             formations f
@@ -41,15 +58,20 @@ export async function getFormation(id: string) {
   const user = await clerkClient.users.getUser(formation.user_id?.toString()!);
 
   formation = {
-    ...formation,
-    user_id: user.username,
-    user_image: user.imageUrl,
+    id: formation.id,
+    formation: formation.formation,
+    artifact: formation.artifact,
+    layout: formation.layout,
+    name: formation.name,
+    currentUserLiked: formation.currentUserLiked,
+    user_id: user.username!,
+    user_image: user.imageUrl!,
   };
 
   return formation;
 }
 
-export async function getFormationsForUserId(userId: string) {
+export async function getFormationsForUserId(userId: string): Promise<DatabaseFormation[]> {
   const { userId: currentUserId } = auth();
   let formations;
 
@@ -66,9 +88,10 @@ export async function getFormationsForUserId(userId: string) {
             ON
                 f.id = v.formation_id
             AND
-                v.user_id = (:userId);
+                v.user_id = (:currentUserId);
+            WHERE f.user_id = (:userId);
             `,
-      args: { userId: currentUserId },
+      args: { userId, currentUserId },
     });
   } else {
     formations = await turso.execute("SELECT * FROM formations");
@@ -81,9 +104,14 @@ export async function getFormationsForUserId(userId: string) {
       );
 
       return {
-        ...formation,
-        user_id: user.username,
-        user_image: user.imageUrl,
+        id: formation.id,
+        formation: formation.formation,
+        artifact: formation.artifact,
+        layout: formation.layout,
+        name: formation.name,
+        currentUserLiked: formation.currentUserLiked,
+        user_id: user.username!,
+        user_image: user.imageUrl!,
       };
     }),
   );
