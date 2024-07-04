@@ -122,17 +122,6 @@ export default function Builder({ data }: { data: any }) {
     });
   }, [formationRef, formation, layout, artifact]);
 
-  const onShareButtonClick = useCallback(() => {
-    navigator.clipboard.writeText(window.location.href);
-    toast("Formation link copied to clipboard");
-    track("formation_shared", {
-      formation: formation.join(","),
-      artifact,
-      layout,
-      url: window.location.href,
-    });
-  }, [formation, artifact, layout]);
-
   function onCharacterClick(character: Character) {
     setSelectedCharacter(character);
   }
@@ -189,9 +178,6 @@ export default function Builder({ data }: { data: any }) {
             user={user}
           />
         )}
-        <Button onClick={onShareButtonClick} className="h-8 px-2">
-          <Share />
-        </Button>
         <Button onClick={onDownloadButtonClick} className="h-8 px-2">
           <Download />
         </Button>

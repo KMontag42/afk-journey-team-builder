@@ -19,6 +19,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { track } from "@vercel/analytics";
+import { useRouter } from "next/navigation";
 
 type SaveButtonProps = {
   formation: string[];
@@ -34,6 +35,7 @@ export default function SaveButton({
   user,
 }: SaveButtonProps) {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   const handleSave = async (e: FormEvent) => {
     e.preventDefault();
@@ -54,7 +56,7 @@ export default function SaveButton({
     setOpen(false);
 
     try {
-      await fetch("/api/formations", {
+      const response = await (await fetch("/api/formations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -66,7 +68,7 @@ export default function SaveButton({
           user_id: user.id,
           name: name.value,
         }),
-      });
+      })).json();
 
       toast.success("Formation saved!");
       track("formation_saved", {
@@ -76,10 +78,11 @@ export default function SaveButton({
         user_id: user.id,
         name: name.value,
       });
+      router.push(`/formations/${response.id}`);
     } catch (error: any) {
       toast.error("Failed to save formation!");
       track("formation_save_error", {
-        error,
+        error: JSON.stringify(error),
       });
     }
   };
