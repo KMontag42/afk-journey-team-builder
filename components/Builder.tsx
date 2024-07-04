@@ -75,7 +75,7 @@ export default function Builder({ data }: { data: any }) {
           character.class === characterFilter.class)
       );
     })
-    .sort();
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   const changeLayout = (newLayoutId: number) => {
     const existingLayoutTiles = layouts[layout].numTiles;
