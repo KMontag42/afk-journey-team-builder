@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from "react";
 import Link from "next/link";
 import { Share, Trash, Heart } from "lucide-react";
 import { toast } from "sonner";
@@ -36,6 +36,7 @@ type FormationData = {
   artifact: string;
   layout: number;
   name: string;
+  currentUserLiked?: boolean;
   user_id?: string;
   user_image?: string;
 };
@@ -46,7 +47,6 @@ type FormationCardProps = {
   className?: string;
   hideUser?: boolean;
   showDelete?: boolean;
-  currentUserLiked?: boolean;
 };
 
 export default function FormationCard({
@@ -55,11 +55,10 @@ export default function FormationCard({
   className,
   showDelete,
   cmsData,
-  currentUserLiked
 }: FormationCardProps) {
   const { id, formation, artifact, layout, user_id, user_image, name } = data;
-  const { isSignedIn, user: currentUser } = useUser();
-  const [ liked, setLiked ] = useState(!!currentUserLiked);
+  const { isSignedIn } = useUser();
+  const [liked, setLiked] = useState(!!data.currentUserLiked);
 
   const LayoutComponent = layouts[layout as keyof typeof layouts].Component;
 
@@ -72,7 +71,7 @@ export default function FormationCard({
   const heartFill = liked ? "#000" : "#fff";
 
   const onHeartClick = useCallback(() => {
-    if (!currentUser) {
+    if (!isSignedIn) {
       toast.error("You must be logged in to vote on formations");
       return;
     }
@@ -81,7 +80,7 @@ export default function FormationCard({
 
     fetch("/api/votes", {
       method,
-      body: JSON.stringify({ formation_id: id, user_id: currentUser.id }),
+      body: JSON.stringify({ formation_id: id }),
     })
       .then((res) => {
         if (!res.ok) {
@@ -94,7 +93,7 @@ export default function FormationCard({
       .catch((_) => {
         toast.error(`Failed to ${message} formation`);
       });
-  }, [liked, currentUser, id]);
+  }, [liked, id, isSignedIn]);
 
   return (
     <Card className={cn("w-full", className)}>

@@ -1,19 +1,44 @@
 import { NextRequest } from "next/server";
 import { turso } from "@/lib/turso";
 import { getUser } from "@/lib/users";
+import { auth } from "@clerk/nextjs/server";
 
 async function searchFormations(query: string) {
-  const formation = await turso.execute({
-    sql: "SELECT * FROM formations WHERE name LIKE (:q) OR tag LIKE (:q) OR formation LIKE (:q)",
-    args: { q: `%${query}%` },
-  });
+  // if there is a user, we need to join votes to get the user's votes
+  const { userId } = auth();
+  let queryResponse;
 
-  if (!formation.rows.length) {
+  if (userId) {
+    queryResponse = await turso.execute({
+      sql: `
+        SELECT
+            f.*,
+            v.id AS currentUserLiked
+        FROM
+            formations f
+        LEFT JOIN
+            votes v
+        ON
+            f.id = v.formation_id
+        AND
+            v.user_id = (:userId)
+        WHERE f.name LIKE (:q) OR f.tag LIKE (:q) OR f.formation LIKE (:q);
+      `,
+      args: { q: `%${query}%`, userId },
+    });
+  } else {
+    queryResponse = await turso.execute({
+      sql: "SELECT * FROM formations WHERE name LIKE (:q) OR tag LIKE (:q) OR formation LIKE (:q)",
+      args: { q: `%${query}%` },
+    });
+  }
+
+  if (!queryResponse.rows.length) {
     return [];
   }
 
   const formations = await Promise.all(
-    formation.rows.map(async (formation) => {
+    queryResponse.rows.map(async (formation) => {
       const user = await getUser(formation.user_id?.toString()!);
 
       return {

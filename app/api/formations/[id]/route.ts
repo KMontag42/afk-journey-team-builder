@@ -1,20 +1,17 @@
+import { getFormation } from "@/lib/server/formations";
 import { turso } from "@/lib/turso";
 
 export async function GET(_: Request, { params }: { params: { id: string } }) {
   const { id } = params;
+  const formation = await getFormation(id);
 
-  const formation = await turso.execute({
-    sql: "SELECT * FROM formations WHERE id = ?",
-    args: [id],
-  });
-
-  if (!formation.rows.length) {
+  if (!formation) {
     return new Response(JSON.stringify({ error: "Not found" }), {
       status: 404,
     });
   }
 
-  return new Response(JSON.stringify({ ...formation.rows[0] }), {
+  return new Response(JSON.stringify({ ...formation }), {
     status: 200,
   });
 }
