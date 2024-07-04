@@ -125,23 +125,62 @@ export async function searchFormations(query: string): Promise<Formation[]> {
     queryResponse = await turso.execute({
       sql: `
         SELECT
-            f.*,
-            v.id AS currentUserLiked
+            f.id,
+            f.formation,
+            f.artifact,
+            f.layout,
+            f.user_id,
+            f.name,
+            COUNT(v.id) AS vote_count,
+            CASE
+                WHEN v2.id IS NOT NULL THEN 1
+                ELSE 0
+            END AS currentUserLiked
         FROM
             formations f
         LEFT JOIN
             votes v
         ON
             f.id = v.formation_id
+        LEFT JOIN
+            votes v2
+        ON
+            f.id = v2.formation_id
         AND
-            v.user_id = (:userId)
-        WHERE f.name LIKE (:q) OR f.tag LIKE (:q) OR f.formation LIKE (:q);
+            v2.user_id = (:userId)
+        WHERE
+            f.name LIKE (:q) OR f.tag LIKE (:q) OR f.formation LIKE (:q)
+        GROUP BY
+            f.id
+        ORDER BY
+            vote_count DESC;
       `,
       args: { q: `%${query}%`, userId },
     });
   } else {
     queryResponse = await turso.execute({
-      sql: "SELECT * FROM formations WHERE name LIKE (:q) OR tag LIKE (:q) OR formation LIKE (:q)",
+      sql: `
+        SELECT
+            f.id,
+            f.formation,
+            f.artifact,
+            f.layout,
+            f.user_id,
+            f.name,
+            COUNT(v.id) AS vote_count
+        FROM
+            formations f
+        LEFT JOIN
+            votes v
+        ON
+            f.id = v.formation_id
+        WHERE
+            f.name LIKE (:q) OR f.tag LIKE (:q) OR f.formation LIKE (:q)
+        GROUP BY
+            f.id
+        ORDER BY
+            vote_count DESC;
+      `,
       args: { q: `%${query}%` },
     });
   }
