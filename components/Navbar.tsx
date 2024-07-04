@@ -14,7 +14,7 @@ import {
   SignedOut,
   UserButton,
   ClerkLoaded,
-  useAuth
+  useAuth,
 } from "@clerk/nextjs";
 import {
   Sheet,
@@ -40,6 +40,16 @@ function Links({ pathname }: { pathname: string }) {
       Builder
     </Link>,
     <Link
+      href="/search"
+      className={buttonVariants({
+        variant: pathname === "/search" ? "secondary" : "link",
+      })}
+      key="search"
+      prefetch={true}
+    >
+      Search
+    </Link>,
+    <Link
       href="/about"
       className={buttonVariants({
         variant: pathname === "/about" ? "secondary" : "link",
@@ -53,6 +63,7 @@ function Links({ pathname }: { pathname: string }) {
 
   if (isSignedIn) {
     return [
+      ...defaultLinks,
       <Link
         href="/formations/mine"
         className={buttonVariants({
@@ -63,7 +74,6 @@ function Links({ pathname }: { pathname: string }) {
       >
         My Formations
       </Link>,
-      ...defaultLinks
     ];
   }
 
