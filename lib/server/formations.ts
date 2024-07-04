@@ -25,11 +25,11 @@ export function buildFormationJson(formation: Row, user: ClerkUser): Formation {
     layout: parseInt(formation.layout?.toString()!),
     name: formation.name?.toString()!,
     currentUserLiked: parseInt(formation.currentUserLiked?.toString()!),
-    ...user
+    ...user,
   };
 }
 
-export async function getFormation(id: string): Promise<Formation | false>{
+export async function getFormation(id: string): Promise<Formation | false> {
   const { userId } = auth();
   let formation;
 
@@ -74,7 +74,9 @@ export async function getFormation(id: string): Promise<Formation | false>{
   return buildFormationJson(formation, user);
 }
 
-export async function getFormationsForUserId(userId: string): Promise<Formation[]> {
+export async function getFormationsForUserId(
+  userId: string,
+): Promise<Formation[]> {
   const { userId: currentUserId } = auth();
   let formations;
 
@@ -97,14 +99,15 @@ export async function getFormationsForUserId(userId: string): Promise<Formation[
       args: { userId, currentUserId },
     });
   } else {
-    formations = await turso.execute("SELECT * FROM formations");
+    formations = await turso.execute({
+      sql: "SELECT * FROM formations WHERE user_id = (:userId)",
+      args: { userId },
+    });
   }
 
   formations = await Promise.all(
     formations.rows.map(async (formation) => {
-      const user = await getUser(
-        formation.user_id?.toString()!,
-      );
+      const user = await getUser(formation.user_id?.toString()!);
 
       return buildFormationJson(formation, user);
     }),
