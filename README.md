@@ -71,7 +71,15 @@ CREATE TABLE
     layout INTEGER,
     user_id VARCHAR(255),
     name VARCHAR(255)
-  )
+  );
+
+CREATE TABLE
+  votes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    formation_id INTEGER,
+    user_id VARCHAR(255),
+    UNIQUE(formation_id, user_id) ON CONFLICT IGNORE
+  );
 ```
 
 #### setting up your clerk instance

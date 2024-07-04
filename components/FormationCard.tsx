@@ -25,6 +25,7 @@ import { Share, Trash, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { useUser } from "@clerk/nextjs";
 
 type FormationData = {
   id: string;
@@ -52,6 +53,7 @@ export default function FormationCard({
   cmsData,
 }: FormationCardProps) {
   const { id, formation, artifact, layout, user_id, user_image, name } = data;
+  const { isSignedIn, user: currentUser } = useUser();
 
   const LayoutComponent = layouts[layout as keyof typeof layouts].Component;
 
@@ -63,6 +65,27 @@ export default function FormationCard({
 
   // TODO: make this either #000 or #fff based on if the user has liked the formation
   const heartFill = "#fff";
+
+  function onHeartClick() {
+    if (!currentUser) {
+      toast.error("You must be logged in to vote on formations");
+      return;
+    }
+    fetch("/api/votes", {
+      method: "POST",
+      body: JSON.stringify({ formation_id: id, user_id: currentUser.id }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          toast.error("Failed to like formation");
+          return;
+        }
+        toast.success("Formation liked!");
+      })
+      .catch((_) => {
+        toast.error("Failed to like formation");
+      });
+  }
 
   return (
     <Card className={cn("w-full", className)}>
@@ -133,9 +156,11 @@ export default function FormationCard({
           >
             <Share />
           </Button>
-          <Button>
-            <Heart fill={heartFill} />
-          </Button>
+          {isSignedIn && (
+            <Button onClick={onHeartClick}>
+              <Heart fill={heartFill} />
+            </Button>
+          )}
         </div>
       </CardFooter>
     </Card>
