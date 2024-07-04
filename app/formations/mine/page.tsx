@@ -24,7 +24,7 @@ export default async function MyFormations() {
       formation: row.formation?.toString()!,
       artifact: row.artifact?.toString()!,
       layout: row.layout?.valueOf()! as number,
-    }
+    };
   });
 
   const cmsData = await (

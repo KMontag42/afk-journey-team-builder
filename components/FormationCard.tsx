@@ -119,10 +119,14 @@ export default function FormationCard({
             </AlertDialogContent>
           </AlertDialog>
         )}
-        <Button onClick={() => {
-          navigator.clipboard.writeText(`${window.location.origin}/formations/${id}`);
-          toast.success("Link copied to clipboard!");
-        }}>
+        <Button
+          onClick={() => {
+            navigator.clipboard.writeText(
+              `${window.location.origin}/formations/${id}`,
+            );
+            toast.success("Link copied to clipboard!");
+          }}
+        >
           <Share />
         </Button>
       </CardFooter>

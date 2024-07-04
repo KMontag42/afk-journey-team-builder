@@ -56,19 +56,21 @@ export default function SaveButton({
     setOpen(false);
 
     try {
-      const response = await (await fetch("/api/formations", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          formation,
-          artifact,
-          layout: layout.toString(),
-          user_id: user.id,
-          name: name.value,
-        }),
-      })).json();
+      const response = await (
+        await fetch("/api/formations", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            formation,
+            artifact,
+            layout: layout.toString(),
+            user_id: user.id,
+            name: name.value,
+          }),
+        })
+      ).json();
 
       toast.success("Formation saved!");
       track("formation_saved", {

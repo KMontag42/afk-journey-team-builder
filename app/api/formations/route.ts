@@ -14,5 +14,7 @@ export async function POST(request: Request) {
     args: [user_id],
   });
 
-  return new Response(JSON.stringify({ success: "yes", id: row.rows[0].id }), { status: 201 });
+  return new Response(JSON.stringify({ success: "yes", id: row.rows[0].id }), {
+    status: 201,
+  });
 }
