@@ -15,11 +15,11 @@ export const layouts: {
 };
 
 export const layoutHeights: { [key: number]: number } = {
-  0: 24,
-  1: 24,
-  2: 32,
-  3: 32,
-  4: 32,
+  0: 22,
+  1: 22,
+  2: 29,
+  3: 29,
+  4: 29,
 };
 
 export const layoutExportWidths: { [key: number]: number } = {

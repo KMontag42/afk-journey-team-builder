@@ -26,7 +26,9 @@ export default function RootLayout({
       <body className={cn(inter.className, "dark")}>
         <Providers>
           <Navbar />
+          <main className="h-[93vh]">
           {children}
+          </main>
           <Toaster />
         </Providers>
         <Analytics />
