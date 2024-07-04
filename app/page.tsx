@@ -9,8 +9,14 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { tekImages } from "@/lib/images";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
-export default async function Home() {
+export default async function Home({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+  if (searchParams.refreshData === '1') {
+    revalidatePath("/");
+    redirect("/");
+  }
   const jsonData = await (
     await fetch(
       `https://simplejsoncms.com/api/${process.env.NEXT_PUBLIC_SIMPLEJSONCMS_ID}`,
