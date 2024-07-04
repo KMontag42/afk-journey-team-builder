@@ -21,8 +21,10 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Trash } from "lucide-react";
+import { Share, Trash } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 type FormationData = {
   id: string;
@@ -78,7 +80,7 @@ export default function FormationCard({
           </div>
         </Link>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="justify-between">
         {!hideUser && (
           <div className="flex items-center gap-2">
             <Avatar>
@@ -117,6 +119,12 @@ export default function FormationCard({
             </AlertDialogContent>
           </AlertDialog>
         )}
+        <Button onClick={() => {
+          navigator.clipboard.writeText(`${window.location.origin}/formations/${id}`);
+          toast.success("Link copied to clipboard!");
+        }}>
+          <Share />
+        </Button>
       </CardFooter>
     </Card>
   );
