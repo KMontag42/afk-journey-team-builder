@@ -28,7 +28,7 @@ export default async function Home({
   ).json();
 
   return (
-    <div className="flex flex-col items-center pt-4">
+    <div className="flex flex-col items-center">
       <Popover>
         <PopoverTrigger>
           <p className="text-xl underline absolute top-20 end-6 sm:end-48 md:end-1/4">

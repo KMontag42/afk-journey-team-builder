@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default async function AboutPage() {
   return (
-    <main className="container md:text-center pt-4">
+    <div className="container md:text-center">
       <p className="text-lg mb-2 text-center">
         Made with &hearts; by{" "}
         <Link
@@ -24,6 +24,6 @@ export default async function AboutPage() {
         Discord thread
       </Link>
       </p>
-    </main>
+    </div>
   );
 }
