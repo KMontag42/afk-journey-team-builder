@@ -58,7 +58,7 @@ export default function Builder({ data }: { data: any }) {
   });
 
   const charactersNotInFormation = Object.values(Characters).filter(
-    (character) => !formation.includes(character.name),
+    (character) => !formation.includes(character.id),
   );
   const charactersInFormation = formation.map((x) => {
     if (x === "" || x === undefined) {
