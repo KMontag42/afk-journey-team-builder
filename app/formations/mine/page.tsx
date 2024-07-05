@@ -4,6 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 
 import FormationCard from "@/components/FormationCard";
 import { getFormationsForUserId } from "@/lib/server/formations";
+import { getCmsData } from "@/lib/server/cms-data";
 
 export default async function MyFormations() {
   const { userId } = auth();
@@ -15,9 +16,7 @@ export default async function MyFormations() {
 
   const data = await getFormationsForUserId(userId);
 
-  const cmsData = await (
-    await fetch(`https://simplejsoncms.com/api/${process.env.SIMPLEJSONCMS_ID}`)
-  ).json();
+  const cmsData = await getCmsData();
 
   return (
     <div className="container md:w-[40vw]">

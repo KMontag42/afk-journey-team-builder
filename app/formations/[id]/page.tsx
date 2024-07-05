@@ -1,6 +1,7 @@
 "use server";
 
 import FormationCard from "@/components/FormationCard";
+import { getCmsData } from "@/lib/server/cms-data";
 import { getFormation } from "@/lib/server/formations";
 
 export default async function FormationPage({
@@ -20,9 +21,7 @@ export default async function FormationPage({
     );
   }
 
-  const cmsData = await (
-    await fetch(`https://simplejsoncms.com/api/${process.env.SIMPLEJSONCMS_ID}`)
-  ).json();
+  const cmsData = await getCmsData();
 
   return (
     <div className="container md:w-[40vw]">

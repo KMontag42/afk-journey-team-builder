@@ -1,16 +1,14 @@
 "use server";
 
 import Builder from "@/components/Builder";
-import Link from "next/link";
-import Image from "next/image";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { tekImages } from "@/lib/images";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { getCmsData } from "@/lib/server/cms-data";
 
 export default async function Home({
   searchParams,
@@ -21,9 +19,7 @@ export default async function Home({
     revalidatePath("/");
     redirect("/");
   }
-  const jsonData = await (
-    await fetch(`https://simplejsoncms.com/api/${process.env.SIMPLEJSONCMS_ID}`)
-  ).json();
+  const jsonData = await getCmsData();
 
   return (
     <div className="flex flex-col items-center">

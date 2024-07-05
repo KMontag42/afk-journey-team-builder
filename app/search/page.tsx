@@ -1,9 +1,8 @@
 import Search from "@/components/Search";
+import { getCmsData } from "@/lib/server/cms-data";
 
 export default async function SearchPage() {
-  const cmsData = await (
-    await fetch(`https://simplejsoncms.com/api/${process.env.SIMPLEJSONCMS_ID}`)
-  ).json();
+  const cmsData = await getCmsData();
 
   return (
     <div className="container">

@@ -51,7 +51,7 @@ pnpm dev
 
 ```bash
 #this one is optional, helpful to override if you are doing development on the data model itself
-SIMPLEJSONCMS_ID=
+CHARACTERS_SIMPLEJSONCMS_ID=
 # get your clerk development keys after signing up
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 CLERK_SECRET_KEY=
