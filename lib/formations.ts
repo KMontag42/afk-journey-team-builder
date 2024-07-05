@@ -37,7 +37,7 @@ export function updateSlotInFormation(
     formationCharacters.length === maxCharacters &&
     characterInSlot !== ""
   ) {
-    formationCopy[slot] = character.name;
+    formationCopy[slot] = character.id;
   }
   return formationCopy;
 }
