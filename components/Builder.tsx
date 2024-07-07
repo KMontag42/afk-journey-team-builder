@@ -7,6 +7,7 @@ import { toPng } from "html-to-image";
 import { track } from "@vercel/analytics";
 import Image from "next/image";
 import { Share, Download } from "lucide-react";
+import { useUser } from "@clerk/nextjs";
 
 import { type Character } from "@/lib/characters";
 import { updateSlotInFormation } from "@/lib/formations";
@@ -30,6 +31,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import BaseLayout from "@/components/layouts/base";
+import SaveButton from "./SaveButton";
 
 export default function Builder({ data }: { data: any }) {
   const Characters: { [key: string]: Character } = data.characters;
@@ -93,6 +95,8 @@ export default function Builder({ data }: { data: any }) {
 
   const formationRef = createRef<HTMLDivElement>();
 
+  const { isSignedIn, user } = useUser();
+
   function updateFormation(slot: number, character: Character) {
     setFormation(updateSlotInFormation(formation, slot, character));
   }
@@ -117,17 +121,6 @@ export default function Builder({ data }: { data: any }) {
       });
     });
   }, [formationRef, formation, layout, artifact]);
-
-  const onShareButtonClick = useCallback(() => {
-    navigator.clipboard.writeText(window.location.href);
-    toast("Formation link copied to clipboard");
-    track("formation_shared", {
-      formation: formation.join(","),
-      artifact,
-      layout,
-      url: window.location.href,
-    });
-  }, [formation, artifact, layout]);
 
   function onCharacterClick(character: Character) {
     setSelectedCharacter(character);
@@ -177,9 +170,14 @@ export default function Builder({ data }: { data: any }) {
       </div>
 
       <div className="flex gap-2 justify-center items-center">
-        <Button onClick={onShareButtonClick} className="h-8 px-2">
-          <Share />
-        </Button>
+        {isSignedIn && (
+          <SaveButton
+            formation={formation}
+            artifact={artifact}
+            layout={layout}
+            user={user}
+          />
+        )}
         <Button onClick={onDownloadButtonClick} className="h-8 px-2">
           <Download />
         </Button>
