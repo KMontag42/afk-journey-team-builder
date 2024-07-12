@@ -29,17 +29,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-
-type FormationData = {
-  id: string;
-  formation: string;
-  artifact: string;
-  layout: number;
-  name: string;
-  currentUserLiked?: boolean;
-  user_id?: string;
-  user_image?: string;
-};
+import { type FormationData } from "@/lib/formations";
 
 type FormationCardProps = {
   data: FormationData;
@@ -56,7 +46,7 @@ export default function FormationCard({
   showDelete,
   cmsData,
 }: FormationCardProps) {
-  const { id, formation, artifact, layout, user_id, user_image, name } = data;
+  const { id, formation, artifact, layout, username, user_image, name } = data;
   const { isSignedIn } = useUser();
   const [liked, setLiked] = useState(!!data.currentUserLiked);
 
@@ -116,13 +106,15 @@ export default function FormationCard({
       </CardContent>
       <CardFooter className="justify-between">
         {!hideUser && (
-          <div className="flex items-center gap-2">
-            <Avatar>
-              <AvatarImage src={user_image} alt={user_id} />
-              <AvatarFallback>{user_id}</AvatarFallback>
-            </Avatar>
-            {user_id}
-          </div>
+          <Link href={`/users/${username}`}>
+            <div className="flex items-center gap-2">
+              <Avatar>
+                <AvatarImage src={user_image} alt={username} />
+                <AvatarFallback>{username}</AvatarFallback>
+              </Avatar>
+              {username}
+            </div>
+          </Link>
         )}
         {showDelete && (
           <AlertDialog>
