@@ -3,7 +3,7 @@ import "server-only";
 import { auth } from "@clerk/nextjs/server";
 import { Row } from "@libsql/client";
 
-import { type ClerkUser, getUser } from "@/lib/users";
+import { type ClerkUser, getUser } from "@/lib/server/users";
 import { turso } from "@/lib/turso";
 import { type FormationData } from "@/lib/formations";
 
@@ -31,13 +31,11 @@ export async function getFormation(id: string): Promise<FormationData | false> {
     formation = await turso.execute({
       sql: `
         SELECT
-            f.id,
-            f.formation,
-            f.artifact,
-            f.layout,
-            f.name,
-            f.user_id,
-            v.id AS currentUserLiked
+            f.*,
+            CASE
+              WHEN v.id IS NOT NULL THEN 1
+              ELSE 0
+            END AS currentUserLiked
         FROM
             formations f
         LEFT JOIN
@@ -79,7 +77,10 @@ export async function getFormationsForUserId(
       sql: `
             SELECT
                 f.*,
-                v.id AS currentUserLiked
+                CASE
+                  WHEN v.id IS NOT NULL THEN 1
+                  ELSE 0
+                END AS currentUserLiked
             FROM
                 formations f
             LEFT JOIN
@@ -121,12 +122,7 @@ export async function searchFormations(
     queryResponse = await turso.execute({
       sql: `
         SELECT
-            f.id,
-            f.formation,
-            f.artifact,
-            f.layout,
-            f.user_id,
-            f.name,
+            f.*,
             COUNT(v.id) AS vote_count,
             CASE
                 WHEN v2.id IS NOT NULL THEN 1
@@ -145,7 +141,7 @@ export async function searchFormations(
         AND
             v2.user_id = (:userId)
         WHERE
-            f.name LIKE (:q) OR f.tag LIKE (:q) OR f.formation LIKE (:q)
+            f.name LIKE (:q) OR f.formation LIKE (:q)
         GROUP BY
             f.id
         ORDER BY
@@ -157,12 +153,7 @@ export async function searchFormations(
     queryResponse = await turso.execute({
       sql: `
         SELECT
-            f.id,
-            f.formation,
-            f.artifact,
-            f.layout,
-            f.user_id,
-            f.name,
+            f.*,
             COUNT(v.id) AS vote_count
         FROM
             formations f
@@ -171,7 +162,7 @@ export async function searchFormations(
         ON
             f.id = v.formation_id
         WHERE
-            f.name LIKE (:q) OR f.tag LIKE (:q) OR f.formation LIKE (:q)
+            f.name LIKE (:q) OR f.formation LIKE (:q)
         GROUP BY
             f.id
         ORDER BY

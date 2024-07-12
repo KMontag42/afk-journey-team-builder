@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { getUserByUsername } from "@/lib/users";
+import { getUserByUsername } from "@/lib/server/users";
 import { getFormationsForUserId } from "@/lib/server/formations";
 import { getCmsData } from "@/lib/server/cms-data";
 import FormationCard from "@/components/FormationCard";

@@ -8,9 +8,9 @@ export type ClerkUser = {
   user_image: string;
 };
 
-function userData(user: any): ClerkUser {
+export function userData(user: any): ClerkUser {
   return {
-    user_id: user.id,
+    user_id: user.id || user.userId,
     username: user.username || user.firstName || undefined,
     user_image: user.imageUrl,
   };
