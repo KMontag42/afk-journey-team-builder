@@ -8,3 +8,12 @@ export async function getCmsData() {
   ).json();
   return jsonData;
 }
+
+export async function getCharacterDetailsCmsData() {
+  const jsonData = await (
+    await fetch(
+      `https://simplejsoncms.com/api/${process.env.CHARACTER_DETAILS_SIMPLEJSONCMS_ID}`,
+    )
+  ).json();
+  return jsonData;
+}

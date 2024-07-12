@@ -27,6 +27,28 @@ export type Character = {
   hide?: boolean;
 };
 
+export type SkillDetail = {
+  name: string;
+  unlock: string;
+  cooldown: string;
+  range: string;
+  description: string;
+  upgrades: string[];
+}
+
+export type CharacterDetail = {
+  id: string;
+  name: string;
+  initialEnergy: number;
+  ultimate: SkillDetail;
+  skill1: SkillDetail;
+  skill2: SkillDetail;
+  heroFocus: SkillDetail;
+  equipmentSkill: SkillDetail;
+  enhanceForce: SkillDetail;
+  songOfStrifeSeasonSkill: SkillDetail;
+}
+
 // not a huge fan of this, but it is simple and easy
 export const PhraestoId = "33";
 export const PhraestoCloneId = "34";
