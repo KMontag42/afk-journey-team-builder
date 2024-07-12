@@ -20,6 +20,7 @@ Brought to you by AFK Analytica.
 
 - [x] Migrate characters and images to CMS
 - [x] Save teams to turso database
+- [ ] Migrate Google Sites guides
 - [ ] Better mobile experience
 - [ ] Supreme Arena layouts
 - [ ] Remaining PvE layouts
