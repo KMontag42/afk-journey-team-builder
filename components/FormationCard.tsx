@@ -106,13 +106,15 @@ export default function FormationCard({
       </CardContent>
       <CardFooter className="justify-between">
         {!hideUser && (
-          <div className="flex items-center gap-2">
-            <Avatar>
-              <AvatarImage src={user_image} alt={username} />
-              <AvatarFallback>{username}</AvatarFallback>
-            </Avatar>
-            {username}
-          </div>
+          <Link href={`/users/${username}`}>
+            <div className="flex items-center gap-2">
+              <Avatar>
+                <AvatarImage src={user_image} alt={username} />
+                <AvatarFallback>{username}</AvatarFallback>
+              </Avatar>
+              {username}
+            </div>
+          </Link>
         )}
         {showDelete && (
           <AlertDialog>
