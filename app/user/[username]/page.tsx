@@ -4,7 +4,11 @@ import { getFormationsForUserId } from "@/lib/server/formations";
 import { getCmsData } from "@/lib/server/cms-data";
 import FormationCard from "@/components/FormationCard";
 
-export default async function UserPage({ params }: { params: { username: string }}) {
+export default async function UserPage({
+  params,
+}: {
+  params: { username: string };
+}) {
   const user = await getUserByUsername(params.username);
 
   if (!user) {
@@ -28,7 +32,12 @@ export default async function UserPage({ params }: { params: { username: string 
       <h2 className="text-xl">Formations</h2>
       <div className="md:w-[40vw] mt-4">
         {formations.map((formation) => (
-          <FormationCard key={formation.id.toString()} data={formation} cmsData={cmsData} hideUser={true} />
+          <FormationCard
+            key={formation.id.toString()}
+            data={formation}
+            cmsData={cmsData}
+            hideUser={true}
+          />
         ))}
       </div>
     </div>

@@ -22,7 +22,10 @@ export async function getUser(id: string) {
 }
 
 export async function getUserByUsername(username: string) {
-  const users = await clerkClient.users.getUserList({ limit: 1, query: username });
+  const users = await clerkClient.users.getUserList({
+    limit: 1,
+    query: username,
+  });
 
   if (users.totalCount === 0) {
     return null;

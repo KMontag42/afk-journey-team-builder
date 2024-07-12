@@ -7,14 +7,18 @@ import { type ClerkUser, getUser } from "@/lib/users";
 import { turso } from "@/lib/turso";
 import { type FormationData } from "@/lib/formations";
 
-export function buildFormationJson(formation: Row, user: ClerkUser): FormationData {
+export function buildFormationJson(
+  formation: Row,
+  user: ClerkUser,
+): FormationData {
   return {
     id: parseInt(formation.id?.toString()!),
     formation: formation.formation?.toString()!,
     artifact: formation.artifact?.toString()!,
     layout: parseInt(formation.layout?.toString()!),
     name: formation.name?.toString()!,
-    currentUserLiked: parseInt(formation.currentUserLiked?.toString()!) === 1 ? true : false,
+    currentUserLiked:
+      parseInt(formation.currentUserLiked?.toString()!) === 1 ? true : false,
     ...user,
   };
 }
@@ -106,7 +110,9 @@ export async function getFormationsForUserId(
   return formations;
 }
 
-export async function searchFormations(query: string): Promise<FormationData[]> {
+export async function searchFormations(
+  query: string,
+): Promise<FormationData[]> {
   // if there is a user, we need to join votes to get the user's votes
   const { userId } = auth();
   let queryResponse;
