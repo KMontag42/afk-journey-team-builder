@@ -32,7 +32,7 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
         alignItems: "center",
         backgroundColor: "#020817", // dark var(--background)
         color: "#f8fafc", // dark var(--foreground)
-        justifyContent: "space-between"
+        justifyContent: "space-between",
       }}
     >
       <h2>{formation.name}</h2>
@@ -68,9 +68,7 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
           </div>
         ))}
       </div>
-      <h3>
-        By: {formation.username}
-      </h3>
+      <h3>By: {formation.username}</h3>
     </div>
   );
 }
@@ -86,15 +84,10 @@ export default async function FormationOpenGraphImage({
   const artifacts = cmsData.artifacts;
 
   if (!formation) {
-    return new ImageResponse(
-      (
-        <h1>Formation not found</h1>
-      ),
-      {
-        width: 200,
-        height: 200,
-      },
-    );
+    return new ImageResponse(<h1>Formation not found</h1>, {
+      width: 200,
+      height: 200,
+    });
   }
 
   const map = cmsData.maps[formation.layout.toString()];
