@@ -26,7 +26,7 @@ export default function RootLayout({
       <body className={cn(inter.className, "dark")}>
         <Providers>
           <Navbar />
-          <main className="flex justify-center h-[93vh] pt-4">{children}</main>
+          <main className="h-[93vh] pt-4">{children}</main>
           <Toaster />
         </Providers>
         <Analytics />

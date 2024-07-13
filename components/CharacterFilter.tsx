@@ -40,17 +40,9 @@ export default function CharacterFilter({
   factions,
 }: Props) {
   const activeFactionFilter =
-    characterFilter.faction !== "All" &&
-    Object.entries(factions).find(
-      ([faction]) =>
-        faction.toLowerCase() === characterFilter.faction.toLowerCase(),
-    );
+    characterFilter.faction !== "All" && factions[characterFilter.faction.toLowerCase()]
   const activeClassFilter =
-    characterFilter.class !== "All" &&
-    Object.entries(classes).find(
-      ([faction]) =>
-        faction.toLowerCase() === characterFilter.class.toLowerCase(),
-    );
+    characterFilter.class !== "All" && classes[characterFilter.class.toLowerCase()];
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -59,7 +51,7 @@ export default function CharacterFilter({
           {activeFactionFilter && (
             <Image
               alt={characterFilter.faction}
-              src={activeFactionFilter[1].imageUrl}
+              src={activeFactionFilter.imageUrl}
               width={24}
               height={24}
             />
@@ -67,7 +59,7 @@ export default function CharacterFilter({
           {activeClassFilter && characterFilter.class !== "All" && (
             <Image
               alt={characterFilter.faction}
-              src={activeClassFilter[1].imageUrl}
+              src={activeClassFilter.imageUrl}
               width={24}
               height={24}
             />

@@ -19,6 +19,7 @@ import {
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import CharacterFilter, {
   CharacterFilterType,
 } from "@/components/CharacterFilter";
@@ -31,7 +32,6 @@ import {
 } from "@/components/ui/select";
 import BaseLayout from "@/components/layouts/base";
 import SaveButton from "./SaveButton";
-import { Input } from "./ui/input";
 
 export default function Builder({ data }: { data: any }) {
   const Characters: { [key: string]: Character } = data.characters;
@@ -192,7 +192,7 @@ export default function Builder({ data }: { data: any }) {
         </div>
         <div className="flex gap-2 justify-end">
           <Input
-            className="w-[min(150px,100%)]"
+            className="w-40"
             hasClearInput
             onChange={(e) =>
               setCharacterFilter((prev) => ({ ...prev, name: e.target.value }))
