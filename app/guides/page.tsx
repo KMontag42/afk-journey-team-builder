@@ -1,36 +1,45 @@
-"use client";
+import remarkDirective from "remark-directive";
+import remarkDirectiveRehype from "remark-directive-rehype";
+import remarkGfm from "remark-gfm";
+import Markdown from "react-markdown";
+import { ReactNode } from "react";
 
-import React, { useRef, useState } from "react";
-import {micromark} from 'micromark'
-import {gfm, gfmHtml} from 'micromark-extension-gfm'
-import {directive, directiveHtml} from 'micromark-extension-directive'
-import remarkDirective from 'remark-directive'
-import remarkGfm from 'remark-gfm'
-import Markdown from 'react-markdown'
-import {Textarea} from "@/components/ui/textarea";
+const TwoColumn = ({ id, children }: { id: string, children: ReactNode}) => {
+  return <div className="flex">{children}</div>;
+}
 
-export default function Guides() {
-  const textareaRef = useRef(null);
-  const [markdown, setMarkdown] = useState("");
+const ColumnContent = ({ id, children }: { id: string, children: ReactNode}) => {
+  return <div className="column">{children}</div>;
+}
 
-  function onTextareaChange() {
-    setMarkdown(textareaRef.current?.value);
-  }
+const markdown = `
+# Markdown Guide
 
-  let micromarkHtml = micromark(markdown, {
-    allowDangerousHtml: true,
-    extensions: [gfm(), directive()],
-    htmlExtensions: [gfmHtml(), directiveHtml()]
-  });
+::::two-column
 
+:::column-content
+## Column 1
+This is the first column
+:::
+
+:::column-content
+## Column 2
+This is the second column
+:::
+
+::::
+`;
+
+export default async function Guides() {
   return (
-    <div className="flex flex-col items-center mx-48">
-      <Textarea ref={textareaRef} onInput={onTextareaChange} placeholder="Add your markdown here" />
-      <div className="MarkdownExample mt-4">
-        <div dangerouslySetInnerHTML={{ __html: micromarkHtml }} />
-      </div>
-      <br/>
-      <Markdown className="MarkdownExample" remarkPlugins={[remarkGfm, remarkDirective]}>{markdown}</Markdown>
+    <div className="mx-48">
+      <Markdown
+        className="MarkdownExample"
+        remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveRehype]}
+        components={{ "column-content": ColumnContent, "two-column": TwoColumn }}
+      >
+        {markdown}
+      </Markdown>
     </div>
   );
 }
