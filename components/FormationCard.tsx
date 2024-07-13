@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link";
 
 import { layouts } from "@/lib/layouts";
@@ -53,7 +55,6 @@ export default function FormationCard({
               artifact={artifact}
               selectedCharacter={null}
               artifacts={cmsData.artifacts}
-              onCharacterSlotClick={undefined}
             />
           </div>
         </Link>
