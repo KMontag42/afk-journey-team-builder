@@ -32,9 +32,10 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
         alignItems: "center",
         backgroundColor: "#020817", // dark var(--background)
         color: "#f8fafc", // dark var(--foreground)
+        justifyContent: "space-between"
       }}
     >
-      <h2 style={{marginTop: '0.5rem'}}>{formation.name}</h2>
+      <h2>{formation.name}</h2>
       <div
         style={{
           display: "flex",
@@ -50,8 +51,8 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
             key={i}
             style={{
               display: "flex",
-              marginRight: `${i % 2 === 0 ? "" : "56px"}`,
-              marginTop: "-16px",
+              marginRight: `${i % 2 === 0 ? "" : "66px"}`,
+              marginTop: "-18px",
               gap: "2px",
             }}
           >
@@ -60,14 +61,14 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
               <img
                 key={j}
                 src={slot}
-                style={{ width: 54, height: 62 }}
+                style={{ width: 64, height: 74 }}
                 alt={slot}
               />
             ))}
           </div>
         ))}
       </div>
-      <h3 style={{ position: "absolute", bottom: "0" }}>
+      <h3>
         By: {formation.username}
       </h3>
     </div>
@@ -90,8 +91,8 @@ export default async function FormationOpenGraphImage({
         <h1>Formation not found</h1>
       ),
       {
-        width: 300,
-        height: 300,
+        width: 200,
+        height: 200,
       },
     );
   }
@@ -109,8 +110,8 @@ export default async function FormationOpenGraphImage({
       />
     ),
     {
-      width: 300,
-      height: 300,
+      width: 1200,
+      height: 600,
     },
   );
 }
