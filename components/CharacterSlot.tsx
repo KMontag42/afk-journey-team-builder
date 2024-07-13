@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import emptySlot from "@/public/emptySlot.png";
 import { slotImages } from "@/lib/images";

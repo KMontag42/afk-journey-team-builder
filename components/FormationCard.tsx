@@ -1,10 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
 import Link from "next/link";
-import { Share, Trash, Heart } from "lucide-react";
-import { toast } from "sonner";
-import { useUser } from "@clerk/nextjs";
 
 import { layouts } from "@/lib/layouts";
 import { cn } from "@/lib/utils";
@@ -17,19 +13,11 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
+
 import { type FormationData } from "@/lib/formations";
+import LikeFormationButton from "@/components/LikeFormationButton";
+import DeleteFormationButton from "@/components/DeleteFormationButton";
+import ShareFormationButton from "@/components/ShareFormationButton";
 
 type FormationCardProps = {
   data: FormationData;
@@ -47,43 +35,12 @@ export default function FormationCard({
   cmsData,
 }: FormationCardProps) {
   const { id, formation, artifact, layout, username, user_image, name } = data;
-  const { isSignedIn } = useUser();
-  const [liked, setLiked] = useState(!!data.currentUserLiked);
 
   const LayoutComponent = layouts[layout as keyof typeof layouts].Component;
 
-  const onCharacterSlotClick = (_: number) => {};
-  const setArtifact = (_: string) => {};
   const formationCharacters = formation
     .split(",")
     .map((x) => cmsData.characters[x]);
-
-  const heartFill = liked ? "#000" : "#fff";
-
-  const onHeartClick = useCallback(() => {
-    if (!isSignedIn) {
-      toast.error("You must be logged in to vote on formations");
-      return;
-    }
-    const method = liked ? "DELETE" : "POST";
-    const message = liked ? "unlike" : "like";
-
-    fetch("/api/votes", {
-      method,
-      body: JSON.stringify({ formation_id: id }),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          toast.error(`Failed to ${message} formation`);
-          return;
-        }
-        toast.success(`Formation ${message}d!`);
-        setLiked(!liked);
-      })
-      .catch((_) => {
-        toast.error(`Failed to ${message} formation`);
-      });
-  }, [liked, id, isSignedIn]);
 
   return (
     <Card className={cn("w-full", className)}>
@@ -97,8 +54,6 @@ export default function FormationCard({
               formation={formationCharacters}
               artifact={artifact}
               selectedCharacter={null}
-              onCharacterSlotClick={onCharacterSlotClick}
-              setArtifact={setArtifact}
               artifacts={cmsData.artifacts}
             />
           </div>
@@ -116,51 +71,13 @@ export default function FormationCard({
             </div>
           </Link>
         )}
-        {showDelete && (
-          <AlertDialog>
-            <AlertDialogTrigger className="text-red-400">
-              <Trash />
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  This action cannot be undone. This will permanently delete
-                  this formation and remove it from our database.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction
-                  onClick={async () => {
-                    await fetch(`/api/formations/${id}`, {
-                      method: "DELETE",
-                    });
-                    window.location.reload();
-                  }}
-                >
-                  Continue
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
-        )}
+        {showDelete && <DeleteFormationButton formationId={id} />}
         <div className="flex gap-x-2">
-          <Button
-            onClick={() => {
-              navigator.clipboard.writeText(
-                `${window.location.origin}/formations/${id}`,
-              );
-              toast.success("Link copied to clipboard!");
-            }}
-          >
-            <Share />
-          </Button>
-          {isSignedIn && (
-            <Button onClick={onHeartClick}>
-              <Heart fill={heartFill} />
-            </Button>
-          )}
+          <ShareFormationButton formationId={id} />
+          <LikeFormationButton
+            formationId={id}
+            liked={!!data.currentUserLiked}
+          />
         </div>
       </CardFooter>
     </Card>
