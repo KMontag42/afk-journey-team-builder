@@ -29,7 +29,7 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
         height: "100%",
         alignItems: "center",
         backgroundColor: "#020817", // dark var(--background)
-        color: "#f8fafc" // dark var(--foreground)
+        color: "#f8fafc", // dark var(--foreground)
       }}
     >
       <h2>{formation.name}</h2>
@@ -41,7 +41,7 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
           justifyContent: "center",
           marginLeft: "36px",
           marginTop: "1.5rem",
-          gap: "2px"
+          gap: "2px",
         }}
       >
         {mapImages.map((row: string[], i: number) => (
@@ -51,16 +51,24 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
               display: "flex",
               marginRight: `${i % 2 === 0 ? "" : "66px"}`,
               marginTop: "-18px",
-              gap: "2px"
+              gap: "2px",
             }}
           >
             {row.map((slot, j) => (
-              <img key={j} src={slot} style={{ width: 64, height: 74 }} />
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={j}
+                src={slot}
+                style={{ width: 64, height: 74 }}
+                alt={slot}
+              />
             ))}
           </div>
         ))}
       </div>
-      <h3 style={{ position: 'absolute', bottom: '0' }}>By: {formation.username}</h3>
+      <h3 style={{ position: "absolute", bottom: "0" }}>
+        By: {formation.username}
+      </h3>
     </div>
   );
 }
@@ -73,7 +81,6 @@ export default async function FormationOpenGraphImage({
   const { id } = params;
   const formation = await getFormation(id);
   const cmsData = await getCmsData();
-  const map = cmsData.maps["default"];
   const artifacts = cmsData.artifacts;
 
   if (!formation) {
@@ -91,6 +98,7 @@ export default async function FormationOpenGraphImage({
     );
   }
 
+  const map = cmsData.maps[formation.layout.toString()];
   const formationArtifact = artifacts[formation.artifact];
 
   return new ImageResponse(
