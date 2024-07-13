@@ -5,7 +5,7 @@ import { X } from "lucide-react";
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   hasClearInput?: boolean;
   onClearClick?(): void;
-  value: string;
+  value?: string;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
