@@ -10,7 +10,7 @@ import Link from "next/link";
 import FormationCard from "@/components/FormationCard";
 
 export default async function MyFormations() {
-  const { userId } = auth();
+  const { userId, sessionClaims } = auth();
 
   if (!userId) {
     auth().redirectToSignIn();
