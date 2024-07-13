@@ -4,11 +4,29 @@ import FormationCard from "@/components/FormationCard";
 import { getCmsData } from "@/lib/server/cms-data";
 import { getFormation } from "@/lib/server/formations";
 
+type Props = {
+  params: { id: string };
+};
+
+export async function generateMetadata({ params }: Props) {
+  const { id } = params;
+  const formation = await getFormation(id);
+
+  if (!formation) {
+    return {
+      title: "Formation not found",
+    };
+  }
+
+  return {
+    title: `ATEK Formation: ${formation.name}`,
+    description: `An AFK Journey formation made by ${formation.username}`
+  }
+}
+
 export default async function FormationPage({
   params,
-}: {
-  params: { id: string };
-}) {
+}: Props) {
   const { id } = params;
   const formation = await getFormation(id);
 

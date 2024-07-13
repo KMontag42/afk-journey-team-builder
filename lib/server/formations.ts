@@ -1,5 +1,6 @@
 import "server-only";
 
+import { cache } from "react";
 import { auth } from "@clerk/nextjs/server";
 import { Row } from "@libsql/client";
 
@@ -23,7 +24,7 @@ export function buildFormationJson(
   };
 }
 
-export async function getFormation(id: string): Promise<FormationData | false> {
+async function _getFormation(id: string): Promise<FormationData | false> {
   const { userId } = auth();
   let formation;
 
@@ -65,6 +66,8 @@ export async function getFormation(id: string): Promise<FormationData | false> {
 
   return buildFormationJson(formation, user);
 }
+
+export const getFormation = cache(_getFormation)
 
 export async function getFormationsForUserId(
   userId: string,
