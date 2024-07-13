@@ -6,8 +6,7 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start",
-    "trunk:fmt": "pnpm exec trunk fmt"
+    "start": "next start"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.2.1",
