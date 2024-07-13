@@ -32,10 +32,9 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
         alignItems: "center",
         backgroundColor: "#020817", // dark var(--background)
         color: "#f8fafc", // dark var(--foreground)
-        justifyContent: "space-between",
+        justifyContent: "center",
       }}
     >
-      <h2>{formation.name}</h2>
       <div
         style={{
           display: "flex",
@@ -51,8 +50,8 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
             key={i}
             style={{
               display: "flex",
-              marginRight: `${i % 2 === 0 ? "" : "96px)"}`,
-              marginTop: "-26px",
+              marginRight: `${i % 2 === 0 ? "" : "130px)"}`,
+              marginTop: "-36px",
               gap: "2px",
             }}
           >
@@ -61,14 +60,33 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
               <img
                 key={j}
                 src={slot}
-                style={{ width: 64 * 1.5, height: 74 * 1.5 }}
+                style={{ width: 64 * 2, height: 74 * 2 }}
                 alt={slot}
               />
             ))}
           </div>
         ))}
       </div>
-      <h3>By: {formation.username}</h3>
+      <div
+        style={{
+          display: "flex",
+          position: "absolute",
+          bottom: "100px",
+          left: "40px",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "8px",
+          fontSize: "24px",
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={formation.user_image}
+          style={{ width: 50, height: 50, borderRadius: "999px" }}
+          alt={formation.username}
+        />
+        {formation.username}
+      </div>
     </div>
   );
 }
