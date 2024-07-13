@@ -72,7 +72,7 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
           display: "flex",
           position: "absolute",
           bottom: "100px",
-          left: "40px",
+          left: "80px",
           justifyContent: "center",
           alignItems: "center",
           gap: "8px",
