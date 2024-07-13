@@ -1,6 +1,6 @@
 import { forwardRef, type InputHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
-import { X } from 'lucide-react';
+import { X } from "lucide-react";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   hasClearInput?: boolean;
@@ -20,13 +20,16 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         {hasClearInput && value !== "" && (
-          <div className="absolute p-1 top-2 right-2 text-xs cursor-pointer" onClick={onClearClick}>
-            <X size={16}/>
+          <div
+            className="absolute p-1 top-2 right-2 text-xs cursor-pointer"
+            onClick={onClearClick}
+          >
+            <X size={16} />
           </div>
         )}
       </div>
     );
-  }
+  },
 );
 Input.displayName = "Input";
 

@@ -55,12 +55,14 @@ export default function Builder({ data }: { data: any }) {
     defaultValue: 0,
   });
   const [characterFilter, setCharacterFilter] = useState<CharacterFilterType>({
-    name: '',
+    name: "",
     class: "All",
     faction: "All",
   });
 
-  const charactersNotInFormation = Object.values(Characters).filter((character) => !formation.includes(character.id));
+  const charactersNotInFormation = Object.values(Characters).filter(
+    (character) => !formation.includes(character.id),
+  );
   const charactersInFormation = formation.map((x) => {
     if (x === "" || x === undefined) {
       return undefined;
@@ -70,9 +72,14 @@ export default function Builder({ data }: { data: any }) {
   const characters = charactersNotInFormation
     .filter((character) => {
       return (
-        (characterFilter.faction === "All" || character.faction === characterFilter.faction) &&
-        (characterFilter.class === "All" || character.class === characterFilter.class) &&
-        (characterFilter.name === "" || character.name.toLowerCase().includes(characterFilter.name.toLowerCase()))
+        (characterFilter.faction === "All" ||
+          character.faction === characterFilter.faction) &&
+        (characterFilter.class === "All" ||
+          character.class === characterFilter.class) &&
+        (characterFilter.name === "" ||
+          character.name
+            .toLowerCase()
+            .includes(characterFilter.name.toLowerCase()))
       );
     })
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -142,7 +149,10 @@ export default function Builder({ data }: { data: any }) {
   return (
     <>
       <div className="flex justify-center items-center gap-2">
-        <Select onValueChange={(e) => changeLayout(parseInt(e))} value={layout.toString()}>
+        <Select
+          onValueChange={(e) => changeLayout(parseInt(e))}
+          value={layout.toString()}
+        >
           <SelectTrigger>
             <SelectValue placeholder="Map Layout" />
           </SelectTrigger>
@@ -168,7 +178,14 @@ export default function Builder({ data }: { data: any }) {
 
       <div className="flex gap-2 items-center justify-between sm:w-full w-[min(100%,360px)] px-6">
         <div className="flex gap-2">
-          {isSignedIn && <SaveButton artifact={artifact} formation={formation} layout={layout} user={user} />}
+          {isSignedIn && (
+            <SaveButton
+              artifact={artifact}
+              formation={formation}
+              layout={layout}
+              user={user}
+            />
+          )}
           <Button onClick={onDownloadButtonClick} className="h-8 px-2">
             <Download />
           </Button>
@@ -177,7 +194,9 @@ export default function Builder({ data }: { data: any }) {
           <Input
             className="w-[min(150px,100%)]"
             hasClearInput
-            onChange={(e) => setCharacterFilter((prev) => ({ ...prev, name: e.target.value }))}
+            onChange={(e) =>
+              setCharacterFilter((prev) => ({ ...prev, name: e.target.value }))
+            }
             onClearClick={() => {
               setCharacterFilter((prev) => ({ ...prev, name: "" }));
               searchInputRef.current?.focus();

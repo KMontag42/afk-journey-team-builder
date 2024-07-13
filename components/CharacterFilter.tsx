@@ -1,4 +1,8 @@
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Filter } from "lucide-react";
 import Image from "next/image";
@@ -37,20 +41,36 @@ export default function CharacterFilter({
 }: Props) {
   const activeFactionFilter =
     characterFilter.faction !== "All" &&
-    Object.entries(factions).find(([faction]) => faction.toLowerCase() === characterFilter.faction.toLowerCase());
+    Object.entries(factions).find(
+      ([faction]) =>
+        faction.toLowerCase() === characterFilter.faction.toLowerCase(),
+    );
   const activeClassFilter =
     characterFilter.class !== "All" &&
-    Object.entries(classes).find(([faction]) => faction.toLowerCase() === characterFilter.class.toLowerCase());
+    Object.entries(classes).find(
+      ([faction]) =>
+        faction.toLowerCase() === characterFilter.class.toLowerCase(),
+    );
   return (
     <Popover>
       <PopoverTrigger asChild>
         <Button className={cn(className, "rounded-full px-2")}>
           <Filter size={24} />
           {activeFactionFilter && (
-            <Image alt={characterFilter.faction} src={activeFactionFilter[1].imageUrl} width={24} height={24} />
+            <Image
+              alt={characterFilter.faction}
+              src={activeFactionFilter[1].imageUrl}
+              width={24}
+              height={24}
+            />
           )}
           {activeClassFilter && characterFilter.class !== "All" && (
-            <Image alt={characterFilter.faction} src={activeClassFilter[1].imageUrl} width={24} height={24} />
+            <Image
+              alt={characterFilter.faction}
+              src={activeClassFilter[1].imageUrl}
+              width={24}
+              height={24}
+            />
           )}
         </Button>
       </PopoverTrigger>
