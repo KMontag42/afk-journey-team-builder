@@ -67,7 +67,7 @@ async function _getFormation(id: string): Promise<FormationData | false> {
   return buildFormationJson(formation, user);
 }
 
-export const getFormation = cache(_getFormation)
+export const getFormation = cache(_getFormation);
 
 export async function getFormationsForUserId(
   userId: string,

@@ -19,14 +19,12 @@ export async function generateMetadata({ params }: Props) {
   }
 
   return {
-    title: `ATEK Formation: ${formation.name}`,
-    description: `An AFK Journey formation made by ${formation.username}`
-  }
+    title: `ATEK: ${formation.name} by ${formation.username}`,
+    description: `An AFK Journey formation`,
+  };
 }
 
-export default async function FormationPage({
-  params,
-}: Props) {
+export default async function FormationPage({ params }: Props) {
   const { id } = params;
   const formation = await getFormation(id);
 

@@ -53,6 +53,7 @@ export default function FormationCard({
               artifact={artifact}
               selectedCharacter={null}
               artifacts={cmsData.artifacts}
+              onCharacterSlotClick={undefined}
             />
           </div>
         </Link>

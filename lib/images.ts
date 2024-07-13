@@ -41,3 +41,21 @@ export const slotImages: { [key: string]: StaticImageData } = {
   Tile12: Tile12,
   Tile13: Tile13,
 };
+
+export const slotImageUrls: { [key: string]: string } = {
+  "-2": "https://i.imgur.com/INeQtQu.png", // analytica logo TODO: make this fit better
+  "-1": "https://i.imgur.com/G6jtQMo.png",
+  "1": "https://i.imgur.com/pmqYEpY.png",
+  "2": "https://i.imgur.com/pmqYEpY.png",
+  "3": "https://i.imgur.com/pmqYEpY.png",
+  "4": "https://i.imgur.com/pmqYEpY.png",
+  "5": "https://i.imgur.com/pmqYEpY.png",
+  "6": "https://i.imgur.com/pmqYEpY.png",
+  "7": "https://i.imgur.com/pmqYEpY.png",
+  "8": "https://i.imgur.com/pmqYEpY.png",
+  "9": "https://i.imgur.com/pmqYEpY.png",
+  "10": "https://i.imgur.com/pmqYEpY.png",
+  "11": "https://i.imgur.com/pmqYEpY.png",
+  "12": "https://i.imgur.com/pmqYEpY.png",
+  "13": "https://i.imgur.com/pmqYEpY.png",
+}
