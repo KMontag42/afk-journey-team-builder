@@ -8,14 +8,15 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
     .split(",")
     .map((id: string) => (id === "" ? null : characters[id]));
 
-  formationHeroes.unshift("")
+  formationHeroes.unshift("");
 
   const mapImages = map.layout.map((row: number[]) =>
     row.map((slot: number) =>
-      slot === -3 ? artifact.imageUrl :
-      formationHeroes[slot] == null
-        ? slotImageUrls[slot]
-        : formationHeroes[slot].tileUrl,
+      slot === -3
+        ? artifact.imageUrl
+        : formationHeroes[slot] == null
+          ? slotImageUrls[slot]
+          : formationHeroes[slot].tileUrl,
     ),
   );
 
@@ -27,23 +28,39 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
         width: "100%",
         height: "100%",
         alignItems: "center",
-        backgroundColor: "hsl(222.2 84% 4.9)",
+        backgroundColor: "#020817", // dark var(--background)
+        color: "#f8fafc" // dark var(--foreground)
       }}
     >
-      <h2>{formation.name} ({formation.username})</h2>
-      <div style={{ display: "flex", flexDirection: "column", alignItems: 'center', justifyContent: 'center' }}>
+      <h2>{formation.name}</h2>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          marginLeft: "36px",
+          marginTop: "1.5rem",
+          gap: "2px"
+        }}
+      >
         {mapImages.map((row: string[], i: number) => (
-          <div key={i} style={{ display: "flex", marginRight: `${i % 2 === 0 ? '' : '64px'}`, marginTop: '-18px' }}>
+          <div
+            key={i}
+            style={{
+              display: "flex",
+              marginRight: `${i % 2 === 0 ? "" : "66px"}`,
+              marginTop: "-18px",
+              gap: "2px"
+            }}
+          >
             {row.map((slot, j) => (
-              <img
-                key={j}
-                src={slot}
-                style={{ width: 64, height: 74 }}
-              />
+              <img key={j} src={slot} style={{ width: 64, height: 74 }} />
             ))}
           </div>
         ))}
       </div>
+      <h3 style={{ position: 'absolute', bottom: '0' }}>By: {formation.username}</h3>
     </div>
   );
 }
@@ -75,8 +92,6 @@ export default async function FormationOpenGraphImage({
   }
 
   const formationArtifact = artifacts[formation.artifact];
-
-  console.log(map.layout);
 
   return new ImageResponse(
     (
