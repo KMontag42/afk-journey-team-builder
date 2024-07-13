@@ -42,7 +42,7 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          marginLeft: "36px",
+          marginLeft: "96px",
           gap: "2px",
         }}
       >
@@ -51,8 +51,8 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
             key={i}
             style={{
               display: "flex",
-              marginRight: `${i % 2 === 0 ? "" : "66px"}`,
-              marginTop: "-18px",
+              marginRight: `${i % 2 === 0 ? "" : "96px)"}`,
+              marginTop: "-26px",
               gap: "2px",
             }}
           >
@@ -61,7 +61,7 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
               <img
                 key={j}
                 src={slot}
-                style={{ width: 64, height: 74 }}
+                style={{ width: 64 * 1.5, height: 74 * 1.5 }}
                 alt={slot}
               />
             ))}
@@ -104,7 +104,7 @@ export default async function FormationOpenGraphImage({
     ),
     {
       width: 1200,
-      height: 600,
+      height: 630,
     },
   );
 }
