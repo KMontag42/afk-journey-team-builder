@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 export type CharacterFilterType = {
   class: string | "All";
   faction: string | "All";
+  name: string | "";
 };
 
 type CharacterClass = {

@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, createRef, useCallback, ElementType } from "react";
+import { useState, createRef, useCallback, type ElementType } from "react";
 import { useQueryState } from "nuqs";
-import { toast } from "sonner";
 import { toPng } from "html-to-image";
 import { track } from "@vercel/analytics";
 import Image from "next/image";
-import { Share, Download } from "lucide-react";
+import { Download } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 
 import { type Character } from "@/lib/characters";
@@ -32,6 +31,7 @@ import {
 } from "@/components/ui/select";
 import BaseLayout from "@/components/layouts/base";
 import SaveButton from "./SaveButton";
+import { Input } from "./ui/input";
 
 export default function Builder({ data }: { data: any }) {
   const Characters: { [key: string]: Character } = data.characters;
@@ -55,13 +55,12 @@ export default function Builder({ data }: { data: any }) {
     defaultValue: 0,
   });
   const [characterFilter, setCharacterFilter] = useState<CharacterFilterType>({
+    name: '',
     class: "All",
     faction: "All",
   });
 
-  const charactersNotInFormation = Object.values(Characters).filter(
-    (character) => !formation.includes(character.id),
-  );
+  const charactersNotInFormation = Object.values(Characters).filter((character) => !formation.includes(character.id));
   const charactersInFormation = formation.map((x) => {
     if (x === "" || x === undefined) {
       return undefined;
@@ -71,10 +70,9 @@ export default function Builder({ data }: { data: any }) {
   const characters = charactersNotInFormation
     .filter((character) => {
       return (
-        (characterFilter.faction === "All" ||
-          character.faction === characterFilter.faction) &&
-        (characterFilter.class === "All" ||
-          character.class === characterFilter.class)
+        (characterFilter.faction === "All" || character.faction === characterFilter.faction) &&
+        (characterFilter.class === "All" || character.class === characterFilter.class) &&
+        (characterFilter.name === "" || character.name.toLowerCase().includes(characterFilter.name.toLowerCase()))
       );
     })
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -94,11 +92,13 @@ export default function Builder({ data }: { data: any }) {
   };
 
   const formationRef = createRef<HTMLDivElement>();
+  const searchInputRef = createRef<HTMLInputElement>();
 
   const { isSignedIn, user } = useUser();
 
   function updateFormation(slot: number, character: Character) {
     setFormation(updateSlotInFormation(formation, slot, character));
+    setCharacterFilter((prev) => ({ ...prev, name: "" }));
   }
 
   const onDownloadButtonClick = useCallback(() => {
@@ -142,10 +142,7 @@ export default function Builder({ data }: { data: any }) {
   return (
     <>
       <div className="flex justify-center items-center gap-2">
-        <Select
-          onValueChange={(e) => changeLayout(parseInt(e))}
-          value={layout.toString()}
-        >
+        <Select onValueChange={(e) => changeLayout(parseInt(e))} value={layout.toString()}>
           <SelectTrigger>
             <SelectValue placeholder="Map Layout" />
           </SelectTrigger>
@@ -169,25 +166,33 @@ export default function Builder({ data }: { data: any }) {
         />
       </div>
 
-      <div className="flex gap-2 justify-center items-center">
-        {isSignedIn && (
-          <SaveButton
-            formation={formation}
-            artifact={artifact}
-            layout={layout}
-            user={user}
+      <div className="flex gap-2 items-center justify-between sm:w-full w-[min(100%,360px)] px-6">
+        <div className="flex gap-2">
+          {isSignedIn && <SaveButton artifact={artifact} formation={formation} layout={layout} user={user} />}
+          <Button onClick={onDownloadButtonClick} className="h-8 px-2">
+            <Download />
+          </Button>
+        </div>
+        <div className="flex gap-2 justify-end">
+          <Input
+            className="w-[min(150px,100%)]"
+            hasClearInput
+            onChange={(e) => setCharacterFilter((prev) => ({ ...prev, name: e.target.value }))}
+            onClearClick={() => {
+              setCharacterFilter((prev) => ({ ...prev, name: "" }));
+              searchInputRef.current?.focus();
+            }}
+            placeholder="Search..."
+            ref={searchInputRef}
+            value={characterFilter.name}
           />
-        )}
-        <Button onClick={onDownloadButtonClick} className="h-8 px-2">
-          <Download />
-        </Button>
-        <CharacterFilter
-          classes={data.classes}
-          factions={data.factions}
-          characterFilter={characterFilter}
-          updateCharacterFilter={setCharacterFilter}
-          className="relative -ml-12 left-[4.5rem] md:left-[10.5rem]"
-        />
+          <CharacterFilter
+            characterFilter={characterFilter}
+            classes={data.classes}
+            factions={data.factions}
+            updateCharacterFilter={setCharacterFilter}
+          />
+        </div>
       </div>
 
       <ScrollArea
