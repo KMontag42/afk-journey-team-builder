@@ -1,3 +1,5 @@
+"use server";
+
 import { ImageResponse } from "next/og";
 import { getFormation } from "@/lib/server/formations";
 import { getCmsData } from "@/lib/server/cms-data";
