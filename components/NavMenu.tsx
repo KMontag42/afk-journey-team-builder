@@ -20,7 +20,11 @@ export default async function NavMenu({ sections }: { sections: any[] }) {
             <NavigationMenuContent>
               <ul className="grid w-[300px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                 {section.items.map((page: any) => (
-                  <ListItem key={page.title} title={page.title} href={page.href}>
+                  <ListItem
+                    key={page.title}
+                    title={page.title}
+                    href={page.href}
+                  >
                     {page.description}
                   </ListItem>
                 ))}

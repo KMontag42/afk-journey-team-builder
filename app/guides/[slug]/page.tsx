@@ -21,7 +21,10 @@ export default async function Guides({ params }: { params: { slug: string } }) {
   const guidePages = await getGuidePages();
 
   function getSections(): any[] {
-    let sections: { name: string; items: { title: string; href: string; description: string }[] }[] = [];
+    let sections: {
+      name: string;
+      items: { title: string; href: string; description: string }[];
+    }[] = [];
     let listItems: { title: string; href: string; description: string }[] = [];
     let baseUrl = "/guides/";
 
@@ -29,10 +32,17 @@ export default async function Guides({ params }: { params: { slug: string } }) {
       listItems = [];
       Object.keys(guidePages[section]).forEach((guide) => {
         let guideTitle = guide.charAt(0).toUpperCase() + guide.slice(1);
-        listItems.push({ title: guideTitle, href: baseUrl + guide, description: guidePages[section][guide].details });
+        listItems.push({
+          title: guideTitle,
+          href: baseUrl + guide,
+          description: guidePages[section][guide].details,
+        });
       });
 
-      sections.push({ name: section.charAt(0).toUpperCase() + section.slice(1), items: listItems });
+      sections.push({
+        name: section.charAt(0).toUpperCase() + section.slice(1),
+        items: listItems,
+      });
     });
     return sections;
   }
@@ -46,7 +56,14 @@ export default async function Guides({ params }: { params: { slug: string } }) {
         </div>
         <div className="flex flex-col items-center w-[min(100%,1100px)] pb-12 px-8 2xl:ml-60 markdownArea">
           <Markdown
-            remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveRehype, remarkRehype, rehypeSlug, remarkToc]}
+            remarkPlugins={[
+              remarkGfm,
+              remarkDirective,
+              remarkDirectiveRehype,
+              remarkRehype,
+              rehypeSlug,
+              remarkToc,
+            ]}
             components={Components}
           >
             {guideContent}
