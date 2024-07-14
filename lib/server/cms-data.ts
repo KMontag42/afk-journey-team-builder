@@ -25,12 +25,12 @@ export async function getGuideContent(name: string) {
     )
   ).json();
   let guideName = decodeURI(name);
-  
+
   let content = "";
-  Object.keys(jsonData).forEach(key => {
+  Object.keys(jsonData).forEach((key) => {
     if (jsonData[key][guideName]) {
       content = jsonData[key][guideName].content;
-    };
+    }
   });
   return content;
 }
