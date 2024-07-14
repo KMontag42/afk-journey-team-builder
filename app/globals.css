@@ -78,34 +78,3 @@
 .DropdownMenuContent {
   max-height: var(--radix-dropdown-menu-content-available-height);
 }
-
-/* Markdown example */
-h1 {
-  font-size: 2em;
-}
-
-h2 {
-  font-size: 1.5em;
-}
-
-table {
-  td {
-    padding: 0 2em;
-    max-width: 300px;
-    align-items: center;
-  }
-}
-
-img {
-  max-width: 96px;
-}
-
-.red {
-  color: red;
-}
-
-.MarkdownExample {
-  padding: 0.5em;
-  border-radius: 0.5em;
-  background-color: darkslategray;
-}
