@@ -190,7 +190,7 @@ export default function Builder({ data }: { data: any }) {
             <Download />
           </Button>
         </div>
-        <div className="flex gap-2 justify-between w-full pr-4">
+        <div className="flex gap-2 justify-between w-full px-4">
           <Input
             className="w-28"
             hasClearInput
@@ -220,7 +220,7 @@ export default function Builder({ data }: { data: any }) {
           height: `calc(100vh - ${layoutHeights[layout] ?? "24"}rem - 5rem)`,
         }}
       >
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(56px,1fr))] gap-2 pr-4">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(56px,1fr))] gap-2 p-4">
           {characters.map((character) => {
             if (character.hide) return null;
             const isSelected = selectedCharacter === character;
