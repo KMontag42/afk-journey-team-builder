@@ -176,7 +176,7 @@ export default function Builder({ data }: { data: any }) {
         />
       </div>
 
-      <div className="flex gap-2 items-center justify-between sm:w-full w-[min(100%,360px)] px-6">
+      <div className="flex flex-col gap-2 justify-center items-center w-full">
         <div className="flex gap-2">
           {isSignedIn && (
             <SaveButton
@@ -190,9 +190,9 @@ export default function Builder({ data }: { data: any }) {
             <Download />
           </Button>
         </div>
-        <div className="flex gap-2 justify-end">
+        <div className="flex gap-2 justify-between w-full pr-4">
           <Input
-            className="w-40"
+            className="w-28"
             hasClearInput
             onChange={(e) =>
               setCharacterFilter((prev) => ({ ...prev, name: e.target.value }))
@@ -215,16 +215,18 @@ export default function Builder({ data }: { data: any }) {
       </div>
 
       <ScrollArea
-        className="flex flex-col items-center"
+        className="w-full mt-2"
         style={{
           height: `calc(100vh - ${layoutHeights[layout] ?? "24"}rem - 5rem)`,
         }}
       >
-        <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-2 mx-6`}>
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(56px,1fr))] gap-2 pr-4">
           {characters.map((character) => {
             if (character.hide) return null;
             const isSelected = selectedCharacter === character;
-            const className = `w-14 h-16${isSelected ? " outline rounded outline-yellow-400 outline-4" : ""}`;
+            const className = `w-14 h-16${
+              isSelected ? " outline rounded outline-yellow-400 outline-4" : ""
+            }`;
             return (
               <Image
                 key={character.name}

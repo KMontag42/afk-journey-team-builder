@@ -40,9 +40,11 @@ export default function CharacterFilter({
   factions,
 }: Props) {
   const activeFactionFilter =
-    characterFilter.faction !== "All" && factions[characterFilter.faction.toLowerCase()]
+    characterFilter.faction !== "All" &&
+    factions[characterFilter.faction.toLowerCase()];
   const activeClassFilter =
-    characterFilter.class !== "All" && classes[characterFilter.class.toLowerCase()];
+    characterFilter.class !== "All" &&
+    classes[characterFilter.class.toLowerCase()];
   return (
     <Popover>
       <PopoverTrigger asChild>
