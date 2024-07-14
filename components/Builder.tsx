@@ -19,7 +19,7 @@ import {
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import InputWithClear from "@/components/ui/InputWithClear";
 import CharacterFilter, {
   CharacterFilterType,
 } from "@/components/CharacterFilter";
@@ -191,9 +191,8 @@ export default function Builder({ data }: { data: any }) {
           </Button>
         </div>
         <div className="flex gap-2 justify-between w-full px-4">
-          <Input
+          <InputWithClear
             className="w-28"
-            hasClearInput
             onChange={(e) =>
               setCharacterFilter((prev) => ({ ...prev, name: e.target.value }))
             }
@@ -220,7 +219,7 @@ export default function Builder({ data }: { data: any }) {
           height: `calc(100vh - ${layoutHeights[layout] ?? "24"}rem - 5rem)`,
         }}
       >
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(56px,1fr))] gap-2 p-4">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(56px,1fr))] gap-2 p-4">
           {characters.map((character) => {
             if (character.hide) return null;
             const isSelected = selectedCharacter === character;
