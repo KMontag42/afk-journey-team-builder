@@ -40,6 +40,11 @@ export function updateSlotInFormation(
   } else if (formationCharacters.length < maxCharacters) {
     formationCopy[slot] = character.id;
 
+    if (characterInSlot === PhraestoId) {
+      // remove PhraestoClone from formation
+      formationCopy[formationCopy.indexOf(PhraestoCloneId)] = "";
+    }
+
     if (character.name === "Phraesto") {
       // add phraesto clone to first open slot
       const firstOpenSlot = formationCopy.indexOf("");
