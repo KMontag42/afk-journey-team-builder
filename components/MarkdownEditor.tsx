@@ -1,8 +1,8 @@
-"use server";
+"use client";
 
 import "@/app/guides/[slug]/guides.css";
 
-import { ReactNode } from "react";
+import { ReactNode, useRef, useState } from "react";
 import remarkDirective from "remark-directive";
 import remarkDirectiveRehype from "remark-directive-rehype";
 import remarkRehype from "remark-rehype";
@@ -11,9 +11,9 @@ import remarkToc from "remark-toc";
 import rehypeSlug from "rehype-slug";
 import Markdown from "react-markdown";
 
-import { getGuideContent, getGuidePages } from "@/lib/server/cms-data";
-import { MarkdownComponents } from "@/lib/markdown-components";
-import NavMenu from "@/components/NavMenu";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 const GuideTitle = ({ id, children }: { id: string; children: ReactNode }) => {
   return <div className="guideTitle">{children}</div>;
@@ -76,59 +76,55 @@ const ExtraLargeImage = ({ id, children }: { id: string; children: ReactNode }) 
 };
 
 const Components = {
-    "guide-title": GuideTitle,
-    "toc": TableOfContents,
-    "column": Column,
-    "two-column": TwoColumn,
-    "three-column": ThreeColumn,
-    "centered-content": CenteredContent,
-    "centered-text": CenteredText,
-    "space": Space,
-    "thumbnail": Thumbnail,
-    "xxs-img": MiniImage,
-    "xs-img": ExtraSmallImage,
-    "sm-img": SmallImage,
-    "md-img": MediumImage,
-    "lg-img": LargeImage,
-    "xl-img": ExtraLargeImage,
-  };
+  "guide-title": GuideTitle,
+  toc: TableOfContents,
+  column: Column,
+  "two-column": TwoColumn,
+  "three-column": ThreeColumn,
+  "centered-content": CenteredContent,
+  "centered-text": CenteredText,
+  space: Space,
+  thumbnail: Thumbnail,
+  "xxs-img": MiniImage,
+  "xs-img": ExtraSmallImage,
+  "sm-img": SmallImage,
+  "md-img": MediumImage,
+  "lg-img": LargeImage,
+  "xl-img": ExtraLargeImage,
+};
 
-export default async function Guides({ params }: { params: { slug: string } }) {
-  const guideContent = await getGuideContent(params.slug);
-  const guidePages = await getGuidePages();
+export default function MarkdownEditor({ content }: { content: string }) {
+  const textareaRef = useRef(null);
 
-  function getSections(): any[] {
-    let sections: { name: string; items: { title: string; href: string; description: string }[] }[] = [];
-    let listItems: { title: string; href: string; description: string }[] = [];
-    let baseUrl = "/guides/";
+  const [markdown, setMarkdown] = useState("");
 
-    Object.keys(guidePages).forEach((section) => {
-      listItems = [];
-      Object.keys(guidePages[section]).forEach((guide) => {
-        let guideTitle = guide.charAt(0).toUpperCase() + guide.slice(1);
-        listItems.push({ title: guideTitle, href: baseUrl + guide, description: guidePages[section][guide].details });
-      });
-
-      sections.push({ name: section.charAt(0).toUpperCase() + section.slice(1), items: listItems });
-    });
-    return sections;
+  function onTextareaChange() {
+    setMarkdown(textareaRef.current?.value);
   }
 
   return (
-    <>
-      <div className="flex flex-col items-center">
-        <div className="flex flex-col items-start w-[min(100%,680px)]">
-          <NavMenu sections={getSections()}></NavMenu>
-        </div>
-        <div className="flex flex-col items-center w-[min(100%,1100px)] pb-12 px-8 markdownArea">
-          <Markdown
-            className="MarkdownExample"
-            children={guideContent}
-            remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveRehype, remarkRehype, rehypeSlug, remarkToc]}
-            components={Components}
-          />
-        </div>
-      </div>
-    </>
+    <div className="flex flex-col items-center w-[min(100%,1100px)] pb-12 px-8 markdownArea">
+      <Textarea
+        ref={textareaRef}
+        onInput={onTextareaChange}
+        className="my-4"
+        placeholder="Put your markdown here"
+        defaultValue={content}
+      ></Textarea>
+      <Button
+        onClick={() => {
+          navigator.clipboard.writeText(`${JSON.stringify(textareaRef.current?.value)}`);
+          toast.success("Copied JSON String to Clipboard");
+        }}
+      >
+        Copy JSON String
+      </Button>
+      <Markdown
+        className="MarkdownExample"
+        children={markdown}
+        remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveRehype, remarkRehype, rehypeSlug, remarkToc]}
+        components={Components}
+      />
+    </div>
   );
 }
