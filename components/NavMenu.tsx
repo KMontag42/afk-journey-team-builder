@@ -1,4 +1,4 @@
-"use client";
+"use server";
 
 import React from "react";
 import { ListItem } from "@/components/ui/list-item";
@@ -10,7 +10,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 
-export default function NavMenu({ sections }: { sections: any[] }) {
+export default async function NavMenu({ sections }: { sections: any[] }) {
   return (
     <NavigationMenu>
       <NavigationMenuList>
