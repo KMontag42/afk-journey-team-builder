@@ -15,7 +15,7 @@
 // import { Textarea } from "@/components/ui/textarea";
 // import { Button } from "@/components/ui/button";
 // import { toast } from "sonner";
-// import { MarkdownComponents } from "./markdown-components";
+// import { MarkdownComponents } from "@/components/MarkdownComponents";
 
 // const Components = MarkdownComponents;
 
@@ -47,10 +47,11 @@
 //       </Button>
 //       <Markdown
 //         className="MarkdownExample"
-//         children={markdown}
 //         remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveRehype, remarkRehype, rehypeSlug, remarkToc]}
 //         components={Components}
-//       />
+//       >
+//         {markdown}
+//       </Markdown>
 //     </div>
 //   );
 // }

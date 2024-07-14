@@ -11,7 +11,7 @@ import rehypeSlug from "rehype-slug";
 import Markdown from "react-markdown";
 
 import { getGuideContent, getGuidePages } from "@/lib/server/cms-data";
-import { MarkdownComponents } from "@/components/markdown-components";
+import { MarkdownComponents } from "@/components/MarkdownComponents";
 import NavMenu from "@/components/NavMenu";
 
 const Components = MarkdownComponents;
@@ -46,10 +46,11 @@ export default async function Guides({ params }: { params: { slug: string } }) {
         </div>
         <div className="flex flex-col items-center w-[min(100%,1100px)] pb-12 px-8 2xl:ml-60 markdownArea">
           <Markdown
-            children={guideContent}
             remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveRehype, remarkRehype, rehypeSlug, remarkToc]}
             components={Components}
-          />
+          >
+            {guideContent}
+          </Markdown>
         </div>
       </div>
     </>
