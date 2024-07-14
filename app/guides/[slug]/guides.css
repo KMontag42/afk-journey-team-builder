@@ -1,68 +1,113 @@
 /* HTML Styling */
 .markdownArea {
-    color: #ECF0F5;
-    
-    h1, h2, h3 {
-        padding-top: 0.5em;
-        font-weight: bold;
-        color: #D3BC8E
-    }
-    
-    h1 {
-        font-size: 2em;
-        text-align: center;
-    }
-    
-    h2 {
-        font-size: 1.5em;
-    }
-    
-    h6 {
-        font-size: 0.5em;
-    }
-    
-    hr {
-        margin: 0.5em 0;
-    }
-    
-    table, tr, th, td {
-        border: 1px #D3BC8E solid;
-        padding: 0.25em 1em; 
-        margin: 1em;
-    }
-    
+  color: #ecf0f5;
+
+  h1,
+  h2,
+  h3 {
+    padding-top: 0.5em;
+    font-weight: bold;
+    color: #d3bc8e;
+  }
+
+  h1 {
+    font-size: 2em;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h6 {
+    font-size: 0.5em;
+  }
+
+  hr {
+    margin: 0.5em 0;
+  }
+
+  table,
+  tr,
+  th,
+  td {
+    border: 1px #d3bc8e solid;
+    padding: 0.25em 1em;
+    margin: 1em;
+  }
+
+  ul {
+    padding-left: 1em;
+    list-style-type: disc;
+
     ul {
-        padding-left: 1em;
-        list-style-type: disc;
-    
-        ul {
-            padding-left: 1em;
-        }
+      padding-left: 1em;
     }
-    
-    ol {
-        padding-left: 1em;
-        list-style-type: decimal;
-    }
-    
-    a {
-        text-decoration: underline;
-    }
-    
-    p {
-        padding: 0.25em 0;
-    }
+  }
+
+  ol {
+    padding-left: 1em;
+    list-style-type: decimal;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  p {
+    padding: 0.25em 0;
+  }
 }
 
 /* Component Classes */
 .guideTitle {
-    font-size: 48px !important;
-    font-weight: bold;
-    text-align: center;
-    color: #D3BC8E;
+  font-size: 48px !important;
+  font-weight: bold;
+  text-align: center;
+  color: #d3bc8e;
 }
 
 .tableOfContents {
+  a {
+    text-decoration: none !important;
+  }
+
+  ul,
+  ol {
+    list-style-type: none !important;
+  }
+
+  @screen 2xl {
+    li {
+      padding-bottom: 8px;
+    }
+
     font-size: 1em;
-    text-decoration: underline;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    padding: 1vh 12px 12px 8px;
+    border-right: 1px solid #d3bc8e;
+    overflow-y: auto;
+  }
+}
+
+.progressBar {
+  height: 6px;
+  position: fixed;
+  bottom: 0;
+  z-index: 1000;
+  background-color: #d3bc8e;
+  width: 100%;
+  scale: 0 1;
+  transform-origin: left;
+  animation: progressBar linear;
+  animation-timeline: scroll();
+}
+
+@keyframes progressBar {
+  to {
+    scale: 1 1;
+  }
 }

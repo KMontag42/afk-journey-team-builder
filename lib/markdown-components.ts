@@ -5,15 +5,15 @@ const GuideTitle = ({ id, children }: { id: string; children: ReactNode }) => {
 };
 
 const TableOfContents = ({ id, children }: { id: string; children: ReactNode }) => {
-  return <div className="tableOfContents">{children}</div>;
+  return <div className="pb-8 tableOfContents">{children}</div>;
 };
 
 const TwoColumn = ({ id, children }: { id: string; children: ReactNode }) => {
-  return <div className="grid grid-cols-2  gap-8 pb-8">{children}</div>;
+  return <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-8">{children}</div>;
 };
 
 const ThreeColumn = ({ id, children }: { id: string; children: ReactNode }) => {
-  return <div className="grid grid-cols-3 gap-8 pb-8">{children}</div>;
+  return <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-8">{children}</div>;
 };
 
 const Column = ({ id, children }: { id: string; children: ReactNode }) => {

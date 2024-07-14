@@ -20,15 +20,15 @@ const GuideTitle = ({ id, children }: { id: string; children: ReactNode }) => {
 };
 
 const TableOfContents = ({ id, children }: { id: string; children: ReactNode }) => {
-  return <div className="tableOfContents">{children}</div>;
+  return <div className="pb-8 tableOfContents">{children}</div>;
 };
 
 const TwoColumn = ({ id, children }: { id: string; children: ReactNode }) => {
-  return <div className="grid grid-cols-2  gap-8 pb-8">{children}</div>;
+  return <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-8">{children}</div>;
 };
 
 const ThreeColumn = ({ id, children }: { id: string; children: ReactNode }) => {
-  return <div className="grid grid-cols-3 gap-8 pb-8">{children}</div>;
+  return <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-8">{children}</div>;
 };
 
 const Column = ({ id, children }: { id: string; children: ReactNode }) => {
@@ -75,23 +75,25 @@ const ExtraLargeImage = ({ id, children }: { id: string; children: ReactNode }) 
   return <div className="max-w-5xl">{children}</div>;
 };
 
+// use markdown-components.ts if possible? Like this:
+// import { MarkdownComponents } from "@/lib/markdown-components";
 const Components = {
-    "guide-title": GuideTitle,
-    "toc": TableOfContents,
-    "column": Column,
-    "two-column": TwoColumn,
-    "three-column": ThreeColumn,
-    "centered-content": CenteredContent,
-    "centered-text": CenteredText,
-    "space": Space,
-    "thumbnail": Thumbnail,
-    "xxs-img": MiniImage,
-    "xs-img": ExtraSmallImage,
-    "sm-img": SmallImage,
-    "md-img": MediumImage,
-    "lg-img": LargeImage,
-    "xl-img": ExtraLargeImage,
-  };
+  "guide-title": GuideTitle,
+  "toc": TableOfContents,
+  "column": Column,
+  "two-column": TwoColumn,
+  "three-column": ThreeColumn,
+  "centered-content": CenteredContent,
+  "centered-text": CenteredText,
+  "space": Space,
+  "thumbnail": Thumbnail,
+  "xxs-img": MiniImage,
+  "xs-img": ExtraSmallImage,
+  "sm-img": SmallImage,
+  "md-img": MediumImage,
+  "lg-img": LargeImage,
+  "xl-img": ExtraLargeImage,
+};
 
 export default async function Guides({ params }: { params: { slug: string } }) {
   const guideContent = await getGuideContent(params.slug);
@@ -116,13 +118,13 @@ export default async function Guides({ params }: { params: { slug: string } }) {
 
   return (
     <>
+      <div className="progressBar"></div>
       <div className="flex flex-col items-center">
-        <div className="flex flex-col items-start w-[min(100%,680px)]">
+        <div className="flex flex-col items-start w-[min(100%)] 2xl:w-[min(100%,800px)] pl-2 sm:pl-0">
           <NavMenu sections={getSections()}></NavMenu>
         </div>
-        <div className="flex flex-col items-center w-[min(100%,1100px)] pb-12 px-8 markdownArea">
+        <div className="flex flex-col items-center w-[min(100%,1100px)] pb-12 px-8 2xl:ml-60 markdownArea">
           <Markdown
-            className="MarkdownExample"
             children={guideContent}
             remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveRehype, remarkRehype, rehypeSlug, remarkToc]}
             components={Components}

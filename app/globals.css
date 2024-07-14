@@ -75,6 +75,26 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020817;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d3bc8e;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #86775a;
+}
+
+a:hover {
+  color: #d3bc8e;
+}
+
 .DropdownMenuContent {
   max-height: var(--radix-dropdown-menu-content-available-height);
 }
