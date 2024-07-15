@@ -25,7 +25,7 @@ export default async function GuidePage({
   return (
     <>
       <div className="progressBar"></div>
-      <div className="flex flex-col items-center w-[min(100%,1100px)] pb-12 px-8 markdownArea">
+      <div className="flex flex-col w-[min(100%,1100px)] pb-12 px-8 markdownArea">
         <Markdown
           remarkPlugins={[
             remarkGfm,
