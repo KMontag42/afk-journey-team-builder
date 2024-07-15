@@ -20,12 +20,12 @@ import { MarkdownComponents } from "@/components/MarkdownComponents";
 const Components = MarkdownComponents as any;
 
 export default function MarkdownEditor({ content }: { content: string }) {
-  const textareaRef = useRef<any>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const [markdown, setMarkdown] = useState("");
 
   function onTextareaChange() {
-    setMarkdown(textareaRef.current?.value);
+    setMarkdown(textareaRef.current?.value!);
   }
 
   return (
