@@ -90,7 +90,7 @@ CREATE TABLE
     formation_id INTEGER,
     user_id VARCHAR(255),
     UNIQUE(formation_id, user_id),
-    FOREIGN KEY(formation_id) REFERENCES formations(id)
+    FOREIGN KEY(formation_id) REFERENCES formations(id) ON DELETE CASCADE
   );
 ```
 

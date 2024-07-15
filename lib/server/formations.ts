@@ -1,35 +1,30 @@
 import "server-only";
 
+import { cache } from "react";
 import { auth } from "@clerk/nextjs/server";
 import { Row } from "@libsql/client";
 
-import { type ClerkUser, getUser } from "@/lib/users";
+import { type ClerkUser, getUser } from "@/lib/server/users";
 import { turso } from "@/lib/turso";
+import { type FormationData } from "@/lib/formations";
 
-export type Formation = {
-  id: number;
-  formation: string;
-  artifact: string;
-  layout: number;
-  name: string;
-  user_id?: string;
-  user_image: string;
-  currentUserLiked?: number;
-};
-
-export function buildFormationJson(formation: Row, user: ClerkUser): Formation {
+export function buildFormationJson(
+  formation: Row,
+  user: ClerkUser,
+): FormationData {
   return {
     id: parseInt(formation.id?.toString()!),
     formation: formation.formation?.toString()!,
     artifact: formation.artifact?.toString()!,
     layout: parseInt(formation.layout?.toString()!),
     name: formation.name?.toString()!,
-    currentUserLiked: parseInt(formation.currentUserLiked?.toString()!),
+    currentUserLiked:
+      parseInt(formation.currentUserLiked?.toString()!) === 1 ? true : false,
     ...user,
   };
 }
 
-export async function getFormation(id: string): Promise<Formation | false> {
+async function _getFormation(id: string): Promise<FormationData | false> {
   const { userId } = auth();
   let formation;
 
@@ -37,13 +32,11 @@ export async function getFormation(id: string): Promise<Formation | false> {
     formation = await turso.execute({
       sql: `
         SELECT
-            f.id,
-            f.formation,
-            f.artifact,
-            f.layout,
-            f.name,
-            f.user_id,
-            v.id AS currentUserLiked
+            f.*,
+            CASE
+              WHEN v.id IS NOT NULL THEN 1
+              ELSE 0
+            END AS currentUserLiked
         FROM
             formations f
         LEFT JOIN
@@ -74,9 +67,11 @@ export async function getFormation(id: string): Promise<Formation | false> {
   return buildFormationJson(formation, user);
 }
 
+export const getFormation = cache(_getFormation);
+
 export async function getFormationsForUserId(
   userId: string,
-): Promise<Formation[]> {
+): Promise<FormationData[]> {
   const { userId: currentUserId } = auth();
   let formations;
 
@@ -85,7 +80,10 @@ export async function getFormationsForUserId(
       sql: `
             SELECT
                 f.*,
-                v.id AS currentUserLiked
+                CASE
+                  WHEN v.id IS NOT NULL THEN 1
+                  ELSE 0
+                END AS currentUserLiked
             FROM
                 formations f
             LEFT JOIN
@@ -116,7 +114,9 @@ export async function getFormationsForUserId(
   return formations;
 }
 
-export async function searchFormations(query: string): Promise<Formation[]> {
+export async function searchFormations(
+  query: string,
+): Promise<FormationData[]> {
   // if there is a user, we need to join votes to get the user's votes
   const { userId } = auth();
   let queryResponse;
@@ -125,12 +125,7 @@ export async function searchFormations(query: string): Promise<Formation[]> {
     queryResponse = await turso.execute({
       sql: `
         SELECT
-            f.id,
-            f.formation,
-            f.artifact,
-            f.layout,
-            f.user_id,
-            f.name,
+            f.*,
             COUNT(v.id) AS vote_count,
             CASE
                 WHEN v2.id IS NOT NULL THEN 1
@@ -149,7 +144,7 @@ export async function searchFormations(query: string): Promise<Formation[]> {
         AND
             v2.user_id = (:userId)
         WHERE
-            f.name LIKE (:q) OR f.tag LIKE (:q) OR f.formation LIKE (:q)
+            f.name LIKE (:q) OR f.formation LIKE (:q)
         GROUP BY
             f.id
         ORDER BY
@@ -161,12 +156,7 @@ export async function searchFormations(query: string): Promise<Formation[]> {
     queryResponse = await turso.execute({
       sql: `
         SELECT
-            f.id,
-            f.formation,
-            f.artifact,
-            f.layout,
-            f.user_id,
-            f.name,
+            f.*,
             COUNT(v.id) AS vote_count
         FROM
             formations f
@@ -175,7 +165,7 @@ export async function searchFormations(query: string): Promise<Formation[]> {
         ON
             f.id = v.formation_id
         WHERE
-            f.name LIKE (:q) OR f.tag LIKE (:q) OR f.formation LIKE (:q)
+            f.name LIKE (:q) OR f.formation LIKE (:q)
         GROUP BY
             f.id
         ORDER BY
