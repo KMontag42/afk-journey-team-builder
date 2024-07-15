@@ -18,8 +18,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Select, SelectContent, SelectItem } from "./select";
-import { SelectGroup } from "@radix-ui/react-select";
 
 type ComboboxItem = {
   label: string;
@@ -36,7 +34,7 @@ export function Combobox({ comboboxItems, id }: Props) {
   const [value, setValue] = useState("");
 
   return (
-    <Popover open={open} onOpenChange={setOpen} modal={true}>
+    <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
           id={id}
@@ -51,7 +49,7 @@ export function Combobox({ comboboxItems, id }: Props) {
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-full p-0" style={{ pointerEvents: "auto" }}>
+      <PopoverContent className="w-full p-0">
         <Command>
           <CommandInput placeholder="Search item..." />
           <CommandList>
