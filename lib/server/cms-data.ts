@@ -15,7 +15,6 @@ export async function getGuidePages() {
       `https://simplejsoncms.com/api/${process.env.GUIDES_SIMPLEJSONCMS_ID}`,
     )
   ).json();
-  console.log(jsonData);
   return jsonData["guides"];
 }
 
