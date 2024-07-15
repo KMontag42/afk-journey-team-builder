@@ -1,6 +1,6 @@
 "use server";
 
-import "@/app/guides/[slug]/guides.css";
+import "@/app/guides/[section]/[slug]/guides.css";
 
 import remarkDirective from "remark-directive";
 import remarkDirectiveRehype from "remark-directive-rehype";
@@ -17,8 +17,12 @@ import NavMenu from "@/components/NavMenu";
 
 const Components = MarkdownComponents as any;
 
-export default async function Guides({ params }: { params: { slug: string } }) {
-  const guideContent = await getGuideContent(params.slug);
+export default async function Guides({
+  params,
+}: {
+  params: { section: string; slug: string };
+}) {
+  const guideContent = await getGuideContent(params.section, params.slug);
   const guidePages = await getGuidePages();
 
   return (
@@ -26,7 +30,7 @@ export default async function Guides({ params }: { params: { slug: string } }) {
       <div className="progressBar"></div>
       <div className="flex flex-col items-center">
         <div className="flex flex-col items-start w-[min(100%)] 2xl:w-[min(100%,800px)] pl-2 sm:pl-0">
-          <NavMenu sections={getSections("/guides/", guidePages)}></NavMenu>
+          <NavMenu sections={getSections("/guides", guidePages)}></NavMenu>
         </div>
         <div className="flex flex-col items-center w-[min(100%,1100px)] pb-12 px-8 2xl:ml-60 markdownArea">
           <Markdown

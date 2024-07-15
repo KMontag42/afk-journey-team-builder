@@ -18,18 +18,12 @@ export async function getGuidePages() {
   return jsonData;
 }
 
-export async function getGuideContent(name: string) {
+export async function getGuideContent(section: string, name: string) {
   const jsonData = await (
     await fetch(
       `https://simplejsoncms.com/api/${process.env.GUIDES_SIMPLEJSONCMS_ID}`,
     )
   ).json();
 
-  let content = "";
-  Object.keys(jsonData).forEach((key) => {
-    if (jsonData[key][name]) {
-      content = jsonData[key][name]?.content;
-    }
-  });
-  return content;
+  return jsonData[section][name]?.content;
 }
