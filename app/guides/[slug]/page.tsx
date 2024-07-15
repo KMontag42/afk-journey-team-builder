@@ -14,7 +14,7 @@ import { getGuideContent, getGuidePages } from "@/lib/server/cms-data";
 import { MarkdownComponents } from "@/components/MarkdownComponents";
 import NavMenu from "@/components/NavMenu";
 
-const Components = MarkdownComponents;
+const Components = MarkdownComponents as any;
 
 export default async function Guides({ params }: { params: { slug: string } }) {
   const guideContent = await getGuideContent(params.slug);
