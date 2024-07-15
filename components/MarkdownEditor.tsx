@@ -20,12 +20,12 @@ import { MarkdownComponents } from "@/components/MarkdownComponents";
 const Components = MarkdownComponents as any;
 
 export default function MarkdownEditor({ content }: { content: string }) {
-  const textareaRef = useRef(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const [markdown, setMarkdown] = useState("");
 
   function onTextareaChange() {
-    setMarkdown(textareaRef.current?.value);
+    setMarkdown(textareaRef.current?.value!);
   }
 
   return (
@@ -40,7 +40,7 @@ export default function MarkdownEditor({ content }: { content: string }) {
       <Button
         onClick={() => {
           navigator.clipboard.writeText(
-            `${JSON.stringify(textareaRef.current?.value)}`
+            `${JSON.stringify(textareaRef.current?.value)}`,
           );
           toast.success("Copied JSON String to Clipboard");
         }}
