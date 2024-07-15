@@ -15,7 +15,8 @@ export async function getGuidePages() {
       `https://simplejsoncms.com/api/${process.env.GUIDES_SIMPLEJSONCMS_ID}`,
     )
   ).json();
-  return jsonData;
+  console.log(jsonData);
+  return jsonData["guides"];
 }
 
 export async function getGuideContent(section: string, name: string) {
@@ -24,6 +25,5 @@ export async function getGuideContent(section: string, name: string) {
       `https://simplejsoncms.com/api/${process.env.GUIDES_SIMPLEJSONCMS_ID}`,
     )
   ).json();
-
-  return jsonData[section][name]?.content;
+  return jsonData["guides"][section][name]?.content;
 }

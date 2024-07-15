@@ -77,7 +77,7 @@
     list-style-type: none !important;
   }
 
-  @screen 2xl {
+  @media screen and (min-width: 1800px) {
     li {
       padding-bottom: 8px;
     }
