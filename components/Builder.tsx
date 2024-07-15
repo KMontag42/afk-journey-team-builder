@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, createRef, useCallback, ElementType } from "react";
+import { useState, createRef, useCallback, type ElementType } from "react";
 import { useQueryState } from "nuqs";
-import { toast } from "sonner";
 import { toPng } from "html-to-image";
 import { track } from "@vercel/analytics";
 import Image from "next/image";
-import { Share, Download } from "lucide-react";
+import { Download } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 
 import { type Character } from "@/lib/characters";
@@ -20,6 +19,7 @@ import {
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
+import InputWithClear from "@/components/ui/InputWithClear";
 import CharacterFilter, {
   CharacterFilterType,
 } from "@/components/CharacterFilter";
@@ -55,6 +55,7 @@ export default function Builder({ data }: { data: any }) {
     defaultValue: 0,
   });
   const [characterFilter, setCharacterFilter] = useState<CharacterFilterType>({
+    name: "",
     class: "All",
     faction: "All",
   });
@@ -74,7 +75,11 @@ export default function Builder({ data }: { data: any }) {
         (characterFilter.faction === "All" ||
           character.faction === characterFilter.faction) &&
         (characterFilter.class === "All" ||
-          character.class === characterFilter.class)
+          character.class === characterFilter.class) &&
+        (characterFilter.name === "" ||
+          character.name
+            .toLowerCase()
+            .includes(characterFilter.name.toLowerCase()))
       );
     })
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -94,11 +99,13 @@ export default function Builder({ data }: { data: any }) {
   };
 
   const formationRef = createRef<HTMLDivElement>();
+  const searchInputRef = createRef<HTMLInputElement>();
 
   const { isSignedIn, user } = useUser();
 
   function updateFormation(slot: number, character: Character) {
     setFormation(updateSlotInFormation(formation, slot, character));
+    setCharacterFilter((prev) => ({ ...prev, name: "" }));
   }
 
   const onDownloadButtonClick = useCallback(() => {
@@ -169,38 +176,56 @@ export default function Builder({ data }: { data: any }) {
         />
       </div>
 
-      <div className="flex gap-2 justify-center items-center">
-        {isSignedIn && (
-          <SaveButton
-            formation={formation}
-            artifact={artifact}
-            layout={layout}
-            user={user}
+      <div className="flex flex-col gap-2 justify-center items-center w-full">
+        <div className="flex gap-2">
+          {isSignedIn && (
+            <SaveButton
+              artifact={artifact}
+              formation={formation}
+              layout={layout}
+              user={user}
+            />
+          )}
+          <Button onClick={onDownloadButtonClick} className="h-8 px-2">
+            <Download />
+          </Button>
+        </div>
+        <div className="flex gap-2 justify-between w-full px-4">
+          <InputWithClear
+            className="w-28"
+            onChange={(e) =>
+              setCharacterFilter((prev) => ({ ...prev, name: e.target.value }))
+            }
+            onClearClick={() => {
+              setCharacterFilter((prev) => ({ ...prev, name: "" }));
+              searchInputRef.current?.focus();
+            }}
+            placeholder="Search..."
+            ref={searchInputRef}
+            value={characterFilter.name}
           />
-        )}
-        <Button onClick={onDownloadButtonClick} className="h-8 px-2">
-          <Download />
-        </Button>
-        <CharacterFilter
-          classes={data.classes}
-          factions={data.factions}
-          characterFilter={characterFilter}
-          updateCharacterFilter={setCharacterFilter}
-          className="relative -ml-12 left-[4.5rem] md:left-[10.5rem]"
-        />
+          <CharacterFilter
+            characterFilter={characterFilter}
+            classes={data.classes}
+            factions={data.factions}
+            updateCharacterFilter={setCharacterFilter}
+          />
+        </div>
       </div>
 
       <ScrollArea
-        className="flex flex-col items-center"
+        className="w-full mt-2"
         style={{
           height: `calc(100vh - ${layoutHeights[layout] ?? "24"}rem - 5rem)`,
         }}
       >
-        <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-2 mx-6`}>
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(56px,1fr))] gap-2 p-4">
           {characters.map((character) => {
             if (character.hide) return null;
             const isSelected = selectedCharacter === character;
-            const className = `w-14 h-16${isSelected ? " outline rounded outline-yellow-400 outline-4" : ""}`;
+            const className = `w-14 h-16${
+              isSelected ? " outline rounded outline-yellow-400 outline-4" : ""
+            }`;
             return (
               <Image
                 key={character.name}
