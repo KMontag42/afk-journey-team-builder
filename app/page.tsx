@@ -22,12 +22,10 @@ export default async function Home({
   const jsonData = await getCmsData();
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="relative flex flex-col items-center w-[min(100%,680px)] h-full mx-auto px-6">
       <Popover>
         <PopoverTrigger>
-          <p className="text-xl underline absolute top-20 end-6 sm:end-48 md:end-1/4">
-            ?
-          </p>
+          <p className="text-xl underline absolute top-0 right-4">?</p>
         </PopoverTrigger>
         <PopoverContent>
           <ul className="p-4 list-disc">
