@@ -1,15 +1,8 @@
 {
   "formation_categories": {
     "Dura's Trials": {
-      "Sunrise": ["Tank"]
-    },
-    "Starter Story": {
-      "Legend Trial": ["Lightbearer"]
-    },
-    "Dream Realm": ["Lone Gaze"],
-    "Battle Drill": ["Hidden Jungle"],
-    "Primal Lord": ["Lone Gaze"],
-    "": ["AFK Stage", "Arcane Labyrinth"]
+      "Sunrise": [{ "name": "Tank", "layout": "0" }]
+    }
   },
   "maps": {
     "0": {

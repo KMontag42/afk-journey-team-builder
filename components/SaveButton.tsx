@@ -20,7 +20,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { track } from "@vercel/analytics";
 import { useRouter } from "next/navigation";
-import { Combobox } from "@/components/ui/combobox";
 
 type SaveButtonProps = {
   formation: string[];
@@ -130,7 +129,6 @@ function SaveFormationForm({
         <Label htmlFor="name">Formation Name</Label>
         <Input type="text" id="name" placeholder="f2p Team" required />
       </div>
-      <Combobox items={[]} />
       <Button type="submit">Save formation</Button>
     </form>
   );
