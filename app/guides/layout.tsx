@@ -10,7 +10,7 @@ export default async function GuidesLayout({
   children: React.ReactNode;
 }) {
   const guidePages = await getGuidePages();
-  
+
   return (
     <>
       <div className="flex flex-col items-center">
