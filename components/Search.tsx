@@ -49,9 +49,9 @@ export default function Search({
 
       <Separator className="my-4" />
 
-      {loading && <p>Loading...</p>}
-
-      {!loading && (
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
         <ScrollArea className="mt-4 md:px-4">
           {results.map((result: FormationData) => (
             <FormationCard
