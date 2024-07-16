@@ -31,9 +31,17 @@ export type ArtifactsCmsData = {
   };
 };
 
+export type MapsCmsData = {
+  [id: string]: {
+    name: string;
+    layout: number[][];
+  };
+};
+
 export type CmsData = {
   characters: CharacterCmsData;
   classes: ClassesCmsData;
   factions: FactionsCmsData;
   artifacts: ArtifactsCmsData;
+  maps: MapsCmsData;
 };
