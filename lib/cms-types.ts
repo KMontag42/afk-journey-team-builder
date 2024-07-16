@@ -1,0 +1,39 @@
+type ImgurUrl = `https://i.imgur.com/${string}.png`;
+
+type NameAndImageCmsData = {
+  name: string;
+  imageUrl: ImgurUrl;
+};
+
+export type CharacterCmsData = {
+  [id: string]: NameAndImageCmsData & {
+    id: string;
+    faction: string;
+    class: string;
+    charms: string[];
+    tileUrl: ImgurUrl;
+  };
+};
+
+export type ClassesCmsData = {
+  [id: string]: NameAndImageCmsData;
+};
+export type FactionsCmsData = {
+  [id: string]: NameAndImageCmsData;
+};
+
+export type ArtifactsCmsData = {
+  [id: string]: {
+    value: string;
+    label: string;
+    category: string;
+    imageUrl: ImgurUrl;
+  };
+};
+
+export type CmsData = {
+  characters: CharacterCmsData;
+  classes: ClassesCmsData;
+  factions: FactionsCmsData;
+  artifacts: ArtifactsCmsData;
+};

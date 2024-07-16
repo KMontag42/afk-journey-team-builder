@@ -1,19 +1,22 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import FormationCard from "@/components/FormationCard";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
+
 import { FormationData } from "@/lib/formations";
+import { type CmsData } from "@/lib/cms-types";
 
 export default function Search({
   cmsData,
   prePopulated,
 }: {
-  cmsData: any;
+  cmsData: CmsData;
   prePopulated: FormationData[];
 }) {
   const [search, setSearch] = useState("");

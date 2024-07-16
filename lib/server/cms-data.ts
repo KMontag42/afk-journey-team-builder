@@ -1,6 +1,8 @@
 import "server-only";
 
-export async function getCmsData() {
+import { type CmsData } from "@/lib/cms-types";
+
+export async function getCmsData(): Promise<CmsData> {
   const jsonData = await (
     await fetch(
       `https://simplejsoncms.com/api/${process.env.CHARACTERS_SIMPLEJSONCMS_ID}`,
