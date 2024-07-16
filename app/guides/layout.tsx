@@ -14,7 +14,7 @@ export default async function GuidesLayout({
   return (
     <>
       <div className="flex flex-col items-center">
-        <div className="flex flex-col items-start w-[min(100%)] lg:w-[min(100%,1024px)] pl-2 sm:pl-0">
+        <div className="flex flex-col items-start container lg:w-[min(100%,1024px)] pl-2 lg:pl-0">
           <NavMenu sections={getSections("/guides", guidePages)}></NavMenu>
         </div>
         {children}
