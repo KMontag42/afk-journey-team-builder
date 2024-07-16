@@ -68,10 +68,6 @@
 }
 
 .tableOfContents {
-  a {
-    text-decoration: none !important;
-  }
-
   ul,
   ol {
     list-style-type: none !important;
@@ -110,4 +106,13 @@
   to {
     scale: 1 1;
   }
+}
+
+.label {
+  font-weight: bold;
+  color: #d3bc8e;
+}
+
+.creator {
+  font-size: small;
 }
