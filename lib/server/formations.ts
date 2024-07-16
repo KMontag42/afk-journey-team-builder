@@ -190,7 +190,7 @@ export async function searchFormations(
   return formations;
 }
 
-export async function mostPopularFormations(
+async function _mostPopularFormations(
   limit: number,
 ): Promise<FormationData[]> {
   const { userId } = auth();
@@ -266,3 +266,5 @@ export async function mostPopularFormations(
 
   return formations;
 }
+
+export const mostPopularFormations = cache(_mostPopularFormations);

@@ -51,7 +51,7 @@ export default function Search({
 
       {loading && <p>Loading...</p>}
 
-      <ScrollArea className="mt-4 md:px-4">
+      {!loading && <ScrollArea className="mt-4 md:px-4">
         {results.map((result: FormationData) => (
           <FormationCard
             key={result.id.toString()!}
@@ -60,7 +60,7 @@ export default function Search({
             cmsData={cmsData}
           />
         ))}
-      </ScrollArea>
+      </ScrollArea>}
     </div>
   );
 }
