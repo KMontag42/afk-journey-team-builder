@@ -248,8 +248,6 @@ async function _mostPopularFormations(limit: number): Promise<FormationData[]> {
     });
   }
 
-  console.log(queryResponse.rows);
-
   if (!queryResponse.rows.length) {
     return [];
   }
