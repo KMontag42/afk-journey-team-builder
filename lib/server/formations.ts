@@ -236,8 +236,6 @@ async function _mostPopularFormations(limit: number): Promise<FormationData[]> {
             votes v
         ON
             f.id = v.formation_id
-        WHERE
-            f.name LIKE (:q) OR f.formation LIKE (:q)
         GROUP BY
             f.id
         ORDER BY
