@@ -51,16 +51,18 @@ export default function Search({
 
       {loading && <p>Loading...</p>}
 
-      {!loading && <ScrollArea className="mt-4 md:px-4">
-        {results.map((result: FormationData) => (
-          <FormationCard
-            key={result.id.toString()!}
-            data={result}
-            className="mb-4"
-            cmsData={cmsData}
-          />
-        ))}
-      </ScrollArea>}
+      {!loading && (
+        <ScrollArea className="mt-4 md:px-4">
+          {results.map((result: FormationData) => (
+            <FormationCard
+              key={result.id.toString()!}
+              data={result}
+              className="mb-4"
+              cmsData={cmsData}
+            />
+          ))}
+        </ScrollArea>
+      )}
     </div>
   );
 }

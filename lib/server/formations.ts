@@ -190,9 +190,7 @@ export async function searchFormations(
   return formations;
 }
 
-async function _mostPopularFormations(
-  limit: number,
-): Promise<FormationData[]> {
+async function _mostPopularFormations(limit: number): Promise<FormationData[]> {
   const { userId } = auth();
   let queryResponse;
 
