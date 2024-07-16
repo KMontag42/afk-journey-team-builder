@@ -8,6 +8,7 @@ import { getUser } from "@/lib/server/users";
 
 import Link from "next/link";
 import FormationCard from "@/components/FormationCard";
+import { Button } from "@/components/ui/button";
 
 export default async function MyFormations() {
   const { userId, sessionClaims } = auth();
@@ -23,20 +24,22 @@ export default async function MyFormations() {
   const cmsData = await getCmsData();
 
   return (
-    <div className="container md:w-[40vw]">
-      <Link href={`/users/${username}`} className="underline text-blue-400">
-        View your profile
+    <div className="container md:w-[95vw]">
+      <Link href={`/users/${username}`} className="flex justify-center pb-4">
+        <Button>View your profile</Button>
       </Link>
-      {data.map((formation) => (
-        <FormationCard
-          key={formation.id?.toString()}
-          data={formation}
-          className="mb-4"
-          hideUser
-          showDelete
-          cmsData={cmsData}
-        />
-      ))}
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
+        {data.map((formation) => (
+          <FormationCard
+            key={formation.id?.toString()}
+            data={formation}
+            className="mb-4"
+            hideUser
+            showDelete
+            cmsData={cmsData}
+          />
+        ))}
+      </div>
     </div>
   );
 }

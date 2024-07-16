@@ -12,7 +12,7 @@ export default async function UserPage({
   const user = await getUserByUsername(params.username);
 
   if (!user) {
-    return <div>User not found</div>;
+    return <div className="text-center pt-8">User not found</div>;
   }
 
   const { user_id, username, user_image } = user;
@@ -21,7 +21,7 @@ export default async function UserPage({
   const formations = await getFormationsForUserId(user_id);
 
   return (
-    <div className="container flex flex-col items-center">
+    <div className="container flex flex-col items-center pb-4">
       <div className="flex items-center gap-2 text-2xl">
         <Avatar>
           <AvatarFallback>{username}</AvatarFallback>
@@ -29,8 +29,8 @@ export default async function UserPage({
         </Avatar>
         <h1>{username}</h1>
       </div>
-      <h2 className="text-xl">Formations</h2>
-      <div className="md:w-[40vw] mt-4">
+      <h2 className="py-4 text-lg font-bold">Formations</h2>
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
         {formations.map((formation) => (
           <FormationCard
             key={formation.id.toString()}
