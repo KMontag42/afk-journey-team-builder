@@ -189,3 +189,80 @@ export async function searchFormations(
 
   return formations;
 }
+
+export async function mostPopularFormations(
+  limit: number,
+): Promise<FormationData[]> {
+  const { userId } = auth();
+  let queryResponse;
+
+  if (userId) {
+    queryResponse = await turso.execute({
+      sql: `
+        SELECT
+            f.*,
+            COUNT(v.id) AS vote_count,
+            CASE
+                WHEN v2.id IS NOT NULL THEN 1
+                ELSE 0
+            END AS currentUserLiked
+        FROM
+            formations f
+        LEFT JOIN
+            votes v
+        ON
+            f.id = v.formation_id
+        LEFT JOIN
+            votes v2
+        ON
+            f.id = v2.formation_id
+        AND
+            v2.user_id = (:userId)
+        GROUP BY
+            f.id
+        ORDER BY
+            vote_count DESC
+        LIMIT (:limit);
+      `,
+      args: { limit, userId },
+    });
+  } else {
+    queryResponse = await turso.execute({
+      sql: `
+        SELECT
+            f.*,
+            COUNT(v.id) AS vote_count
+        FROM
+            formations f
+        LEFT JOIN
+            votes v
+        ON
+            f.id = v.formation_id
+        WHERE
+            f.name LIKE (:q) OR f.formation LIKE (:q)
+        GROUP BY
+            f.id
+        ORDER BY
+            vote_count DESC
+        LIMIT (:limit);
+      `,
+      args: { limit },
+    });
+  }
+
+  console.log(queryResponse.rows);
+
+  if (!queryResponse.rows.length) {
+    return [];
+  }
+
+  const formations = await Promise.all(
+    queryResponse.rows.map(async (formation) => {
+      const user = await getUser(formation.user_id?.toString()!);
+
+      return buildFormationJson(formation, user);
+    }),
+  );
+
+  return formations;
+}

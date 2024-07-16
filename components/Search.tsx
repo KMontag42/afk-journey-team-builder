@@ -7,10 +7,17 @@ import FormationCard from "@/components/FormationCard";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
+import { FormationData } from "@/lib/formations";
 
-export default function Search({ cmsData }: { cmsData: any }) {
+export default function Search({
+  cmsData,
+  prePopulated,
+}: {
+  cmsData: any;
+  prePopulated: FormationData[];
+}) {
   const [search, setSearch] = useState("");
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState(prePopulated);
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async (e: FormEvent) => {
@@ -35,7 +42,7 @@ export default function Search({ cmsData }: { cmsData: any }) {
           id="name"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Name or hero"
+          placeholder="Formation name"
         />
         <Button type="submit">Search</Button>
       </form>
@@ -45,10 +52,10 @@ export default function Search({ cmsData }: { cmsData: any }) {
       {loading && <p>Loading...</p>}
 
       <ScrollArea className="mt-4 md:px-4">
-        {results.map((result: any) => (
+        {results.map((result: FormationData) => (
           <FormationCard
             key={result.id.toString()!}
-            data={result as any}
+            data={result}
             className="mb-4"
             cmsData={cmsData}
           />
