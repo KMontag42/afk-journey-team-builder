@@ -5,7 +5,7 @@ import { auth } from "@clerk/nextjs/server";
 import { Row } from "@libsql/client";
 
 import { type ClerkUser, getUser } from "@/lib/server/users";
-import { turso } from "@/lib/turso";
+import { turso } from "@/lib/server/turso";
 import { type FormationData } from "@/lib/formations";
 
 export function buildFormationJson(
