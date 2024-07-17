@@ -76,8 +76,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  @apply w-1.5 h-1.5;
 }
 
 ::-webkit-scrollbar-track {
@@ -93,7 +92,7 @@
 }
 
 a:hover {
-  color: #d3bc8e;
+  @apply text-atekgold;
 }
 
 .DropdownMenuContent {
