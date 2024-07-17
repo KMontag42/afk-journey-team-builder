@@ -26,8 +26,11 @@ export default function Search({ cmsData }: { cmsData: any }) {
   };
 
   return (
-    <div className="md:px-0 md:container md:w-[40vw] mx-auto">
-      <form onSubmit={handleSearch} className="flex flex-col gap-2 px-2">
+    <div className="flex flex-col items-center md:px-0 md:container mx-auto">
+      <form
+        onSubmit={handleSearch}
+        className="flex md:w-[40vw] flex-col gap-2 px-2"
+      >
         <Label htmlFor="name" className="text-2xl">
           Search
         </Label>
@@ -42,18 +45,19 @@ export default function Search({ cmsData }: { cmsData: any }) {
 
       <Separator className="my-4" />
 
-      {loading && <p>Loading...</p>}
-
-      <ScrollArea className="mt-4 md:px-4">
-        {results.map((result: any) => (
-          <FormationCard
-            key={result.id.toString()!}
-            data={result as any}
-            className="mb-4"
-            cmsData={cmsData}
-          />
-        ))}
-      </ScrollArea>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4 my-4 md:px-4">
+          {results.map((result: any) => (
+            <FormationCard
+              key={result.id.toString()!}
+              data={result as any}
+              cmsData={cmsData}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
