@@ -24,7 +24,7 @@ export default async function MyFormations() {
   const cmsData = await getCmsData();
 
   return (
-    <div className="container md:w-[95vw]">
+    <div className="container">
       <Link href={`/users/${username}`} className="flex justify-center pb-4">
         <Button>View your profile</Button>
       </Link>

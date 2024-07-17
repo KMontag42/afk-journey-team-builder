@@ -21,8 +21,8 @@ export default async function UserPage({
   const formations = await getFormationsForUserId(user_id);
 
   return (
-    <div className="container flex flex-col items-center pb-4">
-      <div className="flex items-center gap-2 text-2xl">
+    <div className="container flex flex-col pb-4">
+      <div className="flex justify-center items-center gap-2 text-2xl">
         <Avatar>
           <AvatarFallback>{username}</AvatarFallback>
           <AvatarImage src={user_image} alt={username} />
