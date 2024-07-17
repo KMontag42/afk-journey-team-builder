@@ -12,11 +12,15 @@ export default async function GuidesLayout({
   const guidePages = await getGuidePages();
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="flex flex-col items-start lg:w-[min(100%,1024px)] pl-2 lg:pl-0">
-        <NavMenu sections={getSections("/guides", guidePages)}></NavMenu>
+    <>
+      <div className="flex justify-center">
+        <div className="container lg:w-[1100px]">
+          <NavMenu sections={getSections("/guides", guidePages)}></NavMenu>
+        </div>
       </div>
-      {children}
-    </div>
+      <div className="flex flex-col items-center w-full lg:w-[min(100%)]">
+        {children}
+      </div>
+    </>
   );
 }

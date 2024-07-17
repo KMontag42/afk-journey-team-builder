@@ -10,7 +10,7 @@ import remarkToc from "remark-toc";
 import rehypeSlug from "rehype-slug";
 import Markdown from "react-markdown";
 
-import { getGuideContent, getGuidePages } from "@/lib/server/cms-data";
+import { getGuideContent } from "@/lib/server/cms-data";
 import { MarkdownComponents } from "@/components/MarkdownComponents";
 
 const Components = MarkdownComponents as any;

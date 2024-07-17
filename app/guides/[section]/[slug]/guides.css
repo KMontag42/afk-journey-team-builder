@@ -1,87 +1,73 @@
 /* HTML Styling */
 .markdownArea {
-  color: #ecf0f5;
+  @apply text-atekwhite;
 
   h1,
   h2,
   h3 {
-    padding-top: 0.5em;
-    font-weight: bold;
-    color: #d3bc8e;
+    @apply pt-6 font-bold text-atekgold;
   }
 
   h1 {
-    font-size: 2em;
-    text-align: center;
+    @apply text-3xl text-center;
   }
 
   h2 {
-    font-size: 1.5em;
+    @apply text-2xl;
   }
 
   h3 {
-    font-size: 1.17em;
+    @apply text-lg;
   }
 
   h6 {
-    font-size: 0.67em;
+    @apply text-xs;
   }
 
   hr {
-    margin: 0.5em 0;
+    @apply mx-2;
   }
 
   table,
   tr,
   th,
   td {
-    border: 1px #d3bc8e solid;
-    padding: 0.25em 1em;
-    margin: 1em;
+    @apply border border-atekgold border-solid m-4 py-1 px-4;
   }
 
   ul {
-    padding-left: 1em;
-    list-style-type: disc;
+    @apply pl-4 list-disc;
 
     ul {
-      padding-left: 1em;
+      @apply pl-4;
     }
   }
 
   ol {
-    padding-left: 1em;
-    list-style-type: decimal;
+    @apply pl-4 list-decimal;
   }
 
   a {
-    text-decoration: underline;
+    @apply underline;
   }
 
   p {
-    padding: 0.25em 0;
+    @apply py-1;
   }
 }
 
 /* Component Classes */
-.guideTitle {
-  font-size: 48px !important;
-  font-weight: bold;
-  text-align: center;
-  color: #d3bc8e;
-}
-
 .tableOfContents {
   ul,
   ol {
-    list-style-type: none !important;
+    @apply pt-4 list-none;
   }
 
   @media screen and (min-width: 1800px) {
     li {
-      padding-bottom: 8px;
+      @apply pb-2;
     }
-
+    
     font-size: 1em;
     position: fixed;
     left: 0;
@@ -113,10 +99,9 @@
 }
 
 .label {
-  font-weight: bold;
-  color: #d3bc8e;
+  @apply font-bold text-atekgold;
 }
 
 .creator {
-  font-size: small;
+  @apply text-sm;
 }

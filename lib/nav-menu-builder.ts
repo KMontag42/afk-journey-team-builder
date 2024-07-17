@@ -1,10 +1,21 @@
-export function getSections(baseUrl: string, json: JSON): any[] {
+export type NavMenuSection = {
+  name: string;
+  items: NavMenuItem[];
+};
+
+export type NavMenuItem = {
+  title: string;
+  href: string;
+  description: string;
+};
+
+export function getSections(baseRoute: string, json: JSON): NavMenuSection[] {
   const sections = Object.entries(json).map(
     ([section, data]: [string, any]) => {
       const listItems = Object.entries(data).map(
         ([key, data]: [string, any]) => ({
           title: data.title,
-          href: `${baseUrl}/${section}/${key}`,
+          href: `${baseRoute}/${section}/${key}`,
           description: data.description,
         }),
       );
