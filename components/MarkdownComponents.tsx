@@ -1,7 +1,11 @@
 import { ReactNode } from "react";
 
 const GuideTitle = ({ id, children }: { id: string; children: ReactNode }) => {
-  return <div className="text-5xl font-bold text-center text-atekgold pb-4">{children}</div>;
+  return (
+    <div className="text-5xl font-bold text-center text-atekgold pb-4">
+      {children}
+    </div>
+  );
 };
 
 const TableOfContents = ({
