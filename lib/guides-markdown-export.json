@@ -1,4 +1,26 @@
 {
+  "home": {
+    "1": {
+      "guideLink": "/guides/beginner/beginners-guide",
+      "imageLink": "https://i.imgur.com/ZYdwXzv.png"
+    },
+    "2": {
+      "guideLink": "/guides/beginner/spending",
+      "imageLink": "https://i.imgur.com/tH91Hd0.png"
+    },
+    "3": {
+      "guideLink": "/guides/advanced/ascension",
+      "imageLink": "https://i.imgur.com/hy2xw3G.png"
+    },
+    "4": {
+      "guideLink": "/guides/advanced/equipment",
+      "imageLink": "https://i.imgur.com/sn5R9QG.png"
+    },
+    "5": {
+      "guideLink": "/guides/advanced/artifacts",
+      "imageLink": "https://i.imgur.com/ZYdwXzv.png"
+    }
+  },
   "guides": {
     "beginner": {
       "beginners-guide": {

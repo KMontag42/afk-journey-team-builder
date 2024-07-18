@@ -9,6 +9,24 @@ export async function getCmsData() {
   return jsonData;
 }
 
+export async function getGuideHomePage() {
+  const jsonData = await (
+    await fetch(
+      `https://simplejsoncms.com/api/${process.env.GUIDES_SIMPLEJSONCMS_ID}`,
+    )
+  ).json();
+  const banners = Object.entries(jsonData["home"]).map(
+    ([key, data]: [string, any]) => ({
+      key: key,
+      guideLink: data["guideLink"],
+      imageLink: data["imageLink"],
+    }),
+  );
+
+  console.log(banners);
+  return banners;
+}
+
 export async function getGuidePages() {
   const jsonData = await (
     await fetch(
