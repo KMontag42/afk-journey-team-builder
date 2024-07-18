@@ -67,7 +67,9 @@ export default async function GuidesPage() {
                 <Card>
                   <CardContent className="flex flex-col items-center justify-center p-4">
                     <Newspaper />
-                    <div className="label creator pt-4">Beginner's Guide</div>
+                    <div className="label creator pt-4">
+                      Beginner&apos;s Guide
+                    </div>
                   </CardContent>
                 </Card>
               </Link>
