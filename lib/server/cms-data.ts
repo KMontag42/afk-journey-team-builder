@@ -22,8 +22,6 @@ export async function getGuideHomePage() {
       imageLink: data["imageLink"],
     }),
   );
-
-  console.log(banners);
   return banners;
 }
 
