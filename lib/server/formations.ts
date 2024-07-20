@@ -5,7 +5,7 @@ import { auth } from "@clerk/nextjs/server";
 import { Row } from "@libsql/client";
 
 import { type ClerkUser, getUser } from "@/lib/server/users";
-import { turso } from "@/lib/turso";
+import { turso } from "@/lib/server/turso";
 import { type FormationData } from "@/lib/formations";
 
 export function buildFormationJson(
@@ -189,3 +189,76 @@ export async function searchFormations(
 
   return formations;
 }
+
+async function _mostPopularFormations(limit: number): Promise<FormationData[]> {
+  const { userId } = auth();
+  let queryResponse;
+
+  if (userId) {
+    queryResponse = await turso.execute({
+      sql: `
+        SELECT
+            f.*,
+            COUNT(v.id) AS vote_count,
+            CASE
+                WHEN v2.id IS NOT NULL THEN 1
+                ELSE 0
+            END AS currentUserLiked
+        FROM
+            formations f
+        LEFT JOIN
+            votes v
+        ON
+            f.id = v.formation_id
+        LEFT JOIN
+            votes v2
+        ON
+            f.id = v2.formation_id
+        AND
+            v2.user_id = (:userId)
+        GROUP BY
+            f.id
+        ORDER BY
+            vote_count DESC
+        LIMIT (:limit);
+      `,
+      args: { limit, userId },
+    });
+  } else {
+    queryResponse = await turso.execute({
+      sql: `
+        SELECT
+            f.*,
+            COUNT(v.id) AS vote_count
+        FROM
+            formations f
+        LEFT JOIN
+            votes v
+        ON
+            f.id = v.formation_id
+        GROUP BY
+            f.id
+        ORDER BY
+            vote_count DESC
+        LIMIT (:limit);
+      `,
+      args: { limit },
+    });
+  }
+
+  if (!queryResponse.rows.length) {
+    return [];
+  }
+
+  const formations = await Promise.all(
+    queryResponse.rows.map(async (formation) => {
+      const user = await getUser(formation.user_id?.toString()!);
+
+      return buildFormationJson(formation, user);
+    }),
+  );
+
+  return formations;
+}
+
+export const mostPopularFormations = cache(_mostPopularFormations);
