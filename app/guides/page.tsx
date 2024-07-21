@@ -71,7 +71,7 @@ export default async function GuidesPage() {
         <div className="font-bold text-atekgold">Contributors</div>
         <div className="flex flex-row gap-4">
           {data["contributors"].map((contributor: any) => (
-            <Card>
+            <Card key={contributor.name}>
               <CardContent className="flex flex-col items-center justify-center p-4">
                 <Image
                   width={124}
