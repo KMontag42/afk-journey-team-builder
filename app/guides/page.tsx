@@ -53,61 +53,49 @@ export default async function GuidesPage() {
         <CarouselNext />
       </Carousel>
 
-      <Carousel
-        opts={{
-          align: "start",
-          loop: true,
-        }}
-        className="max-w-48 pt-4 lg:max-w-xl"
-      >
-        <CarouselContent>
-          <CarouselItem className="" key={"inSeas0n"}>
-            <div className="">
-              <Link href="/guides/beginner/beginners-guide">
-                <Card>
-                  <CardContent className="flex flex-col items-center justify-center p-4">
-                    <Newspaper />
-                    <div className="label creator pt-4">
-                      Beginner&apos;s Guide
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            </div>
-          </CarouselItem>
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
+      <div className="font-bold text-atekgold">Quick Navigation</div>
+      <div className="my-4">
+        <Link href="/guides/beginner/beginners-guide">
+          <Card>
+            <CardContent className="flex flex-col items-center justify-center p-4">
+              <Newspaper />
+              <div className="text-sm font-bold text-atekgold pt-4">
+                Beginner&apos;s Guide
+              </div>
+            </CardContent>
+          </Card>
+        </Link>
+      </div>
 
-      <div className="label pt-4">Creators</div>
-      <Carousel
-        opts={{
-          align: "start",
-          loop: true,
-        }}
-        className="max-w-48 lg:max-w-xl"
-      >
-        <CarouselContent>
-          <CarouselItem className="" key={"inSeas0n"}>
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex flex-col items-center justify-center p-4">
-                  <Image
-                    width={124}
-                    height={124}
-                    src={"https://i.imgur.com/LZOzlA0.png"}
-                    alt={"inSeas0n"}
-                  />
-                  <div className="label creator pt-4">inSeas0n</div>
-                </CardContent>
-              </Card>
-            </div>
-          </CarouselItem>
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
+      <div className="flex flex-col items-center gap-y-2 pt-4">
+        <div className="font-bold text-atekgold">Contributors</div>
+        <div className="flex flex-row gap-4">
+          <Card>
+            <CardContent className="flex flex-col items-center justify-center p-4">
+              <Image
+                width={124}
+                height={124}
+                src={"https://i.imgur.com/LZOzlA0.png"}
+                alt={"inSeas0n"}
+              />
+              <div className="text-sm font-bold text-atekgold pt-4">
+                inSeas0n
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="flex flex-col items-center justify-center p-4">
+              <Image
+                width={124}
+                height={124}
+                src={"https://i.imgur.com/gixWKWX.png"}
+                alt={"xFlaws"}
+              />
+              <div className="text-sm font-bold text-atekgold pt-4">xFlaws</div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
     </>
   );
 }

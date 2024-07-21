@@ -97,11 +97,3 @@
     scale: 1 1;
   }
 }
-
-.label {
-  @apply font-bold text-atekgold;
-}
-
-.creator {
-  @apply text-sm;
-}
