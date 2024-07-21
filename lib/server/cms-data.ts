@@ -1,6 +1,11 @@
 import "server-only";
 
-import { type CmsData } from "@/lib/cms-types";
+import type {
+  CmsData,
+  GuideCmsData,
+  GuideHomePageCmsData,
+  GuidePagesCmsData,
+} from "@/lib/cms-types";
 
 export async function getCmsData(): Promise<CmsData> {
   const jsonData = await (
@@ -11,12 +16,17 @@ export async function getCmsData(): Promise<CmsData> {
   return jsonData;
 }
 
-export async function getGuideHomePage() {
+async function getGuideCmsData(): Promise<GuideCmsData> {
   const jsonData = await (
     await fetch(
       `https://simplejsoncms.com/api/${process.env.GUIDES_SIMPLEJSONCMS_ID}`,
     )
   ).json();
+  return jsonData;
+}
+
+export async function getGuideHomePage(): Promise<GuideHomePageCmsData> {
+  const jsonData = await getGuideCmsData();
   const banners = Object.entries(jsonData["home"]["banners"]).map(
     ([key, data]: [string, any]) => ({
       key: key,
@@ -35,20 +45,15 @@ export async function getGuideHomePage() {
   return { banners: banners, contributors: contributors };
 }
 
-export async function getGuidePages() {
-  const jsonData = await (
-    await fetch(
-      `https://simplejsoncms.com/api/${process.env.GUIDES_SIMPLEJSONCMS_ID}`,
-    )
-  ).json();
+export async function getGuidePages(): Promise<GuidePagesCmsData> {
+  const jsonData = await getGuideCmsData();
   return jsonData["guides"];
 }
 
-export async function getGuideContent(section: string, name: string) {
-  const jsonData = await (
-    await fetch(
-      `https://simplejsoncms.com/api/${process.env.GUIDES_SIMPLEJSONCMS_ID}`,
-    )
-  ).json();
+export async function getGuideContent(
+  section: string,
+  name: string,
+): Promise<string> {
+  const jsonData = await getGuideCmsData();
   return jsonData["guides"][section][name]?.content;
 }

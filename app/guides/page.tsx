@@ -14,6 +14,10 @@ import {
 
 import { getGuideHomePage } from "@/lib/server/cms-data";
 import { Newspaper } from "lucide-react";
+import type {
+  GuideBannerCmsData,
+  GuideContributorCmsData,
+} from "@/lib/cms-types";
 
 export default async function GuidesPage() {
   const data = await getGuideHomePage();
@@ -28,7 +32,7 @@ export default async function GuidesPage() {
         className="w-full max-w-60 lg:max-w-lg"
       >
         <CarouselContent>
-          {data["banners"].map((banner: any) => (
+          {data["banners"].map((banner: GuideBannerCmsData) => (
             <CarouselItem key={banner.key}>
               <div className="p-1">
                 <Card className="border-0">
@@ -68,7 +72,7 @@ export default async function GuidesPage() {
       <div className="flex flex-col items-center gap-y-2 pt-4">
         <div className="font-bold text-atekgold">Contributors</div>
         <div className="flex flex-row gap-4">
-          {data["contributors"].map((contributor: any) => (
+          {data["contributors"].map((contributor: GuideContributorCmsData) => (
             <Card key={contributor.name}>
               <CardContent className="flex flex-col items-center justify-center p-4">
                 <Image

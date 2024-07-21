@@ -45,3 +45,37 @@ export type CmsData = {
   artifacts: ArtifactsCmsData;
   maps: MapsCmsData;
 };
+
+type TitleAndContentCmsData = {
+  title: string;
+  content: string;
+};
+
+export type GuideSectionCmsData = {
+  [slug: string]: TitleAndContentCmsData;
+};
+
+export type GuidePagesCmsData = {
+  [section: string]: GuideSectionCmsData;
+};
+
+export type GuideBannerCmsData = {
+  key: string;
+  guideLink: string;
+  imageLink: ImgurUrl;
+};
+
+export type GuideContributorCmsData = {
+  name: string;
+  imageLink: ImgurUrl;
+};
+
+export type GuideHomePageCmsData = {
+  banners: GuideBannerCmsData[];
+  contributors: GuideContributorCmsData[];
+};
+
+export type GuideCmsData = {
+  home: GuideHomePageCmsData;
+  guides: GuidePagesCmsData;
+};
