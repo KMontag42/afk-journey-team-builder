@@ -24,6 +24,13 @@
     @apply text-xs;
   }
 
+  h1,
+  h2,
+  h3,
+  h6 {
+    @apply scroll-mt-[70px];
+  }
+
   hr {
     @apply mx-2;
   }
