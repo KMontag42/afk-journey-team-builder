@@ -14,13 +14,9 @@ export default async function GuidesLayout({
   const guidePages = await getGuidePages();
 
   return (
-    <>
-      <div className="container lg:w-[1100px]">
-        <NavMenu sections={getSections("/guides", guidePages)}></NavMenu>
-      </div>
-      <div className="flex flex-col items-center w-full lg:w-[min(100%)]">
-        {children}
-      </div>
-    </>
+    <div className="container">
+      <NavMenu sections={getSections("/guides", guidePages)}></NavMenu>
+      <div className="flex flex-col items-center">{children}</div>
+    </div>
   );
 }

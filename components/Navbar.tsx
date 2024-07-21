@@ -94,7 +94,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="flex h-[7vh] w-full items-center justify-between px-4 md:px-6 border sticky top-0 bg-slate-900 z-40">
+    <header className="flex h-[70px] w-full items-center justify-between px-4 md:px-6 border sticky top-0 bg-slate-900 z-40">
       <Link href="/" prefetch={true}>
         <Image
           src={tekImages["tekLogo"]}
