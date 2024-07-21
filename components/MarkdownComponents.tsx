@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-const GuideTitle = ({ id, children }: { id: string; children: ReactNode }) => {
+const GuideTitle = ({ children }: { children: ReactNode }) => {
   return (
     <div className="text-5xl font-bold text-center text-atekgold pb-4">
       {children}
@@ -8,93 +8,63 @@ const GuideTitle = ({ id, children }: { id: string; children: ReactNode }) => {
   );
 };
 
-const TableOfContents = ({
-  id,
-  children,
-}: {
-  id: string;
-  children: ReactNode;
-}) => {
+const TableOfContents = ({ children }: { children: ReactNode }) => {
   return <div className="pb-8 tableOfContents">{children}</div>;
 };
 
-const TwoColumn = ({ id, children }: { id: string; children: ReactNode }) => {
+const TwoColumn = ({ children }: { children: ReactNode }) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-8">{children}</div>
   );
 };
 
-const ThreeColumn = ({ id, children }: { id: string; children: ReactNode }) => {
+const ThreeColumn = ({ children }: { children: ReactNode }) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-8">{children}</div>
   );
 };
 
-const Column = ({ id, children }: { id: string; children: ReactNode }) => {
+const Column = ({ children }: { children: ReactNode }) => {
   return <div className="">{children}</div>;
 };
 
-const CenteredText = ({
-  id,
-  children,
-}: {
-  id: string;
-  children: ReactNode;
-}) => {
+const CenteredText = ({ children }: { children: ReactNode }) => {
   return <div className="text-center">{children}</div>;
 };
 
-const CenteredContent = ({
-  id,
-  children,
-}: {
-  id: string;
-  children: ReactNode;
-}) => {
+const CenteredContent = ({ children }: { children: ReactNode }) => {
   return <div className="flex justify-center py-4">{children}</div>;
 };
 
-const Space = ({ id, children }: { id: string; children: ReactNode }) => {
+const Space = () => {
   return <div className="py-4" />;
 };
 
-const Thumbnail = ({ id, children }: { id: string; children: ReactNode }) => {
+const Thumbnail = ({ children }: { children: ReactNode }) => {
   return <div className="max-w-16">{children}</div>;
 };
 
-const MiniImage = ({ id, children }: { id: string; children: ReactNode }) => {
+const MiniImage = ({ children }: { children: ReactNode }) => {
   return <div className="max-w-40">{children}</div>;
 };
 
-const ExtraSmallImage = ({
-  id,
-  children,
-}: {
-  id: string;
-  children: ReactNode;
-}) => {
+const ExtraSmallImage = ({ children }: { children: ReactNode }) => {
   return <div className="max-w-xs">{children}</div>;
 };
 
-const SmallImage = ({ id, children }: { id: string; children: ReactNode }) => {
+const SmallImage = ({ children }: { children: ReactNode }) => {
   return <div className="max-w-md">{children}</div>;
 };
 
-const MediumImage = ({ id, children }: { id: string; children: ReactNode }) => {
+const MediumImage = ({ children }: { children: ReactNode }) => {
   return <div className="max-w-xl">{children}</div>;
 };
 
-const LargeImage = ({ id, children }: { id: string; children: ReactNode }) => {
+const LargeImage = ({ children }: { children: ReactNode }) => {
   return <div className="max-w-3xl">{children}</div>;
 };
 
-const ExtraLargeImage = ({
-  id,
-  children,
-}: {
-  id: string;
-  children: ReactNode;
-}) => {
+const ExtraLargeImage = ({ children }: { children: ReactNode }) => {
   return <div className="max-w-5xl">{children}</div>;
 };
 

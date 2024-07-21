@@ -1,5 +1,7 @@
 "use server";
 
+import "@/app/guides/[section]/[slug]/page.css";
+
 import remarkDirective from "remark-directive";
 import remarkDirectiveRehype from "remark-directive-rehype";
 import remarkRehype from "remark-rehype";

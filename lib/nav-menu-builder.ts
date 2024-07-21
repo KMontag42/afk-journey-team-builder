@@ -1,3 +1,5 @@
+import type { GuidePagesCmsData } from "./cms-types";
+
 export type NavMenuSection = {
   name: string;
   items: NavMenuItem[];
@@ -9,7 +11,10 @@ export type NavMenuItem = {
   description: string;
 };
 
-export function getSections(baseRoute: string, json: JSON): NavMenuSection[] {
+export function getSections(
+  baseRoute: string,
+  json: GuidePagesCmsData,
+): NavMenuSection[] {
   const sections = Object.entries(json).map(
     ([section, data]: [string, any]) => {
       const listItems = Object.entries(data).map(

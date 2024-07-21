@@ -19,8 +19,9 @@ const config = {
     },
     extend: {
       colors: {
-        atekgold: "#d3bc8e",
-        atekwhite: "#ecf0f5",
+        atekgold: "hsl(var(--atek-gold))",
+        atekwhite: "hsl(var(--atek-white))",
+        white: "hsl(var(--atek-white))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
