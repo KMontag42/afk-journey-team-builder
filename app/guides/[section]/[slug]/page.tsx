@@ -12,7 +12,6 @@ import Markdown from "react-markdown";
 
 import { getGuideContent } from "@/lib/server/cms-data";
 import { MarkdownComponents } from "@/components/MarkdownComponents";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Components = MarkdownComponents as any;
 
@@ -26,7 +25,7 @@ export default async function GuidePage({
   return (
     <>
       <div className="progressBar"></div>
-      <ScrollArea className="pb-12 markdownArea">
+      <div className="pb-12 markdownArea">
         <Markdown
           remarkPlugins={[
             remarkGfm,
@@ -40,7 +39,7 @@ export default async function GuidePage({
         >
           {guideContent}
         </Markdown>
-      </ScrollArea>
+      </div>
     </>
   );
 }
