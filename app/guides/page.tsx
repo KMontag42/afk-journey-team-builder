@@ -1,7 +1,5 @@
 "use server";
 
-import "@/app/guides/[section]/[slug]/guides.css";
-
 import Image from "next/image";
 import Link from "next/link";
 
