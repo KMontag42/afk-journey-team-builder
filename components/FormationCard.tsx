@@ -4,6 +4,8 @@ import Link from "next/link";
 
 import { layouts } from "@/lib/layouts";
 import { cn } from "@/lib/utils";
+import { type CmsData } from "@/lib/cms-types";
+import { type FormationData } from "@/lib/formations";
 
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -14,14 +16,13 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 
-import { type FormationData } from "@/lib/formations";
 import LikeFormationButton from "@/components/LikeFormationButton";
 import DeleteFormationButton from "@/components/DeleteFormationButton";
 import ShareFormationButton from "@/components/ShareFormationButton";
 
 type FormationCardProps = {
   data: FormationData;
-  cmsData: any;
+  cmsData: CmsData;
   className?: string;
   hideUser?: boolean;
   showDelete?: boolean;

@@ -1,4 +1,4 @@
-import { turso } from "@/lib/turso";
+import { turso } from "@/lib/server/turso";
 
 export async function POST(request: Request) {
   const body = await request.json();
