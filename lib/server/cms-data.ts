@@ -15,14 +15,22 @@ export async function getGuideHomePage() {
       `https://simplejsoncms.com/api/${process.env.GUIDES_SIMPLEJSONCMS_ID}`,
     )
   ).json();
-  const banners = Object.entries(jsonData["home"]).map(
+  const banners = Object.entries(jsonData["home"]["banners"]).map(
     ([key, data]: [string, any]) => ({
       key: key,
       guideLink: data["guideLink"],
       imageLink: data["imageLink"],
     }),
   );
-  return banners;
+  const contributors = Object.entries(jsonData["home"]["contributors"]).map(
+    ([key, data]: [string, any]) => ({
+      key: key,
+      name: data["name"],
+      imageLink: data["imageLink"],
+    }),
+  );
+
+  return { banners: banners, contributors: contributors };
 }
 
 export async function getGuidePages() {

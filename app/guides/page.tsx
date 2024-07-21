@@ -18,7 +18,7 @@ import { getGuideHomePage } from "@/lib/server/cms-data";
 import { Newspaper } from "lucide-react";
 
 export default async function GuidesPage() {
-  const guideBanners = await getGuideHomePage();
+  const data = await getGuideHomePage();
 
   return (
     <>
@@ -30,7 +30,7 @@ export default async function GuidesPage() {
         className="w-full max-w-60 lg:max-w-lg"
       >
         <CarouselContent>
-          {guideBanners.map((banner: any) => (
+          {data["banners"].map((banner: any) => (
             <CarouselItem key={banner.key}>
               <div className="p-1">
                 <Card className="border-0">
@@ -70,30 +70,21 @@ export default async function GuidesPage() {
       <div className="flex flex-col items-center gap-y-2 pt-4">
         <div className="font-bold text-atekgold">Contributors</div>
         <div className="flex flex-row gap-4">
-          <Card>
-            <CardContent className="flex flex-col items-center justify-center p-4">
-              <Image
-                width={124}
-                height={124}
-                src={"https://i.imgur.com/LZOzlA0.png"}
-                alt={"inSeas0n"}
-              />
-              <div className="text-sm font-bold text-atekgold pt-4">
-                inSeas0n
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="flex flex-col items-center justify-center p-4">
-              <Image
-                width={124}
-                height={124}
-                src={"https://i.imgur.com/gixWKWX.png"}
-                alt={"xFlaws"}
-              />
-              <div className="text-sm font-bold text-atekgold pt-4">xFlaws</div>
-            </CardContent>
-          </Card>
+          {data["contributors"].map((contributor: any) => (
+            <Card>
+              <CardContent className="flex flex-col items-center justify-center p-4">
+                <Image
+                  width={124}
+                  height={124}
+                  src={contributor.imageLink}
+                  alt={contributor.name}
+                />
+                <div className="text-sm font-bold text-atekgold pt-4">
+                  {contributor.name}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </>
