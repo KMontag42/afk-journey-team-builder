@@ -9,7 +9,11 @@ const GuideTitle = ({ children }: { children: ReactNode }) => {
 };
 
 const TableOfContents = ({ children }: { children: ReactNode }) => {
-  return <div className="pb-8 tableOfContents">{children}</div>;
+  return (
+    <div className="flex flex-col items-center pb-8 tableOfContents">
+      {children}
+    </div>
+  );
 };
 
 const TwoColumn = ({ children }: { children: ReactNode }) => {
