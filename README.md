@@ -20,6 +20,7 @@ Brought to you by AFK Analytica.
 
 - [x] Migrate characters and images to CMS
 - [x] Save teams to turso database
+- [ ] Migrate Google Sites guides
 - [ ] Better mobile experience
 - [ ] Supreme Arena layouts
 - [ ] Remaining PvE layouts
@@ -32,6 +33,16 @@ Brought to you by AFK Analytica.
 - [simplejsoncms](https://simplejsoncms.com/)
 - [turso](https://turso.tech)
 - [clerk](https://clerk.com)
+
+## Guide Markdown Stack
+
+- [reactMarkdown](https://github.com/remarkjs/react-markdown)
+- [remarkGfm](https://github.com/remarkjs/remark-gfm)
+- [remarkDirective](https://github.com/remarkjs/remark-directive)
+- [remarkDirectiveRehype](https://github.com/IGassmann/remark-directive-rehype)
+- [remarkToc](https://github.com/remarkjs/remark-toc)
+- [remarkRehype](https://github.com/remarkjs/remark-rehype)
+- [rehypeSlug](https://github.com/rehypejs/rehype-slug)
 
 ## Contributing
 

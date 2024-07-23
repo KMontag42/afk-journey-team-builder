@@ -33,6 +33,9 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
+
+    --atek-gold: 40 44% 69%;
+    --atek-white: 213 31% 94%;
   }
 
   .dark {
@@ -73,6 +76,26 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+::-webkit-scrollbar {
+  @apply w-1.5 h-1.5;
+}
+
+::-webkit-scrollbar-track {
+  background: #020817;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d3bc8e;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #86775a;
+}
+
+a:hover {
+  @apply text-atekgold;
 }
 
 .DropdownMenuContent {

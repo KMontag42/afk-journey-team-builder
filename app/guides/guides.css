@@ -1,0 +1,18 @@
+.progressBar {
+  height: 6px;
+  position: fixed;
+  bottom: 0;
+  z-index: 1000;
+  background-color: #d3bc8e;
+  width: 100%;
+  scale: 0 1;
+  transform-origin: left;
+  animation: progressBar linear;
+  animation-timeline: scroll();
+}
+
+@keyframes progressBar {
+  to {
+    scale: 1 1;
+  }
+}

@@ -1,0 +1,72 @@
+/* HTML Styling */
+.markdownArea {
+  @apply text-atekwhite;
+
+  h1,
+  h2,
+  h3 {
+    @apply pt-6 font-bold text-atekgold;
+  }
+
+  h1 {
+    @apply text-3xl text-center;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-lg;
+  }
+
+  h6 {
+    @apply text-xs;
+  }
+
+  h1,
+  h2,
+  h3,
+  h6 {
+    @apply scroll-mt-[70px];
+  }
+
+  hr {
+    @apply mx-2;
+  }
+
+  table,
+  tr,
+  th,
+  td {
+    @apply border border-atekgold border-solid m-4 py-1 px-4;
+  }
+
+  ul {
+    @apply pl-4 list-disc;
+
+    ul {
+      @apply pl-4;
+    }
+  }
+
+  ol {
+    @apply pl-4 list-decimal;
+  }
+
+  a {
+    @apply underline;
+  }
+
+  p {
+    @apply py-1;
+  }
+}
+
+/* Component Classes */
+.tableOfContents {
+  ul,
+  ol {
+    @apply pt-4 list-none;
+  }
+}
