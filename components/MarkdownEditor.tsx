@@ -144,7 +144,6 @@ more test
         Copy JSON String
       </Button>
       <Markdown
-        className="MarkdownExample"
         remarkPlugins={[
           remarkGfm,
           remarkDirective,
