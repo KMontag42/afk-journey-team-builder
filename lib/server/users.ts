@@ -6,6 +6,7 @@ export type ClerkUser = {
   user_id: string;
   username?: string;
   user_image: string;
+  admin: boolean;
 };
 
 export function userData(user: any): ClerkUser {
@@ -13,6 +14,7 @@ export function userData(user: any): ClerkUser {
     user_id: user.id || user.userId,
     username: user.username || user.firstName || undefined,
     user_image: user.imageUrl,
+    admin: user["privateMetadata"] ? user["privateMetadata"]["admin"] : false,
   };
 }
 export async function getUser(id: string) {
