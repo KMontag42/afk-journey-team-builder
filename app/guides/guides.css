@@ -8,7 +8,7 @@ table {
 }
 
 blockquote {
-  @apply p-2 bg-slate-900
+  @apply p-2 bg-slate-900;
 }
 
 /* HTML Styling */
