@@ -140,8 +140,12 @@ const OrderedList = ({ children }: { children: ReactNode }) => {
   return <ol className="pl-4 list-decimal">{children}</ol>;
 };
 
-const Anchor = ({ href, children }: { href : string, children: ReactNode }) => {
-  return <a className="underline" href={href} target="_blank">{children}</a>;
+const Anchor = ({ href, children }: { href: string; children: ReactNode }) => {
+  return (
+    <a className="underline" href={href} target="_blank">
+      {children}
+    </a>
+  );
 };
 
 const Paragraph = ({ children }: { children: ReactNode }) => {

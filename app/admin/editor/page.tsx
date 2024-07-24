@@ -47,7 +47,9 @@ export default async function GuideEditor() {
                       :::
                     </blockquote>
                   </td>
-                  <td className="border-y px-4 py-2">Creates a large gold text for the title of the guide</td>
+                  <td className="border-y px-4 py-2">
+                    Creates a large gold text for the title of the guide
+                  </td>
                 </tr>
                 <tr>
                   <td className="border-y px-4 py-2">TableOfContents</td>
@@ -77,7 +79,9 @@ export default async function GuideEditor() {
                       :::
                     </blockquote>
                   </td>
-                  <td className="border-y px-4 py-2">Individual column designators for column layout</td>
+                  <td className="border-y px-4 py-2">
+                    Individual column designators for column layout
+                  </td>
                 </tr>
                 <tr>
                   <td className="border-y px-4 py-2">TwoColumn</td>
@@ -118,7 +122,9 @@ export default async function GuideEditor() {
                       :::
                     </blockquote>
                   </td>
-                  <td className="border-y px-4 py-2">Center content of any type (images, columns, etc)</td>
+                  <td className="border-y px-4 py-2">
+                    Center content of any type (images, columns, etc)
+                  </td>
                 </tr>
                 <tr>
                   <td className="border-y px-4 py-2">CenteredText</td>
@@ -131,12 +137,16 @@ export default async function GuideEditor() {
                       :::
                     </blockquote>
                   </td>
-                  <td className="border-y px-4 py-2">Center text within current container</td>
+                  <td className="border-y px-4 py-2">
+                    Center text within current container
+                  </td>
                 </tr>
                 <tr>
                   <td className="border-y px-4 py-2">Space</td>
                   <td className="border-y px-4 py-2">
-                    <blockquote className="p-2 bg-slate-900">::space</blockquote>
+                    <blockquote className="p-2 bg-slate-900">
+                      ::space
+                    </blockquote>
                   </td>
                   <td className="border-y px-4 py-2">
                     Simulates an html break. Use for adding gap between content
