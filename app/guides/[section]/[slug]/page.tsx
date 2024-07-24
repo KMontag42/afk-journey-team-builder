@@ -23,7 +23,7 @@ export default async function GuidePage({
   return (
     <>
       <div className="progressBar"></div>
-      <div className="pb-12 markdownArea">
+      <div className="pb-12">
         <Markdown
           remarkPlugins={[
             remarkGfm,
