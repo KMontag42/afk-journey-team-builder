@@ -1,27 +1,15 @@
-"use server";
-
-import { getUser } from "@/lib/server/users";
-import { auth } from "@clerk/nextjs/server";
-import { notFound } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default async function AdminHome() {
-  const { userId } = auth();
-
-  if (!userId) {
-    auth().redirectToSignIn();
-    return;
-  }
-
-  const { admin } = await getUser(userId);
-
-  if (!admin) {
-    notFound();
-  }
-
   return (
     <div className="container flex flex-col items-center">
       <h1>Admin Home</h1>
       <p>Welcome to the admin dashboard</p>
+
+      <Link className="my-4" href="/admin/editor">
+        <Button>Guide Editor</Button>
+      </Link>
     </div>
   );
 }

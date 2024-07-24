@@ -1,7 +1,0 @@
-/* Component Classes */
-.tableOfContents {
-  ul,
-  ol {
-    @apply pt-4 list-none;
-  }
-}

@@ -1,9 +1,5 @@
 "use server";
 
-import { auth } from "@clerk/nextjs/server";
-import { getUser } from "@/lib/server/users";
-import { notFound } from "next/navigation";
-
 import MarkdownEditor from "@/components/MarkdownEditor";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,21 +10,8 @@ import {
 import Link from "next/link";
 
 export default async function GuideEditor() {
-  const { userId } = auth();
-
-  if (!userId) {
-    auth().redirectToSignIn();
-    return;
-  }
-
-  const { admin } = await getUser(userId);
-
-  if (!admin) {
-    notFound();
-  }
-
   return (
-    <>
+    <div className="container flex flex-col items-center">
       <Popover>
         <PopoverTrigger asChild>
           <Button variant="outline">?</Button>
@@ -44,19 +27,19 @@ export default async function GuideEditor() {
               Markdown Basics
             </Link>
             <div>Our Custom Components:</div>
-            <table>
+            <table className="m-4 border-collapse">
               <thead>
                 <tr>
-                  <th>Component Name</th>
-                  <th>Example</th>
-                  <th>Description</th>
+                  <th className="border-y px-4 py-2">Component Name</th>
+                  <th className="border-y px-4 py-2">Example</th>
+                  <th className="border-y px-4 py-2">Description</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>GuideTitle</td>
-                  <td>
-                    <blockquote>
+                  <td className="border-y px-4 py-2">GuideTitle</td>
+                  <td className="border-y px-4 py-2">
+                    <blockquote className="p-2 bg-slate-900">
                       :::guide-title
                       <br />
                       Guide Title Here
@@ -64,12 +47,12 @@ export default async function GuideEditor() {
                       :::
                     </blockquote>
                   </td>
-                  <td>Creates a large gold text for the title of the guide</td>
+                  <td className="border-y px-4 py-2">Creates a large gold text for the title of the guide</td>
                 </tr>
                 <tr>
-                  <td>TableOfContents</td>
-                  <td>
-                    <blockquote>
+                  <td className="border-y px-4 py-2">TableOfContents</td>
+                  <td className="border-y px-4 py-2">
+                    <blockquote className="p-2 bg-slate-900">
                       :::toc
                       <br /># Table of Contents
                       <br />* [Link Display Text](#headerid)
@@ -78,15 +61,15 @@ export default async function GuideEditor() {
                       :::
                     </blockquote>
                   </td>
-                  <td>
+                  <td className="border-y px-4 py-2">
                     Styling for the table of contents to give the correct list
                     styling
                   </td>
                 </tr>
                 <tr>
-                  <td>Column</td>
-                  <td>
-                    <blockquote>
+                  <td className="border-y px-4 py-2">Column</td>
+                  <td className="border-y px-4 py-2">
+                    <blockquote className="p-2 bg-slate-900">
                       :::column
                       <br />
                       Column content goes here
@@ -94,12 +77,12 @@ export default async function GuideEditor() {
                       :::
                     </blockquote>
                   </td>
-                  <td>Individual column designators for column layout</td>
+                  <td className="border-y px-4 py-2">Individual column designators for column layout</td>
                 </tr>
                 <tr>
-                  <td>TwoColumn</td>
-                  <td>
-                    <blockquote>
+                  <td className="border-y px-4 py-2">TwoColumn</td>
+                  <td className="border-y px-4 py-2">
+                    <blockquote className="p-2 bg-slate-900">
                       ::::two-column
                       <br />
                       :::column
@@ -117,7 +100,7 @@ export default async function GuideEditor() {
                       ::::
                     </blockquote>
                   </td>
-                  <td>
+                  <td className="border-y px-4 py-2">
                     A two column layout example.
                     <br />
                     Three column is the same, use <b>::::three-column</b>{" "}
@@ -125,9 +108,9 @@ export default async function GuideEditor() {
                   </td>
                 </tr>
                 <tr>
-                  <td>CenteredContent</td>
-                  <td>
-                    <blockquote>
+                  <td className="border-y px-4 py-2">CenteredContent</td>
+                  <td className="border-y px-4 py-2">
+                    <blockquote className="p-2 bg-slate-900">
                       :::centered-content
                       <br />
                       Centered content will go here
@@ -135,12 +118,12 @@ export default async function GuideEditor() {
                       :::
                     </blockquote>
                   </td>
-                  <td>Center content of any type (images, columns, etc)</td>
+                  <td className="border-y px-4 py-2">Center content of any type (images, columns, etc)</td>
                 </tr>
                 <tr>
-                  <td>CenteredText</td>
-                  <td>
-                    <blockquote>
+                  <td className="border-y px-4 py-2">CenteredText</td>
+                  <td className="border-y px-4 py-2">
+                    <blockquote className="p-2 bg-slate-900">
                       :::centered-text
                       <br />
                       Centers text within container
@@ -148,21 +131,21 @@ export default async function GuideEditor() {
                       :::
                     </blockquote>
                   </td>
-                  <td>Center text within current container</td>
+                  <td className="border-y px-4 py-2">Center text within current container</td>
                 </tr>
                 <tr>
-                  <td>Space</td>
-                  <td>
-                    <blockquote>::space</blockquote>
+                  <td className="border-y px-4 py-2">Space</td>
+                  <td className="border-y px-4 py-2">
+                    <blockquote className="p-2 bg-slate-900">::space</blockquote>
                   </td>
-                  <td>
+                  <td className="border-y px-4 py-2">
                     Simulates an html break. Use for adding gap between content
                   </td>
                 </tr>
                 <tr>
-                  <td>Images</td>
-                  <td>
-                    <blockquote>
+                  <td className="border-y px-4 py-2">Images</td>
+                  <td className="border-y px-4 py-2">
+                    <blockquote className="p-2 bg-slate-900">
                       :::md-img
                       <br />
                       ![Image](https://i.imgur.com/9UIUCsW.png)
@@ -170,9 +153,9 @@ export default async function GuideEditor() {
                       :::
                     </blockquote>
                   </td>
-                  <td>
+                  <td className="border-y px-4 py-2">
                     Sets the size of an image. Variations available:
-                    <blockquote>
+                    <blockquote className="p-2 bg-slate-900">
                       :::thumbnail
                       <br />
                       :::xxs-img
@@ -195,6 +178,6 @@ export default async function GuideEditor() {
         </PopoverContent>
       </Popover>
       <MarkdownEditor></MarkdownEditor>
-    </>
+    </div>
   );
 }

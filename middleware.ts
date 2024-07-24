@@ -5,7 +5,12 @@ const protectedPaths = createRouteMatcher(["/admin(.*)"]);
 export default clerkMiddleware((auth, req) => {
   const { userId, sessionClaims } = auth();
 
-  if (!userId && protectedPaths(req) && sessionClaims?.role !== "admin") {
+  if (
+    !userId ||
+    (protectedPaths(req) &&
+      sessionClaims?.role !== undefined &&
+      sessionClaims?.role !== "admin")
+  ) {
     return auth().redirectToSignIn();
   }
 });
