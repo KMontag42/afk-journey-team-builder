@@ -6,16 +6,17 @@ import Image from "next/image";
 import { type Character } from "@/lib/characters";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
-import CharacterFilter, { CharacterFilterType } from "@/components/CharacterFilter";
+import CharacterFilter, {
+  CharacterFilterType,
+} from "@/components/CharacterFilter";
 
-export default function CharacterSelector({ heroes, characterSelector }: { heroes: any, characterSelector: Function }) {
+export default function CharacterSelector({ heroes }: { heroes: any }) {
   const Characters: { [key: string]: Character } = heroes.characters;
-
-  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
 
   const [characterFilter, setCharacterFilter] = useState<CharacterFilterType>({
     class: "All",
     faction: "All",
+    name: "",
   });
 
   const characterObjects = Object.values(Characters);
@@ -23,15 +24,16 @@ export default function CharacterSelector({ heroes, characterSelector }: { heroe
   const characters = characterObjects
     .filter((character) => {
       return (
-        (characterFilter.faction === "All" || character.faction === characterFilter.faction) &&
-        (characterFilter.class === "All" || character.class === characterFilter.class)
+        (characterFilter.faction === "All" ||
+          character.faction === characterFilter.faction) &&
+        (characterFilter.class === "All" ||
+          character.class === characterFilter.class)
       );
     })
     .sort((a, b) => a.name.localeCompare(b.name));
 
   function onCharacterClick(character: Character) {
-    setSelectedCharacter(character);
-    characterSelector(character.id);
+    console.log(character.id);
   }
 
   return (
@@ -44,14 +46,11 @@ export default function CharacterSelector({ heroes, characterSelector }: { heroe
           updateCharacterFilter={setCharacterFilter}
         />
 
-        <ScrollArea
-          className="flex flex-col justify-center items-center max-w-screen-md mt-4 max-h-64"
-        >
-          <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-2`}>
+        <ScrollArea className="flex flex-col justify-center items-center max-w-screen-md mt-4">
+          <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-2 mx-2`}>
             {characters.map((character) => {
               if (character.hide) return null;
-              const isSelected = selectedCharacter === character;
-              const className = `w-14 h-16`;
+              const className = "w-24 h-26$";
               return (
                 <Image
                   key={character.name}
