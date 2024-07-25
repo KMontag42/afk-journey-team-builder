@@ -1,4 +1,4 @@
-import { turso } from "@/lib/turso";
+import { turso } from "@/lib/server/turso";
 import { auth } from "@clerk/nextjs/server";
 
 export async function POST(request: Request) {

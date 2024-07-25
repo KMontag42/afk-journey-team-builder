@@ -1,5 +1,5 @@
 import { getFormation } from "@/lib/server/formations";
-import { turso } from "@/lib/turso";
+import { turso } from "@/lib/server/turso";
 
 export async function GET(_: Request, { params }: { params: { id: string } }) {
   const { id } = params;

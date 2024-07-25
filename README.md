@@ -34,6 +34,16 @@ Brought to you by AFK Analytica.
 - [turso](https://turso.tech)
 - [clerk](https://clerk.com)
 
+## Guide Markdown Stack
+
+- [reactMarkdown](https://github.com/remarkjs/react-markdown)
+- [remarkGfm](https://github.com/remarkjs/remark-gfm)
+- [remarkDirective](https://github.com/remarkjs/remark-directive)
+- [remarkDirectiveRehype](https://github.com/IGassmann/remark-directive-rehype)
+- [remarkToc](https://github.com/remarkjs/remark-toc)
+- [remarkRehype](https://github.com/remarkjs/remark-rehype)
+- [rehypeSlug](https://github.com/rehypejs/rehype-slug)
+
 ## Contributing
 
 Open a PR from your personal fork to the `main` branch.
@@ -80,7 +90,7 @@ CREATE TABLE
     formation_id INTEGER,
     user_id VARCHAR(255),
     UNIQUE(formation_id, user_id),
-    FOREIGN KEY(formation_id) REFERENCES formations(id)
+    FOREIGN KEY(formation_id) REFERENCES formations(id) ON DELETE CASCADE
   );
 ```
 

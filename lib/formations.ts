@@ -1,5 +1,17 @@
 import { type Character, PhraestoCloneId, PhraestoId } from "@/lib/characters";
 
+export type FormationData = {
+  id: number;
+  formation: string;
+  artifact: string;
+  layout: number;
+  name: string;
+  currentUserLiked?: boolean;
+  user_id: string;
+  username?: string;
+  user_image: string;
+};
+
 export function updateSlotInFormation(
   formation: string[],
   slot: number,
@@ -27,6 +39,12 @@ export function updateSlotInFormation(
     formationCopy[characterIndex] = characterInSlot;
   } else if (formationCharacters.length < maxCharacters) {
     formationCopy[slot] = character.id;
+
+    if (characterInSlot === PhraestoId || characterInSlot === PhraestoCloneId) {
+      // remove phraesto or clone from formation
+      formationCopy[formationCopy.indexOf(PhraestoId)] = "";
+      formationCopy[formationCopy.indexOf(PhraestoCloneId)] = "";
+    }
 
     if (character.name === "Phraesto") {
       // add phraesto clone to first open slot

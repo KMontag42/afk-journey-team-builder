@@ -1,3 +1,5 @@
+"use client";
+
 import CharacterSlot from "@/components/CharacterSlot";
 import ArtifactSelector from "@/components/ArtifactSelector";
 import Image from "next/image";
