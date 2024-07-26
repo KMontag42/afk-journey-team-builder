@@ -6,7 +6,10 @@ const protectedPaths = createRouteMatcher(["/admin(.*)"]);
 export default clerkMiddleware((auth, req) => {
   const { userId, sessionClaims } = auth();
 
-  if (!userId || (protectedPaths(req) && sessionClaims?.role !== "admin")) {
+  if (
+    (!userId && protectedPaths(req)) ||
+    (userId && protectedPaths(req) && sessionClaims?.role !== "admin")
+  ) {
     return NextResponse.rewrite(new URL("/not-found", req.url));
   }
 });
