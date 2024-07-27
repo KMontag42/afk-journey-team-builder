@@ -79,3 +79,10 @@ export type GuideCmsData = {
   home: GuideHomePageCmsData;
   guides: GuidePagesCmsData;
 };
+
+export type PromoCodesCmsData = {
+  active: string[];
+  expired: string[];
+  directions: string;
+  images: string[];
+};
