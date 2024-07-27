@@ -1,3 +1,5 @@
+import { CharacterClass, Faction } from "@/lib/characters";
+
 type ImgurUrl = `https://i.imgur.com/${string}.png`;
 
 type NameAndImageCmsData = {
@@ -85,4 +87,31 @@ export type PromoCodesCmsData = {
   expired: string[];
   directions: string;
   images: string[];
+};
+
+export type HeroSkillDetailCmsData = {
+  name: string;
+  unlock: string;
+  cooldown: string;
+  range: string;
+  description: string;
+  upgrades: string[];
+};
+
+export type HeroDetailCmsData = {
+  id: string;
+  name: string;
+  tier: string;
+  imageUrl: string;
+  faction: Faction;
+  class: CharacterClass;
+  autoRange: string;
+  initialEnergy: number;
+  ultimate: HeroSkillDetailCmsData;
+  skill1: HeroSkillDetailCmsData;
+  skill2: HeroSkillDetailCmsData;
+  heroFocus: HeroSkillDetailCmsData;
+  equipmentSkill: HeroSkillDetailCmsData;
+  enhanceForce: HeroSkillDetailCmsData;
+  songOfStrifeSeasonSkill: HeroSkillDetailCmsData;
 };

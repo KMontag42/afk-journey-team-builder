@@ -6,6 +6,7 @@ import type {
   PromoCodesCmsData,
   GuideHomePageCmsData,
   GuidePagesCmsData,
+  HeroDetailCmsData,
 } from "@/lib/cms-types";
 
 export async function getCmsData(): Promise<CmsData> {
@@ -17,13 +18,15 @@ export async function getCmsData(): Promise<CmsData> {
   return jsonData;
 }
 
-export async function getCharacterDetailsCmsData() {
+export async function getCharacterDetailsCmsData(
+  heroId: string,
+): Promise<HeroDetailCmsData> {
   const jsonData = await (
     await fetch(
       `https://simplejsoncms.com/api/${process.env.CHARACTER_DETAILS_SIMPLEJSONCMS_ID}`,
     )
   ).json();
-  return jsonData;
+  return jsonData.characters[heroId];
 }
 
 async function getGuideCmsData(): Promise<GuideCmsData> {

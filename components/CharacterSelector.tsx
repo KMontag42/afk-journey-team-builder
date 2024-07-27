@@ -9,6 +9,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import CharacterFilter, {
   CharacterFilterType,
 } from "@/components/CharacterFilter";
+import Link from "next/link";
 
 export default function CharacterSelector({ heroes }: { heroes: any }) {
   const Characters: { [key: string]: Character } = heroes.characters;
@@ -32,26 +33,22 @@ export default function CharacterSelector({ heroes }: { heroes: any }) {
     })
     .sort((a, b) => a.name.localeCompare(b.name));
 
-  function onCharacterClick(character: Character) {
-    console.log(character.id);
-  }
-
   return (
-    <>
-      <div className="flex flex-col py-4 justify-center items-center">
-        <CharacterFilter
-          classes={heroes.classes}
-          factions={heroes.factions}
-          characterFilter={characterFilter}
-          updateCharacterFilter={setCharacterFilter}
-        />
+    <div className="flex flex-col py-4 justify-center items-center">
+      <CharacterFilter
+        classes={heroes.classes}
+        factions={heroes.factions}
+        characterFilter={characterFilter}
+        updateCharacterFilter={setCharacterFilter}
+      />
 
-        <ScrollArea className="flex flex-col justify-center items-center max-w-screen-md mt-4">
-          <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-2 mx-2`}>
-            {characters.map((character) => {
-              if (character.hide) return null;
-              const className = "w-24 h-26$";
-              return (
+      <ScrollArea className="flex flex-col justify-center items-center max-w-screen-md mt-4">
+        <div className={`grid grid-cols-5 sm:grid-cols-10 gap-2 pt-2 mx-2`}>
+          {characters.map((character) => {
+            if (character.hide) return null;
+            const className = "w-24 h-26 cursor-pointer";
+            return (
+              <Link href={"/heroes/" + character.id}>
                 <Image
                   key={character.name}
                   src={character.tileUrl}
@@ -59,13 +56,12 @@ export default function CharacterSelector({ heroes }: { heroes: any }) {
                   height={64}
                   alt={character.name}
                   className={className}
-                  onClick={() => onCharacterClick(character)}
                 />
-              );
-            })}
-          </div>
-        </ScrollArea>
-      </div>
-    </>
+              </Link>
+            );
+          })}
+        </div>
+      </ScrollArea>
+    </div>
   );
 }
