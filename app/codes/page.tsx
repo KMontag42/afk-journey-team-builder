@@ -16,7 +16,7 @@ export default async function Codes() {
       <div>Click to copy</div>
       <div className="flex flex-row flex-wrap justify-center gap-2">
         {codesContent.active.map((code: string) => (
-          <CopyButton label={code} />
+          <CopyButton key={code} label={code} />
         ))}
       </div>
       <div className="text-center text-atekgold font-bold">
@@ -26,6 +26,7 @@ export default async function Codes() {
       <div className="flex flex-row justify-center flex-wrap gap-2">
         {codesContent.images.map((imageUrl: string) => (
           <Image
+            key={imageUrl}
             src={imageUrl}
             width="200"
             height="435"
@@ -36,7 +37,7 @@ export default async function Codes() {
       <div className="text-atekgold text-xl font-bold pt-2">Expired Codes</div>
       <div className="flex flex-row flex-wrap justify-center gap-2">
         {codesContent.expired.map((code: string) => (
-          <Button disabled className="mb-2" variant="outline">
+          <Button key={code} disabled className="mb-2" variant="outline">
             {code}
           </Button>
         ))}
