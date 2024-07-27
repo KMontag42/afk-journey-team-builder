@@ -9,7 +9,7 @@ export default function CopyButton({ label }: { label: string }) {
       variant="outline"
       onClick={() => {
         navigator.clipboard.writeText(label);
-        toast.success("Link copied to clipboard!");
+        toast.success("Copied to clipboard!");
       }}
     >
       {label}
