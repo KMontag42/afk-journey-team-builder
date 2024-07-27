@@ -60,6 +60,16 @@ function Links({ pathname }: { pathname: string }) {
       Guides
     </Link>,
     <Link
+      href="/codes"
+      className={buttonVariants({
+        variant: pathname === "/codes" ? "secondary" : "link",
+      })}
+      key="codes"
+      prefetch={true}
+    >
+      Codes
+    </Link>,
+    <Link
       href="/about"
       className={buttonVariants({
         variant: pathname === "/about" ? "secondary" : "link",
