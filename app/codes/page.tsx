@@ -4,7 +4,6 @@ import Image from "next/image";
 
 import { getCodesCmsData } from "@/lib/server/cms-data";
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
 import CopyButton from "@/components/CopyButton";
 
 export default async function Codes() {
