@@ -1,3 +1,4 @@
+import { encode } from "punycode";
 import { ReactNode } from "react";
 
 const GuideTitle = ({ children }: { children: ReactNode }) => {
@@ -69,31 +70,64 @@ const ExtraLargeImage = ({ children }: { children: ReactNode }) => {
 };
 
 const HeadingOne = ({ children }: { children: ReactNode }) => {
+  let id = children
+    ?.toString()
+    .replace(/\s+/g, "-")
+    .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, "")
+    .toLocaleLowerCase();
   return (
-    <h1 className="pt-6 font-bold text-atekgold text-3xl text-center scroll-mt-[70px]">
+    <h1
+      id={id}
+      className="pt-6 font-bold text-atekgold text-3xl text-center scroll-mt-[70px]"
+    >
       {children}
     </h1>
   );
 };
 
 const HeadingTwo = ({ children }: { children: ReactNode }) => {
+  let id = children
+    ?.toString()
+    .replace(/\s+/g, "-")
+    .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, "")
+    .toLocaleLowerCase();
   return (
-    <h2 className="pt-6 font-bold text-atekgold text-2xl scroll-mt-[70px]">
+    <h2
+      id={id}
+      className="pt-6 font-bold text-start text-atekgold text-2xl scroll-mt-[70px]"
+    >
       {children}
     </h2>
   );
 };
 
 const HeadingThree = ({ children }: { children: ReactNode }) => {
+  let id = children
+    ?.toString()
+    .replace(/\s+/g, "-")
+    .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, "")
+    .toLocaleLowerCase();
   return (
-    <h3 className="pt-6 font-bold text-atekgold text-xl scroll-mt-[70px]">
+    <h3
+      id={id}
+      className="pt-6 font-bold text-atekgold text-xl scroll-mt-[70px]"
+    >
       {children}
     </h3>
   );
 };
 
 const HeadingSix = ({ children }: { children: ReactNode }) => {
-  return <h6 className="text-xs scroll-mt-[70px]">{children}</h6>;
+  let id = children
+    ?.toString()
+    .replace(/\s+/g, "-")
+    .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, "")
+    .toLocaleLowerCase();
+  return (
+    <h6 id={id} className="text-xs scroll-mt-[70px]">
+      {children}
+    </h6>
+  );
 };
 
 const HorizontalRule = ({ children }: { children: ReactNode }) => {
@@ -142,7 +176,7 @@ const OrderedList = ({ children }: { children: ReactNode }) => {
 
 const Anchor = ({ href, children }: { href: string; children: ReactNode }) => {
   return (
-    <a className="underline" href={href} target="_blank">
+    <a className="underline" href={href}>
       {children}
     </a>
   );

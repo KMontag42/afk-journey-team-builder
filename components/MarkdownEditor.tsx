@@ -130,7 +130,7 @@ more test
   }
 
   return (
-    <div className="flex flex-col items-center w-[min(100%,1100px)] pb-12 px-8 markdownArea">
+    <div className="flex flex-col pb-12 px-8">
       <div className="flex flex-row"></div>
       <Textarea
         ref={textareaRef}
@@ -139,7 +139,7 @@ more test
         placeholder="Put your markdown here"
         defaultValue={example}
       ></Textarea>
-      <div className="flex flex-row gap-x-4">
+      <div className="flex flex-row justify-center gap-x-4">
         <Button className="mb-4" variant="secondary" onClick={prettifyMarkdown}>
           Prettify Markdown
         </Button>
