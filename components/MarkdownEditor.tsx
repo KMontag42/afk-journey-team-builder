@@ -121,6 +121,14 @@ more test
     setMarkdown(textareaRef.current?.value!);
   }
 
+  function prettifyMarkdown() {
+    let prettifiedMarkdown = JSON.parse(markdown);
+    setMarkdown(prettifiedMarkdown);
+    if (textareaRef.current) {
+      textareaRef.current.value = prettifiedMarkdown;
+    }
+  }
+
   return (
     <div className="flex flex-col items-center w-[min(100%,1100px)] pb-12 px-8 markdownArea">
       <div className="flex flex-row"></div>
@@ -131,18 +139,23 @@ more test
         placeholder="Put your markdown here"
         defaultValue={example}
       ></Textarea>
-      <Button
-        className="mb-4"
-        variant="secondary"
-        onClick={() => {
-          navigator.clipboard.writeText(
-            `${JSON.stringify(textareaRef.current?.value)}`,
-          );
-          toast.success("Copied JSON String to Clipboard");
-        }}
-      >
-        Copy JSON String
-      </Button>
+      <div className="flex flex-row gap-x-4">
+        <Button className="mb-4" variant="secondary" onClick={prettifyMarkdown}>
+          Prettify Markdown
+        </Button>
+        <Button
+          className="mb-4"
+          variant="secondary"
+          onClick={() => {
+            navigator.clipboard.writeText(
+              `${JSON.stringify(textareaRef.current?.value)}`,
+            );
+            toast.success("Copied JSON String to Clipboard");
+          }}
+        >
+          Copy JSON String
+        </Button>
+      </div>
       <Markdown
         remarkPlugins={[
           remarkGfm,
