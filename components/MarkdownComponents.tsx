@@ -29,6 +29,26 @@ const Column = ({ children }: { children: ReactNode }) => {
   return <div className="">{children}</div>;
 };
 
+const TierList = ({ children }: { children: ReactNode }) => {
+  return (
+    <div className="grid border-t border-atekgold grid-cols-7 gap-x-4 py-2 md:gap-x-8 md:py-6">
+      {children}
+    </div>
+  );
+};
+
+const TierListColumn = ({ children }: { children: ReactNode }) => {
+  return <div className="grid grid-rows-2">{children}</div>;
+};
+
+const TierListHeroTier = ({ children }: { children: ReactNode }) => {
+  return (
+    <div className="flex flex-row flex-wrap justify-start gap-x-2">
+      {children}
+    </div>
+  );
+};
+
 const CenteredText = ({ children }: { children: ReactNode }) => {
   return <div className="text-center">{children}</div>;
 };
@@ -190,8 +210,11 @@ export const MarkdownComponents = {
   "guide-title": GuideTitle,
   toc: TableOfContents,
   column: Column,
+  "tier-list-column": TierListColumn,
   "two-column": TwoColumn,
   "three-column": ThreeColumn,
+  "tier-list": TierList,
+  "tier-list-hero-tier": TierListHeroTier,
   "centered-content": CenteredContent,
   "centered-text": CenteredText,
   space: Space,
