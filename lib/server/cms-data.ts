@@ -21,7 +21,7 @@ async function getGuideCmsData(): Promise<GuideCmsData> {
   const jsonData = await (
     await fetch(
       `https://simplejsoncms.com/api/${process.env.GUIDES_SIMPLEJSONCMS_ID}`,
-      { next: { revalidate: 3600 } },
+      { next: { revalidate: 600 } },
     )
   ).json();
   return jsonData;
@@ -31,7 +31,7 @@ export async function getCodesCmsData(): Promise<PromoCodesCmsData> {
   const jsonData = await (
     await fetch(
       `https://simplejsoncms.com/api/${process.env.CODES_SIMPLEJSONCMS_ID}`,
-      { next: { revalidate: 3600 } },
+      { next: { revalidate: 600 } },
     )
   ).json();
   return jsonData;
