@@ -60,7 +60,7 @@ export default function CharacterFilter({
           )}
           {activeClassFilter && characterFilter.class !== "All" && (
             <Image
-              alt={characterFilter.faction}
+              alt={characterFilter.class}
               src={activeClassFilter.imageUrl}
               width={24}
               height={24}

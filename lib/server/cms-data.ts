@@ -35,6 +35,15 @@ export async function getCodesCmsData(): Promise<PromoCodesCmsData> {
   return jsonData;
 }
 
+export async function getRosterCmsData(): Promise<any> {
+  const jsonData = await (
+    await fetch(
+      `https://simplejsoncms.com/api/${process.env.ROSTER_SIMPLEJSONCMS_ID}`,
+    )
+  ).json();
+  return jsonData;
+}
+
 export async function getGuideHomePage(): Promise<GuideHomePageCmsData> {
   const jsonData = await getGuideCmsData();
   const banners = Object.entries(jsonData["home"]["banners"]).map(
