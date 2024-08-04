@@ -1,7 +1,4 @@
-// TODO: This is what I used to build the first guide, we could repurpose this for an admin page in the future.
 "use client";
-
-import "@/app/guides/[slug]/guides.css";
 
 import { useRef, useState } from "react";
 import remarkDirective from "remark-directive";
@@ -19,36 +16,147 @@ import { MarkdownComponents } from "@/components/MarkdownComponents";
 
 const Components = MarkdownComponents as any;
 
-export default function MarkdownEditor({ content }: { content: string }) {
+export default function MarkdownEditor() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const [markdown, setMarkdown] = useState("");
+  const example = `:::guide-title
+Example Guide Title
+:::
+
+:::toc
+# Contents
+* [History](#history)
+* [Discovery](#discovery)
+* [Name and symbol](#name-and-symbol)
+* [Planet X disproved](#planet-x-disproved)
+* [Orbit](#orbit)
+:::
+
+## Horizontal Rule
+---
+
+::::two-column
+:::column
+### Unordered List
+* List Item 1
+* List Item 2
+  * Indented Item
+* List Item 3
+:::
+:::column
+### Ordered List
+1. List Item 1
+2. List Item 2
+3. List Item 3
+4. List Item 4
+:::
+::::
+
+### Small text (Image captions?)
+###### baby text
+
+:::centered-text
+_This is centered text_
+
+### Centered content
+:::
+
+:::centered-content
+| col a | col b |
+| - | - |
+| 1 | 2 |
+:::
+
+## Two Column Layout
+::::two-column
+:::column
+Column A  
+this is an example  
+of a line break with two spaces
+:::
+:::column
+column B  
+this is an example
+::space
+of a line break with a "::space"
+:::
+:::column
+column C  
+this is the third column this is the third column this is the third column this is the third column this is the third column this is the third column this is the third column this is the third column this is the third column this is the third column this is the third column this is the third column this is the third column this is the third column this is the third column this is the third column
+:::
+:::column
+column D  
+No content
+:::
+::::
+
+## Space (break, gap between content)
+::space
+
+## History
+
+### Discovery
+
+In the 1840s, Urbain Le Verrier used Newtonian mechanics to predict the
+position of…
+
+### Name and symbol
+
+The name Pluto is for the Roman god of the underworld, from a Greek epithet for
+Hades…
+
+### Planet X disproved
+
+Once Pluto was found, its faintness and lack of a viewable disc cast doubt…
+
+## Orbit
+
+Pluto’s orbital period is about 248 years…
+more test
+`;
+
+  const [markdown, setMarkdown] = useState(example);
 
   function onTextareaChange() {
     setMarkdown(textareaRef.current?.value!);
   }
 
+  function prettifyMarkdown() {
+    let prettifiedMarkdown = JSON.parse(markdown);
+    setMarkdown(prettifiedMarkdown);
+    if (textareaRef.current) {
+      textareaRef.current.value = prettifiedMarkdown;
+    }
+  }
+
   return (
-    <div className="flex flex-col items-center w-[min(100%,1100px)] pb-12 px-8 markdownArea">
+    <div className="flex flex-col pb-12 px-8">
+      <div className="flex flex-row"></div>
       <Textarea
         ref={textareaRef}
         onInput={onTextareaChange}
-        className="my-4"
+        className="my-4 h-60"
         placeholder="Put your markdown here"
-        defaultValue={content}
+        defaultValue={example}
       ></Textarea>
-      <Button
-        onClick={() => {
-          navigator.clipboard.writeText(
-            `${JSON.stringify(textareaRef.current?.value)}`,
-          );
-          toast.success("Copied JSON String to Clipboard");
-        }}
-      >
-        Copy JSON String
-      </Button>
+      <div className="flex flex-row justify-center gap-x-4">
+        <Button className="mb-4" variant="secondary" onClick={prettifyMarkdown}>
+          Prettify Markdown
+        </Button>
+        <Button
+          className="mb-4"
+          variant="secondary"
+          onClick={() => {
+            navigator.clipboard.writeText(
+              `${JSON.stringify(textareaRef.current?.value)}`,
+            );
+            toast.success("Copied JSON String to Clipboard");
+          }}
+        >
+          Copy JSON String
+        </Button>
+      </div>
       <Markdown
-        className="MarkdownExample"
         remarkPlugins={[
           remarkGfm,
           remarkDirective,

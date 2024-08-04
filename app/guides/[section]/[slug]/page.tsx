@@ -1,7 +1,5 @@
 "use server";
 
-import "@/app/guides/[section]/[slug]/page.css";
-
 import remarkDirective from "remark-directive";
 import remarkDirectiveRehype from "remark-directive-rehype";
 import remarkRehype from "remark-rehype";
@@ -25,7 +23,7 @@ export default async function GuidePage({
   return (
     <>
       <div className="progressBar"></div>
-      <div className="pb-12 markdownArea">
+      <div className="pb-12">
         <Markdown
           remarkPlugins={[
             remarkGfm,

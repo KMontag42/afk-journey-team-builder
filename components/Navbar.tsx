@@ -112,7 +112,7 @@ export default function Navbar() {
           className="w-32"
         />
       </Link>
-      <nav className="hidden items-center gap-6 md:flex">
+      <nav className="hidden items-center gap-6 lg:flex">
         <ClerkLoaded>
           {Links({ pathname })}
           <SignedOut>
@@ -123,7 +123,7 @@ export default function Navbar() {
           </SignedIn>
         </ClerkLoaded>
       </nav>
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <SignedOut>
           <SignInButton />
         </SignedOut>
@@ -134,7 +134,7 @@ export default function Navbar() {
       <ClerkLoaded>
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="md:hidden">
+            <Button variant="outline" size="icon" className="lg:hidden">
               <MenuIcon className="h-6 w-6" />
               <span className="sr-only">Toggle navigation menu</span>
             </Button>

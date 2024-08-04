@@ -56,6 +56,17 @@ export function updateSlotInFormation(
     characterInSlot !== ""
   ) {
     formationCopy[slot] = character.id;
+    if (character.name === "Phraesto") {
+      // add phraesto clone to first open slot
+      const firstOpenSlot = formationCopy.indexOf("");
+      formationCopy[firstOpenSlot] = PhraestoCloneId;
+    }
+
+    if (characterInSlot === PhraestoId || characterInSlot === PhraestoCloneId) {
+      // remove phraesto or clone from formation
+      formationCopy[formationCopy.indexOf(PhraestoId)] = "";
+      formationCopy[formationCopy.indexOf(PhraestoCloneId)] = "";
+    }
   }
   return formationCopy;
 }
