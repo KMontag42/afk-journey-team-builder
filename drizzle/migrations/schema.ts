@@ -20,3 +20,15 @@ export const votes = sqliteTable(
     unq: unique().on(t.formationId, t.userId),
   }),
 );
+
+export const roster = sqliteTable(
+  "roster",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    lastUpdate: integer("last_update", { mode: "timestamp" }),
+    userId: text("user_id", { length: 255 }),
+  },
+  (t) => ({
+    unq: unique().on(t.userId),
+  }),
+);

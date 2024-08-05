@@ -1,8 +1,8 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "6286e7f2-ae5b-4934-9358-1b1bd406d631",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "6dd25114-d9eb-4e93-8668-1f2a9b4bbd89",
+  "prevId": "6286e7f2-ae5b-4934-9358-1b1bd406d631",
   "tables": {
     "formations": {
       "name": "formations",
@@ -51,6 +51,44 @@
         }
       },
       "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "roster": {
+      "name": "roster",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "last_update": {
+          "name": "last_update",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "roster_user_id_unique": {
+          "name": "roster_user_id_unique",
+          "columns": [
+            "user_id"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
