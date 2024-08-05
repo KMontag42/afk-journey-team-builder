@@ -1,4 +1,4 @@
-CREATE TABLE `roster` (
+CREATE TABLE IF NOT EXISTS `roster` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`last_update` integer,
 	`user_id` text(255)
