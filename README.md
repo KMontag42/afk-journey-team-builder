@@ -33,6 +33,7 @@ Brought to you by AFK Analytica.
 - [simplejsoncms](https://simplejsoncms.com/)
 - [turso](https://turso.tech)
 - [clerk](https://clerk.com)
+- [Prisma](https://www.prisma.io/docs/getting-started)
 
 ## Guide Markdown Stack
 
@@ -91,6 +92,22 @@ CREATE TABLE
     user_id VARCHAR(255),
     UNIQUE(formation_id, user_id),
     FOREIGN KEY(formation_id) REFERENCES formations(id) ON DELETE CASCADE
+  );
+
+CREATE TABLE
+  roster (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    last_update TEXT,
+    user_id VARCHAR(255)
+  );
+
+CREATE TABLE
+  equipment (
+    user_id VARCHAR(255),
+    seasonal BIT,
+    equipment_class VARCHAR(255),
+    equipment_level VARCHAR(255),
+    PRIMARY KEY (user_id, seasonal, equipment_class)
   );
 ```
 
