@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1722879203817,
+      "tag": "0000_married_roughhouse",
+      "breakpoints": true
+    }
+  ]
+}

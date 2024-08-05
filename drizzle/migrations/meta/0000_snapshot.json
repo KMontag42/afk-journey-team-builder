@@ -1,0 +1,105 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "6",
+  "dialect": "sqlite",
+  "tables": {
+    "formations": {
+      "name": "formations",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": false
+        },
+        "formation": {
+          "autoincrement": false,
+          "name": "formation",
+          "type": "text(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "artifact": {
+          "autoincrement": false,
+          "name": "artifact",
+          "type": "text(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "layout": {
+          "autoincrement": false,
+          "name": "layout",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_id": {
+          "autoincrement": false,
+          "name": "user_id",
+          "type": "text(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "text(255)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "votes": {
+      "name": "votes",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": false
+        },
+        "formation_id": {
+          "autoincrement": false,
+          "name": "formation_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_id": {
+          "autoincrement": false,
+          "name": "user_id",
+          "type": "text(255)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "votes_formation_id_formations_id_fk": {
+          "name": "votes_formation_id_formations_id_fk",
+          "tableFrom": "votes",
+          "tableTo": "formations",
+          "columnsFrom": ["formation_id"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}
