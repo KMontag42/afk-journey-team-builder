@@ -18,11 +18,7 @@ type DialogProps = {
   seasonal: boolean;
 };
 
-export default async function EquipmentDialog({
-  user,
-  name,
-  seasonal,
-}: DialogProps) {
+export default function EquipmentDialog({ user, name, seasonal }: DialogProps) {
   const [weaponLevel, setWeaponLevel] = useState(0);
   const [handsLevel, setHandsLevel] = useState(0);
   const [accessoryLevel, setAccessoryLevel] = useState(0);
