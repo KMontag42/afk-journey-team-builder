@@ -11,7 +11,9 @@
   "dependencies": {
     "@clerk/nextjs": "^5.2.4",
     "@clerk/themes": "^2.1.12",
-    "@libsql/client": "^0.7.0",
+    "@libsql/client": "^0.6.2",
+    "@prisma/adapter-libsql": "^5.17.0",
+    "@prisma/client": "^5.17.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
     "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-dialog": "^1.1.1",
@@ -34,6 +36,7 @@
     "next": "^14.2.5",
     "next-themes": "^0.3.0",
     "nuqs": "^1.17.5",
+    "prisma": "^5.17.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-markdown": "^9.0.1",

@@ -12,17 +12,17 @@ import { Input } from "@/components/ui/input";
 import EquipmentSaveButton from "@/components/roster/EquipmentSaveButton";
 import { useState } from "react";
 
-type DiaglogProps = {
+type DialogProps = {
   user: string;
   name: string;
   seasonal: boolean;
 };
 
-export default function EquipmentDialog({
+export default async function EquipmentDialog({
   user,
   name,
   seasonal,
-}: DiaglogProps) {
+}: DialogProps) {
   const [weaponLevel, setWeaponLevel] = useState(0);
   const [handsLevel, setHandsLevel] = useState(0);
   const [accessoryLevel, setAccessoryLevel] = useState(0);

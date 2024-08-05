@@ -17,6 +17,21 @@ export default function EquipmentDialog({
 }: SaveEquipmentProps) {
   const saveGearChanges = async () => {
     console.log(allGearLevels);
+
+    try {
+      const response = await (
+        await fetch("/api/roster/equipment", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+      ).json();
+
+      console.log(response);
+    } catch (error: any) {
+      console.log("Failed to find formation");
+    }
   };
 
   return <Button onClick={saveGearChanges}>Save changes</Button>;

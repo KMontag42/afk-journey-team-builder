@@ -56,6 +56,7 @@ git clone git@github.com:kmontag42/afk-journey-team-builder.git
 cd afk-journey-team-builder
 cp .env.example .env.local
 pnpm install
+npx prisma generate
 pnpm dev
 ```
 
@@ -98,16 +99,17 @@ CREATE TABLE
   roster (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     last_update TEXT,
-    user_id VARCHAR(255)
+    user_id VARCHAR(255),
+    UNIQUE (id, user_id)
   );
 
 CREATE TABLE
   equipment (
-    user_id VARCHAR(255),
+    roster_id INTEGER,
     seasonal BIT,
     equipment_class VARCHAR(255),
     equipment_level VARCHAR(255),
-    PRIMARY KEY (user_id, seasonal, equipment_class)
+    PRIMARY KEY (roster_id, seasonal, equipment_class) FOREIGN KEY (roster_id) REFERENCES roster (id) ON DELETE CASCADE
   );
 ```
 

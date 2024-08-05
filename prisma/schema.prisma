@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("TURSO_DATABASE_URL")
+}
+
+model formations {
+  id        Int     @id @default(autoincrement())
+  formation String
+  artifact  String
+  layout    Int
+  user_id   String
+  name      String
+}
+
+model votes {
+  id            Int     @id @default(autoincrement())
+  formation_id  Int
+  user_id       String  @unique
+}
+
+model roster {
+  id          Int       @id @default(autoincrement())
+  last_update DateTime
+  user_id     String    @unique
+}
+
+model equipment {
+  roster_id       Int
+  seasonal        Boolean
+  equipment_class String
+  equipment_level String
+  @@id([roster_id, seasonal, equipment_class])
+}
