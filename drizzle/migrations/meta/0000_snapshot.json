@@ -83,10 +83,7 @@
       "indexes": {
         "votes_formation_id_user_id_unique": {
           "name": "votes_formation_id_user_id_unique",
-          "columns": [
-            "formation_id",
-            "user_id"
-          ],
+          "columns": ["formation_id", "user_id"],
           "isUnique": true
         }
       },
@@ -95,12 +92,8 @@
           "name": "votes_formation_id_formations_id_fk",
           "tableFrom": "votes",
           "tableTo": "formations",
-          "columnsFrom": [
-            "formation_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["formation_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
