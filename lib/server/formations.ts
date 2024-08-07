@@ -7,7 +7,7 @@ import { Row } from "@libsql/client";
 import { type ClerkUser, getUser } from "@/lib/server/users";
 import { turso } from "@/lib/server/turso";
 import { type FormationData } from "@/lib/formations";
-import { eq, isNotNull, like } from "drizzle-orm";
+import { eq, isNotNull, like, sql, gt } from "drizzle-orm";
 import { formations, votes } from "@/drizzle/schema";
 import { drizzleClient } from "@/lib/server/drizzle";
 
@@ -20,7 +20,7 @@ type FormationResult = {
   layout: number;
   userId: string;
   name: string;
-  votes: any[];
+  votes: any;
 };
 
 export function buildFormationJson(
@@ -38,6 +38,26 @@ export function buildFormationJson(
     ...user,
   };
 }
+
+// Proposed new buildFormationJson()
+// export function buildFormationJson(
+//   formation: FormationResult,
+//   user: ClerkUser,
+// ): FormationData {
+//   return {
+//     id: parseInt(formation.id?.toString()!),
+//     formation: formation.formation?.toString()!,
+//     artifact: formation.artifact?.toString()!,
+//     layout: parseInt(formation.layout?.toString()!),
+//     name: formation.name?.toString()!,
+//     currentUserLiked:
+//       formation.votes.length >= 1 &&
+//       formation.votes.find((voteUser) => voteUser.userId === user.user_id)
+//         ? true
+//         : false,
+//     ...user,
+//   };
+// }
 
 async function _getFormation(id: string): Promise<FormationData | false> {
   const { userId } = auth();
@@ -95,6 +115,8 @@ async function _getFormation(id: string): Promise<FormationData | false> {
     })) as FormationResult;
   }
 
+  console.log(formationDrizzle);
+
   const user = await getUser(formation.user_id?.toString()!);
 
   return buildFormationJson(formation, user);
@@ -106,10 +128,10 @@ export async function getFormationsForUserId(
   userId: string,
 ): Promise<FormationData[]> {
   const { userId: currentUserId } = auth();
-  let formations;
+  let userFormations;
 
   if (currentUserId) {
-    formations = await turso.execute({
+    userFormations = await turso.execute({
       sql: `
             SELECT
                 f.*,
@@ -130,21 +152,39 @@ export async function getFormationsForUserId(
       args: { userId, currentUserId },
     });
   } else {
-    formations = await turso.execute({
+    userFormations = await turso.execute({
       sql: "SELECT * FROM formations WHERE user_id = (:userId)",
       args: { userId },
     });
   }
 
-  formations = await Promise.all(
-    formations.rows.map(async (formation) => {
+  let userFormationsTest: FormationResult[] = [];
+  if (currentUserId) {
+    userFormationsTest = (await drizzle.query.formations.findMany({
+      with: {
+        votes: {
+          where: eq(votes.userId, userId),
+        },
+      },
+      where: eq(formations.userId, userId),
+    })) as FormationResult[];
+  } else {
+    userFormationsTest = (await drizzle.query.formations.findMany({
+      where: eq(formations.userId, userId),
+    })) as FormationResult[];
+  }
+
+  console.log(userFormationsTest);
+
+  userFormations = await Promise.all(
+    userFormations.rows.map(async (formation) => {
       const user = await getUser(formation.user_id?.toString()!);
 
       return buildFormationJson(formation, user);
     }),
   );
 
-  return formations;
+  return userFormations;
 }
 
 export async function searchFormations(
@@ -212,7 +252,7 @@ export async function searchFormations(
     return [];
   }
 
-  const formations = await Promise.all(
+  const searchFormations = await Promise.all(
     queryResponse.rows.map(async (formation) => {
       const user = await getUser(formation.user_id?.toString()!);
 
@@ -220,7 +260,7 @@ export async function searchFormations(
     }),
   );
 
-  return formations;
+  return searchFormations;
 }
 
 async function _mostPopularFormations(limit: number): Promise<FormationData[]> {
@@ -283,7 +323,27 @@ async function _mostPopularFormations(limit: number): Promise<FormationData[]> {
     return [];
   }
 
-  const formations = await Promise.all(
+  let formationsDrizzle;
+  let voteCountQuery;
+
+  voteCountQuery = drizzle
+    .select({
+      formationId: votes.formationId,
+      voteCount: sql`count(${votes.id})`.as("voteCount"),
+    })
+    .from(votes)
+    .groupBy(votes.formationId)
+    .as("voteCountQuery");
+
+  formationsDrizzle = await drizzle
+    .select()
+    .from(formations)
+    .leftJoin(voteCountQuery, eq(formations.id, voteCountQuery.formationId))
+    .leftJoin(votes, eq(votes.formationId, formations.id));
+
+  console.log(formationsDrizzle);
+
+  const topFormations = await Promise.all(
     queryResponse.rows.map(async (formation) => {
       const user = await getUser(formation.user_id?.toString()!);
 
@@ -291,7 +351,7 @@ async function _mostPopularFormations(limit: number): Promise<FormationData[]> {
     }),
   );
 
-  return formations;
+  return topFormations;
 }
 
 export const mostPopularFormations = cache(_mostPopularFormations);
