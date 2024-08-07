@@ -14,4 +14,4 @@ CREATE TABLE IF NOT EXISTS `votes` (
 	FOREIGN KEY (`formation_id`) REFERENCES `formations`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `votes_formation_id_user_id_unique` ON `votes` (`formation_id`,`user_id`);
+CREATE UNIQUE INDEX IF NOT EXISTS `votes_formation_id_user_id_unique` ON `votes` (`formation_id`,`user_id`);
