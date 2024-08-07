@@ -7,6 +7,21 @@ import { Row } from "@libsql/client";
 import { type ClerkUser, getUser } from "@/lib/server/users";
 import { turso } from "@/lib/server/turso";
 import { type FormationData } from "@/lib/formations";
+import { eq, isNotNull, like } from "drizzle-orm";
+import { formations, votes } from "@/drizzle/schema";
+import { drizzleClient } from "@/lib/server/drizzle";
+
+const drizzle = drizzleClient;
+
+type FormationResult = {
+  id: number;
+  formation: string;
+  artifact: string;
+  layout: number;
+  userId: string;
+  name: string;
+  votes: any[];
+};
 
 export function buildFormationJson(
   formation: Row,
@@ -60,6 +75,24 @@ async function _getFormation(id: string): Promise<FormationData | false> {
 
   if (!formation) {
     return false;
+  }
+
+  // drizzle example
+  let formationDrizzle: FormationResult;
+
+  if (userId) {
+    formationDrizzle = (await drizzle.query.formations.findFirst({
+      with: {
+        votes: {
+          where: isNotNull(votes.id) && eq(votes.userId, userId),
+        },
+      },
+      where: eq(formations.id, parseInt(id)),
+    })) as FormationResult;
+  } else {
+    formationDrizzle = (await drizzle.query.formations.findFirst({
+      where: eq(formations.id, parseInt(id)),
+    })) as FormationResult;
   }
 
   const user = await getUser(formation.user_id?.toString()!);
