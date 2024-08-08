@@ -34,8 +34,8 @@ export default function CopyButton({ label }: { label: string }) {
         toast.success("Copied to clipboard!");
 
         // we can use ! here because we know that the key exists
-        const already_copied = localStorage.getItem("already_copied")!;
-        const parsed = JSON.parse(already_copied);
+        const alreadyCopied = localStorage.getItem("already_copied")!;
+        const parsed = JSON.parse(alreadyCopied);
         localStorage.setItem(
           "already_copied",
           JSON.stringify({ ...parsed, [label]: true }),
