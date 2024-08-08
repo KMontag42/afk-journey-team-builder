@@ -10,13 +10,13 @@ export default function CopyButton({ label }: { label: string }) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const already_copied = localStorage.getItem("already_copied");
-    if (!already_copied) {
+    const alreadyCopied = localStorage.getItem("already_copied");
+    if (!alreadyCopied) {
       localStorage.setItem("already_copied", JSON.stringify({}));
     } else {
-      const label_already_copied = JSON.parse(already_copied)[label];
+      const labelAlreadyCopied = JSON.parse(alreadyCopied)[label];
 
-      setCopied(label_already_copied);
+      setCopied(labelAlreadyCopied);
     }
     setLoaded(true);
   }, [label]);
