@@ -15,6 +15,13 @@
       "when": 1722880353099,
       "tag": "0001_eminent_mac_gargan",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1723087902064,
+      "tag": "0002_foamy_avengers",
+      "breakpoints": true
     }
   ]
 }

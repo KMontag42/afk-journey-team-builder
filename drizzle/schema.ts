@@ -1,4 +1,11 @@
-import { sqliteTable, integer, text, unique } from "drizzle-orm/sqlite-core";
+import { sql, eq } from "drizzle-orm";
+import {
+  sqliteTable,
+  integer,
+  text,
+  unique,
+  sqliteView,
+} from "drizzle-orm/sqlite-core";
 
 export const formations = sqliteTable("formations", {
   id: integer("id").primaryKey({ autoIncrement: true }),
@@ -31,4 +38,15 @@ export const roster = sqliteTable(
   (t) => ({
     unq: unique().on(t.userId),
   }),
+);
+
+export const formationsWithVotes = sqliteView("formationsWithVotes").as((qb) =>
+  qb
+    .select({
+      formations,
+      voteCount: sql`COUNT(${votes.id})`.as("voteCount"),
+    })
+    .from(formations)
+    .leftJoin(votes, eq(formations.id, votes.formationId))
+    .groupBy(formations.id),
 );

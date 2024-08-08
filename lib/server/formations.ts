@@ -7,8 +7,8 @@ import { Row } from "@libsql/client";
 import { type ClerkUser, getUser } from "@/lib/server/users";
 import { turso } from "@/lib/server/turso";
 import { type FormationData } from "@/lib/formations";
-import { eq, isNotNull, like, sql, gt } from "drizzle-orm";
-import { formations, votes } from "@/drizzle/schema";
+import { eq, isNotNull, sql } from "drizzle-orm";
+import { formations, formationsWithVotes, votes } from "@/drizzle/schema";
 import { drizzleClient } from "@/lib/server/drizzle";
 
 const drizzle = drizzleClient;
@@ -20,7 +20,8 @@ type FormationResult = {
   layout: number;
   userId: string;
   name: string;
-  votes: any;
+  voteCount: number | null;
+  votes: any | null;
 };
 
 export function buildFormationJson(
@@ -324,23 +325,9 @@ async function _mostPopularFormations(limit: number): Promise<FormationData[]> {
   }
 
   let formationsDrizzle;
-  let voteCountQuery;
-
-  voteCountQuery = drizzle
-    .select({
-      formationId: votes.formationId,
-      voteCount: sql`count(${votes.id})`.as("voteCount"),
-    })
-    .from(votes)
-    .groupBy(votes.formationId)
-    .as("voteCountQuery");
-
-  formationsDrizzle = await drizzle
-    .select()
-    .from(formations)
-    .leftJoin(voteCountQuery, eq(formations.id, voteCountQuery.formationId))
-    .leftJoin(votes, eq(votes.formationId, formations.id));
-
+  formationsDrizzle = (
+    await drizzle.run(sql`SELECT * FROM ${formationsWithVotes}`)
+  ).rows;
   console.log(formationsDrizzle);
 
   const topFormations = await Promise.all(
