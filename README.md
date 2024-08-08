@@ -54,8 +54,8 @@ Open a PR from your personal fork to the `main` branch.
 git clone git@github.com:kmontag42/afk-journey-team-builder.git
 cd afk-journey-team-builder
 cp .env.example .env.local
-pnpm install
-pnpm dev
+npm install
+npm run dev
 ```
 
 #### environment variables
