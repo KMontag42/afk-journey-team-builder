@@ -39,14 +39,3 @@ export const roster = sqliteTable(
     unq: unique().on(t.userId),
   }),
 );
-
-export const formationsWithVotes = sqliteView("formationsWithVotes").as((qb) =>
-  qb
-    .select({
-      formations,
-      voteCount: sql`COUNT(${votes.id})`.as("voteCount"),
-    })
-    .from(formations)
-    .leftJoin(votes, eq(formations.id, votes.formationId))
-    .groupBy(formations.id),
-);
