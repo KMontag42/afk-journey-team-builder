@@ -4,10 +4,9 @@ import { cache } from "react";
 import { auth } from "@clerk/nextjs/server";
 
 import { type ClerkUser, getUser } from "@/lib/server/users";
-import { turso } from "@/lib/server/turso";
 import { type FormationData } from "@/lib/formations";
 import { and, eq, sql, count, like } from "drizzle-orm";
-import { formations, formationsWithVotes, votes } from "@/drizzle/schema";
+import { formations, votes } from "@/drizzle/schema";
 import { drizzleClient } from "@/lib/server/drizzle";
 import { alias } from "drizzle-orm/sqlite-core";
 
@@ -154,3 +153,37 @@ async function _mostPopularFormations(limit: number): Promise<FormationData[]> {
 }
 
 export const mostPopularFormations = cache(_mostPopularFormations);
+
+type FormationCreateData = {
+  formation: string[];
+  artifact: string;
+  layout: string;
+  name: string;
+};
+
+export async function createFormation(
+  formation: FormationCreateData,
+): Promise<string | false> {
+  const { userId } = auth();
+  const values = {
+    formation: formation.formation.join(","),
+    artifact: formation.artifact,
+    layout: parseInt(formation.layout),
+    userId: userId,
+    name: formation.name,
+  };
+  const createResponse = await drizzle
+    .insert(formations)
+    .values(values)
+    .returning({ id: formations.id })
+    .execute();
+
+  return createResponse ? createResponse[0].id.toString() : false;
+}
+
+export async function deleteFormation(id: string): Promise<void> {
+  await drizzle
+    .delete(formations)
+    .where(eq(formations.id, parseInt(id)))
+    .execute();
+}
