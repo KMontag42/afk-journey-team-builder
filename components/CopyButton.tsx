@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { useState, useEffect } from "react";
 import { Check } from "lucide-react";
 
-export default function CopyButton({ label }: { label: string }) {
+export default function CopyButton({ code }: { code: string }) {
   const [copied, setCopied] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
@@ -14,12 +14,12 @@ export default function CopyButton({ label }: { label: string }) {
     if (!alreadyCopied) {
       localStorage.setItem("already_copied", JSON.stringify({}));
     } else {
-      const labelAlreadyCopied = JSON.parse(alreadyCopied)[label];
+      const codeAlreadyCopied = JSON.parse(alreadyCopied)[code];
 
-      setCopied(labelAlreadyCopied);
+      setCopied(codeAlreadyCopied);
     }
     setLoaded(true);
-  }, [label]);
+  }, [code]);
 
   // we don't want to render the button until we have checked if it was already copied
   if (!loaded) {
@@ -30,7 +30,7 @@ export default function CopyButton({ label }: { label: string }) {
     <Button
       variant="outline"
       onClick={() => {
-        navigator.clipboard.writeText(label);
+        navigator.clipboard.writeText(code);
         toast.success("Copied to clipboard!");
 
         // we can use ! here because we know that the key exists
@@ -38,7 +38,7 @@ export default function CopyButton({ label }: { label: string }) {
         const parsed = JSON.parse(alreadyCopied);
         localStorage.setItem(
           "already_copied",
-          JSON.stringify({ ...parsed, [label]: true }),
+          JSON.stringify({ ...parsed, [code]: true }),
         );
         setCopied(true);
       }}
@@ -46,10 +46,10 @@ export default function CopyButton({ label }: { label: string }) {
       {copied ? (
         <>
           <Check />
-          {label}
+          Used
         </>
       ) : (
-        label
+        <>Copy</>
       )}
     </Button>
   );
