@@ -1,11 +1,4 @@
-import { sql, eq } from "drizzle-orm";
-import {
-  sqliteTable,
-  integer,
-  text,
-  unique,
-  sqliteView,
-} from "drizzle-orm/sqlite-core";
+import { sqliteTable, integer, text, unique } from "drizzle-orm/sqlite-core";
 
 export const formations = sqliteTable("formations", {
   id: integer("id").primaryKey({ autoIncrement: true }),
