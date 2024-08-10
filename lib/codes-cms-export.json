@@ -1,52 +1,61 @@
 {
-  "active": ["MARKIJOURNEY", "AFKJN2024", "PLUTOMALLEXTRA5%"],
-  "expired": [
-    "PlutoMall",
-    "hwidnabwbd",
-    "LILITH11AFKJ",
-    "AFKJApril20",
-    "AFKJRUBBERROSS",
-    "AFKJLUDWIG",
-    "AFKJLILYPICHU",
-    "AFKJUPDATE",
-    "AFKJCCPROGRAM",
-    "AFKJCREATIONFEST",
-    "AFKJVOLKIN",
-    "AFKJZEEEBO",
-    "AFKJMTASHED",
-    "AFKJBARRY",
-    "AFKJNEWSEASON",
-    "AFKJourneyZekiaPax",
-    "AFKJourneyLilyPax",
-    "AFKJourneyDishPax",
-    "AFKJourneyALPHARAD",
-    "AFKJourneyPG0",
-    "AFKJourneyMSA",
-    "AFKJourneyDE",
-    "AFKJourneyJoshDUB",
-    "AFKJourney88",
-    "AFKJourneyZanny",
-    "AFKJourneyCarbot",
-    "AFKJourneySqueezie",
-    "AFKJourneyPRESTON",
-    "AFKJourneyVIVA",
-    "AFKJourneyLGIO",
-    "AFKJourneyHI",
-    "AFKJourneyRug",
-    "AFKJourneyJianhao",
-    "AFKJourneySpecialEDD",
-    "AFKJourneyTGT",
-    "AFKJOURNEYCMK",
-    "AFKJourneyNOGLA",
-    "AFKJourneyTT",
-    "AFKJOURNEYVG",
-    "AFKJourneyCreator",
-    "AFKJourneyPAX",
-    "AFKJourneyArt",
-    "WELCOME",
-    "LAUNCH",
-    "BETATESTING",
-    "THANKYOU"
+  "active": [
+    {
+      "code": "AFKJGIFT2024",
+      "rewards": "200 Diamonds"
+    },
+    {
+      "code": "MAGICAFKJOURNEY",
+      "rewards": "200 Diamonds"
+    },
+    {
+      "code": "GIFT4YOUAFKJ",
+      "rewards": "200 Diamonds"
+    },
+    {
+      "code": "AFKJomedetou",
+      "rewards": "1000 Diamonds"
+    },
+    {
+      "code": "AFKJCREATOR",
+      "rewards": "100 Diamonds"
+    },
+    {
+      "code": "AFKJCOMMUNITY",
+      "rewards": "100 Diamonds"
+    },
+    {
+      "code": "PLAYAFKJOURNEY",
+      "rewards": "200 Diamonds"
+    },
+    {
+      "code": "AFKJRPG888",
+      "rewards": "300 Diamonds"
+    },
+    {
+      "code": "AFKJPC",
+      "rewards": "100 Diamonds"
+    },
+    {
+      "code": "AFKJ8888",
+      "rewards": "188 Diamonds"
+    },
+    {
+      "code": "AFKJ9999",
+      "rewards": "188 Diamonds"
+    },
+    {
+      "code": "AFKJoshikatsu",
+      "rewards": "200 Diamonds"
+    },
+    {
+      "code": "Plutomallextra5%",
+      "rewards": "100 Diamonds"
+    },
+    {
+      "code": "MARKIJOURNEY",
+      "rewards": "1000 Diamonds"
+    }
   ],
   "directions": "Menu > Settings > Others > Redeem Code",
   "images": [
