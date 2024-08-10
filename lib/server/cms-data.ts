@@ -69,3 +69,12 @@ export async function getGuideContent(
   const jsonData = await getGuideCmsData();
   return jsonData["guides"][section][name]?.content;
 }
+
+export async function getRosterCmsData(): Promise<any> {
+  const jsonData = await (
+    await fetch(
+      `https://simplejsoncms.com/api/${process.env.ROSTER_SIMPLEJSONCMS_ID}`,
+    )
+  ).json();
+  return jsonData;
+}
