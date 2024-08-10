@@ -1,12 +1,11 @@
 "use server";
 
 import { Card, CardContent } from "@/components/ui/card";
-import CopyButton from "./CopyButton";
+import CopyButton from "@/components/CopyButton";
 import { Code } from "@/lib/cms-types";
 
 type CodeCardProps = {
   code: Code;
-  rewards: string;
 };
 
 export default async function CodeCard({ code }: CodeCardProps) {

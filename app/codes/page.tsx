@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 import { getCodesCmsData } from "@/lib/server/cms-data";
-import { Code } from "@/lib/cms-types";
+import type { Code } from "@/lib/cms-types";
 import CodeCard from "@/components/CodeCard";
 
 export default async function Codes() {
@@ -14,11 +14,7 @@ export default async function Codes() {
       <div className="text-atekgold text-xl font-bold pt-2">Active Codes</div>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 justify-center gap-2">
         {codesContent.active.map((code: Code) => (
-          <CodeCard
-            key={code.code}
-            code={code}
-            rewards="test rewards"
-          ></CodeCard>
+          <CodeCard key={code.code} code={code}></CodeCard>
         ))}
       </div>
       <div className="text-center text-atekgold font-bold">
