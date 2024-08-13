@@ -5,14 +5,16 @@ type NameAndImageCmsData = {
   imageUrl: ImgurUrl;
 };
 
+export type CharacterData = NameAndImageCmsData & {
+  id: string;
+  faction: string;
+  class: string;
+  charms: string[];
+  tileUrl: ImgurUrl;
+};
+
 export type CharacterCmsData = {
-  [id: string]: NameAndImageCmsData & {
-    id: string;
-    faction: string;
-    class: string;
-    charms: string[];
-    tileUrl: ImgurUrl;
-  };
+  [id: string]: CharacterData;
 };
 
 export type ClassesCmsData = {

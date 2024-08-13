@@ -9,6 +9,7 @@ import {
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getCmsData } from "@/lib/server/cms-data";
+import BuilderV2 from "@/components/builder/BuilderV2";
 
 export default async function Home({
   searchParams,
@@ -22,7 +23,7 @@ export default async function Home({
   const jsonData = await getCmsData();
 
   return (
-    <div className="relative flex flex-col items-center w-[min(100%,680px)] h-[calc(100vh-70px-2rem)] mx-auto px-6">
+    <div className="relative flex flex-col items-center overflow-x-hidden container h-[calc(100vh-70px-2rem)] mx-auto px-6">
       <Popover>
         <PopoverTrigger>
           <p className="text-xl underline absolute top-0 right-4">?</p>
@@ -46,7 +47,7 @@ export default async function Home({
         </PopoverContent>
       </Popover>
 
-      <Builder data={jsonData} />
+      <BuilderV2 {...jsonData} />
     </div>
   );
 }
