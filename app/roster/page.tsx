@@ -3,8 +3,8 @@
 import { auth } from "@clerk/nextjs/server";
 
 import { getRosterCmsData } from "@/lib/server/cms-data";
-import Equipment from "@/components/roster/Equipment";
-import { CharacterClass, Season } from "@/lib/roster";
+import { type Artifact } from "@/lib/roster";
+import Artifacts from "@/components/roster/artifacts/Artifacts";
 
 export default async function MyRoster() {
   const { userId, sessionClaims } = auth();
@@ -15,27 +15,20 @@ export default async function MyRoster() {
   }
 
   const jsonData = await getRosterCmsData();
-  const classes: CharacterClass[] = Object.entries(jsonData.classes).map(
+  const artifacts: Artifact[] = Object.entries(jsonData.artifacts).map(
     ([key, data]: [string, any]) => ({
       key: key,
-      name: data["name"],
       imageUrl: data["imageUrl"],
-    }),
-  );
-  const seasons: Season[] = Object.entries(jsonData.seasons).map(
-    ([key, data]: [string, any]) => ({
-      key: key,
-      name: data["name"],
+      label: data["label"],
+      category: data["category"],
+      active: data["active"],
+      level: 0,
     }),
   );
 
   return (
     <div className="container">
-      <Equipment
-        user={userId}
-        characterClasses={classes}
-        seasonList={seasons}
-      ></Equipment>
+      <Artifacts user={userId} artifactList={artifacts} />
     </div>
   );
 }

@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import EquipmentSaveButton from "@/components/roster/EquipmentSaveButton";
+import EquipmentSaveButton from "@/components/roster/equipment/EquipmentSaveButton";
 import { useState } from "react";
 import { Season } from "@/lib/roster";
 
@@ -36,6 +36,9 @@ export default function EquipmentDialog({ user, name, season }: DialogProps) {
     legsLevel,
   ];
 
+  const MAX_SEASONAL_LEVEL = 400;
+  const MAX_STARTER_LEVEL = 240;
+
   const handleGearLevelChange = async (
     increment: number,
     equipmentLevel: number,
@@ -43,9 +46,9 @@ export default function EquipmentDialog({ user, name, season }: DialogProps) {
   ) => {
     if (equipmentLevel + increment < 0) {
       setEquipmentLevel(0);
-    } else if (seasonal && equipmentLevel + increment > MAX_SEASONAL_LEVEL) {
+    } else if (season && equipmentLevel + increment > MAX_SEASONAL_LEVEL) {
       setEquipmentLevel(MAX_SEASONAL_LEVEL);
-    } else if (!seasonal && equipmentLevel + increment > MAX_STARTER_LEVEL) {
+    } else if (!season && equipmentLevel + increment > MAX_STARTER_LEVEL) {
       setEquipmentLevel(MAX_STARTER_LEVEL);
     } else {
       setEquipmentLevel(equipmentLevel + increment);
@@ -65,7 +68,7 @@ export default function EquipmentDialog({ user, name, season }: DialogProps) {
     <DialogContent className="sm:max-w-screen-sm">
       <DialogHeader>
         <DialogTitle>
-          {(seasonal ? "Seasonal - " : "Starter - ") + name}
+          {(season ? "Seasonal - " : "Starter - ") + name}
         </DialogTitle>
         <DialogDescription></DialogDescription>
       </DialogHeader>
