@@ -1,5 +1,4 @@
-import { encode } from "punycode";
-import { ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 
 const GuideTitle = ({ children }: { children: ReactNode }) => {
   return (
@@ -59,6 +58,21 @@ const CenteredContent = ({ children }: { children: ReactNode }) => {
 
 const Space = () => {
   return <div className="py-4" />;
+};
+
+const InlineContent = ({ children }: { children: ReactNode }) => {
+  return <div className="flex flex-row items-center gap-x-2">{children}</div>;
+};
+
+const InlineImage = ({ children }: { children: ReactElement }) => {
+  const imageDetails = children?.props.children.props;
+  return (
+    <img
+      className="max-w-8 max-h-6"
+      alt={imageDetails.alt}
+      src={imageDetails.src}
+    />
+  );
 };
 
 const Thumbnail = ({ children }: { children: ReactNode }) => {
@@ -218,6 +232,8 @@ export const MarkdownComponents = {
   "centered-content": CenteredContent,
   "centered-text": CenteredText,
   space: Space,
+  "inline-content": InlineContent,
+  "inline-img": InlineImage,
   thumbnail: Thumbnail,
   "xxs-img": MiniImage,
   "xs-img": ExtraSmallImage,
