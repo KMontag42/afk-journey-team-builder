@@ -1,4 +1,5 @@
 import { ReactElement, ReactNode } from "react";
+import Image from "next/image";
 
 const GuideTitle = ({ children }: { children: ReactNode }) => {
   return (
@@ -67,8 +68,9 @@ const InlineContent = ({ children }: { children: ReactNode }) => {
 const InlineImage = ({ children }: { children: ReactElement }) => {
   const imageDetails = children?.props.children.props;
   return (
-    <img
-      className="max-w-8 max-h-6"
+    <Image
+      height={24}
+      width={24}
       alt={imageDetails.alt}
       src={imageDetails.src}
     />
