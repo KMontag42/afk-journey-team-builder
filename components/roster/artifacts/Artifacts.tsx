@@ -1,15 +1,14 @@
 "use client";
 
-import { useReducer } from "react";
+import { FormEvent, useReducer } from "react";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
 import { Category, type Artifact } from "@/lib/roster";
+import { toast } from "sonner";
 
 type ArtifactProps = {
-  user: string;
   artifactList: Artifact[];
 };
 
@@ -18,21 +17,13 @@ type Action = {
   artifact: Artifact;
 };
 
-const STARTER_MAX_LEVEL = 10;
-const SEASONAL_MAX_LEVEL = 30;
-
 function reducer(artifacts: Artifact[], action: Action) {
   const type = action.type;
   const artifact = action.artifact;
 
   switch (type) {
     case "increment": {
-      if (
-        (artifact.category === Category.Starter &&
-          artifact.level + 1 > STARTER_MAX_LEVEL) ||
-        (artifact.category === Category.Seasonal &&
-          artifact.level + 1 > SEASONAL_MAX_LEVEL)
-      ) {
+      if (artifact.level + 1 > artifact.maxLevel) {
         return artifacts;
       } else {
         return artifacts.map((a) =>
@@ -54,59 +45,80 @@ function reducer(artifacts: Artifact[], action: Action) {
   }
 }
 
-export default function Artifacts({ user, artifactList }: ArtifactProps) {
+export default function Artifacts({ artifactList }: ArtifactProps) {
   const [artifacts, dispatch] = useReducer(reducer, artifactList);
 
+  const handleSave = async (e: FormEvent) => {
+    e.preventDefault();
+
+    let items = artifacts.map((artifact) => ({
+      artifactId: artifact.key,
+      level: artifact.level,
+    }));
+
+    try {
+      const response = await (
+        await fetch("/api/roster/artifacts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(items),
+        })
+      ).json();
+
+      toast.success("Artifacts saved!");
+    } catch (error: any) {
+      toast.error("Failed to save Artifacts!");
+    }
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center gap-2 mb-4">
-      <h1>Starter</h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+    <div className="flex flex-col items-center justify-center gap-2">
+      <div className="font-bold text-2xl text-atekgold">Starter Artifacts</div>
+      <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
         {artifacts
           .filter((artifact) => artifact.category === Category.Starter)
           .map((artifact) => (
             <Card key={artifact.key}>
-              <CardContent className="flex flex-col items-center space-y-2">
-                <Image
-                  className="pt-4"
-                  alt={artifact.label}
-                  src={artifact.imageUrl}
-                  width={64}
-                  height={64}
-                />
-                <div>{artifact.label}</div>
-                <div className="flex flex-row gap-x-2">
+              <CardContent className="flex flex-row items-center gap-x-2 p-2">
+                <div className="flex flex-col justify-center items-center gap-y-2">
+                  <Image
+                    alt={artifact.label}
+                    src={artifact.imageUrl}
+                    width={128}
+                    height={128}
+                  />
+                  {artifact.level}
+                </div>
+                <div className="flex flex-col gap-y-2">
                   <Button
                     variant="outline"
-                    className="max-w-4"
+                    className="w-10"
+                    disabled={artifact.level >= artifact.maxLevel}
+                    onClick={() =>
+                      dispatch({ type: "increment", artifact: artifact })
+                    }
+                  >
+                    +
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="w-10"
                     disabled={artifact.level <= 0}
                     onClick={() =>
                       dispatch({ type: "decrement", artifact: artifact })
                     }
                   >
-                    -1
-                  </Button>
-                  <Input
-                    disabled
-                    className="w-12 text-center"
-                    value={artifact.level}
-                  />
-                  <Button
-                    variant="outline"
-                    className="max-w-4"
-                    disabled={artifact.level >= STARTER_MAX_LEVEL}
-                    onClick={() =>
-                      dispatch({ type: "increment", artifact: artifact })
-                    }
-                  >
-                    +1
+                    -
                   </Button>
                 </div>
               </CardContent>
             </Card>
           ))}
       </div>
-      <h1 className="pt-4">Seasonal</h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+      <div className="font-bold text-2xl text-atekgold">Seasonal Artifacts</div>
+      <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
         {artifacts
           .filter(
             (artifact) =>
@@ -114,46 +126,43 @@ export default function Artifacts({ user, artifactList }: ArtifactProps) {
           )
           .map((artifact) => (
             <Card key={artifact.key}>
-              <CardContent className="flex flex-col items-center space-y-2">
-                <Image
-                  className="pt-4"
-                  alt={artifact.label}
-                  src={artifact.imageUrl}
-                  width={64}
-                  height={64}
-                />
-                <div>{artifact.label}</div>
-                <div className="flex flex-row gap-x-2">
+              <CardContent className="flex flex-row items-center gap-x-2 p-2">
+                <div className="flex flex-col justify-center items-center gap-y-2">
+                  <Image
+                    alt={artifact.label}
+                    src={artifact.imageUrl}
+                    width={128}
+                    height={128}
+                  />
+                  {artifact.level}
+                </div>
+                <div className="flex flex-col gap-y-2">
                   <Button
                     variant="outline"
-                    className="max-w-4"
+                    className="w-10"
+                    disabled={artifact.level >= artifact.maxLevel}
+                    onClick={() =>
+                      dispatch({ type: "increment", artifact: artifact })
+                    }
+                  >
+                    +
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="w-10"
                     disabled={artifact.level <= 0}
                     onClick={() =>
                       dispatch({ type: "decrement", artifact: artifact })
                     }
                   >
-                    -1
-                  </Button>
-                  <Input
-                    disabled
-                    className="w-12 text-center"
-                    value={artifact.level}
-                  />
-                  <Button
-                    variant="outline"
-                    className="max-w-4"
-                    disabled={artifact.level >= SEASONAL_MAX_LEVEL}
-                    onClick={() =>
-                      dispatch({ type: "increment", artifact: artifact })
-                    }
-                  >
-                    +1
+                    -
                   </Button>
                 </div>
               </CardContent>
             </Card>
           ))}
       </div>
+      <Button onClick={handleSave}>Save Artifacts</Button>
     </div>
   );
 }

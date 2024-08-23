@@ -1,8 +1,8 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getUserByUsername } from "@/lib/server/users";
 import { getFormationsForUserId } from "@/lib/server/formations";
 import { getCmsData } from "@/lib/server/cms-data";
 import FormationCard from "@/components/FormationCard";
+import UserAvatar from "@/components/UserAvatar";
 
 export default async function UserPage({
   params,
@@ -22,13 +22,7 @@ export default async function UserPage({
 
   return (
     <div className="container flex flex-col pb-4">
-      <div className="flex justify-center items-center gap-2 text-2xl">
-        <Avatar>
-          <AvatarFallback>{username}</AvatarFallback>
-          <AvatarImage src={user_image} alt={username} />
-        </Avatar>
-        <h1>{username}</h1>
-      </div>
+      <UserAvatar userName={username!} userImage={user_image}></UserAvatar>
       <h2 className="py-4 text-lg font-bold">Formations</h2>
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
         {formations.map((formation) => (

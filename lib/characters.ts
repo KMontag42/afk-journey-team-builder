@@ -16,6 +16,23 @@ export enum CharacterClass {
   Support = "support",
 }
 
+export enum AscensionLevel {
+  Elite = "Elite",
+  EliteP = "Elite+",
+  Epic = "Epic",
+  EpicP = "Epic+",
+  Legendary = "Legendary",
+  LegendaryP = "Legendary+",
+  Mythic = "Mythic",
+  MythicP = "Mythic+",
+  Supreme = "Supreme",
+  SupremeP = "Supreme+",
+  Paragon1 = "Paragon 1",
+  Paragon2 = "Paragon 2",
+  Paragon3 = "Paragon 3",
+  Paragon4 = "Paragon 4",
+}
+
 export type Character = {
   id: string;
   name: string;

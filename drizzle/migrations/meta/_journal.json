@@ -15,6 +15,20 @@
       "when": 1722880353099,
       "tag": "0001_eminent_mac_gargan",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1723782447939,
+      "tag": "0002_shocking_red_skull",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1724024718885,
+      "tag": "0003_gifted_matthew_murdock",
+      "breakpoints": true
     }
   ]
 }
