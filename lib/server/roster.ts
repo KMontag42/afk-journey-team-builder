@@ -5,7 +5,6 @@ import { eq } from "drizzle-orm";
 
 import { roster, rosterArtifacts, rosterLevels } from "@/drizzle/schema";
 import { drizzleClient } from "@/lib/server/drizzle";
-import { AscensionLevel, CharacterClass, Faction } from "@/lib/characters";
 
 const drizzle = drizzleClient;
 
