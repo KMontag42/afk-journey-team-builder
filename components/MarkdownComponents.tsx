@@ -21,7 +21,7 @@ const TwoColumn = ({ children }: { children: ReactNode }) => {
 
 const ThreeColumn = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-8">{children}</div>
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-6">{children}</div>
   );
 };
 
