@@ -27,10 +27,10 @@ export enum AscensionLevel {
   MythicP = "Mythic+",
   Supreme = "Supreme",
   SupremeP = "Supreme+",
-  Paragon1 = "Paragon 1",
-  Paragon2 = "Paragon 2",
-  Paragon3 = "Paragon 3",
-  Paragon4 = "Paragon 4",
+  Paragon1 = "Paragon1",
+  Paragon2 = "Paragon2",
+  Paragon3 = "Paragon3",
+  Paragon4 = "Paragon4",
 }
 
 export type Character = {
