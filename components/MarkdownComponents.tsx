@@ -1,5 +1,5 @@
-import { encode } from "punycode";
-import { ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
+import Image from "next/image";
 
 const GuideTitle = ({ children }: { children: ReactNode }) => {
   return (
@@ -21,7 +21,7 @@ const TwoColumn = ({ children }: { children: ReactNode }) => {
 
 const ThreeColumn = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-8">{children}</div>
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-6">{children}</div>
   );
 };
 
@@ -59,6 +59,22 @@ const CenteredContent = ({ children }: { children: ReactNode }) => {
 
 const Space = () => {
   return <div className="py-4" />;
+};
+
+const InlineContent = ({ children }: { children: ReactNode }) => {
+  return <div className="flex flex-row items-center gap-x-2">{children}</div>;
+};
+
+const InlineImage = ({ children }: { children: ReactElement }) => {
+  const imageDetails = children?.props.children.props;
+  return (
+    <Image
+      height={24}
+      width={24}
+      alt={imageDetails.alt}
+      src={imageDetails.src}
+    />
+  );
 };
 
 const Thumbnail = ({ children }: { children: ReactNode }) => {
@@ -218,6 +234,8 @@ export const MarkdownComponents = {
   "centered-content": CenteredContent,
   "centered-text": CenteredText,
   space: Space,
+  "inline-content": InlineContent,
+  "inline-img": InlineImage,
   thumbnail: Thumbnail,
   "xxs-img": MiniImage,
   "xs-img": ExtraSmallImage,
