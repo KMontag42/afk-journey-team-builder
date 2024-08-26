@@ -1,7 +1,5 @@
 "use server";
 
-import "@/app/roster/heroes.css";
-
 import { auth } from "@clerk/nextjs/server";
 
 import { getRosterCmsData } from "@/lib/server/cms-data";

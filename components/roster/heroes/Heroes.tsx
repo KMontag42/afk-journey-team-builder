@@ -1,11 +1,9 @@
 "use client";
 
 import { useReducer } from "react";
-import Image from "next/image";
 import { Hero } from "@/lib/roster";
 import { Card, CardContent } from "@/components/ui/card";
 import { AscensionLevel } from "@/lib/characters";
-import { Check, Star } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,7 +15,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import HeroPortrait from "../HeroPortrait";
+import HeroPortrait from "@/components/roster/heroes/HeroPortrait";
 
 type SubSelectProps = {
   hero: Hero;
@@ -37,6 +35,7 @@ const isAscensionLevelValid = (level: AscensionLevel | null): boolean => {
   const validLevels = Object.keys(AscensionLevel).splice(7);
   return validLevels.includes(level);
 };
+
 const exclusiveEquipmentOptions = Array.from(
   { length: 6 },
   (_, i) => `${i * 5}`,
@@ -75,17 +74,6 @@ function reducer(heroes: Hero[], change: HeroChange) {
 export default function Heroes({ heroList }: HeroProps) {
   const [heroes, dispatch] = useReducer(reducer, heroList);
 
-  function getBackgroundColor(ascensionLevel: AscensionLevel): string {
-    switch (ascensionLevel) {
-      case AscensionLevel.Elite:
-        return "elite";
-      case AscensionLevel.Epic:
-        return "epic";
-      default:
-        return "elite";
-    }
-  }
-
   const CustomSelectSubmenu = ({
     hero,
     options,
@@ -112,11 +100,6 @@ export default function Heroes({ heroList }: HeroProps) {
                 dispatch({ property: heroProperty, level: option, hero: hero })
               }
             >
-              <Check
-                className={`mr-2 h-4 w-4 ${
-                  selected === option ? "opacity-100" : "opacity-0"
-                }`}
-              />
               {option}
             </DropdownMenuItem>
           ))}
@@ -128,38 +111,14 @@ export default function Heroes({ heroList }: HeroProps) {
   return (
     <div className="flex flex-col items-center justify-center gap-2">
       <div className="font-bold text-2xl text-atekgold">Heroes</div>
-      <div className="grid grid-cols-3 md:grid-cols-8 gap-4">
+      <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-1">
         {heroes.map((hero) => (
           <div key={hero.key} className="cursor-pointer">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Card className={getBackgroundColor(hero.ascension)}>
-                  <CardContent className="flex flex-col justify-center gap-x-2 max-w-[80px] p-0">
+                <Card className="border-0">
+                  <CardContent className="flex flex-col justify-center gap-x-2 p-0">
                     <HeroPortrait hero={hero}></HeroPortrait>
-                    {/* <div className="relative">
-                      <Image
-                        alt={hero.name}
-                        src={hero.imageUrl}
-                        width={128}
-                        height={128}
-                        className="p-1"
-                      />
-                        {isAscensionLevelValid(hero.ascension) ? (
-                          <div className="flex flex-row justify-center px-1">
-                            {Array.from(
-                              { length: hero.exEquipment / 5 + 1 },
-                              (_, i) => (
-                                <Star
-                                  key={i}
-                                  color="#000000"
-                                  strokeWidth={3}
-                                  size={20}
-                                />
-                              ),
-                            )}
-                          </div>
-                        ) : <div className="h-5"></div>}
-                    </div> */}
                   </CardContent>
                 </Card>
               </DropdownMenuTrigger>
