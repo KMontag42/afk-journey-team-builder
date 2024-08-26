@@ -58,6 +58,7 @@ export default async function MyRoster() {
       ascension:
         data["tier"] === "S" ? AscensionLevel.Epic : AscensionLevel.Elite,
       exEquipment: 0,
+      unlocked: false,
     }),
   );
 

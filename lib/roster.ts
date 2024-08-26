@@ -42,4 +42,5 @@ export type Hero = {
   imageUrl: string;
   ascension: AscensionLevel;
   exEquipment: number;
+  unlocked: boolean;
 };
