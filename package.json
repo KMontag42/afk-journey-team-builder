@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "drizzle-kit migrate",
     "build": "next build",
     "dev": "next dev --turbo",
     "lint": "next lint",
@@ -54,6 +55,7 @@
     "@types/node": "^20.14.11",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "drizzle-kit": "^0.23.2",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.5",
     "postcss": "^8.4.39",
