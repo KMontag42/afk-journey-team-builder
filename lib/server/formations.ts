@@ -2,14 +2,30 @@ import "server-only";
 
 import { cache } from "react";
 import { auth } from "@clerk/nextjs/server";
-import { Row } from "@libsql/client";
 
 import { type ClerkUser, getUser } from "@/lib/server/users";
-import { turso } from "@/lib/server/turso";
 import { type FormationData } from "@/lib/formations";
+import { and, eq, sql, count, like } from "drizzle-orm";
+import { formations, votes } from "@/drizzle/schema";
+import { drizzleClient } from "@/lib/server/drizzle";
+import { alias } from "drizzle-orm/sqlite-core";
+
+const drizzle = drizzleClient;
+
+type FormationResult = {
+  id: number;
+  formation: string;
+  artifact: string;
+  layout: number;
+  userId: string;
+  name: string;
+  voteCount: number | null;
+  votes: any | null;
+  currentUserLiked: number | null;
+};
 
 export function buildFormationJson(
-  formation: Row,
+  formation: FormationResult,
   user: ClerkUser,
 ): FormationData {
   return {
@@ -24,45 +40,58 @@ export function buildFormationJson(
   };
 }
 
+function _baseFormationQuery(userId: string | null) {
+  const votes2 = alias(votes, "v2");
+  if (userId) {
+    return drizzle
+      .select({
+        id: formations.id,
+        formation: formations.formation,
+        artifact: formations.artifact,
+        layout: formations.layout,
+        name: formations.name,
+        userId: formations.userId,
+        voteCount: count(votes2.id).as("voteCount"),
+        currentUserLiked: sql`CASE WHEN ${votes.id} IS NOT NULL THEN 1 ELSE 0 END`,
+      })
+      .from(formations)
+      .leftJoin(
+        votes,
+        and(eq(votes.userId, userId), eq(votes.formationId, formations.id)),
+      )
+      .leftJoin(votes2, eq(formations.id, votes2.formationId))
+      .groupBy(formations.id);
+  } else {
+    return drizzle
+      .select({
+        id: formations.id,
+        formation: formations.formation,
+        artifact: formations.artifact,
+        layout: formations.layout,
+        name: formations.name,
+        userId: formations.userId,
+        voteCount: count(votes2.id).as("voteCount"),
+        currentUserLiked: sql`0`,
+      })
+      .from(formations)
+      .leftJoin(votes2, eq(formations.id, votes2.formationId))
+      .groupBy(formations.id);
+  }
+}
+
 async function _getFormation(id: string): Promise<FormationData | false> {
   const { userId } = auth();
-  let formation;
-
-  if (userId) {
-    formation = await turso.execute({
-      sql: `
-        SELECT
-            f.*,
-            CASE
-              WHEN v.id IS NOT NULL THEN 1
-              ELSE 0
-            END AS currentUserLiked
-        FROM
-            formations f
-        LEFT JOIN
-            votes v
-        ON
-            f.id = v.formation_id
-        AND
-            v.user_id = (:userId)
-        WHERE f.id = (:id);
-      `,
-      args: { id, userId },
-    });
-  } else {
-    formation = await turso.execute({
-      sql: "SELECT * FROM formations WHERE id = ?",
-      args: [id],
-    });
-  }
-
-  formation = formation.rows[0];
+  const formation = (
+    await _baseFormationQuery(userId)
+      .where(eq(formations.id, parseInt(id)))
+      .execute()
+  )[0] as FormationResult;
 
   if (!formation) {
     return false;
   }
 
-  const user = await getUser(formation.user_id?.toString()!);
+  const user = await getUser(formation.userId?.toString()!);
 
   return buildFormationJson(formation, user);
 }
@@ -73,45 +102,17 @@ export async function getFormationsForUserId(
   userId: string,
 ): Promise<FormationData[]> {
   const { userId: currentUserId } = auth();
-  let formations;
+  const userFormations = (await _baseFormationQuery(currentUserId)
+    .where(eq(formations.userId, userId))
+    .execute()) as FormationResult[];
 
-  if (currentUserId) {
-    formations = await turso.execute({
-      sql: `
-            SELECT
-                f.*,
-                CASE
-                  WHEN v.id IS NOT NULL THEN 1
-                  ELSE 0
-                END AS currentUserLiked
-            FROM
-                formations f
-            LEFT JOIN
-                votes v
-            ON
-                f.id = v.formation_id
-            AND
-                v.user_id = (:currentUserId)
-            WHERE f.user_id = (:userId);
-            `,
-      args: { userId, currentUserId },
-    });
-  } else {
-    formations = await turso.execute({
-      sql: "SELECT * FROM formations WHERE user_id = (:userId)",
-      args: { userId },
-    });
-  }
-
-  formations = await Promise.all(
-    formations.rows.map(async (formation) => {
-      const user = await getUser(formation.user_id?.toString()!);
+  return await Promise.all(
+    userFormations.map(async (formation) => {
+      const user = await getUser(formation.userId?.toString()!);
 
       return buildFormationJson(formation, user);
     }),
   );
-
-  return formations;
 }
 
 export async function searchFormations(
@@ -119,146 +120,70 @@ export async function searchFormations(
 ): Promise<FormationData[]> {
   // if there is a user, we need to join votes to get the user's votes
   const { userId } = auth();
-  let queryResponse;
+  const queryResponse = (await _baseFormationQuery(userId)
+    .where(like(formations.name, `%${query}%`))
+    .orderBy(sql`voteCount DESC`)
+    .execute()) as FormationResult[];
 
-  if (userId) {
-    queryResponse = await turso.execute({
-      sql: `
-        SELECT
-            f.*,
-            COUNT(v.id) AS vote_count,
-            CASE
-                WHEN v2.id IS NOT NULL THEN 1
-                ELSE 0
-            END AS currentUserLiked
-        FROM
-            formations f
-        LEFT JOIN
-            votes v
-        ON
-            f.id = v.formation_id
-        LEFT JOIN
-            votes v2
-        ON
-            f.id = v2.formation_id
-        AND
-            v2.user_id = (:userId)
-        WHERE
-            f.name LIKE (:q) OR f.formation LIKE (:q)
-        GROUP BY
-            f.id
-        ORDER BY
-            vote_count DESC;
-      `,
-      args: { q: `%${query}%`, userId },
-    });
-  } else {
-    queryResponse = await turso.execute({
-      sql: `
-        SELECT
-            f.*,
-            COUNT(v.id) AS vote_count
-        FROM
-            formations f
-        LEFT JOIN
-            votes v
-        ON
-            f.id = v.formation_id
-        WHERE
-            f.name LIKE (:q) OR f.formation LIKE (:q)
-        GROUP BY
-            f.id
-        ORDER BY
-            vote_count DESC;
-      `,
-      args: { q: `%${query}%` },
-    });
-  }
-
-  if (!queryResponse.rows.length) {
-    return [];
-  }
-
-  const formations = await Promise.all(
-    queryResponse.rows.map(async (formation) => {
-      const user = await getUser(formation.user_id?.toString()!);
+  const searchFormations = await Promise.all(
+    queryResponse.map(async (formation) => {
+      const user = await getUser(formation.userId?.toString()!);
 
       return buildFormationJson(formation, user);
     }),
   );
 
-  return formations;
+  return searchFormations;
 }
 
 async function _mostPopularFormations(limit: number): Promise<FormationData[]> {
   const { userId } = auth();
-  let queryResponse;
+  const queryResponse = (await _baseFormationQuery(userId)
+    .orderBy(sql`voteCount DESC`)
+    .limit(limit)
+    .execute()) as FormationResult[];
 
-  if (userId) {
-    queryResponse = await turso.execute({
-      sql: `
-        SELECT
-            f.*,
-            COUNT(v.id) AS vote_count,
-            CASE
-                WHEN v2.id IS NOT NULL THEN 1
-                ELSE 0
-            END AS currentUserLiked
-        FROM
-            formations f
-        LEFT JOIN
-            votes v
-        ON
-            f.id = v.formation_id
-        LEFT JOIN
-            votes v2
-        ON
-            f.id = v2.formation_id
-        AND
-            v2.user_id = (:userId)
-        GROUP BY
-            f.id
-        ORDER BY
-            vote_count DESC
-        LIMIT (:limit);
-      `,
-      args: { limit, userId },
-    });
-  } else {
-    queryResponse = await turso.execute({
-      sql: `
-        SELECT
-            f.*,
-            COUNT(v.id) AS vote_count
-        FROM
-            formations f
-        LEFT JOIN
-            votes v
-        ON
-            f.id = v.formation_id
-        GROUP BY
-            f.id
-        ORDER BY
-            vote_count DESC
-        LIMIT (:limit);
-      `,
-      args: { limit },
-    });
-  }
-
-  if (!queryResponse.rows.length) {
-    return [];
-  }
-
-  const formations = await Promise.all(
-    queryResponse.rows.map(async (formation) => {
-      const user = await getUser(formation.user_id?.toString()!);
+  return await Promise.all(
+    queryResponse.map(async (formation) => {
+      const user = await getUser(formation.userId?.toString()!);
 
       return buildFormationJson(formation, user);
     }),
   );
-
-  return formations;
 }
 
 export const mostPopularFormations = cache(_mostPopularFormations);
+
+type FormationCreateData = {
+  formation: string[];
+  artifact: string;
+  layout: string;
+  name: string;
+};
+
+export async function createFormation(
+  formation: FormationCreateData,
+): Promise<string | false> {
+  const { userId } = auth();
+  const values = {
+    formation: formation.formation.join(","),
+    artifact: formation.artifact,
+    layout: parseInt(formation.layout),
+    userId: userId,
+    name: formation.name,
+  };
+  const createResponse = await drizzle
+    .insert(formations)
+    .values(values)
+    .returning({ id: formations.id })
+    .execute();
+
+  return createResponse ? createResponse[0].id.toString() : false;
+}
+
+export async function deleteFormation(id: string): Promise<void> {
+  await drizzle
+    .delete(formations)
+    .where(eq(formations.id, parseInt(id)))
+    .execute();
+}
