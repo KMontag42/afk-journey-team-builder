@@ -16,7 +16,7 @@ export default async function GuideEditor() {
         <PopoverTrigger asChild>
           <Button variant="outline">?</Button>
         </PopoverTrigger>
-        <PopoverContent className="w-auto">
+        <PopoverContent className="w-auto max-h-[75vh] overflow-y-scroll">
           <div className="flex flex-col items-center gap-y-2">
             <div className="font-bold text-lg">How to use</div>
             <Link
@@ -179,6 +179,76 @@ export default async function GuideEditor() {
                       :::lg-img
                       <br />
                       :::xl-img
+                    </blockquote>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="border-y px-4 py-2">Inline Content</td>
+                  <td className="border-y px-4 py-2">
+                    <blockquote className="p-2 bg-slate-900">
+                      ::::inline-content
+                      <br />
+                      :::inline-img
+                      <br />
+                      ![Image](https://i.imgur.com/9UIUCsW.png)
+                      <br />
+                      :::
+                      <br />
+                      Text goes here
+                      <br />
+                      ::::
+                    </blockquote>
+                  </td>
+                  <td className="border-y px-4 py-2">
+                    Allows for images and content (text) to be in the same line.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="border-y px-4 py-2">Tier List Building</td>
+                  <td className="border-y px-4 py-2">
+                    <blockquote className="p-2 bg-slate-900">
+                      :::tier-list (is a 7 column grid)
+                      <br />
+                      :::tier-list-column (used for factions)
+                      <br />
+                      :::tier-list-hero-tier (used for separating S vs A tier)
+                    </blockquote>
+                  </td>
+                  <td className="border-y px-4 py-2">
+                    Use this for building tier lists.
+                    <blockquote className="p-2 bg-slate-900">
+                      ::::::tier-list
+                      <br />
+                      :::::tier-list-column
+                      <br />
+                      ## EX (tier)
+                      <br />
+                      :::::
+                      <br />
+                      :::::tier-list-column
+                      <br />
+                      ::::tier-list-hero-tier
+                      <br />
+                      :::thumbnail
+                      <br />
+                      ![Image](url)
+                      <br />
+                      :::
+                      <br />
+                      ::::
+                      <br />
+                      ::::tier-list-hero-tier
+                      <br />
+                      :::thumbnail
+                      <br />
+                      ![Image](url)
+                      <br />
+                      :::
+                      <br />
+                      ::::
+                      <br />
+                      :::::
+                      <br />
                     </blockquote>
                   </td>
                 </tr>
