@@ -6,7 +6,7 @@ import Link from "next/link";
 export default async function Disclaimer() {
   return (
     <>
-      <div className="text-xl font-bold text-center pb-4">Disclaimer</div>
+      <div className="text-xl font-bold pb-4">Disclaimer</div>
       <ul className="list-disc px-4">
         <li className="text-sm">
           <Link className="underline" href="https://atek.afkanalytica.com/">

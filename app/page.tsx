@@ -1,14 +1,12 @@
 "use server";
 
 import Formations from "@/components/home/formations";
-import { RelativePageURLs } from "@/lib/pages";
 import Shortcuts from "@/components/home/shortcuts";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { tekImages } from "@/lib/images";
-import Image from "next/image";
 import Link from "next/link";
 import Disclaimer from "@/components/home/disclaimer";
+import Guides from "@/components/home/guides";
 
 export default async function Home() {
   return (
@@ -28,11 +26,7 @@ export default async function Home() {
           <div className="flex flex-col gap-y-4">
             <Card className="bg-slate-900 pt-6">
               <CardContent>
-                <div>Guides</div>
-                <div>
-                  Guides feed will go here, we can show the latest guides or
-                  guides that we want to promote, here.
-                </div>
+                <Guides></Guides>
               </CardContent>
             </Card>
             <Card className="bg-slate-900 pt-6">

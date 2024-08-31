@@ -8,17 +8,7 @@ import { type CmsData } from "@/lib/cms-types";
 import { type FormationData } from "@/lib/formations";
 
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
-
-import LikeFormationButton from "@/components/LikeFormationButton";
-import DeleteFormationButton from "@/components/DeleteFormationButton";
-import ShareFormationButton from "@/components/ShareFormationButton";
-import { Separator } from "@/components/ui/separator";
+import { Card, CardContent } from "@/components/ui/card";
 
 type FormationCardProps = {
   data: FormationData;
