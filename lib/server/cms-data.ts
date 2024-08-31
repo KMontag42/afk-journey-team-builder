@@ -42,6 +42,8 @@ export async function getGuideHomePage(): Promise<GuideHomePageCmsData> {
   const banners = Object.entries(jsonData["home"]["banners"]).map(
     ([key, data]: [string, any]) => ({
       key: key,
+      name: data["name"],
+      description: data["description"],
       guideLink: data["guideLink"],
       imageLink: data["imageLink"],
     }),

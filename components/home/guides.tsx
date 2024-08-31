@@ -25,13 +25,9 @@ export default async function Guides() {
               />
               <div className="lg:col-span-3 grid grid-cols-1 gap-y-2">
                 <div className="font-bold text-atekgold text-2xl">
-                  Beginner's Guide
+                  {guide.name}
                 </div>
-                <div className="indent-4">
-                  A simple guide that explains the basic mechanics of the game.
-                  Dive into the world of Esperia in AFK Journey and learn how to
-                  prepare yourself to be the best!
-                </div>
+                <div className="indent-4">{guide.description}</div>
                 <Link className="flex justify-end" href={guide.guideLink}>
                   <Button className="bg-atekgold">Read</Button>
                 </Link>

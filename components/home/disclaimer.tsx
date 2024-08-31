@@ -30,6 +30,7 @@ export default async function Disclaimer() {
           </Link>
         </li>
         <li className="text-sm">
+          <span>Copyright &copy; </span>
           <Link className="underline" href={RelativePageURLs.about}>
             Analytica
           </Link>
