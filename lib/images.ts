@@ -4,6 +4,7 @@ import tekLogo from "@/public/tekLogo.png";
 import AnalyticaOfficialLogo from "@/public/AnalyticaOfficialLogo.png";
 import LogoBlack from "@/public/LogoBlack.png";
 import LogoAnimationV2 from "@/public/LogoAnimationV2.gif";
+import DiscordLogo from "@/public/DiscordLogoV2.png";
 
 import Tile1 from "@/public/slots/Tile1.png";
 import Tile2 from "@/public/slots/Tile2.png";
@@ -24,6 +25,7 @@ export const tekImages: { [key: string]: StaticImageData } = {
   logo: AnalyticaOfficialLogo,
   logoBlack: LogoBlack,
   logoAnimated: LogoAnimationV2,
+  discordLogo: DiscordLogo,
 };
 
 export const slotImages: { [key: string]: StaticImageData } = {

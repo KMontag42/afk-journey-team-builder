@@ -1,52 +1,72 @@
 "use server";
 
-import Builder from "@/components/Builder";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-import { getCmsData } from "@/lib/server/cms-data";
+import Formations from "@/components/home/formations";
+import { RelativePageURLs } from "@/lib/pages";
+import Shortcuts from "@/components/home/shortcuts";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { tekImages } from "@/lib/images";
+import Image from "next/image";
+import Link from "next/link";
+import Disclaimer from "@/components/home/disclaimer";
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
-  if (searchParams.refreshData === "1") {
-    revalidatePath("/");
-    redirect("/");
-  }
-  const jsonData = await getCmsData();
-
+export default async function Home() {
   return (
-    <div className="relative flex flex-col items-center w-[min(100%,680px)] h-[calc(100vh-70px-2rem)] mx-auto px-6">
-      <Popover>
-        <PopoverTrigger>
-          <p className="text-xl underline absolute top-0 right-4">?</p>
-        </PopoverTrigger>
-        <PopoverContent>
-          <ul className="p-4 list-disc">
-            <li>
-              Click on a character to select it, then click on a slot to place
-              it.
-            </li>
-            <li>
-              Click on a character in a slot to select it, then click on a
-              different slot to swap them.
-            </li>
-            <li>
-              Click on a character in a slot to select it, then click on the
-              character to remove it.
-            </li>
-            <li>Click on the spell icon to change the formation spell.</li>
-          </ul>
-        </PopoverContent>
-      </Popover>
-
-      <Builder data={jsonData} />
+    <div className="container flex flex-col gap-4 justify-center items-center text-atekwhite pb-6">
+      <div className="flex flex-row items-center">
+        <Image
+          src={tekImages["logoAnimated"]}
+          alt="AFK Analytica"
+          className="w-16"
+        />
+        <h1 className="text-atekgold font-bold italic text-5xl pl-4">
+          Analytica
+        </h1>
+      </div>
+      <Card className="flex justify-center w-full bg-slate-900 pt-6">
+        <CardContent>
+          <span className="text-xl font-bold">
+            The Builder has moved! Build your formations to share here:
+          </span>
+          <Link href="/builder">
+            <Button className="ml-4 bg-atekgold">Take me there!</Button>
+          </Link>
+        </CardContent>
+      </Card>
+      <div className="flex flex-row flex-wrap w-full gap-y-4">
+        <div className="basis-full md:pr-4 md:basis-2/3">
+          <div className="flex flex-col gap-y-4">
+            <Card className="bg-slate-900 pt-6">
+              <CardContent>
+                <div>Guides</div>
+                <div>
+                  Guides feed will go here, we can show the latest guides or
+                  guides that we want to promote, here.
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="bg-slate-900">
+              <CardContent className="p-2 md:p-6">
+                <Formations></Formations>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+        <div className="basis-full md:basis-1/3">
+          <div className="flex flex-col gap-y-4">
+            <Card className="bg-slate-900 pt-6">
+              <CardContent>
+                <Shortcuts></Shortcuts>
+              </CardContent>
+            </Card>
+            <Card className="bg-slate-900 pt-6">
+              <CardContent>
+                <Disclaimer></Disclaimer>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
