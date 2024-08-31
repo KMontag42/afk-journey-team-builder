@@ -12,7 +12,7 @@ export default async function Disclaimer() {
           <Link className="underline" href="https://atek.afkanalytica.com/">
             Analytica
           </Link>
-          <span> is an 'AFK Universe fansite' for the game </span>
+          <span> is an &apos;AFK Universe fansite&apos; for the game </span>
           <Link
             className="underline"
             href="https://afkjourney.farlightgames.com/"
