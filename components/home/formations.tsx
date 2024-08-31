@@ -12,7 +12,7 @@ export default async function Formations() {
   return (
     <>
       <div className="text-xl font-bold pb-4">Top Formations</div>
-      <div className="flex flex-col gap-2">
+      <div className="grid grid-cols-1 gap-2">
         {popularFormations.map((result: FormationData) => (
           <CompactFormationCard
             key={result.id.toString()!}

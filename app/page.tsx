@@ -13,19 +13,9 @@ import Disclaimer from "@/components/home/disclaimer";
 export default async function Home() {
   return (
     <div className="container flex flex-col gap-4 justify-center items-center text-atekwhite pb-6">
-      <div className="flex flex-row items-center">
-        <Image
-          src={tekImages["logoAnimated"]}
-          alt="AFK Analytica"
-          className="w-16"
-        />
-        <h1 className="text-atekgold font-bold italic text-5xl pl-4">
-          Analytica
-        </h1>
-      </div>
-      <Card className="flex justify-center w-full bg-slate-900 pt-6">
-        <CardContent>
-          <span className="text-xl font-bold">
+      <Card className="w-full bg-slate-900 pt-6">
+        <CardContent className="flex flex-row flex-wrap gap-y-2 items-center justify-center">
+          <span className="text-md text-center font-bold">
             The Builder has moved! Build your formations to share here:
           </span>
           <Link href="/builder">
@@ -33,7 +23,7 @@ export default async function Home() {
           </Link>
         </CardContent>
       </Card>
-      <div className="flex flex-row flex-wrap w-full gap-y-4">
+      <div className="flex flex-row flex-wrap-reverse  w-full gap-y-4">
         <div className="basis-full md:pr-4 md:basis-2/3">
           <div className="flex flex-col gap-y-4">
             <Card className="bg-slate-900 pt-6">
@@ -45,9 +35,9 @@ export default async function Home() {
                 </div>
               </CardContent>
             </Card>
-            <Card className="bg-slate-900">
-              <CardContent className="p-2 md:p-6">
-                <Formations></Formations>
+            <Card className="bg-slate-900 pt-6">
+              <CardContent>
+                <Disclaimer></Disclaimer>
               </CardContent>
             </Card>
           </div>
@@ -59,9 +49,9 @@ export default async function Home() {
                 <Shortcuts></Shortcuts>
               </CardContent>
             </Card>
-            <Card className="bg-slate-900 pt-6">
-              <CardContent>
-                <Disclaimer></Disclaimer>
+            <Card className="bg-slate-900">
+              <CardContent className="p-2 md:p-6">
+                <Formations></Formations>
               </CardContent>
             </Card>
           </div>

@@ -43,41 +43,45 @@ export default function CompactFormationCard({
 
   return (
     <Card className={cn("w-full", className)}>
-      <CardContent className="grid grid-cols-1 lg:grid-cols-4 items-center p-4 sm:p-6 w-full gap-4">
-        <Link className="hover:underline lg:col-span-1" href={formationUrl}>
-          <div className="font-bold text-atekgold text-xl truncate">
-            {data.name}
-          </div>
-        </Link>
-        <div className="lg:col-span-2 flex flex-row gap-2">
-          <div>
-            <Image
-              src={cmsData.artifacts[data.artifact].imageUrl}
-              alt={data.artifact}
-              width={48}
-              height={48}
-            />
-          </div>
-          <div className="flex flex-row gap-1">
-            {formationCharacters.map((char) => (
-              <div key={char.id}>
-                <Image
-                  src={char.imageUrl}
-                  alt={char.name}
-                  width={48}
-                  height={48}
-                />
-              </div>
-            ))}
-          </div>
+      <CardContent className="flex flex-col justify-center p-4 sm:p-6 w-full gap-4">
+        <div className="grid grid-cols-2">
+          <Link className="hover:underline lg:col-span-1" href={formationUrl}>
+            <div className="font-bold text-atekgold text-md truncate">
+              {data.name}
+            </div>
+          </Link>
+          <Link className="hover:underline lg:col-span-1" href={userUrl}>
+            <div className="flex flex-row items-center justify-end gap-x-2">
+              <Avatar className="w-8 h-8">
+                <AvatarImage src={user_image} alt={username} />
+                <AvatarFallback>{username}</AvatarFallback>
+              </Avatar>
+              {username}
+            </div>
+          </Link>
         </div>
-        <Link className="hover:underline lg:col-span-1" href={userUrl}>
-          <div className="flex flex-row items-center justify-end gap-x-2">
-            <Avatar className="w-8 h-8">
-              <AvatarImage src={user_image} alt={username} />
-              <AvatarFallback>{username}</AvatarFallback>
-            </Avatar>
-            {username}
+        <Link className="hover:underline lg:col-span-1" href={formationUrl}>
+          <div className="flex flex-row gap-4 justify-center">
+            <div>
+              <Image
+                src={cmsData.artifacts[data.artifact].imageUrl}
+                alt={data.artifact}
+                width={48}
+                height={48}
+              />
+            </div>
+            <div className="flex flex-row gap-1">
+              {formationCharacters.map((char) => (
+                <div key={char.id}>
+                  <Image
+                    src={char.imageUrl}
+                    alt={char.name}
+                    width={48}
+                    height={48}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </Link>
       </CardContent>

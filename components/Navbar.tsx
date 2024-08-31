@@ -108,11 +108,7 @@ export default function Navbar() {
   return (
     <header className="flex h-[70px] w-full items-center justify-between px-4 md:px-6 border sticky top-0 bg-slate-900 z-40">
       <Link href="/" prefetch={true}>
-        <Image
-          src={tekImages["tekLogo"]}
-          alt="AFK Analytica"
-          className="w-32"
-        />
+        <Image src={tekImages["logo"]} alt="AFK Analytica" className="w-32" />
       </Link>
       <nav className="hidden items-center gap-6 lg:flex">
         <ClerkLoaded>

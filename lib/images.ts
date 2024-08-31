@@ -1,7 +1,7 @@
 import { type StaticImageData } from "next/image";
 
 import tekLogo from "@/public/tekLogo.png";
-import AnalyticaOfficialLogo from "@/public/AnalyticaOfficialLogo.png";
+import AnalyticaOfficialLogo from "@/public/AnalyticaOfficialLogoV4.png";
 import LogoBlack from "@/public/LogoBlack.png";
 import LogoAnimationV2 from "@/public/LogoAnimationV2.gif";
 import DiscordLogo from "@/public/DiscordLogoV2.png";
