@@ -16,9 +16,9 @@ export default async function Home() {
           <span className="text-md text-center font-bold">
             The Builder has moved! Build your formations to share here:
           </span>
-          <Link href="/builder">
-            <Button className="ml-4 bg-atekgold">Take me there!</Button>
-          </Link>
+          <Button variant="analytica" className="ml-4" asChild>
+            <Link href="/builder">Take me there!</Link>
+          </Button>
         </CardContent>
       </Card>
       <div className="flex flex-row flex-wrap-reverse  w-full gap-y-4">
@@ -26,12 +26,12 @@ export default async function Home() {
           <div className="flex flex-col gap-y-4">
             <Card className="bg-slate-900 pt-6">
               <CardContent>
-                <Guides></Guides>
+                <Guides />
               </CardContent>
             </Card>
             <Card className="bg-slate-900 pt-6">
               <CardContent>
-                <Disclaimer></Disclaimer>
+                <Disclaimer />
               </CardContent>
             </Card>
           </div>
@@ -40,12 +40,12 @@ export default async function Home() {
           <div className="flex flex-col gap-y-4">
             <Card className="bg-slate-900 pt-6">
               <CardContent>
-                <Shortcuts></Shortcuts>
+                <Shortcuts />
               </CardContent>
             </Card>
             <Card className="bg-slate-900">
               <CardContent className="p-2 md:p-6">
-                <Formations></Formations>
+                <Formations />
               </CardContent>
             </Card>
           </div>

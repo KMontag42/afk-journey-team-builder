@@ -28,9 +28,11 @@ export default async function Guides() {
                   {guide.name}
                 </div>
                 <div className="indent-4">{guide.description}</div>
-                <Link className="flex justify-end" href={guide.guideLink}>
-                  <Button className="bg-atekgold">Read</Button>
-                </Link>
+                <div className="flex justify-end">
+                  <Button variant="analytica" asChild>
+                    <Link href={guide.guideLink}>Read</Link>
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>

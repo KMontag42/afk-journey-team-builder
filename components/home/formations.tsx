@@ -3,7 +3,7 @@
 import { FormationData } from "@/lib/formations";
 import { mostPopularFormations } from "@/lib/server/formations";
 import { getCmsData } from "@/lib/server/cms-data";
-import CompactFormationCard from "../CompactFormationCard";
+import CompactFormationCard from "@/components/CompactFormationCard";
 
 export default async function Formations() {
   const cmsData = await getCmsData();

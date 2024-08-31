@@ -24,7 +24,7 @@ export default function CompactFormationCard({
   const { id, formation, artifact, layout, username, user_image, name } = data;
 
   const formationUrl = `/formations/${data.id}`;
-  const userUrl = `/users/${username}`;
+  const userUrl = `/users/${encodeURI(username!)}`;
 
   const formationCharacters = formation
     .split(",")

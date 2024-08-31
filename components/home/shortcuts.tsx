@@ -34,9 +34,9 @@ export default function Shortcuts() {
             <Image
               src={tekImages["discordLogo"]}
               alt="Discord Logo"
-              className="w-12"
+              className="w-8"
             />
-            <span className="text-atekwhite">Discord</span>
+            <span className="text-atekwhite pt-2">Discord</span>
           </div>
         </Link>
       </div>

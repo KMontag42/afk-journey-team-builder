@@ -4,7 +4,7 @@ import tekLogo from "@/public/tekLogo.png";
 import AnalyticaOfficialLogo from "@/public/AnalyticaOfficialLogoV4.png";
 import LogoBlack from "@/public/LogoBlack.png";
 import LogoAnimationV2 from "@/public/LogoAnimationV2.gif";
-import DiscordLogo from "@/public/DiscordLogoV2.png";
+import DiscordLogo from "@/public/discord-mark-blue.svg";
 
 import Tile1 from "@/public/slots/Tile1.png";
 import Tile2 from "@/public/slots/Tile2.png";

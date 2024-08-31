@@ -16,8 +16,8 @@ export default async function FormationBuilder({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   if (searchParams.refreshData === "1") {
-    revalidatePath("/");
-    redirect("/");
+    revalidatePath("/builder");
+    redirect("/builder");
   }
   const jsonData = await getCmsData();
 
