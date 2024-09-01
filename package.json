@@ -7,7 +7,8 @@
     "dev": "next dev --turbo",
     "lint": "next lint",
     "start": "next start",
-    "drizzle": "dotenvx run -f .env.local -- drizzle-kit"
+    "drizzle": "dotenvx run -f .env.local -- drizzle-kit",
+    "vercel-build": "next build && drizzle-kit migrate"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.2.4",
