@@ -19,6 +19,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import HeroPortrait from "@/components/roster/heroes/HeroPortrait";
 import { Check, Star, Unlock, Lock } from "lucide-react";
+import Image from "next/image";
+import { rosterImages } from "@/lib/images";
 
 type SubSelectProps = {
   hero: Hero;
@@ -67,6 +69,15 @@ function reducer(heroes: Hero[], change: HeroChange) {
       let ascensionLevel = (
         Object.keys(AscensionLevel) as Array<keyof typeof AscensionLevel>
       ).find((key) => AscensionLevel[key] === value) as AscensionLevel;
+
+      if (!isAscensionLevelValid(ascensionLevel)) {
+        return heroes.map((h) =>
+          h.key === hero.key
+            ? { ...h, ascension: ascensionLevel, exEquipment: 0 }
+            : h,
+        );
+      }
+
       return heroes.map((h) =>
         h.key === hero.key ? { ...h, ascension: ascensionLevel } : h,
       );
@@ -128,25 +139,28 @@ export default function Heroes({ heroList }: HeroProps) {
   return (
     <div className="flex flex-col items-center justify-center gap-2">
       <div className="font-bold text-2xl text-atekgold">Heroes</div>
-      <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-1">
+      <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-x-2 gap-y-6">
         {heroes.map((hero) => (
           <div key={hero.key} className="cursor-pointer">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Card className="relative border-0">
                   <CardContent className="flex flex-col justify-center gap-x-2 p-0">
-                    <HeroPortrait hero={hero}></HeroPortrait>
-                    <div className="absolute bottom-2 max-w-20 mx-auto left-0 right-0 px-1">
+                    <div className="z-50">
+                      <HeroPortrait hero={hero} />
+                    </div>
+                    <div className="z-40 absolute -bottom-4 w-[90%] h-10 bg-slate-900 rounded-b-md mx-auto left-0 right-0 px-1">
                       {isAscensionLevelValid(hero.ascension) ? (
-                        <div className="flex flex-row justify-center px-1">
+                        <div className="flex flex-row h-full items-end justify-center pb-1 px-1">
                           {Array.from(
                             { length: hero.exEquipment / 5 + 1 },
                             (_, i) => (
-                              <Star
+                              <Image
                                 key={i}
-                                color="#000000"
-                                strokeWidth={3}
-                                size={20}
+                                src={rosterImages.equipmentStar}
+                                alt="Equipment Star"
+                                width={13}
+                                height={13}
                               />
                             ),
                           )}

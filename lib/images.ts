@@ -19,6 +19,8 @@ import Tile11 from "@/public/slots/Tile11.png";
 import Tile12 from "@/public/slots/Tile12.png";
 import Tile13 from "@/public/slots/Tile13.png";
 
+import EquipmentStar from "@/public/roster/EquipmentStar.png";
+
 export const tekImages: { [key: string]: StaticImageData } = {
   tekLogo: tekLogo,
   logo: AnalyticaOfficialLogo,
@@ -58,4 +60,8 @@ export const slotImageUrls: { [key: string]: string } = {
   "11": "https://i.imgur.com/w8JcnqF.png",
   "12": "https://i.imgur.com/pGwjJPi.png",
   "13": "https://i.imgur.com/efOfpQU.png",
+};
+
+export const rosterImages: { [key: string]: StaticImageData } = {
+  equipmentStar: EquipmentStar,
 };

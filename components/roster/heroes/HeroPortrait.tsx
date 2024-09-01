@@ -57,8 +57,8 @@ export default function HeroPortrait({ hero }: PortraitProps) {
       <Image
         alt={hero.name}
         src={hero.imageUrl}
-        width={90}
-        height={90}
+        width={84}
+        height={84}
         className="absolute mx-auto left-0 right-0 top-[7%] p-2"
       />
     </div>

@@ -85,12 +85,12 @@ export default async function MyRoster() {
   return (
     <div className="container flex flex-col flex-wrap justify-center">
       <div className="flex flex-row justify-center items-center gap-x-4">
-        <UserAvatar userName={username!} userImage={user_image}></UserAvatar>
+        <UserAvatar userName={username!} userImage={user_image} />
       </div>
-      <Levels levelList={levels}></Levels>
+      <Levels levelList={levels} />
       <div className="flex flex-row flex-wrap justify-center gap-8 pb-8">
         <div>
-          <Heroes heroList={heroes}></Heroes>
+          <Heroes heroList={heroes} />
         </div>
         <div>
           <Artifacts artifactList={artifacts} />
