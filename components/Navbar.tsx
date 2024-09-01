@@ -24,15 +24,16 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { MenuIcon } from "lucide-react";
+import { RelativePageURLs } from "@/lib/pages";
 
 function Links({ pathname }: { pathname: string }) {
   const { isSignedIn } = useAuth();
 
   const defaultLinks = [
     <Link
-      href="/"
+      href={RelativePageURLs.builder}
       className={buttonVariants({
-        variant: pathname === "/" ? "secondary" : "link",
+        variant: pathname === RelativePageURLs.builder ? "secondary" : "link",
       })}
       key="builder"
       prefetch={true}
@@ -40,9 +41,9 @@ function Links({ pathname }: { pathname: string }) {
       Builder
     </Link>,
     <Link
-      href="/search"
+      href={RelativePageURLs.search}
       className={buttonVariants({
-        variant: pathname === "/search" ? "secondary" : "link",
+        variant: pathname === RelativePageURLs.search ? "secondary" : "link",
       })}
       key="search"
       prefetch={true}
@@ -50,9 +51,9 @@ function Links({ pathname }: { pathname: string }) {
       Search
     </Link>,
     <Link
-      href="/guides"
+      href={RelativePageURLs.guides}
       className={buttonVariants({
-        variant: pathname === "/guides" ? "secondary" : "link",
+        variant: pathname === RelativePageURLs.guides ? "secondary" : "link",
       })}
       key="guides"
       prefetch={true}
@@ -60,9 +61,9 @@ function Links({ pathname }: { pathname: string }) {
       Guides
     </Link>,
     <Link
-      href="/codes"
+      href={RelativePageURLs.codes}
       className={buttonVariants({
-        variant: pathname === "/codes" ? "secondary" : "link",
+        variant: pathname === RelativePageURLs.codes ? "secondary" : "link",
       })}
       key="codes"
       prefetch={true}
@@ -70,9 +71,9 @@ function Links({ pathname }: { pathname: string }) {
       Codes
     </Link>,
     <Link
-      href="/about"
+      href={RelativePageURLs.about}
       className={buttonVariants({
-        variant: pathname === "/about" ? "secondary" : "link",
+        variant: pathname === RelativePageURLs.about ? "secondary" : "link",
       })}
       key="about"
       prefetch={true}
@@ -85,9 +86,10 @@ function Links({ pathname }: { pathname: string }) {
     return [
       ...defaultLinks,
       <Link
-        href="/formations/mine"
+        href={RelativePageURLs.myFormations}
         className={buttonVariants({
-          variant: pathname === "/formations/mine" ? "secondary" : "link",
+          variant:
+            pathname === RelativePageURLs.myFormations ? "secondary" : "link",
         })}
         key="formations"
         prefetch={true}
@@ -106,11 +108,7 @@ export default function Navbar() {
   return (
     <header className="flex h-[70px] w-full items-center justify-between px-4 md:px-6 border sticky top-0 bg-slate-900 z-40">
       <Link href="/" prefetch={true}>
-        <Image
-          src={tekImages["tekLogo"]}
-          alt="AFK Analytica"
-          className="w-32"
-        />
+        <Image src={tekImages["logo"]} alt="AFK Analytica" className="w-32" />
       </Link>
       <nav className="hidden items-center gap-6 lg:flex">
         <ClerkLoaded>

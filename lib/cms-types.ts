@@ -61,6 +61,8 @@ export type GuidePagesCmsData = {
 
 export type GuideBannerCmsData = {
   key: string;
+  name: string;
+  description: string;
   guideLink: string;
   imageLink: ImgurUrl;
 };
