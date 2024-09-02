@@ -1,46 +1,84 @@
 "use client";
 
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { Hero } from "@/lib/roster";
-import { AscensionLevel } from "@/lib/characters";
-import { Star } from "lucide-react";
+import { AscensionLevel, CharacterClass, Faction } from "@/lib/characters";
+import { heroImages, rosterImages, tekImages } from "@/lib/images";
 
 type PortraitProps = {
   hero: Hero;
 };
 
-function getBackground(ascensionLevel: AscensionLevel): string {
+function getBackground(ascensionLevel: AscensionLevel): StaticImageData {
   switch (AscensionLevel[ascensionLevel as keyof typeof AscensionLevel]) {
     case AscensionLevel.Elite:
-      return "https://i.imgur.com/7WIkXCw.png";
+      return rosterImages.eliteBackground;
     case AscensionLevel.EliteP:
-      return "https://i.imgur.com/3TwZnb4.png";
+      return rosterImages.elitePBackground;
     case AscensionLevel.Epic:
-      return "https://i.imgur.com/mmdu9Jd.png";
+      return rosterImages.epicBackground;
     case AscensionLevel.EpicP:
-      return "https://i.imgur.com/KrPayAy.png";
+      return rosterImages.epicPBackground;
     case AscensionLevel.Legendary:
-      return "https://i.imgur.com/qrLyrtC.png";
+      return rosterImages.legendaryBackground;
     case AscensionLevel.LegendaryP:
-      return "https://i.imgur.com/X28kNi4.png";
+      return rosterImages.legendaryPBackground;
     case AscensionLevel.Mythic:
-      return "https://i.imgur.com/2cZEihz.png";
+      return rosterImages.mythicBackground;
     case AscensionLevel.MythicP:
-      return "https://i.imgur.com/nNVXPTk.png";
+      return rosterImages.mythicPBackground;
     case AscensionLevel.Supreme:
-      return "https://i.imgur.com/FN90HOz.png";
+      return rosterImages.supremeBackground;
     case AscensionLevel.SupremeP:
-      return "https://i.imgur.com/gUD5Iyc.png";
+      return rosterImages.supremePBackground;
     case AscensionLevel.Paragon1:
-      return "https://i.imgur.com/rE9cncY.png";
+      return rosterImages.paragon1Background;
     case AscensionLevel.Paragon2:
-      return "https://i.imgur.com/WOInJyt.png";
+      return rosterImages.paragon2Background;
     case AscensionLevel.Paragon3:
-      return "https://i.imgur.com/ZgFFVY2.png";
+      return rosterImages.paragon3Background;
     case AscensionLevel.Paragon4:
-      return "https://i.imgur.com/zc4yoVj.png";
+      return rosterImages.paragon4Background;
     default:
-      return "https://i.imgur.com/gvMHYet.png";
+      return rosterImages.eliteBackground;
+  }
+}
+
+function getFaction(faction: Faction): StaticImageData {
+  switch (faction.toLocaleLowerCase()) {
+    case Faction.Lightbearer:
+      return heroImages.Lightbearer;
+    case Faction.Mauler:
+      return heroImages.Mauler;
+    case Faction.Wilder:
+      return heroImages.Wilder;
+    case Faction.Graveborn:
+      return heroImages.Graveborn;
+    case Faction.Celestial:
+      return heroImages.Celestial;
+    case Faction.Hypogean:
+      return heroImages.Hypogean;
+    default:
+      return tekImages.emptyHex;
+  }
+}
+
+function getClass(heroClass: CharacterClass): StaticImageData {
+  switch (heroClass.toLocaleLowerCase()) {
+    case CharacterClass.Mage:
+      return heroImages.Mage;
+    case CharacterClass.Marksman:
+      return heroImages.Marksman;
+    case CharacterClass.Rogue:
+      return heroImages.Rogue;
+    case CharacterClass.Support:
+      return heroImages.Support;
+    case CharacterClass.Tank:
+      return heroImages.Tank;
+    case CharacterClass.Warrior:
+      return heroImages.Warrior;
+    default:
+      return tekImages.emptyHex;
   }
 }
 
@@ -59,7 +97,21 @@ export default function HeroPortrait({ hero }: PortraitProps) {
         src={hero.imageUrl}
         width={84}
         height={84}
-        className="absolute mx-auto left-0 right-0 top-[7%] p-2"
+        className="absolute mx-auto left-0 right-0 top-[15%] rounded-lg p-2"
+      />
+      <Image
+        alt={hero.faction}
+        src={getFaction(hero.faction)}
+        width={16}
+        height={16}
+        className="absolute mx-auto left-2 bottom-2"
+      />
+      <Image
+        alt={hero.heroClass}
+        src={getClass(hero.heroClass)}
+        width={14}
+        height={14}
+        className="absolute mx-auto right-2 bottom-2"
       />
     </div>
   );

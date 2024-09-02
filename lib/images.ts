@@ -5,6 +5,7 @@ import AnalyticaOfficialLogo from "@/public/AnalyticaOfficialLogoV4.png";
 import LogoBlack from "@/public/LogoBlack.png";
 import LogoAnimationV2 from "@/public/LogoAnimationV2.gif";
 import DiscordLogo from "@/public/discord-mark-blue.svg";
+import EmptyHex from "@/public/emptySlot.png";
 
 import Tile1 from "@/public/slots/Tile1.png";
 import Tile2 from "@/public/slots/Tile2.png";
@@ -21,6 +22,34 @@ import Tile12 from "@/public/slots/Tile12.png";
 import Tile13 from "@/public/slots/Tile13.png";
 
 import EquipmentStar from "@/public/roster/EquipmentStar.png";
+import EliteBackground from "@/public/roster/elite.png";
+import ElitePBackground from "@/public/roster/elite-p.png";
+import EpicBackground from "@/public/roster/epic.png";
+import EpicPBackground from "@/public/roster/epic-p.png";
+import LegendaryBackground from "@/public/roster/legendary.png";
+import LegendaryPBackground from "@/public/roster/legendary-p.png";
+import MythicBackground from "@/public/roster/mythic.png";
+import MythicPBackground from "@/public/roster/mythic-p.png";
+import SupremeBackground from "@/public/roster/supreme.png";
+import SupremePBackground from "@/public/roster/supreme-p.png";
+import Paragon1Background from "@/public/roster/paragon-1.png";
+import Paragon2Background from "@/public/roster/paragon-2.png";
+import Paragon3Background from "@/public/roster/paragon-3.png";
+import Paragon4Background from "@/public/roster/paragon-4.png";
+
+import Lightbearer from "@/public/heroes/Lightbearer.png";
+import Mauler from "@/public/heroes/Mauler.png";
+import Wilder from "@/public/heroes/Wilder.png";
+import Graveborn from "@/public/heroes/Graveborn.png";
+import Celestial from "@/public/heroes/Celestial.png";
+import Hypogean from "@/public/heroes/Hypogean.png";
+
+import Mage from "@/public/heroes/Mage.png";
+import Marksman from "@/public/heroes/Marksman.png";
+import Rogue from "@/public/heroes/Rogue.png";
+import Support from "@/public/heroes/Support.png";
+import Tank from "@/public/heroes/Tank.png";
+import Warrior from "@/public/heroes/Warrior.png";
 
 export const tekImages: { [key: string]: StaticImageData } = {
   tekLogo: tekLogo,
@@ -28,6 +57,7 @@ export const tekImages: { [key: string]: StaticImageData } = {
   logoBlack: LogoBlack,
   logoAnimated: LogoAnimationV2,
   discordLogo: DiscordLogo,
+  emptyHex: EmptyHex,
 };
 
 export const slotImages: { [key: string]: StaticImageData } = {
@@ -66,4 +96,33 @@ export const slotImageUrls: { [key: string]: string } = {
 
 export const rosterImages: { [key: string]: StaticImageData } = {
   equipmentStar: EquipmentStar,
+  eliteBackground: EliteBackground,
+  elitePBackground: ElitePBackground,
+  epicBackground: EpicBackground,
+  epicPBackground: EpicPBackground,
+  legendaryBackground: LegendaryBackground,
+  legendaryPBackground: LegendaryPBackground,
+  mythicBackground: MythicBackground,
+  mythicPBackground: MythicPBackground,
+  supremeBackground: SupremeBackground,
+  supremePBackground: SupremePBackground,
+  paragon1Background: Paragon1Background,
+  paragon2Background: Paragon2Background,
+  paragon3Background: Paragon3Background,
+  paragon4Background: Paragon4Background,
+};
+
+export const heroImages: { [key: string]: StaticImageData } = {
+  Lightbearer: Lightbearer,
+  Mauler: Mauler,
+  Wilder: Wilder,
+  Graveborn: Graveborn,
+  Celestial: Celestial,
+  Hypogean: Hypogean,
+  Mage: Mage,
+  Marksman: Marksman,
+  Rogue: Rogue,
+  Support: Support,
+  Tank: Tank,
+  Warrior: Warrior,
 };

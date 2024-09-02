@@ -1,6 +1,6 @@
 "use client";
 
-import { useReducer } from "react";
+import { FormEvent, useReducer } from "react";
 import { Hero } from "@/lib/roster";
 import { Card, CardContent } from "@/components/ui/card";
 import { AscensionLevel } from "@/lib/characters";
@@ -21,6 +21,8 @@ import HeroPortrait from "@/components/roster/heroes/HeroPortrait";
 import { Check, Star, Unlock, Lock } from "lucide-react";
 import Image from "next/image";
 import { rosterImages } from "@/lib/images";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 type SubSelectProps = {
   hero: Hero;
@@ -136,9 +138,42 @@ export default function Heroes({ heroList }: HeroProps) {
     </DropdownMenuSub>
   );
 
+  const handleSave = async (e: FormEvent) => {
+    e.preventDefault();
+
+    let items = heroes
+      .filter((hero) => hero.unlocked)
+      .map((hero) => ({
+        heroId: parseInt(hero.key),
+        ascension: hero.ascension,
+        equipment: hero.exEquipment,
+      }));
+
+    try {
+      const response = await (
+        await fetch("/api/roster/heroes", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(items),
+        })
+      ).json();
+
+      toast.success("Heroes saved!");
+    } catch (error: any) {
+      toast.error("Failed to save Heroes!");
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center gap-2">
-      <div className="font-bold text-2xl text-atekgold">Heroes</div>
+      <div className="flex flex-row flex-wrap gap-x-2 items-center font-bold text-2xl text-atekgold">
+        <span>Heroes</span>
+        <Button variant="analytica" onClick={handleSave}>
+          Save
+        </Button>
+      </div>
       <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-x-2 gap-y-6">
         {heroes.map((hero) => (
           <div key={hero.key} className="cursor-pointer">
@@ -146,29 +181,28 @@ export default function Heroes({ heroList }: HeroProps) {
               <DropdownMenuTrigger asChild>
                 <Card className="relative border-0">
                   <CardContent className="flex flex-col justify-center gap-x-2 p-0">
-                    <div className="z-50">
+                    <div className="z-20">
                       <HeroPortrait hero={hero} />
                     </div>
-                    <div className="z-40 absolute -bottom-4 w-[90%] h-10 bg-slate-900 rounded-b-md mx-auto left-0 right-0 px-1">
-                      {isAscensionLevelValid(hero.ascension) ? (
-                        <div className="flex flex-row h-full items-end justify-center pb-1 px-1">
+                    {isAscensionLevelValid(hero.ascension) && (
+                      <div className="z-10 absolute -bottom-4 w-[86%] h-full bg-slate-900 rounded-b-md mx-auto left-0 right-0 px-1">
+                        <div className="flex flex-row h-full items-end justify-center pb-1">
                           {Array.from(
                             { length: hero.exEquipment / 5 + 1 },
                             (_, i) => (
-                              <Image
-                                key={i}
-                                src={rosterImages.equipmentStar}
-                                alt="Equipment Star"
-                                width={13}
-                                height={13}
-                              />
+                              <div key={i} className="flex flex-row">
+                                <Image
+                                  src={rosterImages.equipmentStar}
+                                  alt="Equipment Star"
+                                  width={13}
+                                  height={13}
+                                />
+                              </div>
                             ),
                           )}
                         </div>
-                      ) : (
-                        <div className="h-5"></div>
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </DropdownMenuTrigger>
@@ -241,6 +275,9 @@ export default function Heroes({ heroList }: HeroProps) {
           </div>
         ))}
       </div>
+      <Button variant="analytica" onClick={handleSave}>
+        Save
+      </Button>
     </div>
   );
 }

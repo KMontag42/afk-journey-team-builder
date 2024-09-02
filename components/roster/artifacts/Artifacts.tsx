@@ -86,8 +86,8 @@ export default function Artifacts({ artifactList }: ArtifactProps) {
                   <Image
                     alt={artifact.label}
                     src={artifact.imageUrl}
-                    width={128}
-                    height={128}
+                    width={64}
+                    height={64}
                   />
                   {artifact.level}
                 </div>
@@ -131,8 +131,8 @@ export default function Artifacts({ artifactList }: ArtifactProps) {
                   <Image
                     alt={artifact.label}
                     src={artifact.imageUrl}
-                    width={128}
-                    height={128}
+                    width={64}
+                    height={64}
                   />
                   {artifact.level}
                 </div>
@@ -162,7 +162,9 @@ export default function Artifacts({ artifactList }: ArtifactProps) {
             </Card>
           ))}
       </div>
-      <Button onClick={handleSave}>Save Artifacts</Button>
+      <Button variant="analytica" onClick={handleSave}>
+        Save Artifacts
+      </Button>
     </div>
   );
 }

@@ -72,7 +72,9 @@ export default function Levels({ levelList }: LevelProps) {
         </div>
       ))}
       <div className="flex flex-row justify-center">
-        <Button onClick={handleSave}>Save Levels</Button>
+        <Button variant="analytica" onClick={handleSave}>
+          Save Levels
+        </Button>
       </div>
     </div>
   );

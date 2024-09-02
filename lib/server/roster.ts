@@ -3,8 +3,14 @@ import "server-only";
 import { auth } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
 
-import { roster, rosterArtifacts, rosterLevels } from "@/drizzle/schema";
+import {
+  roster,
+  rosterArtifacts,
+  rosterHeroes,
+  rosterLevels,
+} from "@/drizzle/schema";
 import { drizzleClient } from "@/lib/server/drizzle";
+import { AscensionLevel } from "../characters";
 
 const drizzle = drizzleClient;
 
@@ -148,4 +154,68 @@ export async function getRosterLevels(userId: string): Promise<LevelData[]> {
     .orderBy(rosterLevels.levelId)) as LevelData[];
 
   return levelData;
+}
+
+export type HeroData = {
+  heroId: number;
+  ascension: AscensionLevel;
+  equipment: number;
+};
+
+export async function createOrUpdateHero(
+  rosterId: number,
+  hero: HeroData,
+): Promise<string | false> {
+  const values = {
+    rosterId: rosterId,
+    heroId: hero.heroId,
+    ascension: hero.ascension,
+    equipment: hero.equipment,
+  };
+
+  const createOrUpdateResponse = await drizzle
+    .insert(rosterHeroes)
+    .values(values)
+    .onConflictDoUpdate({
+      target: [rosterHeroes.rosterId, rosterHeroes.heroId],
+      set: { ascension: values.ascension, equipment: values.equipment },
+    })
+    .returning({ id: rosterHeroes.id });
+
+  return createOrUpdateResponse
+    ? createOrUpdateResponse[0].id.toString()
+    : false;
+}
+
+export async function createOrUpdateHeroes(
+  heroes: HeroData[],
+): Promise<string | false> {
+  const { userId } = auth();
+
+  let rosterId: any;
+  if (userId) {
+    rosterId = await createOrUpdateRoster(userId);
+    heroes.forEach((hero: any) => {
+      createOrUpdateHero(rosterId, hero);
+    });
+  } else {
+    return false;
+  }
+
+  return rosterId;
+}
+
+export async function getRosterHeroes(userId: string): Promise<HeroData[]> {
+  const heroData = (await drizzle
+    .select({
+      heroId: rosterHeroes.heroId,
+      ascension: rosterHeroes.ascension,
+      equipment: rosterHeroes.equipment,
+    })
+    .from(rosterHeroes)
+    .leftJoin(roster, eq(roster.id, rosterHeroes.rosterId))
+    .where(eq(roster.userId, userId))
+    .orderBy(rosterHeroes.heroId)) as HeroData[];
+
+  return heroData;
 }

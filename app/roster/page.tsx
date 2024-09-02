@@ -6,7 +6,11 @@ import { getRosterCmsData } from "@/lib/server/cms-data";
 import { Hero, Level, type Artifact } from "@/lib/roster";
 import Artifacts from "@/components/roster/artifacts/Artifacts";
 import Levels from "@/components/roster/Levels";
-import { getRosterArtifacts, getRosterLevels } from "@/lib/server/roster";
+import {
+  getRosterArtifacts,
+  getRosterHeroes,
+  getRosterLevels,
+} from "@/lib/server/roster";
 import Heroes from "@/components/roster/heroes/Heroes";
 import { getUser } from "@/lib/server/users";
 import UserAvatar from "@/components/UserAvatar";
@@ -24,8 +28,9 @@ export default async function MyRoster() {
 
   const rosterJsonData = await getRosterCmsData();
 
-  const rosterArtifacts = await getRosterArtifacts(userId);
   const rosterLevels = await getRosterLevels(userId);
+  const rosterHeroes = await getRosterHeroes(userId);
+  const rosterArtifacts = await getRosterArtifacts(userId);
 
   function getLevelForLevelsFromData(key: string): number {
     let level = rosterLevels.find(
@@ -45,21 +50,28 @@ export default async function MyRoster() {
     }),
   );
 
-  // function getHeroesFromData
-
   const heroes: Hero[] = Object.entries(rosterJsonData.characters).map(
-    ([key, data]: [string, any]) => ({
-      key: key,
-      name: data["name"],
-      faction: data["faction"],
-      heroClass: data["class"],
-      tier: data["tier"],
-      imageUrl: data["imageUrl"],
-      ascension:
-        data["tier"] === "S" ? AscensionLevel.Epic : AscensionLevel.Elite,
-      exEquipment: 0,
-      unlocked: false,
-    }),
+    ([key, data]: [string, any]) => {
+      const foundHero = rosterHeroes.find(
+        (hero) => key === hero.heroId.toString(),
+      );
+
+      return {
+        key: key,
+        name: data["name"],
+        faction: data["faction"],
+        heroClass: data["class"],
+        tier: data["tier"],
+        imageUrl: data["imageUrl"],
+        ascension: foundHero
+          ? foundHero.ascension
+          : data["tier"] === "S"
+            ? AscensionLevel.Epic
+            : AscensionLevel.Elite,
+        exEquipment: foundHero ? foundHero.equipment : 0,
+        unlocked: foundHero ? true : false,
+      };
+    },
   );
 
   function getLevelForArtifactFromData(key: string): number {

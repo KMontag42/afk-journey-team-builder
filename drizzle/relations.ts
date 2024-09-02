@@ -3,6 +3,7 @@ import {
   formations,
   roster,
   rosterArtifacts,
+  rosterHeroes,
   rosterLevels,
   votes,
 } from "./schema";
@@ -19,15 +20,22 @@ export const formationsRelations = relations(formations, ({ many }) => ({
 }));
 
 export const artifactsRelations = relations(rosterArtifacts, ({ one }) => ({
-  formation: one(roster, {
+  roster: one(roster, {
     fields: [rosterArtifacts.rosterId],
     references: [roster.id],
   }),
 }));
 
 export const levelsRelations = relations(rosterLevels, ({ one }) => ({
-  formation: one(roster, {
+  roster: one(roster, {
     fields: [rosterLevels.rosterId],
+    references: [roster.id],
+  }),
+}));
+
+export const heroesRelations = relations(rosterHeroes, ({ one }) => ({
+  roster: one(roster, {
+    fields: [rosterHeroes.rosterId],
     references: [roster.id],
   }),
 }));
@@ -35,4 +43,5 @@ export const levelsRelations = relations(rosterLevels, ({ one }) => ({
 export const rosterRelations = relations(roster, ({ many }) => ({
   rosterArtifacts: many(rosterArtifacts),
   rosterLevels: many(rosterLevels),
+  rosterHeroes: many(rosterHeroes),
 }));

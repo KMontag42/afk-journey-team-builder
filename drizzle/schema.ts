@@ -65,3 +65,19 @@ export const rosterLevels = sqliteTable(
     unq: unique().on(t.rosterId, t.levelId),
   }),
 );
+
+export const rosterHeroes = sqliteTable(
+  "roster_heroes",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    rosterId: integer("roster_id").references(() => roster.id, {
+      onDelete: "cascade",
+    }),
+    heroId: integer("hero_id"),
+    ascension: text("ascension", { length: 255 }),
+    equipment: integer("equipment"),
+  },
+  (t) => ({
+    unq: unique().on(t.rosterId, t.heroId),
+  }),
+);
