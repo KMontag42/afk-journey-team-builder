@@ -41,6 +41,16 @@ function Links({ pathname }: { pathname: string }) {
       Builder
     </Link>,
     <Link
+      href={RelativePageURLs.roster}
+      className={buttonVariants({
+        variant: pathname === RelativePageURLs.builder ? "secondary" : "link",
+      })}
+      key="roster"
+      prefetch={true}
+    >
+      Roster
+    </Link>,
+    <Link
       href={RelativePageURLs.search}
       className={buttonVariants({
         variant: pathname === RelativePageURLs.search ? "secondary" : "link",

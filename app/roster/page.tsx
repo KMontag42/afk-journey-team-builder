@@ -15,6 +15,8 @@ import Heroes from "@/components/roster/heroes/Heroes";
 import { getUser } from "@/lib/server/users";
 import UserAvatar from "@/components/UserAvatar";
 import { AscensionLevel } from "@/lib/characters";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 export default async function MyRoster() {
   const { userId } = auth();
@@ -100,14 +102,27 @@ export default async function MyRoster() {
         <UserAvatar userName={username!} userImage={user_image} />
       </div>
       <Levels levelList={levels} />
-      <div className="flex flex-row flex-wrap justify-center gap-8 pb-8">
-        <div>
-          <Heroes heroList={heroes} />
-        </div>
-        <div>
-          <Artifacts artifactList={artifacts} />
-        </div>
-      </div>
+      <Tabs className="flex flex-col items-center pb-8" defaultValue="heroes">
+        <TabsList className="grid max-w-screen-md grid-cols-3">
+          <TabsTrigger value="heroes">Heroes</TabsTrigger>
+          <TabsTrigger value="artifacts">Artifacts</TabsTrigger>
+          <TabsTrigger value="equipment">Equipment</TabsTrigger>
+        </TabsList>
+        <TabsContent value="heroes">
+          <Card className="bg-slate-900">
+            <CardContent className="p-2 md:p-6">
+              <Heroes heroList={heroes} />
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="artifacts">
+          <Card className="bg-slate-900">
+            <CardContent className="p-2 md:p-6">
+              <Artifacts artifactList={artifacts} />
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

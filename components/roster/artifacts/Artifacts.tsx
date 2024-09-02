@@ -75,7 +75,12 @@ export default function Artifacts({ artifactList }: ArtifactProps) {
 
   return (
     <div className="flex flex-col items-center justify-center gap-2">
-      <div className="font-bold text-2xl text-atekgold">Starter Artifacts</div>
+      <div className="flex flex-row flex-wrap gap-x-2 items-center font-bold text-lg text-atekgold">
+        <span>Artifacts</span>
+        <Button variant="analytica" onClick={handleSave}>
+          Save
+        </Button>
+      </div>
       <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
         {artifacts
           .filter((artifact) => artifact.category === Category.Starter)
@@ -117,7 +122,7 @@ export default function Artifacts({ artifactList }: ArtifactProps) {
             </Card>
           ))}
       </div>
-      <div className="font-bold text-2xl text-atekgold">Seasonal Artifacts</div>
+      <div className="font-bold text-lg text-atekgold">Seasonal Artifacts</div>
       <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
         {artifacts
           .filter(
@@ -163,7 +168,7 @@ export default function Artifacts({ artifactList }: ArtifactProps) {
           ))}
       </div>
       <Button variant="analytica" onClick={handleSave}>
-        Save Artifacts
+        Save
       </Button>
     </div>
   );

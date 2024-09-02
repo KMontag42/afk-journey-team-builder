@@ -51,16 +51,13 @@ export default function Levels({ levelList }: LevelProps) {
   };
 
   return (
-    <div className="flex flex-row flex-wrap justify-center items-center py-4 gap-4">
-      <div className="font-bold text-2xl text-atekgold text-center mr-2">
-        Levels
-      </div>
+    <div className="flex flex-row flex-wrap justify-center items-center py-4 gap-x-4 gap-y-2">
       {seasons.map((season) => (
         <div
           key={season.key}
           className="flex flex-row gap-x-2 justify-center items-center"
         >
-          <div className="font-bold text-lg">{season.seasonName}:</div>
+          <div className="text-sm font-bold">{season.seasonName}:</div>
           <Input
             className="w-20 text-center"
             type="number"

@@ -168,24 +168,24 @@ export default function Heroes({ heroList }: HeroProps) {
 
   return (
     <div className="flex flex-col items-center justify-center gap-2">
-      <div className="flex flex-row flex-wrap gap-x-2 items-center font-bold text-2xl text-atekgold">
+      <div className="flex flex-row flex-wrap gap-x-2 items-center font-bold text-lg text-atekgold">
         <span>Heroes</span>
         <Button variant="analytica" onClick={handleSave}>
           Save
         </Button>
       </div>
-      <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-x-2 gap-y-6">
+      <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-x-2 gap-y-6 pb-8">
         {heroes.map((hero) => (
           <div key={hero.key} className="cursor-pointer">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Card className="relative border-0">
+                <Card className="relative border-0 bg-slate-900">
                   <CardContent className="flex flex-col justify-center gap-x-2 p-0">
                     <div className="z-20">
                       <HeroPortrait hero={hero} />
                     </div>
                     {isAscensionLevelValid(hero.ascension) && (
-                      <div className="z-10 absolute -bottom-4 w-[86%] h-full bg-slate-900 rounded-b-md mx-auto left-0 right-0 px-1">
+                      <div className="z-10 absolute -bottom-4 w-[86%] h-full bg-slate-700 rounded-b-md mx-auto left-0 right-0 px-1">
                         <div className="flex flex-row h-full items-end justify-center pb-1">
                           {Array.from(
                             { length: hero.exEquipment / 5 + 1 },
