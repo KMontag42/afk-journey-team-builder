@@ -96,6 +96,30 @@ export default async function MyRoster() {
     }),
   );
 
+  // const equipment: ClassGear[] = [];
+  // Object.entries(rosterJsonData.seasons)
+  //   .splice(1)
+  //   .map(([key, seasonData]: [string, any]) => {
+  //     Object.keys(CharacterClass).map((charClass) => {
+  //       const classEquipment: Gear[] = [];
+  //       Object.keys(EquipmentSlot).map((equipSlot) => {
+  //         classEquipment.push({
+  //           key: key,
+  //           imageUrl: "",
+  //           equipmentSlot:
+  //             EquipmentSlot[equipSlot as keyof typeof EquipmentSlot],
+  //           level: 0,
+  //           maxLevel: seasonData["equipmentMaxLevel"],
+  //         });
+  //       });
+  //       equipment.push({
+  //         season: seasonData["name"],
+  //         class: CharacterClass[charClass as keyof typeof CharacterClass],
+  //         equipment: classEquipment,
+  //       });
+  //     });
+  //   });
+
   return (
     <div className="container flex flex-col flex-wrap justify-center">
       <div className="flex flex-row justify-center items-center gap-x-4">
@@ -106,7 +130,6 @@ export default async function MyRoster() {
         <TabsList className="grid max-w-screen-md grid-cols-3">
           <TabsTrigger value="heroes">Heroes</TabsTrigger>
           <TabsTrigger value="artifacts">Artifacts</TabsTrigger>
-          <TabsTrigger value="equipment">Equipment</TabsTrigger>
         </TabsList>
         <TabsContent value="heroes">
           <Card className="bg-slate-900">

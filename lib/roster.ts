@@ -1,18 +1,20 @@
-import { AscensionLevel, CharacterClass, Faction } from "./characters";
+import {
+  AscensionLevel,
+  CharacterClass,
+  EquipmentSlot,
+  Faction,
+} from "./characters";
 
 export enum Category {
   Starter = "starter",
   Seasonal = "seasonal",
 }
 
-export type EquipmentClass = {
-  name: string;
-  imageUrl: string;
-};
-
 export type Season = {
   key: string;
   name: string;
+  maxLevel: number;
+  equipmentMaxLevel: number;
 };
 
 export type Level = {
@@ -31,6 +33,20 @@ export type Artifact = {
   maxLevel: number;
   active: boolean;
   level: number;
+};
+
+export type GearClass = {
+  season: string;
+  class: CharacterClass;
+  equipment: Gear[];
+};
+
+export type Gear = {
+  key: string;
+  imageUrl: string;
+  equipmentSlot: EquipmentSlot;
+  level: number;
+  maxLevel: number;
 };
 
 export type Hero = {

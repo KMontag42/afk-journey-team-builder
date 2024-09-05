@@ -81,3 +81,24 @@ export const rosterHeroes = sqliteTable(
     unq: unique().on(t.rosterId, t.heroId),
   }),
 );
+
+export const rosterEquipment = sqliteTable(
+  "roster_equipment",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    rosterId: integer("roster_id").references(() => roster.id, {
+      onDelete: "cascade",
+    }),
+    equipmentId: integer("equipment_id"),
+    equipmentClass: text("equipment_class", { length: 255 }),
+    armLevel: integer("arm_level"),
+    bodyLevel: integer("body_level"),
+    headLevel: integer("head_level"),
+    legLevel: integer("leg_level"),
+    ornamentLevel: integer("ornament_level"),
+    weaponLevel: integer("weapon_level"),
+  },
+  (t) => ({
+    unq: unique().on(t.rosterId, t.equipmentId, t.equipmentClass),
+  }),
+);

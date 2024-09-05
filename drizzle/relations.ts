@@ -3,6 +3,7 @@ import {
   formations,
   roster,
   rosterArtifacts,
+  rosterEquipment,
   rosterHeroes,
   rosterLevels,
   votes,
@@ -40,8 +41,16 @@ export const heroesRelations = relations(rosterHeroes, ({ one }) => ({
   }),
 }));
 
+export const equipmentRelations = relations(rosterEquipment, ({ one }) => ({
+  roster: one(roster, {
+    fields: [rosterEquipment.rosterId],
+    references: [roster.id],
+  }),
+}));
+
 export const rosterRelations = relations(roster, ({ many }) => ({
   rosterArtifacts: many(rosterArtifacts),
   rosterLevels: many(rosterLevels),
   rosterHeroes: many(rosterHeroes),
+  rosterEquipment: many(rosterEquipment),
 }));

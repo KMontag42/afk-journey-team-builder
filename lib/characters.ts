@@ -16,6 +16,15 @@ export enum CharacterClass {
   Support = "support",
 }
 
+export enum EquipmentSlot {
+  Arm = "Hands",
+  Body = "Body",
+  Head = "Head",
+  Leg = "Leg",
+  Ornament = "Accessory",
+  Weapon = "Weapon",
+}
+
 export enum AscensionLevel {
   Elite = "Elite",
   EliteP = "Elite+",
