@@ -67,8 +67,8 @@ export default async function MyRoster() {
         ascension: foundHero
           ? foundHero.ascension
           : data["tier"] === "S"
-          ? AscensionLevel.Epic
-          : AscensionLevel.Elite,
+            ? AscensionLevel.Epic
+            : AscensionLevel.Elite,
         exEquipment: foundHero ? foundHero.equipment : 0,
         unlocked: foundHero ? true : false,
       };
@@ -126,7 +126,7 @@ export default async function MyRoster() {
       </div>
       <Levels levelList={levels} />
       <Tabs className="flex flex-col items-center pb-8" defaultValue="heroes">
-        <TabsList className="grid max-w-screen-md grid-cols-3">
+        <TabsList>
           <TabsTrigger value="heroes">Heroes</TabsTrigger>
           <TabsTrigger value="artifacts">Artifacts</TabsTrigger>
         </TabsList>

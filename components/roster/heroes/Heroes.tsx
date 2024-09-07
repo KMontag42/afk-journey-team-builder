@@ -23,6 +23,7 @@ import Image from "next/image";
 import { rosterImages } from "@/lib/images";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 
 type SubSelectProps = {
   hero: Hero;
@@ -37,7 +38,7 @@ type HeroProps = {
   heroList: Hero[];
 };
 
-const isAscensionLevelValid = (level: AscensionLevel | null): boolean => {
+const isAscensionLevelValid = (level: AscensionLevel): boolean => {
   if (!level) return false;
   const validLevels = Object.keys(AscensionLevel).splice(7);
   return validLevels.includes(level);
@@ -107,7 +108,7 @@ export default function Heroes({ heroList }: HeroProps) {
   }: SubSelectProps) => (
     <DropdownMenuSub>
       <DropdownMenuSubTrigger
-        className={`w-full ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+        className={cn(disabled ? "opacity-50" : "", "w-full")}
         disabled={disabled}
       >
         <span>{label}</span>
@@ -126,9 +127,10 @@ export default function Heroes({ heroList }: HeroProps) {
               }
             >
               <Check
-                className={`mr-2 h-4 w-4 ${
-                  selected === option ? "opacity-100" : "opacity-0"
-                }`}
+                className={cn(
+                  selected === option ? "opacity-100" : "opacity-0",
+                  "mr-2 h-4 w-4",
+                )}
               />
               {option}
             </DropdownMenuItem>
@@ -141,7 +143,7 @@ export default function Heroes({ heroList }: HeroProps) {
   const handleSave = async (e: FormEvent) => {
     e.preventDefault();
 
-    let items = heroes
+    const items = heroes
       .filter((hero) => hero.unlocked)
       .map((hero) => ({
         heroId: parseInt(hero.key),
@@ -190,14 +192,13 @@ export default function Heroes({ heroList }: HeroProps) {
                           {Array.from(
                             { length: hero.exEquipment / 5 + 1 },
                             (_, i) => (
-                              <div key={i} className="flex flex-row">
-                                <Image
-                                  src={rosterImages.equipmentStar}
-                                  alt="Equipment Star"
-                                  width={13}
-                                  height={13}
-                                />
-                              </div>
+                              <Image
+                                key={i}
+                                src={rosterImages.equipmentStar}
+                                alt="Equipment Star"
+                                width={13}
+                                height={13}
+                              />
                             ),
                           )}
                         </div>

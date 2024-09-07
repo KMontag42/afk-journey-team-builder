@@ -3,7 +3,7 @@ import {
   CharacterClass,
   EquipmentSlot,
   Faction,
-} from "./characters";
+} from "@/lib/characters";
 
 export enum Category {
   Starter = "starter",

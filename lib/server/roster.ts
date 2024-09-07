@@ -10,7 +10,7 @@ import {
   rosterLevels,
 } from "@/drizzle/schema";
 import { drizzleClient } from "@/lib/server/drizzle";
-import { AscensionLevel } from "../characters";
+import { AscensionLevel } from "@/lib/characters";
 
 const drizzle = drizzleClient;
 
@@ -67,17 +67,20 @@ export async function createOrUpdateArtifacts(
 ): Promise<string | false> {
   const { userId } = auth();
 
-  let rosterId: any;
   if (userId) {
-    rosterId = await createOrUpdateRoster(userId);
-    artifacts.forEach((artifact: any) => {
-      createOrUpdateArtifact(rosterId, artifact);
-    });
+    const rosterId = await createOrUpdateRoster(userId);
+    if (!rosterId) {
+      return false;
+    }
+    await Promise.all(
+      artifacts.map(
+        async (a) => await createOrUpdateArtifact(parseInt(rosterId), a),
+      ),
+    );
+    return rosterId;
   } else {
     return false;
   }
-
-  return rosterId;
 }
 
 export async function getRosterArtifacts(
