@@ -2,7 +2,7 @@
 
 import { tekImages } from "@/lib/images";
 import { RelativePageURLs } from "@/lib/pages";
-import { BookMarked, Boxes, CodeXml } from "lucide-react";
+import { BookMarked, Boxes, ClipboardList, CodeXml } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,6 +15,12 @@ export default function Shortcuts() {
           <div className="flex flex-col items-center">
             <Boxes />
             <span className="text-atekwhite pt-2">Builder</span>
+          </div>
+        </Link>
+        <Link href={RelativePageURLs.roster}>
+          <div className="flex flex-col items-center">
+            <ClipboardList />
+            <span className="text-atekwhite pt-2">Roster</span>
           </div>
         </Link>
         <Link href={RelativePageURLs.guides}>

@@ -1,5 +1,13 @@
 import { relations } from "drizzle-orm/relations";
-import { formations, votes } from "./schema";
+import {
+  formations,
+  roster,
+  rosterArtifacts,
+  rosterEquipment,
+  rosterHeroes,
+  rosterLevels,
+  votes,
+} from "./schema";
 
 export const votesRelations = relations(votes, ({ one }) => ({
   formation: one(formations, {
@@ -10,4 +18,39 @@ export const votesRelations = relations(votes, ({ one }) => ({
 
 export const formationsRelations = relations(formations, ({ many }) => ({
   votes: many(votes),
+}));
+
+export const artifactsRelations = relations(rosterArtifacts, ({ one }) => ({
+  roster: one(roster, {
+    fields: [rosterArtifacts.rosterId],
+    references: [roster.id],
+  }),
+}));
+
+export const levelsRelations = relations(rosterLevels, ({ one }) => ({
+  roster: one(roster, {
+    fields: [rosterLevels.rosterId],
+    references: [roster.id],
+  }),
+}));
+
+export const heroesRelations = relations(rosterHeroes, ({ one }) => ({
+  roster: one(roster, {
+    fields: [rosterHeroes.rosterId],
+    references: [roster.id],
+  }),
+}));
+
+export const equipmentRelations = relations(rosterEquipment, ({ one }) => ({
+  roster: one(roster, {
+    fields: [rosterEquipment.rosterId],
+    references: [roster.id],
+  }),
+}));
+
+export const rosterRelations = relations(roster, ({ many }) => ({
+  rosterArtifacts: many(rosterArtifacts),
+  rosterLevels: many(rosterLevels),
+  rosterHeroes: many(rosterHeroes),
+  rosterEquipment: many(rosterEquipment),
 }));

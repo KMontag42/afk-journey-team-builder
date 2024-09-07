@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import { type CmsData } from "@/lib/cms-types";
 import { type FormationData } from "@/lib/formations";
 
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import {
   Card,
   CardContent,
@@ -19,6 +18,7 @@ import {
 import LikeFormationButton from "@/components/LikeFormationButton";
 import DeleteFormationButton from "@/components/DeleteFormationButton";
 import ShareFormationButton from "@/components/ShareFormationButton";
+import UserAvatar from "@/components/UserAvatar";
 
 type FormationCardProps = {
   data: FormationData;
@@ -62,15 +62,7 @@ export default function FormationCard({
       </CardContent>
       <CardFooter className="justify-between">
         {!hideUser && (
-          <Link href={`/users/${username}`}>
-            <div className="flex items-center gap-2">
-              <Avatar>
-                <AvatarImage src={user_image} alt={username} />
-                <AvatarFallback>{username}</AvatarFallback>
-              </Avatar>
-              {username}
-            </div>
-          </Link>
+          <UserAvatar userName={username!} userImage={user_image}></UserAvatar>
         )}
         {showDelete && <DeleteFormationButton formationId={id} />}
         <div className="flex gap-x-2">

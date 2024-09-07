@@ -16,6 +16,32 @@ export enum CharacterClass {
   Support = "support",
 }
 
+export enum EquipmentSlot {
+  Arm = "Hands",
+  Body = "Body",
+  Head = "Head",
+  Leg = "Leg",
+  Ornament = "Accessory",
+  Weapon = "Weapon",
+}
+
+export enum AscensionLevel {
+  Elite = "Elite",
+  EliteP = "Elite+",
+  Epic = "Epic",
+  EpicP = "Epic+",
+  Legendary = "Legendary",
+  LegendaryP = "Legendary+",
+  Mythic = "Mythic",
+  MythicP = "Mythic+",
+  Supreme = "Supreme",
+  SupremeP = "Supreme+",
+  Paragon1 = "Paragon1",
+  Paragon2 = "Paragon2",
+  Paragon3 = "Paragon3",
+  Paragon4 = "Paragon4",
+}
+
 export type Character = {
   id: string;
   name: string;
