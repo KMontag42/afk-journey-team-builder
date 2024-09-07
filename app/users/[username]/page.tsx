@@ -22,7 +22,7 @@ export default async function UserPage({
 
   return (
     <div className="container flex flex-col pb-4">
-      <UserAvatar userName={username!} userImage={user_image}></UserAvatar>
+      <UserAvatar userName={username!} userImage={user_image} />
       <h2 className="py-4 text-lg font-bold">Formations</h2>
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
         {formations.map((formation) => (

@@ -16,7 +16,7 @@ export default function UserAvatar({ userName, userImage }: AvatarProps) {
           <AvatarFallback>{userName}</AvatarFallback>
           <AvatarImage src={userImage} alt={userName} />
         </Avatar>
-        <h1>{userName}</h1>
+        <p>{userName}</p>
       </div>
     </Link>
   );

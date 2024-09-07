@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 
 const protectedPaths = createRouteMatcher(["/admin(.*)"]);
 
+const loginRequiredPaths = createRouteMatcher(["/roster"]);
+
 export default clerkMiddleware((auth, req) => {
   const { userId, sessionClaims } = auth();
 
@@ -11,6 +13,10 @@ export default clerkMiddleware((auth, req) => {
     (userId && protectedPaths(req) && sessionClaims?.role !== "admin")
   ) {
     return NextResponse.rewrite(new URL("/not-found", req.url));
+  }
+
+  if (!userId && loginRequiredPaths(req)) {
+    auth().redirectToSignIn();
   }
 });
 

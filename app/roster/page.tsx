@@ -3,7 +3,7 @@
 import { auth } from "@clerk/nextjs/server";
 
 import { getRosterCmsData } from "@/lib/server/cms-data";
-import { Hero, Level, type Artifact } from "@/lib/roster";
+import { Gear, GearClass, Hero, Level, type Artifact } from "@/lib/roster";
 import Artifacts from "@/components/roster/artifacts/Artifacts";
 import Levels from "@/components/roster/Levels";
 import {
@@ -14,25 +14,24 @@ import {
 import Heroes from "@/components/roster/heroes/Heroes";
 import { getUser } from "@/lib/server/users";
 import UserAvatar from "@/components/UserAvatar";
-import { AscensionLevel } from "@/lib/characters";
+import {
+  AscensionLevel,
+  CharacterClass,
+  EquipmentSlot,
+} from "@/lib/characters";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 export default async function MyRoster() {
   const { userId } = auth();
 
-  if (!userId) {
-    auth().redirectToSignIn();
-    return;
-  }
-
-  const { user_image, username } = await getUser(userId);
+  const { user_image, username } = await getUser(userId!);
 
   const rosterJsonData = await getRosterCmsData();
 
-  const rosterLevels = await getRosterLevels(userId);
-  const rosterHeroes = await getRosterHeroes(userId);
-  const rosterArtifacts = await getRosterArtifacts(userId);
+  const rosterLevels = await getRosterLevels(userId!);
+  const rosterHeroes = await getRosterHeroes(userId!);
+  const rosterArtifacts = await getRosterArtifacts(userId!);
 
   function getLevelForLevelsFromData(key: string): number {
     let level = rosterLevels.find(
@@ -68,8 +67,8 @@ export default async function MyRoster() {
         ascension: foundHero
           ? foundHero.ascension
           : data["tier"] === "S"
-            ? AscensionLevel.Epic
-            : AscensionLevel.Elite,
+          ? AscensionLevel.Epic
+          : AscensionLevel.Elite,
         exEquipment: foundHero ? foundHero.equipment : 0,
         unlocked: foundHero ? true : false,
       };
@@ -96,29 +95,29 @@ export default async function MyRoster() {
     }),
   );
 
-  // const equipment: ClassGear[] = [];
-  // Object.entries(rosterJsonData.seasons)
-  //   .splice(1)
-  //   .map(([key, seasonData]: [string, any]) => {
-  //     Object.keys(CharacterClass).map((charClass) => {
-  //       const classEquipment: Gear[] = [];
-  //       Object.keys(EquipmentSlot).map((equipSlot) => {
-  //         classEquipment.push({
-  //           key: key,
-  //           imageUrl: "",
-  //           equipmentSlot:
-  //             EquipmentSlot[equipSlot as keyof typeof EquipmentSlot],
-  //           level: 0,
-  //           maxLevel: seasonData["equipmentMaxLevel"],
-  //         });
-  //       });
-  //       equipment.push({
-  //         season: seasonData["name"],
-  //         class: CharacterClass[charClass as keyof typeof CharacterClass],
-  //         equipment: classEquipment,
-  //       });
-  //     });
-  //   });
+  const equipment: GearClass[] = [];
+  Object.entries(rosterJsonData.seasons)
+    .splice(1)
+    .map(([key, seasonData]: [string, any]) => {
+      Object.keys(CharacterClass).map((charClass) => {
+        const classEquipment: Gear[] = [];
+        Object.keys(EquipmentSlot).map((equipSlot) => {
+          classEquipment.push({
+            key: key,
+            imageUrl: "",
+            equipmentSlot:
+              EquipmentSlot[equipSlot as keyof typeof EquipmentSlot],
+            level: 0,
+            maxLevel: seasonData["equipmentMaxLevel"],
+          });
+        });
+        equipment.push({
+          season: seasonData["name"],
+          class: CharacterClass[charClass as keyof typeof CharacterClass],
+          equipment: classEquipment,
+        });
+      });
+    });
 
   return (
     <div className="container flex flex-col flex-wrap justify-center">
