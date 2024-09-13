@@ -6,7 +6,7 @@ import { useState } from "react";
 import { ArcherContainer, ArcherElement } from "react-archer";
 
 export default function TalentBuilder() {
-  const [selectedNode, setSelectedNode] = useState(1);
+  const [selectedNode, setSelectedNode] = useState(0);
 
   return (
     <div className="container flex justify-center">
@@ -14,27 +14,21 @@ export default function TalentBuilder() {
         <div className="grid grid-cols-5 justify-items-center gap-y-10">
           <div className="col-start-3">
             <ArcherElement id="1">
-              <div className="relative">
-                {selectedNode === 1 && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Image
-                      className=""
-                      src="https://i.imgur.com/IVJ2pPg.png"
-                      alt="wilderheart"
-                      height={104}
-                      width={104}
-                    />
-                  </div>
-                )}
-                <div className="flex items-center justify-center">
-                  <Image
-                    className={cn(true ? "" : "grayscale")}
-                    src="https://i.imgur.com/SKglKqY.png"
-                    alt="wilderheart"
-                    height={96}
-                    width={96}
-                  />
-                </div>
+              <div className="flex flex-col items-center justify-center">
+                <Image
+                  className={cn(selectedNode === 1 ? "" : "invisible")}
+                  src="https://i.imgur.com/IVJ2pPg.png"
+                  alt="wilderheart"
+                  height={104}
+                  width={104}
+                />
+                <Image
+                  className={cn(true ? "" : "grayscale", "-mt-[96px]")}
+                  src="https://i.imgur.com/SKglKqY.png"
+                  alt="wilderheart"
+                  height={96}
+                  width={96}
+                />
               </div>
             </ArcherElement>
           </div>
