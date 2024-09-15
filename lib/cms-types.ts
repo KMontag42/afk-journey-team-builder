@@ -1,3 +1,5 @@
+import { StatType } from "@/lib/characters";
+
 type ImgurUrl = `https://i.imgur.com/${string}.png`;
 
 type NameAndImageCmsData = {
@@ -91,4 +93,40 @@ export type PromoCodesCmsData = {
   active: Code[];
   directions: string;
   images: string[];
+};
+
+type Stat = {
+  attribute: StatType;
+  value: string;
+};
+
+type Relation = {
+  targetId: string;
+  targetAnchor: string;
+  sourceAnchor: string;
+};
+
+export type Talent = {
+  id: string;
+  column: number;
+  name: string;
+  description: string;
+  stats: Stat[];
+  goldCost: number;
+  orbCost: number;
+  essenceCost: number;
+  size: number;
+  imageUrl: string;
+  bgSize: number;
+  bgUrl: string;
+  unlocked: boolean;
+  color: string;
+  relations: Relation[];
+  requirement: number;
+};
+
+export type TalentsCmsData = {
+  faction: string;
+  imageUrl: string;
+  talents: Talent[];
 };

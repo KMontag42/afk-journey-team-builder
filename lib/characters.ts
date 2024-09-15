@@ -30,3 +30,21 @@ export type Character = {
 // not a huge fan of this, but it is simple and easy
 export const PhraestoId = "33";
 export const PhraestoCloneId = "34";
+
+export enum StatType {
+  ATK = "ATK",
+  ATKSPD = "ATK SPD",
+  Crit = "Crit",
+  CritDmgBoost = "Crit DMG Boost",
+  CritResist = "Crit Resist",
+  EnergyOnHit = "Energy on Hit",
+  Execution = "Execution",
+  Haste = "Haste",
+  Healing = "Healing",
+  HP = "HP",
+  LifeDrain = "Life Drain",
+  PhysMagicDEF = "Phys & Magic DEF",
+  SkillPower = "Skill Power",
+  UltStrength = "Ultimate Strength",
+  Vitality = "Vitality",
+}
