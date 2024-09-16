@@ -31,7 +31,7 @@ type DropdownContentProps = {
   talent: Talent;
 };
 
-export default function Talents({ data }: { data: TalentsCmsData[] }) {
+export default function TalentsOld({ data }: { data: TalentsCmsData[] }) {
   const [factionTalents, setFactionTalents] = useState(data);
   const [selectedFaction, setSelectedFaction] = useState<string>(
     Faction.Lightbearer,
