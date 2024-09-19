@@ -32,16 +32,11 @@ export default async function AboutPage() {
           inSeas0n
         </Link>{" "}
       </div>
-      <p className="text-lg mb-2 text-center">
-        with special help from the AFK Analytica community.
-      </p>
+      <p>with special help from the AFK Analytica community.</p>
       <p className="text-center">Consider supporting us by donating here:</p>
       <div className="flex flex-row flex-wrap items-center justify-center gap-4">
         <Button variant="analytica" asChild>
-          <Link
-            href="https://www.patreon.com/bePatron?u=127053369"
-            data-patreon-widget-type="become-patron-button"
-          >
+          <Link target="_blank" href="https://www.patreon.com/analytica">
             <Image
               src={tekImages.patreonIcon}
               alt="KoFi Cup"
@@ -53,11 +48,7 @@ export default async function AboutPage() {
           </Link>
         </Button>
         <Button variant="analytica" asChild>
-          <Link
-            target="_blank"
-            href="https://ko-fi.com/analytica"
-            className="w-48"
-          >
+          <Link target="_blank" href="https://ko-fi.com/analytica">
             <Image
               src={tekImages.kofiCup}
               alt="KoFi Cup"
