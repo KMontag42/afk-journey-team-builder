@@ -1,62 +1,42 @@
-import { createContext, useContext, useReducer } from 'react';
+"use client";
 
-const TasksContext = createContext(null);
-const TasksDispatchContext = createContext(null);
+import { createContext, Dispatch, useContext, useReducer } from "react";
 
-export function  ({ children }) {
-  const [tasks, dispatch] = useReducer(
-    tasksReducer,
-    initialTasks
-  );
+export const CounterContext = createContext<number>(0);
+export const CounterDispatchContext = createContext<Dispatch<string> | null>(
+  null,
+);
+
+export function CounterProvider({ children }: any) {
+  const [counter, dispatch] = useReducer(counterReducer, 0);
 
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider
-        value={dispatch}
-      >
+    <CounterContext.Provider value={counter}>
+      <CounterDispatchContext.Provider value={dispatch}>
         {children}
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </CounterDispatchContext.Provider>
+    </CounterContext.Provider>
   );
 }
 
-export function useTasks() {
-  return useContext(TasksContext);
+export function useCounter() {
+  return useContext(CounterContext);
 }
 
-export function useTasksDispatch() {
-  return useContext(TasksDispatchContext);
+export function useCounterDispatch() {
+  return useContext(CounterDispatchContext);
 }
 
-function tasksReducer(tasks, action) {
-  switch (action.type) {
-    case 'added': {
-      return [...tasks, {
-        id: action.id,
-        text: action.text,
-        done: false
-      }];
+function counterReducer(counter: number, action: string) {
+  switch (action) {
+    case "increment": {
+      return (counter = counter + 1);
     }
-    case 'changed': {
-      return tasks.map(t => {
-        if (t.id === action.task.id) {
-          return action.task;
-        } else {
-          return t;
-        }
-      });
-    }
-    case 'deleted': {
-      return tasks.filter(t => t.id !== action.id);
+    case "decrement": {
+      return (counter = counter - 1);
     }
     default: {
-      throw Error('Unknown action: ' + action.type);
+      throw Error("Unknown action: " + action);
     }
   }
 }
-
-const initialTasks = [
-  { id: 0, text: 'Philosopher’s Path', done: true },
-  { id: 1, text: 'Visit the temple', done: false },
-  { id: 2, text: 'Drink matcha', done: false }
-];
