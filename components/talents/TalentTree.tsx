@@ -5,16 +5,18 @@ import { ArcherContainer, ArcherElement } from "react-archer";
 import { RelationType } from "react-archer/lib/types";
 import Image from "next/image";
 import { Talent } from "@/lib/cms-types";
+import { useTalents, useTalentsDispatch } from "@/app/talents/talents-context";
+import { TalentsData } from "@/lib/talents";
 
 type TalentTreeProps = {
   talents: Talent[];
-  selectedTalent: string;
 };
 
-export default function TalentTree({
-  talents,
-  selectedTalent,
-}: TalentTreeProps) {
+export default function TalentTree({ talents }: TalentTreeProps) {
+  const talentsContext: TalentsData = useTalents();
+  const dispatch = useTalentsDispatch();
+  const selectedTalent = talentsContext.selectedTalent;
+
   return (
     <ArcherContainer endMarker={false} strokeWidth={6}>
       <div className="grid grid-cols-5 justify-items-center">
@@ -22,9 +24,7 @@ export default function TalentTree({
           return (
             <div
               key={talent.id}
-              className={cn(
-                `col-start-${talent.column} h-20 w-28 flex justify-center items-center`,
-              )}
+              className={`col-start-${talent.column} h-20 w-28 flex justify-center items-center`}
             >
               <ArcherElement
                 id={talent.id}
@@ -45,7 +45,12 @@ export default function TalentTree({
                     : []
                 }
               >
-                <div className="relative">
+                <div
+                  className="relative"
+                  onClick={() =>
+                    dispatch!({ type: "select", talentId: talent.id })
+                  }
+                >
                   <div>
                     <Image
                       className={cn(

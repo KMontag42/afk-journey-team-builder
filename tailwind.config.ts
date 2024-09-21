@@ -8,6 +8,7 @@ const config = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
+  safelist: [{ pattern: /col-start-([0-9])/ }],
   prefix: "",
   theme: {
     container: {

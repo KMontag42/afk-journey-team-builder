@@ -1,39 +1,49 @@
 "use client";
 
+import { TalentsData } from "@/lib/talents";
 import { createContext, Dispatch, useContext, useReducer } from "react";
 
-export const CounterContext = createContext<number>(0);
-export const CounterDispatchContext = createContext<Dispatch<string> | null>(
-  null,
-);
+type Action = {
+  type: "add" | "remove" | "select";
+  talentId: string;
+};
 
-export function CounterProvider({ children }: any) {
-  const [counter, dispatch] = useReducer(counterReducer, 0);
+export const TalentContext = createContext<any | null>(null);
+export const TalentDispatchContext = createContext<Dispatch<any> | null>(null);
 
+export function TalentProvider({ children }: any) {
+  const [talents, talentsDispatch] = useReducer(talentReducer, {
+    selectedTalent: "l0",
+    availableTalents: [],
+    purchasedTalents: [],
+  });
   return (
-    <CounterContext.Provider value={counter}>
-      <CounterDispatchContext.Provider value={dispatch}>
+    <TalentContext.Provider value={talents}>
+      <TalentDispatchContext.Provider value={talentsDispatch}>
         {children}
-      </CounterDispatchContext.Provider>
-    </CounterContext.Provider>
+      </TalentDispatchContext.Provider>
+    </TalentContext.Provider>
   );
 }
 
-export function useCounter() {
-  return useContext(CounterContext);
+export function useTalents() {
+  return useContext(TalentContext);
 }
 
-export function useCounterDispatch() {
-  return useContext(CounterDispatchContext);
+export function useTalentsDispatch() {
+  return useContext(TalentDispatchContext);
 }
 
-function counterReducer(counter: number, action: string) {
-  switch (action) {
-    case "increment": {
-      return (counter = counter + 1);
+function talentReducer(talents: TalentsData, action: Action) {
+  switch (action.type) {
+    case "add": {
+      return talents;
     }
-    case "decrement": {
-      return (counter = counter - 1);
+    case "remove": {
+      return talents;
+    }
+    case "select": {
+      return { ...talents, selectedTalent: action.talentId };
     }
     default: {
       throw Error("Unknown action: " + action);

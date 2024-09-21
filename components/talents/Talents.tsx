@@ -3,30 +3,46 @@
 import { useState } from "react";
 
 import { Faction } from "@/lib/characters";
-import { TalentsCmsData } from "@/lib/cms-types";
+import { Talent, TalentsCmsData } from "@/lib/cms-types";
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TalentTree from "@/components/talents/TalentTree";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { DialogTrigger } from "@radix-ui/react-dialog";
+import TalentDetails from "@/components/talents/TalentDetails";
+import { useTalents, useTalentsDispatch } from "@/app/talents/talents-context";
+import { TalentsData } from "@/lib/talents";
 
 export default function Talents({ data }: { data: TalentsCmsData[] }) {
+  const talentsContext: TalentsData = useTalents();
+  const dispatch = useTalentsDispatch();
+
   const [talents, setTalents] = useState(data);
-  const [selectedTalents, setSelectedTalents] = useState<string[]>([]);
-  const [availableTalents, setAvailableTalents] = useState<string[]>([]);
   const [selectedFaction, setSelectedFaction] = useState<string>(
     Faction.Lightbearer,
   );
-  const [selectedTalent, setSelectedTalent] = useState<string>("-1");
+
+  function getTalentDetails(): Talent {
+    const selectedFactionTalents = talents.find(
+      (talentData) => talentData.faction === selectedFaction,
+    )?.talents;
+
+    if (
+      !selectedFactionTalents ||
+      selectedFactionTalents.find(
+        (talent) => talent.id === talentsContext.selectedTalent,
+      )
+    ) {
+      return talents[0].talents[0]; // default talent, this will most likely fall back to the first lightbearer talent
+    } else {
+      return selectedFactionTalents.find(
+        (talent) => talent.id === talentsContext.selectedTalent,
+      )!;
+    }
+  }
 
   return (
     <Tabs
@@ -61,20 +77,13 @@ export default function Talents({ data }: { data: TalentsCmsData[] }) {
             <div className="hidden lg:grid lg:grid-cols-4 gap-x-4 h-full">
               <Card className="flex justify-center bg-slate-900 pt-2">
                 <CardContent className="p-2">
-                  <Card>
-                    <CardHeader>Name</CardHeader>
-                    <CardContent>Details details details</CardContent>
-                    <CardFooter>Button</CardFooter>
-                  </Card>
+                  <TalentDetails talent={getTalentDetails()} />
                 </CardContent>
               </Card>
-              <ScrollArea className="h-full col-span-2">
+              <ScrollArea className="h-full col-span-2 mb-4">
                 <Card className="flex justify-center bg-slate-900 pt-6">
                   <CardContent>
-                    <TalentTree
-                      talents={factionTalents.talents}
-                      selectedTalent={selectedTalent}
-                    />
+                    <TalentTree talents={factionTalents.talents} />
                   </CardContent>
                 </Card>
               </ScrollArea>
@@ -104,13 +113,10 @@ export default function Talents({ data }: { data: TalentsCmsData[] }) {
                   </DialogContent>
                 </Dialog>
               </div>
-              <ScrollArea className="h-full">
+              <ScrollArea className="h-full mb-4">
                 <Card className="flex justify-center bg-slate-900 pt-6">
                   <CardContent>
-                    <TalentTree
-                      talents={factionTalents.talents}
-                      selectedTalent={selectedTalent}
-                    />
+                    <TalentTree talents={factionTalents.talents} />
                   </CardContent>
                 </Card>
               </ScrollArea>
