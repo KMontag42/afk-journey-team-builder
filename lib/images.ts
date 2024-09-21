@@ -5,6 +5,8 @@ import AnalyticaOfficialLogo from "@/public/AnalyticaOfficialLogoV4.png";
 import LogoBlack from "@/public/LogoBlack.png";
 import LogoAnimationV2 from "@/public/LogoAnimationV2.gif";
 import DiscordLogo from "@/public/discord-mark-blue.svg";
+import KoFiCup from "@/public/kofi-cup.png";
+import PatreonIcon from "@/public/patreon-logo.png";
 
 import Tile1 from "@/public/slots/Tile1.png";
 import Tile2 from "@/public/slots/Tile2.png";
@@ -26,6 +28,8 @@ export const tekImages: { [key: string]: StaticImageData } = {
   logoBlack: LogoBlack,
   logoAnimated: LogoAnimationV2,
   discordLogo: DiscordLogo,
+  kofiCup: KoFiCup,
+  patreonIcon: PatreonIcon,
 };
 
 export const slotImages: { [key: string]: StaticImageData } = {
