@@ -39,20 +39,13 @@ export async function getCodesCmsData(): Promise<PromoCodesCmsData> {
   return jsonData;
 }
 
-export async function getTalentsCmsData(): Promise<TalentsCmsData[]> {
+export async function getTalentsCmsData(): Promise<TalentsCmsData> {
   const jsonData = await (
     await fetch(
       `https://simplejsoncms.com/api/${process.env.TALENTS_SIMPLEJSONCMS_ID}`,
     )
   ).json();
-  const talents = Object.entries(jsonData).map(
-    ([key, data]: [string, any]) => ({
-      faction: key,
-      imageUrl: data.imageUrl,
-      talents: data.talents,
-    }),
-  );
-  return talents;
+  return jsonData;
 }
 
 export async function getGuideHomePage(): Promise<GuideHomePageCmsData> {

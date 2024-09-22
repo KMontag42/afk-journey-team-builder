@@ -126,7 +126,8 @@ export type Talent = {
 };
 
 export type TalentsCmsData = {
-  faction: string;
-  imageUrl: string;
-  talents: Talent[];
+  [faction: string]: {
+    imageUrl: string;
+    talents: { [id: string]: Talent };
+  };
 };

@@ -1,6 +1,5 @@
 "use client";
 
-import { TalentsCmsData } from "@/lib/cms-types";
 import { TalentsData } from "@/lib/talents";
 import { createContext, Dispatch, useContext, useReducer } from "react";
 

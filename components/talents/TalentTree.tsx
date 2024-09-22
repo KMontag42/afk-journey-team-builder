@@ -5,22 +5,22 @@ import { ArcherContainer, ArcherElement } from "react-archer";
 import { RelationType } from "react-archer/lib/types";
 import Image from "next/image";
 import { Talent } from "@/lib/cms-types";
-import { useTalents, useTalentsDispatch } from "@/app/talents/talents-context";
-import { TalentsData } from "@/lib/talents";
 
 type TalentTreeProps = {
-  talents: Talent[];
+  talents: { [key: string]: Talent };
+  selectedTalent: Talent;
+  selectTalent: (talent: Talent) => void;
 };
 
-export default function TalentTree({ talents }: TalentTreeProps) {
-  const talentsContext: TalentsData = useTalents();
-  const dispatch = useTalentsDispatch();
-  const selectedTalent = talentsContext.selectedTalent;
-
+export default function TalentTree({
+  talents,
+  selectedTalent,
+  selectTalent,
+}: TalentTreeProps) {
   return (
     <ArcherContainer endMarker={false} strokeWidth={6}>
       <div className="grid grid-cols-5 justify-items-center">
-        {talents.map((talent) => {
+        {Object.values(talents).map((talent) => {
           return (
             <div
               key={talent.id}
@@ -47,14 +47,18 @@ export default function TalentTree({ talents }: TalentTreeProps) {
               >
                 <div
                   className="relative"
-                  onClick={() =>
-                    dispatch!({ type: "select", talentId: talent.id })
-                  }
+                  onClick={() => {
+                    selectTalent(talent);
+                  }}
                 >
                   <div>
                     <Image
                       className={cn(
-                        selectedTalent === talent.id ? "" : "hidden",
+                        talent.unlocked
+                          ? ""
+                          : selectedTalent.id === talent.id
+                            ? ""
+                            : "hidden",
                       )}
                       src={talent.bgUrl}
                       alt="Selected Talent"
@@ -63,8 +67,10 @@ export default function TalentTree({ talents }: TalentTreeProps) {
                     />
                     <Image
                       className={cn(
-                        talent.unlocked ? "" : "grayscale",
-                        selectedTalent === talent.id ? "absolute inset-1" : "",
+                        talent.unlocked ? "absolute inset-1" : "grayscale",
+                        selectedTalent.id === talent.id
+                          ? "absolute inset-1"
+                          : "",
                       )}
                       src={talent.imageUrl}
                       alt={talent.name}

@@ -1,8 +1,8 @@
 "use client";
 
-import { useReducer } from "react";
+import { useEffect, useState } from "react";
 
-import { TalentsCmsData } from "@/lib/cms-types";
+import { Talent, TalentsCmsData } from "@/lib/cms-types";
 
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
@@ -12,40 +12,74 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TalentTree from "@/components/talents/TalentTree";
 import TalentDetails from "@/components/talents/TalentDetails";
-import { useTalents, useTalentsDispatch } from "@/app/talents/talents-context";
-import { TalentsData } from "@/lib/talents";
-import { Faction } from "@/lib/characters";
+import { excludeKeysFromObject } from "@/lib/utils";
 
-export default function Talents({ data }: { data: TalentsCmsData[] }) {
-  const talentsContext: TalentsData = useTalents();
-  const dispatch = useTalentsDispatch()!;
+export default function Talents({ data }: { data: TalentsCmsData }) {
+  const availableFactions = Object.entries(data).map(([faction, info]) => {
+    return {
+      faction,
+      imageUrl: info.imageUrl,
+    };
+  });
+  const [selectedFaction, setSelectedFaction] = useState("lightbearer");
+  const [factionTalents, setFactionTalents] = useState(
+    data[selectedFaction].talents,
+  );
+  const [selectedTalent, setSelectedTalent] = useState(
+    Object.values(factionTalents)[0],
+  );
+  const learnedTalents = Object.values(factionTalents).filter(
+    (talent) => talent.unlocked,
+  );
+  const availableTalents = excludeKeysFromObject(
+    factionTalents,
+    learnedTalents.map((talent) => talent.id),
+  );
+  const totalSpend = learnedTalents.reduce(
+    (acc, talent) => {
+      return {
+        gold: acc.gold + talent.goldCost,
+        orb: acc.orb + talent.orbCost,
+        essence: acc.essence + talent.essenceCost,
+      };
+    },
+    { gold: 0, orb: 0, essence: 0 },
+  );
 
-  // default talents/faction at the start that are available and set data object that drives the tree itself
-  talentsContext.talentData = data;
-  talentsContext.selectedFaction = Faction.Lightbearer;
-  talentsContext.availableTalents = ["l1", "w1", "m1", "g1", "h0"];
+  useEffect(() => {
+    const factionFirstLetter = selectedFaction[0].toLowerCase();
+    setFactionTalents(data[selectedFaction].talents);
+    setSelectedTalent(data[selectedFaction].talents[`${factionFirstLetter}0`]);
+  }, [data, selectedFaction]);
 
-  function changeFaction(value: string): void {
-    talentsContext.selectedFaction = value;
-    dispatch({ type: "select", talentId: "" });
-  }
+  const handleLearnTalent = (talent: Talent) => {
+    setFactionTalents({
+      ...factionTalents,
+      [talent.id]: { ...talent, unlocked: true },
+    });
+  };
+
+  const handleSelectTalent = (talent: Talent) => {
+    setSelectedTalent(talent);
+  };
+
+  const handleSelectFaction = (faction: string) => {
+    setSelectedFaction(faction);
+  };
 
   return (
     <Tabs
       className="flex flex-col items-center pb-8"
-      defaultValue="lightbearer"
-      onValueChange={changeFaction}
+      onValueChange={handleSelectFaction}
+      value={selectedFaction}
     >
       <TabsList className="h-12">
-        {talentsContext.talentData.map((factionTalents) => {
+        {availableFactions.map((factionInfo) => {
           return (
-            <TabsTrigger
-              key={factionTalents.faction}
-              value={factionTalents.faction}
-            >
+            <TabsTrigger key={factionInfo.faction} value={factionInfo.faction}>
               <Image
-                alt={factionTalents.faction}
-                src={factionTalents.imageUrl}
+                alt={factionInfo.faction}
+                src={factionInfo.imageUrl}
                 width={32}
                 height={32}
               />
@@ -53,12 +87,12 @@ export default function Talents({ data }: { data: TalentsCmsData[] }) {
           );
         })}
       </TabsList>
-      {talentsContext.talentData.map((factionTalents) => {
+      {availableFactions.map((factionInfo) => {
         return (
           <TabsContent
             className="max-h-[75vh]"
-            key={factionTalents.faction}
-            value={factionTalents.faction}
+            key={factionInfo.faction}
+            value={factionInfo.faction}
           >
             <div className="hidden lg:grid lg:grid-cols-4 gap-x-4 h-full">
               <Card className="flex justify-center bg-slate-900 pt-2">
@@ -66,25 +100,48 @@ export default function Talents({ data }: { data: TalentsCmsData[] }) {
                   <div className="text-center">
                     Unlocked Stats Unlocked Stats Unlocked Stats Unlocked Stats
                     Unlocked Stats Unlocked Stats Unlocked Stats Unlocked Stats
-                    Unlocked Stats Unlocked Stats Unlocked Stats Unlocked Stats
-                    Unlocked Stats Unlocked Stats Unlocked Stats Unlocked Stats
-                    Unlocked Stats Unlocked Stats Unlocked Stats Unlocked Stats
-                    Unlocked Stats Unlocked Stats Unlocked Stats Unlocked Stats
                   </div>
-                  <TalentDetails talents={factionTalents.talents} />
+                  <TalentDetails
+                    selectedTalent={selectedTalent}
+                    availableTalents={availableTalents}
+                    learnTalent={handleLearnTalent}
+                  />
                 </CardContent>
               </Card>
               <ScrollArea className="h-full col-span-2 mb-4">
                 <Card className="flex justify-center bg-slate-900 pt-6">
                   <CardContent>
-                    <TalentTree talents={factionTalents.talents} />
+                    <TalentTree
+                      talents={factionTalents}
+                      selectedTalent={selectedTalent}
+                      selectTalent={handleSelectTalent}
+                    />
                   </CardContent>
                 </Card>
               </ScrollArea>
               <Card className="flex justify-center bg-slate-900 pt-2">
                 <CardContent className="grid grid-rows-2 p-2">
                   <div>Talent Skill Mechanism and Details and upgrades</div>
-                  <div>Total Cost</div>
+                  <div>
+                    <p className="text-xl">Total Cost</p>
+                    <hr className="my-2" />
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>Gold:</td>
+                          <td>{totalSpend.gold}</td>
+                        </tr>
+                        <tr>
+                          <td>Orbs:</td>
+                          <td>{totalSpend.orb}</td>
+                        </tr>
+                        <tr>
+                          <td>Essence:</td>
+                          <td>{totalSpend.essence}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -111,7 +168,11 @@ export default function Talents({ data }: { data: TalentsCmsData[] }) {
               <ScrollArea className="h-full mb-4">
                 <Card className="flex justify-center bg-slate-900 pt-6">
                   <CardContent>
-                    <TalentTree talents={factionTalents.talents} />
+                    <TalentTree
+                      talents={factionTalents}
+                      selectedTalent={selectedTalent}
+                      selectTalent={handleSelectTalent}
+                    />
                   </CardContent>
                 </Card>
               </ScrollArea>
