@@ -14,20 +14,27 @@ import TalentTree from "@/components/talents/TalentTree";
 import TalentDetails from "@/components/talents/TalentDetails";
 import { useTalents, useTalentsDispatch } from "@/app/talents/talents-context";
 import { TalentsData } from "@/lib/talents";
+import { Faction } from "@/lib/characters";
 
 export default function Talents({ data }: { data: TalentsCmsData[] }) {
   const talentsContext: TalentsData = useTalents();
   const dispatch = useTalentsDispatch()!;
 
-  // default talents at the start that are available
-  talentsContext.availableTalents = ["l1", "w1", "m1", "g1", "h0"];
+  // default talents/faction at the start that are available and set data object that drives the tree itself
   talentsContext.talentData = data;
+  talentsContext.selectedFaction = Faction.Lightbearer;
+  talentsContext.availableTalents = ["l1", "w1", "m1", "g1", "h0"];
+
+  function changeFaction(value: string): void {
+    talentsContext.selectedFaction = value;
+    dispatch({ type: "select", talentId: "" });
+  }
 
   return (
     <Tabs
       className="flex flex-col items-center pb-8"
       defaultValue="lightbearer"
-      onValueChange={() => dispatch({ type: "select", talentId: "" })}
+      onValueChange={changeFaction}
     >
       <TabsList className="h-12">
         {talentsContext.talentData.map((factionTalents) => {
