@@ -54,11 +54,7 @@ export default function TalentTree({
                   <div>
                     <Image
                       className={cn(
-                        talent.unlocked
-                          ? ""
-                          : selectedTalent.id === talent.id
-                            ? ""
-                            : "hidden",
+                        selectedTalent.id === talent.id ? "" : "hidden",
                       )}
                       src={talent.bgUrl}
                       alt="Selected Talent"
@@ -67,7 +63,7 @@ export default function TalentTree({
                     />
                     <Image
                       className={cn(
-                        talent.unlocked ? "absolute inset-1" : "grayscale",
+                        talent.unlocked ? "" : "grayscale",
                         selectedTalent.id === talent.id
                           ? "absolute inset-1"
                           : "",
