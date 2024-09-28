@@ -6,7 +6,7 @@ import {
 
 export async function GET(_: Request, { params }: { params: { id: string } }) {
   const { id } = params;
-  const formation = await getFormation(id);
+  const formation = await getFormation(parseInt(id));
 
   if (!formation) {
     return new Response(JSON.stringify({ error: "Not found" }), {
@@ -26,7 +26,7 @@ export async function PUT(
   const { id } = params;
   const data = await req.json();
 
-  await updateFormation(id, data);
+  await updateFormation(parseInt(id), data);
 
   return new Response(JSON.stringify({ id }), { status: 200 });
 }
@@ -37,7 +37,7 @@ export async function DELETE(
 ) {
   const { id } = params;
 
-  await deleteFormation(id);
+  await deleteFormation(parseInt(id));
 
   return new Response(null, { status: 204 });
 }

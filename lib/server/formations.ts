@@ -174,9 +174,6 @@ export async function updateFormation(
     .execute();
 }
 
-export async function deleteFormation(id: string): Promise<void> {
-  await drizzle
-    .delete(formations)
-    .where(eq(formations.id, parseInt(id)))
-    .execute();
+export async function deleteFormation(id: number): Promise<void> {
+  await drizzle.delete(formations).where(eq(formations.id, id)).execute();
 }
