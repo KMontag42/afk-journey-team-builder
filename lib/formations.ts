@@ -1,16 +1,9 @@
+import { FormationSelect, VoteSelect } from "@/drizzle/schema";
 import { type Character, PhraestoCloneId, PhraestoId } from "@/lib/characters";
+import { ClerkUser } from "@/lib/server/users";
 
-export type FormationData = {
-  id: number;
-  formation: string;
-  artifact: string;
-  layout: number;
-  name: string;
-  currentUserLiked?: boolean;
-  user_id: string;
-  username?: string;
-  user_image: string;
-};
+export type FormationData = FormationSelect &
+  ClerkUser & { votes?: VoteSelect[]; voteCount?: number };
 
 export function updateSlotInFormation(
   formation: string[],

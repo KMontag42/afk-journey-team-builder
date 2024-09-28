@@ -35,6 +35,7 @@ export default async function MyFormations() {
           <FormationCard
             key={formation.id?.toString()}
             data={formation}
+            currentUserId={userId}
             className="mb-4"
             hideUser
             showDelete
