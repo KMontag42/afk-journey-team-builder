@@ -26,6 +26,8 @@ type SaveButtonProps = {
   artifact: string;
   layout: number;
   user: { id: string };
+  name?: string;
+  id?: number;
 };
 
 export default function SaveButton({
@@ -33,6 +35,8 @@ export default function SaveButton({
   artifact,
   layout,
   user,
+  name,
+  id,
 }: SaveButtonProps) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -55,31 +59,34 @@ export default function SaveButton({
 
     setOpen(false);
 
+    const formationData = {
+      formation,
+      artifact,
+      layout: layout.toString(),
+      user_id: user.id,
+      name: name.value,
+    };
+
+    const requestUrl = id ? `/api/formations/${id}` : "/api/formations";
+    const requestOptions = {
+      method: id ? "PUT" : "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formationData),
+    };
+    const trackEvent = id ? "formation_updated" : "formation_created";
+    const trackData = {
+      ...formationData,
+      formation: formation.join(","),
+      id: id || -1,
+    };
+
     try {
-      const response = await (
-        await fetch("/api/formations", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            formation,
-            artifact,
-            layout: layout.toString(),
-            user_id: user.id,
-            name: name.value,
-          }),
-        })
-      ).json();
+      const response = await (await fetch(requestUrl, requestOptions)).json();
 
       toast.success("Formation saved!");
-      track("formation_saved", {
-        formation: formation.join(","),
-        artifact,
-        layout,
-        user_id: user.id,
-        name: name.value,
-      });
+      track(trackEvent, trackData);
       router.push(`/formations/${response.id}`);
     } catch (error: any) {
       toast.error("Failed to save formation!");
@@ -104,7 +111,11 @@ export default function SaveButton({
               Save this formation with a name.
             </DrawerDescription>
           </DrawerHeader>
-          <SaveFormationForm className="px-4" onSubmit={handleSave} />
+          <SaveFormationForm
+            className="px-4"
+            onSubmit={handleSave}
+            name={name}
+          />
           <DrawerFooter className="pt-2">
             <DrawerClose asChild>
               <Button variant="outline">Cancel</Button>
@@ -119,6 +130,7 @@ export default function SaveButton({
 function SaveFormationForm({
   className,
   onSubmit,
+  name,
 }: React.ComponentProps<"form">) {
   return (
     <form
@@ -127,7 +139,13 @@ function SaveFormationForm({
     >
       <div className="grid gap-2">
         <Label htmlFor="name">Formation Name</Label>
-        <Input type="text" id="name" placeholder="f2p Team" required />
+        <Input
+          type="text"
+          id="name"
+          placeholder="f2p Team"
+          defaultValue={name}
+          required
+        />
       </div>
       <Button type="submit">Save formation</Button>
     </form>

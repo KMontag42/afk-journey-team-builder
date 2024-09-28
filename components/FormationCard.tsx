@@ -15,10 +15,12 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 import LikeFormationButton from "@/components/LikeFormationButton";
 import DeleteFormationButton from "@/components/DeleteFormationButton";
 import ShareFormationButton from "@/components/ShareFormationButton";
+import { Edit2 } from "lucide-react";
 
 type FormationCardProps = {
   data: FormationData;
@@ -26,6 +28,8 @@ type FormationCardProps = {
   className?: string;
   hideUser?: boolean;
   showDelete?: boolean;
+  showEdit?: boolean;
+  isLink?: boolean;
 };
 
 export default function FormationCard({
@@ -34,6 +38,8 @@ export default function FormationCard({
   className,
   showDelete,
   cmsData,
+  showEdit,
+  isLink,
 }: FormationCardProps) {
   const { id, formation, artifact, layout, username, user_image, name } = data;
 
@@ -43,23 +49,31 @@ export default function FormationCard({
     .split(",")
     .map((x) => cmsData.characters[x]);
 
-  return (
-    <Card className={cn("w-full", className)}>
+  const cardHeaderAndContent = (
+    <>
       <CardHeader>
         <CardTitle>{name}</CardTitle>
       </CardHeader>
       <CardContent className="pr-2 pl-0">
-        <Link href={`/formations/${id}`}>
-          <div className="flex flex-col items-center">
-            <LayoutComponent
-              formation={formationCharacters}
-              artifact={artifact}
-              selectedCharacter={null}
-              artifacts={cmsData.artifacts}
-            />
-          </div>
-        </Link>
+        <div className="flex flex-col items-center">
+          <LayoutComponent
+            formation={formationCharacters}
+            artifact={artifact}
+            selectedCharacter={null}
+            artifacts={cmsData.artifacts}
+            onCharacterSlotClick={() => {}}
+          />
+        </div>
       </CardContent>
+    </>
+  );
+  return (
+    <Card className={cn("w-full", className)}>
+      {isLink ? (
+        <Link href={`/formations/${id}`}>{cardHeaderAndContent}</Link>
+      ) : (
+        cardHeaderAndContent
+      )}
       <CardFooter className="justify-between">
         {!hideUser && (
           <Link href={`/users/${username}`}>
@@ -74,6 +88,13 @@ export default function FormationCard({
         )}
         {showDelete && <DeleteFormationButton formationId={id} />}
         <div className="flex gap-x-2">
+          {showEdit && (
+            <Link href={`/formations/${id}/edit`}>
+              <Button>
+                <Edit2 />
+              </Button>
+            </Link>
+          )}
           <ShareFormationButton formationId={id} />
           <LikeFormationButton
             formationId={id}

@@ -36,7 +36,6 @@ function Links({ pathname }: { pathname: string }) {
         variant: pathname === RelativePageURLs.builder ? "secondary" : "link",
       })}
       key="builder"
-      prefetch={true}
     >
       Builder
     </Link>,
@@ -46,7 +45,6 @@ function Links({ pathname }: { pathname: string }) {
         variant: pathname === RelativePageURLs.search ? "secondary" : "link",
       })}
       key="search"
-      prefetch={true}
     >
       Search
     </Link>,
@@ -56,7 +54,6 @@ function Links({ pathname }: { pathname: string }) {
         variant: pathname === RelativePageURLs.guides ? "secondary" : "link",
       })}
       key="guides"
-      prefetch={true}
     >
       Guides
     </Link>,
@@ -66,7 +63,6 @@ function Links({ pathname }: { pathname: string }) {
         variant: pathname === RelativePageURLs.codes ? "secondary" : "link",
       })}
       key="codes"
-      prefetch={true}
     >
       Codes
     </Link>,
@@ -76,7 +72,6 @@ function Links({ pathname }: { pathname: string }) {
         variant: pathname === RelativePageURLs.about ? "secondary" : "link",
       })}
       key="about"
-      prefetch={true}
     >
       About
     </Link>,
@@ -92,7 +87,6 @@ function Links({ pathname }: { pathname: string }) {
             pathname === RelativePageURLs.myFormations ? "secondary" : "link",
         })}
         key="formations"
-        prefetch={true}
       >
         My Formations
       </Link>,
