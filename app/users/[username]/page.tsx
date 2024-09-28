@@ -3,6 +3,7 @@ import { getUserByUsername } from "@/lib/server/users";
 import { getFormationsForUserId } from "@/lib/server/formations";
 import { getCmsData } from "@/lib/server/cms-data";
 import FormationCard from "@/components/FormationCard";
+import { auth } from "@clerk/nextjs/server";
 
 export default async function UserPage({
   params,
@@ -10,6 +11,7 @@ export default async function UserPage({
   params: { username: string };
 }) {
   const user = await getUserByUsername(params.username);
+  const { userId: currentUserId } = auth();
 
   if (!user) {
     return <div className="text-center pt-8">User not found</div>;
@@ -37,6 +39,7 @@ export default async function UserPage({
             data={formation}
             cmsData={cmsData}
             hideUser={true}
+            currentUserId={currentUserId}
           />
         ))}
       </div>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { layouts } from "@/lib/layouts";
 import { cn } from "@/lib/utils";
 import { type CmsData } from "@/lib/cms-types";
-import { type FormationData } from "@/lib/formations";
+import { userLikedFormation, type FormationData } from "@/lib/formations";
 
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -28,7 +28,7 @@ type FormationCardProps = {
   showDelete?: boolean;
   showEdit?: boolean;
   isLink?: boolean;
-  currentUserId?: string;
+  currentUserId?: string | null;
 };
 
 export default function FormationCard({
@@ -50,9 +50,7 @@ export default function FormationCard({
     .split(",")
     .map((x) => cmsData.characters[x]);
 
-  const currentUserLiked = Boolean(
-    votes?.find((vote) => vote.userId === currentUserId),
-  );
+  const currentUserLiked = userLikedFormation(data, currentUserId ?? "");
 
   const cardHeaderAndContent = (
     <>
@@ -100,7 +98,9 @@ export default function FormationCard({
             </Link>
           )}
           <ShareFormationButton formationId={id} />
-          <LikeFormationButton formationId={id} liked={currentUserLiked} />
+          {votes && (
+            <LikeFormationButton formationId={id} liked={currentUserLiked} />
+          )}
         </div>
       </CardFooter>
     </Card>

@@ -5,20 +5,22 @@ import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import FormationCard from "@/components/FormationCard";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 
 import { FormationData } from "@/lib/formations";
 import { type CmsData } from "@/lib/cms-types";
 
+type Props = {
+  cmsData: CmsData;
+  prePopulated: FormationData[];
+  currentUserId?: string | null;
+};
 export default function Search({
   cmsData,
   prePopulated,
-}: {
-  cmsData: CmsData;
-  prePopulated: FormationData[];
-}) {
+  currentUserId,
+}: Props) {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState(prePopulated);
   const [loading, setLoading] = useState(false);
@@ -65,6 +67,7 @@ export default function Search({
               data={result}
               cmsData={cmsData}
               isLink
+              currentUserId={currentUserId}
             />
           ))}
         </div>

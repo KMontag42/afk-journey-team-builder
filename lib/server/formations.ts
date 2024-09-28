@@ -9,6 +9,7 @@ import { eq, sql, desc } from "drizzle-orm";
 import {
   formations,
   votes,
+  VoteSelect,
   type FormationSelect,
   type FormationWithVotes,
 } from "@/drizzle/schema";
@@ -26,7 +27,7 @@ export function buildFormationJson(
   };
 }
 
-async function _getFormation(id: number): Promise<FormationSelect | false> {
+async function _getFormation(id: number): Promise<FormationData | false> {
   const formation = await drizzle.query.formations.findFirst({
     where: (formations, { eq }) => eq(formations.id, id),
     with: {
@@ -43,7 +44,10 @@ async function _getFormation(id: number): Promise<FormationSelect | false> {
   return buildFormationJson(formation, user);
 }
 
-export const getFormation = _getFormation;
+export const getFormation = unstable_cache(_getFormation, [], {
+  revalidate: 3600,
+  tags: ["formations"],
+});
 
 export async function getFormationsForUserId(
   userId: string,
@@ -86,7 +90,7 @@ export async function searchFormations(
 }
 
 async function _mostPopularFormations(limit: number): Promise<FormationData[]> {
-  const queryResponse = await drizzle
+  const rows = await drizzle
     .select({
       id: formations.id,
       name: formations.name,
@@ -102,7 +106,7 @@ async function _mostPopularFormations(limit: number): Promise<FormationData[]> {
     .limit(limit);
 
   return await Promise.all(
-    queryResponse.map(async (formation) => {
+    rows.map(async (formation) => {
       const user = await getUser(formation.userId?.toString()!);
 
       return buildFormationJson(formation, user);

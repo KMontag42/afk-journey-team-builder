@@ -63,3 +63,10 @@ export function updateSlotInFormation(
   }
   return formationCopy;
 }
+
+export function userLikedFormation(
+  formation: FormationData,
+  userId: string,
+): boolean {
+  return Boolean(formation.votes?.find((vote) => vote.userId === userId));
+}
