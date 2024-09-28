@@ -4,6 +4,7 @@ import Builder from "@/components/Builder";
 import { getCmsData } from "@/lib/server/cms-data";
 import { getFormation } from "@/lib/server/formations";
 import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 type Props = {
   params: { id: string };
@@ -28,12 +29,7 @@ export default async function FormationEditPage({ params }: Props) {
   }
 
   if (formation.user_id !== userId) {
-    return (
-      <div className="container md:w-[40vw] text-center">
-        <h1 className="text-2xl font-bold">Unauthorized</h1>
-        <p>You do not have permission to edit this formation</p>
-      </div>
-    );
+    redirect(`/formations/${id}`);
   }
 
   const cmsData = await getCmsData();

@@ -46,7 +46,7 @@ export default async function FormationPage({ params }: Props) {
   return (
     <div className="container md:w-[40vw]">
       <FormationCard
-        data={formation as any}
+        data={formation}
         cmsData={cmsData}
         showEdit={isMyFormation}
         showDelete={isMyFormation}

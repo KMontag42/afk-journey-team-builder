@@ -26,7 +26,7 @@ export default async function MyFormations() {
   return (
     <div className="container">
       <Link href={`/users/${username}`}>
-        <Button variant={"analytica"} className="mb-4">
+        <Button variant="analytica" className="mb-4">
           View your profile
         </Button>
       </Link>
