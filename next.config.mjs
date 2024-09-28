@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+import createMDX from "@next/mdx";
+
 const nextConfig = {
   experimental: {
     missingSuspenseWithCSRBailout: false,
@@ -11,6 +13,11 @@ const nextConfig = {
       },
     ],
   },
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  // Add markdown plugins here, as desired
+});
+
+export default withMDX(nextConfig);
