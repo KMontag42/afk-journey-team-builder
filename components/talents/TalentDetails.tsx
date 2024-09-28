@@ -1,34 +1,36 @@
 "use client";
 
 import { Talent } from "@/lib/cms-types";
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import {
+  DialogContent,
+  DialogFooter,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 type TalentDetailProps = {
   selectedTalent: Talent;
   availableTalents: { [key: string]: Talent };
   learnTalent: (talent: Talent) => void;
+  cancelLearnTalent: () => void;
 };
 
 export default function TalentDetails({
   selectedTalent,
   availableTalents,
   learnTalent,
+  cancelLearnTalent,
 }: TalentDetailProps) {
   return (
-    <Card>
-      <CardHeader className="text-atekgold font-bold text-lg">
+    <DialogContent className="max-w-80">
+      <DialogTitle className="text-atekgold font-bold text-lg">
         {selectedTalent.name}
-      </CardHeader>
-      <CardContent className="text-sm">
-        {selectedTalent.description}
-      </CardContent>
-      <CardFooter>
+      </DialogTitle>
+      <div className="text-sm">{selectedTalent.description}</div>
+      <DialogFooter className="flex flex-row justify-center wrap gap-2">
+        <Button variant="analytica" onClick={() => cancelLearnTalent()}>
+          Close
+        </Button>
         {availableTalents[selectedTalent.id] && (
           <Button
             variant="analytica"
@@ -50,7 +52,7 @@ export default function TalentDetails({
             </div>
           </Button>
         )}
-      </CardFooter>
-    </Card>
+      </DialogFooter>
+    </DialogContent>
   );
 }
