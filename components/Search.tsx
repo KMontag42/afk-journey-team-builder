@@ -64,6 +64,7 @@ export default function Search({
               key={result.id.toString()!}
               data={result}
               cmsData={cmsData}
+              isLink
             />
           ))}
         </div>

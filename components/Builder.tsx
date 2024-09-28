@@ -8,8 +8,10 @@ import Image from "next/image";
 import { Download } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 
-import { type Character } from "@/lib/characters";
-import { updateSlotInFormation } from "@/lib/formations";
+import type { Character } from "@/lib/characters";
+import type { CharacterCmsData, CmsData } from "@/lib/cms-types";
+
+import { FormationData, updateSlotInFormation } from "@/lib/formations";
 import {
   layouts,
   layoutHeights,
@@ -20,9 +22,6 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import InputWithClear from "@/components/ui/InputWithClear";
-import CharacterFilter, {
-  CharacterFilterType,
-} from "@/components/CharacterFilter";
 import {
   Select,
   SelectContent,
@@ -30,11 +29,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import BaseLayout from "@/components/layouts/base";
-import SaveButton from "./SaveButton";
 
-export default function Builder({ data }: { data: any }) {
-  const Characters: { [key: string]: Character } = data.characters;
+import CharacterFilter, {
+  CharacterFilterType,
+} from "@/components/CharacterFilter";
+import BaseLayout from "@/components/layouts/base";
+import SaveButton from "@/components/SaveButton";
+import { useRouter } from "next/navigation";
+
+type Props = {
+  data: CmsData;
+  formation?: FormationData;
+};
+
+export default function Builder({ data, formation: _formation }: Props) {
+  const Characters: CharacterCmsData = data.characters;
 
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null,
@@ -42,17 +51,19 @@ export default function Builder({ data }: { data: any }) {
   const [formation, setFormation] = useQueryState<string[]>("formation", {
     parse: (query: string): string[] => atob(query).split(","),
     serialize: (formation: string[]) => btoa(formation.join(",")),
-    defaultValue: new Array<string>(13).fill(""),
+    defaultValue: _formation
+      ? _formation.formation.split(",")
+      : new Array<string>(13).fill(""),
   });
   const [artifact, setArtifact] = useQueryState<string>("artifact", {
     parse: (query: string): string => atob(query),
     serialize: (artifact: string) => btoa(artifact),
-    defaultValue: "blazing",
+    defaultValue: _formation ? _formation.artifact : "blazing",
   });
   const [layout, setLayout] = useQueryState<number>("map", {
     parse: (query: string): number => parseInt(query),
     serialize: (layout: number) => layout.toString(),
-    defaultValue: 0,
+    defaultValue: _formation ? _formation.layout : 0,
   });
   const [characterFilter, setCharacterFilter] = useState<CharacterFilterType>({
     name: "",
@@ -102,6 +113,7 @@ export default function Builder({ data }: { data: any }) {
   const searchInputRef = createRef<HTMLInputElement>();
 
   const { isSignedIn, user } = useUser();
+  const router = useRouter();
 
   function updateFormation(slot: number, character: Character) {
     setFormation(updateSlotInFormation(formation, slot, character));
@@ -184,6 +196,8 @@ export default function Builder({ data }: { data: any }) {
               formation={formation}
               layout={layout}
               user={user}
+              name={_formation?.name}
+              id={_formation?.id}
             />
           )}
           <Button onClick={onDownloadButtonClick} className="h-8 px-2">

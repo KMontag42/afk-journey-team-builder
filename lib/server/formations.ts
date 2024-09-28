@@ -181,6 +181,33 @@ export async function createFormation(
   return createResponse ? createResponse[0].id.toString() : false;
 }
 
+export async function updateFormation(
+  id: string,
+  formation: FormationCreateData,
+): Promise<void> {
+  const { userId } = auth();
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
+  const formationData = await getFormation(id);
+  if (!formationData) {
+    throw new Error("Formation not found");
+  }
+  if (formationData.user_id !== userId) {
+    throw new Error("Unauthorized");
+  }
+  await drizzle
+    .update(formations)
+    .set({
+      formation: formation.formation.join(","),
+      artifact: formation.artifact,
+      layout: parseInt(formation.layout),
+      name: formation.name,
+    })
+    .where(eq(formations.id, parseInt(id)))
+    .execute();
+}
+
 export async function deleteFormation(id: string): Promise<void> {
   await drizzle
     .delete(formations)

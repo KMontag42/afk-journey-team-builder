@@ -11,7 +11,7 @@ import FormationCard from "@/components/FormationCard";
 import { Button } from "@/components/ui/button";
 
 export default async function MyFormations() {
-  const { userId, sessionClaims } = auth();
+  const { userId } = auth();
 
   if (!userId) {
     auth().redirectToSignIn();
@@ -25,8 +25,10 @@ export default async function MyFormations() {
 
   return (
     <div className="container">
-      <Link href={`/users/${username}`} className="flex justify-center pb-4">
-        <Button>View your profile</Button>
+      <Link href={`/users/${username}`}>
+        <Button variant={"analytica"} className="mb-4">
+          View your profile
+        </Button>
       </Link>
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
         {data.map((formation) => (
@@ -36,6 +38,8 @@ export default async function MyFormations() {
             className="mb-4"
             hideUser
             showDelete
+            showEdit
+            isLink
             cmsData={cmsData}
           />
         ))}
