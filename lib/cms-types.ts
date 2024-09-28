@@ -1,4 +1,4 @@
-import { StatType } from "@/lib/characters";
+import { Character, StatType } from "@/lib/characters";
 
 type ImgurUrl = `https://i.imgur.com/${string}.png`;
 
@@ -8,13 +8,7 @@ type NameAndImageCmsData = {
 };
 
 export type CharacterCmsData = {
-  [id: string]: NameAndImageCmsData & {
-    id: string;
-    faction: string;
-    class: string;
-    charms: string[];
-    tileUrl: ImgurUrl;
-  };
+  [id: string]: Character;
 };
 
 export type ClassesCmsData = {
