@@ -113,7 +113,6 @@ export default function Builder({ data, formation: _formation }: Props) {
   const searchInputRef = createRef<HTMLInputElement>();
 
   const { isSignedIn, user } = useUser();
-  const router = useRouter();
 
   function updateFormation(slot: number, character: Character) {
     setFormation(updateSlotInFormation(formation, slot, character));

@@ -3,6 +3,7 @@
 import FormationCard from "@/components/FormationCard";
 import { getCmsData } from "@/lib/server/cms-data";
 import { getFormation } from "@/lib/server/formations";
+import { auth } from "@clerk/nextjs/server";
 
 type Props = {
   params: { id: string };
@@ -27,6 +28,7 @@ export async function generateMetadata({ params }: Props) {
 export default async function FormationPage({ params }: Props) {
   const { id } = params;
   const formation = await getFormation(id);
+  const { userId } = auth();
 
   if (!formation) {
     return (
@@ -39,9 +41,17 @@ export default async function FormationPage({ params }: Props) {
 
   const cmsData = await getCmsData();
 
+  const isMyFormation = formation.user_id === userId;
+
   return (
     <div className="container md:w-[40vw]">
-      <FormationCard data={formation as any} cmsData={cmsData} />
+      <FormationCard
+        data={formation as any}
+        cmsData={cmsData}
+        showEdit={isMyFormation}
+        showDelete={isMyFormation}
+        hideUser={isMyFormation}
+      />
     </div>
   );
 }

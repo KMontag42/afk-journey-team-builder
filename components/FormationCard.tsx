@@ -15,11 +15,11 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 import LikeFormationButton from "@/components/LikeFormationButton";
 import DeleteFormationButton from "@/components/DeleteFormationButton";
 import ShareFormationButton from "@/components/ShareFormationButton";
-import { Button } from "./ui/button";
 import { Edit2 } from "lucide-react";
 
 type FormationCardProps = {
