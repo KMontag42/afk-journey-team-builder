@@ -23,11 +23,6 @@ export default async function FormationEditPage({ params }: Props) {
 
   const { userId } = auth();
 
-  if (!userId) {
-    auth().redirectToSignIn();
-    return;
-  }
-
   if (formation.user_id !== userId) {
     redirect(`/formations/${id}`);
   }
