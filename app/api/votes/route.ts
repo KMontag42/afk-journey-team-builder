@@ -1,5 +1,6 @@
 import { turso } from "@/lib/server/turso";
 import { auth } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -11,6 +12,8 @@ export async function POST(request: Request) {
       sql: "INSERT INTO votes (formation_id, user_id) VALUES (?, ?)",
       args: [formation_id, userId],
     });
+
+    revalidatePath(`/formations/${formation_id}`);
 
     return new Response(null, { status: 204 });
   } catch (e) {
@@ -29,6 +32,8 @@ export async function DELETE(request: Request) {
       sql: "DELETE FROM votes WHERE formation_id = ? AND user_id = ?",
       args: [formation_id, userId],
     });
+
+    revalidatePath(`/formations/${formation_id}`);
 
     return new Response(null, { status: 204 });
   } catch (e) {

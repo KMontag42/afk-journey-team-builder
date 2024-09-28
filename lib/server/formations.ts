@@ -1,18 +1,12 @@
 import "server-only";
 
-import { unstable_cache } from "next/cache";
+import { revalidatePath, unstable_cache } from "next/cache";
 import { auth } from "@clerk/nextjs/server";
 
 import { type ClerkUser, getUser } from "@/lib/server/users";
 import { type FormationData } from "@/lib/formations";
 import { eq, sql, desc } from "drizzle-orm";
-import {
-  formations,
-  votes,
-  VoteSelect,
-  type FormationSelect,
-  type FormationWithVotes,
-} from "@/drizzle/schema";
+import { formations, votes, type FormationWithVotes } from "@/drizzle/schema";
 import { drizzleClient } from "@/lib/server/drizzle";
 
 const drizzle = drizzleClient;
@@ -172,6 +166,8 @@ export async function updateFormation(
     })
     .where(eq(formations.id, id))
     .execute();
+
+  revalidatePath(`/formations/${id}`);
 }
 
 export async function deleteFormation(id: number): Promise<void> {
