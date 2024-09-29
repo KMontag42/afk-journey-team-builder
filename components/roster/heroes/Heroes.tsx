@@ -196,8 +196,8 @@ export default function Heroes({ heroList }: HeroProps) {
                                 key={i}
                                 src={rosterImages.equipmentStar}
                                 alt="Equipment Star"
-                                width={13}
-                                height={13}
+                                width={10}
+                                height={10}
                               />
                             ),
                           )}

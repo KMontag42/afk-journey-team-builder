@@ -1,85 +1,28 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import { Hero } from "@/lib/roster";
+import {
+  CharacterClasses,
+  FactionIcons,
+  Hero,
+  HeroBackgrounds,
+} from "@/lib/roster";
 import { AscensionLevel, CharacterClass, Faction } from "@/lib/characters";
-import { heroImages, rosterImages, tekImages } from "@/lib/images";
 
 type PortraitProps = {
   hero: Hero;
 };
 
 function getBackground(ascensionLevel: AscensionLevel): StaticImageData {
-  switch (AscensionLevel[ascensionLevel as keyof typeof AscensionLevel]) {
-    case AscensionLevel.Elite:
-      return rosterImages.eliteBackground;
-    case AscensionLevel.EliteP:
-      return rosterImages.elitePBackground;
-    case AscensionLevel.Epic:
-      return rosterImages.epicBackground;
-    case AscensionLevel.EpicP:
-      return rosterImages.epicPBackground;
-    case AscensionLevel.Legendary:
-      return rosterImages.legendaryBackground;
-    case AscensionLevel.LegendaryP:
-      return rosterImages.legendaryPBackground;
-    case AscensionLevel.Mythic:
-      return rosterImages.mythicBackground;
-    case AscensionLevel.MythicP:
-      return rosterImages.mythicPBackground;
-    case AscensionLevel.Supreme:
-      return rosterImages.supremeBackground;
-    case AscensionLevel.SupremeP:
-      return rosterImages.supremePBackground;
-    case AscensionLevel.Paragon1:
-      return rosterImages.paragon1Background;
-    case AscensionLevel.Paragon2:
-      return rosterImages.paragon2Background;
-    case AscensionLevel.Paragon3:
-      return rosterImages.paragon3Background;
-    case AscensionLevel.Paragon4:
-      return rosterImages.paragon4Background;
-    default:
-      return rosterImages.eliteBackground;
-  }
+  return HeroBackgrounds[AscensionLevel[ascensionLevel]];
 }
 
 function getFaction(faction: Faction): StaticImageData {
-  switch (faction.toLocaleLowerCase()) {
-    case Faction.Lightbearer:
-      return heroImages.Lightbearer;
-    case Faction.Mauler:
-      return heroImages.Mauler;
-    case Faction.Wilder:
-      return heroImages.Wilder;
-    case Faction.Graveborn:
-      return heroImages.Graveborn;
-    case Faction.Celestial:
-      return heroImages.Celestial;
-    case Faction.Hypogean:
-      return heroImages.Hypogean;
-    default:
-      return tekImages.emptyHex;
-  }
+  return FactionIcons[faction.toLocaleLowerCase()];
 }
 
 function getClass(heroClass: CharacterClass): StaticImageData {
-  switch (heroClass.toLocaleLowerCase()) {
-    case CharacterClass.Mage:
-      return heroImages.Mage;
-    case CharacterClass.Marksman:
-      return heroImages.Marksman;
-    case CharacterClass.Rogue:
-      return heroImages.Rogue;
-    case CharacterClass.Support:
-      return heroImages.Support;
-    case CharacterClass.Tank:
-      return heroImages.Tank;
-    case CharacterClass.Warrior:
-      return heroImages.Warrior;
-    default:
-      return tekImages.emptyHex;
-  }
+  return CharacterClasses[heroClass.toLocaleLowerCase()];
 }
 
 export default function HeroPortrait({ hero }: PortraitProps) {
