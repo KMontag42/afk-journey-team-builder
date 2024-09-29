@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 
 import { Button } from "@/components/ui/button";
@@ -18,8 +18,11 @@ export default function LikeFormationButton({
 }: LikeFormationButtonProps) {
   const { isSignedIn } = useUser();
   const [localLiked, setLocalLiked] = useState(liked);
+  const [heartFill, setHeartFill] = useState(liked ? "#000" : "#fff");
 
-  const heartFill = liked ? "#000" : "#fff";
+  useEffect(() => {
+    setHeartFill(localLiked ? "#000" : "#fff");
+  }, [localLiked]);
 
   let onHeartClick = useCallback(() => {
     if (!isSignedIn) {

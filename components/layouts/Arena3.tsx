@@ -1,3 +1,5 @@
+"use client";
+
 import CharacterSlot from "@/components/CharacterSlot";
 import Image from "next/image";
 import { tekImages } from "@/lib/images";

@@ -1,11 +1,9 @@
-"use client";
-
 import Link from "next/link";
 
 import { layouts } from "@/lib/layouts";
 import { cn } from "@/lib/utils";
 import { type CmsData } from "@/lib/cms-types";
-import { type FormationData } from "@/lib/formations";
+import { userLikedFormation, type FormationData } from "@/lib/formations";
 
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -30,6 +28,7 @@ type FormationCardProps = {
   showDelete?: boolean;
   showEdit?: boolean;
   isLink?: boolean;
+  currentUserId?: string | null;
 };
 
 export default function FormationCard({
@@ -40,14 +39,18 @@ export default function FormationCard({
   cmsData,
   showEdit,
   isLink,
+  currentUserId,
 }: FormationCardProps) {
-  const { id, formation, artifact, layout, username, user_image, name } = data;
+  const { id, formation, artifact, layout, username, user_image, name, votes } =
+    data;
 
   const LayoutComponent = layouts[layout as keyof typeof layouts].Component;
 
   const formationCharacters = formation
     .split(",")
     .map((x) => cmsData.characters[x]);
+
+  const currentUserLiked = userLikedFormation(data, currentUserId ?? "");
 
   const cardHeaderAndContent = (
     <>
@@ -61,7 +64,6 @@ export default function FormationCard({
             artifact={artifact}
             selectedCharacter={null}
             artifacts={cmsData.artifacts}
-            onCharacterSlotClick={() => {}}
           />
         </div>
       </CardContent>
@@ -96,10 +98,9 @@ export default function FormationCard({
             </Link>
           )}
           <ShareFormationButton formationId={id} />
-          <LikeFormationButton
-            formationId={id}
-            liked={!!data.currentUserLiked}
-          />
+          {votes && (
+            <LikeFormationButton formationId={id} liked={currentUserLiked} />
+          )}
         </div>
       </CardFooter>
     </Card>

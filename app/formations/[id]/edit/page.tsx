@@ -11,7 +11,7 @@ type Props = {
 };
 export default async function FormationEditPage({ params }: Props) {
   const { id } = params;
-  const formation = await getFormation(id);
+  const formation = await getFormation(parseInt(id));
   if (!formation) {
     return (
       <div className="container md:w-[40vw] text-center">

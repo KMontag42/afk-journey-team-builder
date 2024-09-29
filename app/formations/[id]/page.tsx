@@ -11,7 +11,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
   const { id } = params;
-  const formation = await getFormation(id);
+  const formation = await getFormation(parseInt(id));
 
   if (!formation) {
     return {
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function FormationPage({ params }: Props) {
   const { id } = params;
-  const formation = await getFormation(id);
+  const formation = await getFormation(parseInt(id));
   const { userId } = auth();
 
   if (!formation) {
@@ -41,7 +41,7 @@ export default async function FormationPage({ params }: Props) {
 
   const cmsData = await getCmsData();
 
-  const isMyFormation = formation.user_id === userId;
+  const isMyFormation = formation.userId === userId;
 
   return (
     <div className="container md:w-[40vw]">
@@ -51,6 +51,7 @@ export default async function FormationPage({ params }: Props) {
         showEdit={isMyFormation}
         showDelete={isMyFormation}
         hideUser={isMyFormation}
+        currentUserId={userId}
       />
     </div>
   );

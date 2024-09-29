@@ -97,7 +97,7 @@ export default async function FormationOpenGraphImage({
   params: { id: string };
 }) {
   const { id } = params;
-  const formation = await getFormation(id);
+  const formation = await getFormation(parseInt(id));
   const cmsData = await getCmsData();
   const artifacts = cmsData.artifacts;
 
