@@ -97,7 +97,7 @@ export default function HeroPortrait({ hero }: PortraitProps) {
         src={hero.imageUrl}
         width={84}
         height={84}
-        className="absolute mx-auto left-0 right-0 top-[15%] rounded-lg p-2"
+        className="absolute mx-auto left-0 right-0 top-[15%] p-2 rounded-full"
       />
       <Image
         alt={hero.faction}

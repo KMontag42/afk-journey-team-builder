@@ -18,7 +18,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import HeroPortrait from "@/components/roster/heroes/HeroPortrait";
-import { Check, Star, Unlock, Lock } from "lucide-react";
+import { Check, Unlock, Lock } from "lucide-react";
 import Image from "next/image";
 import { rosterImages } from "@/lib/images";
 import { Button } from "@/components/ui/button";

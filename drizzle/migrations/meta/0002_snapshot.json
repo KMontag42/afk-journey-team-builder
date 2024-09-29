@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "9c439154-c7cf-4dcc-bfbb-f3d933d91c4a",
+  "id": "e39ce33f-f632-4d91-a4a7-97d05142f589",
   "prevId": "6dd25114-d9eb-4e93-8668-1f2a9b4bbd89",
   "tables": {
     "formations": {
@@ -77,7 +77,7 @@
           "name": "user_id",
           "type": "text(255)",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         }
       },
@@ -106,21 +106,21 @@
           "name": "roster_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         },
         "artifact_id": {
           "name": "artifact_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         },
         "level": {
           "name": "level",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         }
       },
@@ -135,6 +135,214 @@
         "roster_artifacts_roster_id_roster_id_fk": {
           "name": "roster_artifacts_roster_id_roster_id_fk",
           "tableFrom": "roster_artifacts",
+          "tableTo": "roster",
+          "columnsFrom": ["roster_id"],
+          "columnsTo": ["id"],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "roster_equipment": {
+      "name": "roster_equipment",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "roster_id": {
+          "name": "roster_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "equipment_id": {
+          "name": "equipment_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "equipment_class": {
+          "name": "equipment_class",
+          "type": "text(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "arm_level": {
+          "name": "arm_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "body_level": {
+          "name": "body_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "head_level": {
+          "name": "head_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "leg_level": {
+          "name": "leg_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ornament_level": {
+          "name": "ornament_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "weapon_level": {
+          "name": "weapon_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "roster_equipment_roster_id_equipment_id_equipment_class_unique": {
+          "name": "roster_equipment_roster_id_equipment_id_equipment_class_unique",
+          "columns": ["roster_id", "equipment_id", "equipment_class"],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "roster_equipment_roster_id_roster_id_fk": {
+          "name": "roster_equipment_roster_id_roster_id_fk",
+          "tableFrom": "roster_equipment",
+          "tableTo": "roster",
+          "columnsFrom": ["roster_id"],
+          "columnsTo": ["id"],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "roster_heroes": {
+      "name": "roster_heroes",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "roster_id": {
+          "name": "roster_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "hero_id": {
+          "name": "hero_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ascension": {
+          "name": "ascension",
+          "type": "text(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "equipment": {
+          "name": "equipment",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "roster_heroes_roster_id_hero_id_unique": {
+          "name": "roster_heroes_roster_id_hero_id_unique",
+          "columns": ["roster_id", "hero_id"],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "roster_heroes_roster_id_roster_id_fk": {
+          "name": "roster_heroes_roster_id_roster_id_fk",
+          "tableFrom": "roster_heroes",
+          "tableTo": "roster",
+          "columnsFrom": ["roster_id"],
+          "columnsTo": ["id"],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "roster_levels": {
+      "name": "roster_levels",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "roster_id": {
+          "name": "roster_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "level_id": {
+          "name": "level_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "level": {
+          "name": "level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "roster_levels_roster_id_level_id_unique": {
+          "name": "roster_levels_roster_id_level_id_unique",
+          "columns": ["roster_id", "level_id"],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "roster_levels_roster_id_roster_id_fk": {
+          "name": "roster_levels_roster_id_roster_id_fk",
+          "tableFrom": "roster_levels",
           "tableTo": "roster",
           "columnsFrom": ["roster_id"],
           "columnsTo": ["id"],
@@ -196,7 +404,9 @@
   "_meta": {
     "schemas": {},
     "tables": {},
-    "columns": {}
+    "columns": {
+      "\"roster\".\"last_update\"": "\"roster\".\"timestamp\""
+    }
   },
   "internal": {
     "indexes": {}

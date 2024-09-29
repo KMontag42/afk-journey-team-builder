@@ -19,29 +19,8 @@
     {
       "idx": 2,
       "version": "6",
-      "when": 1723782447939,
-      "tag": "0002_shocking_red_skull",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "6",
-      "when": 1724024718885,
-      "tag": "0003_gifted_matthew_murdock",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "6",
-      "when": 1725235064689,
-      "tag": "0004_lame_omega_flight",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "6",
-      "when": 1725256078884,
-      "tag": "0005_far_gamma_corps",
+      "when": 1727584119446,
+      "tag": "0002_tough_matthew_murdock",
       "breakpoints": true
     }
   ]

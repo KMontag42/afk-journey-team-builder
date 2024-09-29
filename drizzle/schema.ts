@@ -29,7 +29,7 @@ export const roster = sqliteTable(
     lastUpdate: text("timestamp")
       .notNull()
       .default(sql`(current_timestamp)`),
-    userId: text("user_id", { length: 255 }),
+    userId: text("user_id", { length: 255 }).notNull(),
   },
   (t) => ({
     unq: unique().on(t.userId),
@@ -40,11 +40,13 @@ export const rosterArtifacts = sqliteTable(
   "roster_artifacts",
   {
     id: integer("id").primaryKey({ autoIncrement: true }),
-    rosterId: integer("roster_id").references(() => roster.id, {
-      onDelete: "cascade",
-    }),
-    artifactId: integer("artifact_id"),
-    level: integer("level"),
+    rosterId: integer("roster_id")
+      .references(() => roster.id, {
+        onDelete: "cascade",
+      })
+      .notNull(),
+    artifactId: integer("artifact_id").notNull(),
+    level: integer("level").notNull(),
   },
   (t) => ({
     unq: unique().on(t.rosterId, t.artifactId),
@@ -55,11 +57,13 @@ export const rosterLevels = sqliteTable(
   "roster_levels",
   {
     id: integer("id").primaryKey({ autoIncrement: true }),
-    rosterId: integer("roster_id").references(() => roster.id, {
-      onDelete: "cascade",
-    }),
-    levelId: integer("level_id"),
-    level: integer("level"),
+    rosterId: integer("roster_id")
+      .references(() => roster.id, {
+        onDelete: "cascade",
+      })
+      .notNull(),
+    levelId: integer("level_id").notNull(),
+    level: integer("level").notNull(),
   },
   (t) => ({
     unq: unique().on(t.rosterId, t.levelId),
@@ -70,12 +74,14 @@ export const rosterHeroes = sqliteTable(
   "roster_heroes",
   {
     id: integer("id").primaryKey({ autoIncrement: true }),
-    rosterId: integer("roster_id").references(() => roster.id, {
-      onDelete: "cascade",
-    }),
-    heroId: integer("hero_id"),
-    ascension: text("ascension", { length: 255 }),
-    equipment: integer("equipment"),
+    rosterId: integer("roster_id")
+      .references(() => roster.id, {
+        onDelete: "cascade",
+      })
+      .notNull(),
+    heroId: integer("hero_id").notNull(),
+    ascension: text("ascension", { length: 255 }).notNull(),
+    equipment: integer("equipment").notNull(),
   },
   (t) => ({
     unq: unique().on(t.rosterId, t.heroId),
@@ -86,17 +92,19 @@ export const rosterEquipment = sqliteTable(
   "roster_equipment",
   {
     id: integer("id").primaryKey({ autoIncrement: true }),
-    rosterId: integer("roster_id").references(() => roster.id, {
-      onDelete: "cascade",
-    }),
-    equipmentId: integer("equipment_id"),
-    equipmentClass: text("equipment_class", { length: 255 }),
-    armLevel: integer("arm_level"),
-    bodyLevel: integer("body_level"),
-    headLevel: integer("head_level"),
-    legLevel: integer("leg_level"),
-    ornamentLevel: integer("ornament_level"),
-    weaponLevel: integer("weapon_level"),
+    rosterId: integer("roster_id")
+      .references(() => roster.id, {
+        onDelete: "cascade",
+      })
+      .notNull(),
+    equipmentId: integer("equipment_id").notNull(),
+    equipmentClass: text("equipment_class", { length: 255 }).notNull(),
+    armLevel: integer("arm_level").notNull(),
+    bodyLevel: integer("body_level").notNull(),
+    headLevel: integer("head_level").notNull(),
+    legLevel: integer("leg_level").notNull(),
+    ornamentLevel: integer("ornament_level").notNull(),
+    weaponLevel: integer("weapon_level").notNull(),
   },
   (t) => ({
     unq: unique().on(t.rosterId, t.equipmentId, t.equipmentClass),
