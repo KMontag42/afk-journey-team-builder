@@ -67,7 +67,7 @@ export async function createOrUpdateArtifact(
 
 export async function createOrUpdateArtifacts(
   artifacts: ArtifactData[],
-): Promise<string | false> {
+): Promise<string> {
   const { userId } = auth();
 
   if (userId) {
@@ -79,7 +79,7 @@ export async function createOrUpdateArtifacts(
     );
     return rosterId;
   } else {
-    return false;
+    throw new Error("Not Authenticated");
   }
 }
 
@@ -131,7 +131,7 @@ export async function createOrUpdateLevel(
 
 export async function createOrUpdateLevels(
   levels: LevelData[],
-): Promise<string | false> {
+): Promise<string> {
   const { userId } = auth();
 
   if (userId) {
@@ -141,7 +141,7 @@ export async function createOrUpdateLevels(
     );
     return rosterId;
   } else {
-    return false;
+    throw new Error("Not Authenticated");
   }
 }
 
@@ -194,7 +194,7 @@ export async function createOrUpdateHero(
 
 export async function createOrUpdateHeroes(
   heroes: HeroData[],
-): Promise<string | false> {
+): Promise<string> {
   const { userId } = auth();
 
   if (userId) {
@@ -204,7 +204,7 @@ export async function createOrUpdateHeroes(
     );
     return rosterId;
   } else {
-    return false;
+    throw new Error("Not Authenticated");
   }
 }
 
