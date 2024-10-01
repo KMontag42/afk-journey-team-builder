@@ -72,44 +72,21 @@ export async function searchFormations(
   // build our query arrays
   const queryWords: string[] = [];
   const heroIds: string[] = [];
-  const andHeroes: string[] = [];
   words.forEach((word) => {
     if (word in heroMap) {
-      // single hero lookup
       heroIds.push(heroMap[word]);
       return;
     }
-    if (word.indexOf("+") !== -1) {
-      // and'd values, both words and heroes
-      const andSplit = word.split("+");
-      const andWords: string[] = [];
-      andSplit.forEach((andWord) => {
-        if (andWord in heroMap) {
-          andHeroes.push(heroMap[andWord]);
-          return;
-        }
-        andWords.push(andWord);
-      });
-
-      if (andWords.length !== 0) {
-        // combine and'd words with a space
-        // they end up being queried as LIKE '%word1 word2%'
-        queryWords.push(andWords.join(" "));
-      }
-      return;
-    }
-    // single word
     queryWords.push(word);
   });
 
   const queryResponse = await drizzle.query.formations.findMany({
-    where: (formations, { like, or, and }) =>
-      or(
+    where: (formations, { like, and }) =>
+      and(
         ...[
           ...queryWords.map((word) => like(formations.name, `%${word}%`)),
           ...heroIds.map((id) => like(formations.formation, `%${id}%`)),
         ],
-        and(...andHeroes.map((id) => like(formations.formation, `%${id}%`))),
       ),
     with: {
       votes: true,

@@ -78,14 +78,8 @@ export default function Search({
                 <li>You can search for formations by name.</li>
                 <li>You can also search by hero name.</li>
                 <li>
-                  You can also search for a combination of heroes using the plus
-                  sign:
-                  <pre>arden+eironn</pre>
-                </li>
-                <li>
-                  You can use combination and single hero searches in the same
-                  query:
-                  <pre>arden+eironn rowan</pre>
+                  Search terms are <b>AND</b> combined <pre>arden eironn</pre>{" "}
+                  will return formations with both heroes.
                 </li>
                 <li>
                   ComingSoon™️ we will have an even more advanced searching
