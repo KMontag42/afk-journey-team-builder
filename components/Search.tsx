@@ -4,9 +4,15 @@ import { FormEvent, useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import FormationCard from "@/components/FormationCard";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
+import FormationCard from "@/components/FormationCard";
 
 import { FormationData } from "@/lib/formations";
 import { type CmsData } from "@/lib/cms-types";
@@ -58,9 +64,38 @@ export default function Search({
         onSubmit={handleSearch}
         className="flex md:w-[40vw] flex-col gap-2 px-2"
       >
-        <Label htmlFor="name" className="text-2xl">
+        <Label
+          htmlFor="name"
+          className="text-2xl flex flex-row justify-between"
+        >
           Search
+          <Popover>
+            <PopoverTrigger>
+              <p className="underline">?</p>
+            </PopoverTrigger>
+            <PopoverContent>
+              <ul className="list-disc list-inside">
+                <li>You can search for formations by name.</li>
+                <li>You can also search by hero name.</li>
+                <li>
+                  You can also search for a combination of heroes using the plus
+                  sign:
+                  <pre>arden+eironn</pre>
+                </li>
+                <li>
+                  You can use combination and single hero searches in the same
+                  query:
+                  <pre>arden+eironn rowan</pre>
+                </li>
+                <li>
+                  ComingSoon™️ we will have an even more advanced searching
+                  syntax
+                </li>
+              </ul>
+            </PopoverContent>
+          </Popover>
         </Label>
+
         <Input
           id="name"
           value={search}
