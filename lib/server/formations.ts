@@ -5,9 +5,10 @@ import { auth } from "@clerk/nextjs/server";
 
 import { type ClerkUser, getUser } from "@/lib/server/users";
 import { type FormationData } from "@/lib/formations";
-import { eq, sql, desc } from "drizzle-orm";
+import { eq, sql, desc, and } from "drizzle-orm";
 import { formations, votes, type FormationWithVotes } from "@/drizzle/schema";
 import { drizzleClient } from "@/lib/server/drizzle";
+import { heroNameToId } from "./cms-data";
 
 const drizzle = drizzleClient;
 
@@ -65,8 +66,51 @@ export async function getFormationsForUserId(
 export async function searchFormations(
   query: string,
 ): Promise<FormationData[]> {
+  const heroMap = await heroNameToId();
+  // split query into words
+  const words = query.split(" ");
+  // build our query arrays
+  const queryWords: string[] = [];
+  const heroIds: string[] = [];
+  const andHeroes: string[] = [];
+  words.forEach((word) => {
+    if (word in heroMap) {
+      // single hero lookup
+      heroIds.push(heroMap[word]);
+      return;
+    }
+    if (word.indexOf("+") !== -1) {
+      // and'd values, both words and heroes
+      const andSplit = word.split("+");
+      const andWords: string[] = [];
+      andSplit.forEach((andWord) => {
+        if (andWord in heroMap) {
+          andHeroes.push(heroMap[andWord]);
+          return;
+        }
+        andWords.push(andWord);
+      });
+
+      if (andWords.length !== 0) {
+        // combine and'd words with a space
+        // they end up being queried as LIKE '%word1 word2%'
+        queryWords.push(andWords.join(" "));
+      }
+      return;
+    }
+    // single word
+    queryWords.push(word);
+  });
+
   const queryResponse = await drizzle.query.formations.findMany({
-    where: (formations, { like }) => like(formations.name, `%${query}%`),
+    where: (formations, { like, or, and }) =>
+      or(
+        ...[
+          ...queryWords.map((word) => like(formations.name, `%${word}%`)),
+          ...heroIds.map((id) => like(formations.formation, `%${id}%`)),
+        ],
+        and(...andHeroes.map((id) => like(formations.formation, `%${id}%`))),
+      ),
     with: {
       votes: true,
     },

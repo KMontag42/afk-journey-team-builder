@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,20 +22,35 @@ export default function Search({
   currentUserId,
 }: Props) {
   const [search, setSearch] = useState("");
-  const [results, setResults] = useState(prePopulated);
-  const [loading, setLoading] = useState(false);
+  const [results, setResults] = useState<FormationData[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const handleSearch = async (e: FormEvent) => {
     e.preventDefault();
 
     setLoading(true);
 
-    const response = await fetch(`/api/search?q=${search}`);
+    const query = encodeURIComponent(search);
+    const response = await fetch(`/api/search?q=${query}`);
     const data = await response.json();
 
-    setLoading(false);
     setResults(data.formations);
   };
+
+  // this effect will populate the results with the prePopulated data
+  useEffect(() => {
+    setResults(prePopulated);
+
+    // cleanup function to ensure we don't get errors when reloading
+    return () => {
+      setResults([]);
+    };
+  }, [prePopulated]);
+
+  // when the results are set, we can stop the loading state
+  useEffect(() => {
+    setLoading(false);
+  }, [results]);
 
   return (
     <div className="flex flex-col items-center md:px-0 md:container mx-auto">
