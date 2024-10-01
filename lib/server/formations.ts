@@ -5,9 +5,10 @@ import { auth } from "@clerk/nextjs/server";
 
 import { type ClerkUser, getUser } from "@/lib/server/users";
 import { type FormationData } from "@/lib/formations";
-import { eq, sql, desc } from "drizzle-orm";
+import { eq, sql, desc, and } from "drizzle-orm";
 import { formations, votes, type FormationWithVotes } from "@/drizzle/schema";
 import { drizzleClient } from "@/lib/server/drizzle";
+import { heroNameToId } from "./cms-data";
 
 const drizzle = drizzleClient;
 
@@ -65,8 +66,28 @@ export async function getFormationsForUserId(
 export async function searchFormations(
   query: string,
 ): Promise<FormationData[]> {
+  const heroMap = await heroNameToId();
+  // split query into words
+  const words = query.split(" ");
+  // build our query arrays
+  const queryWords: string[] = [];
+  const heroIds: string[] = [];
+  words.forEach((word) => {
+    if (word in heroMap) {
+      heroIds.push(heroMap[word]);
+      return;
+    }
+    queryWords.push(word);
+  });
+
   const queryResponse = await drizzle.query.formations.findMany({
-    where: (formations, { like }) => like(formations.name, `%${query}%`),
+    where: (formations, { like, and }) =>
+      and(
+        ...[
+          ...queryWords.map((word) => like(formations.name, `%${word}%`)),
+          ...heroIds.map((id) => like(formations.formation, `%${id}%`)),
+        ],
+      ),
     with: {
       votes: true,
     },

@@ -7,6 +7,7 @@ import type {
   GuideHomePageCmsData,
   GuidePagesCmsData,
 } from "@/lib/cms-types";
+import { type Character } from "@/lib/characters";
 
 export async function getCmsData(): Promise<CmsData> {
   const jsonData = await (
@@ -15,6 +16,17 @@ export async function getCmsData(): Promise<CmsData> {
     )
   ).json();
   return jsonData;
+}
+
+export async function heroNameToId(): Promise<Record<string, string>> {
+  const jsonData = await getCmsData();
+  const characters = jsonData["characters"];
+  return Object.fromEntries(
+    Object.entries(characters).map(([key, data]: [string, Character]) => [
+      data["name"].toLowerCase(),
+      key,
+    ]),
+  );
 }
 
 async function getGuideCmsData(): Promise<GuideCmsData> {
