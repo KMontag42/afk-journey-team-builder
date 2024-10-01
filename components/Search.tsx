@@ -81,10 +81,6 @@ export default function Search({
                   Search terms are <b>AND</b> combined <pre>arden eironn</pre>{" "}
                   will return formations with both heroes.
                 </li>
-                <li>
-                  ComingSoon™️ we will have an even more advanced searching
-                  syntax
-                </li>
               </ul>
             </PopoverContent>
           </Popover>
