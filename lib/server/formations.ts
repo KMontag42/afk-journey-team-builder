@@ -68,7 +68,7 @@ export async function searchFormations(
 ): Promise<FormationData[]> {
   const heroMap = await heroNameToId();
   // split query into words
-  const words = query.split(" ");
+  const words = query.split(" ").map((x) => x.toLowerCase());
   // build our query arrays
   const queryWords: string[] = [];
   const heroIds: string[] = [];
