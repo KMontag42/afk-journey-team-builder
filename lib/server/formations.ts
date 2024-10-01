@@ -95,7 +95,13 @@ export async function searchFormations(
 
   const searchFormations = await Promise.all(
     queryResponse.map(async (formation) => {
-      const user = await getUser(formation.userId?.toString()!);
+      let user;
+      try {
+        user = await getUser(formation.userId?.toString()!);
+      } catch (e) {
+        console.error(e);
+        user = { user_id: "0", username: "Unknown", user_image: "" };
+      }
 
       return buildFormationJson(formation, user);
     }),
