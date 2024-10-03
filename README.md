@@ -8,7 +8,7 @@ Brought to you by AFK Analytica.
 
 ## Live Site
 
-[https://atek.afkanalytica.com/](https://atek.afkanalytica.com/)
+[https://analytica.gg](https://analytica.gg)
 
 ## Features
 
@@ -18,12 +18,11 @@ Brought to you by AFK Analytica.
 
 ## Roadmap
 
-- [x] Migrate characters and images to CMS
-- [x] Save teams to turso database
-- [ ] Migrate Google Sites guides
-- [ ] Better mobile experience
-- [ ] Supreme Arena layouts
-- [ ] Remaining PvE layouts
+- [x] Migrate Google Sites guides
+- [x] Better mobile experience
+- [ ] Tag formations
+- [ ] More sharing features
+- [ ] Better "my formation" organization
 
 ## Tech Stack
 
