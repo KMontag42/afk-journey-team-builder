@@ -12,8 +12,8 @@ import Navbar from "@/components/Navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ATEK by Analytica",
-  description: "A team builder for AFKJourney, by KRM and the Analytica team",
+  title: "Analytica.gg",
+  description: "The Premier AFK Community Homepage",
 };
 
 export default function RootLayout({
