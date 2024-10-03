@@ -53,7 +53,7 @@ export function Combobox({ options, value, setValue }: Props) {
                 <CommandItem
                   key={option.value}
                   value={option.value}
-                  onSelect={(currentValue) => {
+                  onSelect={(currentValue: string) => {
                     setValue(
                       currentValue === value ? "" : option.id.toString(),
                     );
