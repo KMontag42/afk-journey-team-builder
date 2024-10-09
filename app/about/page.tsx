@@ -36,11 +36,7 @@ export default async function AboutPage() {
       <p className="text-center">Consider supporting us by donating here:</p>
       <div className="flex flex-row flex-wrap items-center justify-center gap-4">
         <Button variant="analytica" asChild>
-          <Link
-            className="hidden"
-            target="_blank"
-            href="https://www.patreon.com/analytica"
-          >
+          <Link target="_blank" href="https://www.patreon.com/analytica">
             <Image
               src={tekImages.patreonIcon}
               alt="KoFi Cup"
