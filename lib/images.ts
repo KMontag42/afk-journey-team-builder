@@ -2,6 +2,7 @@ import { type StaticImageData } from "next/image";
 
 import tekLogo from "@/public/tekLogo.png";
 import AnalyticaOfficialLogo from "@/public/AnalyticaOfficialLogoV4.png";
+import AnalyticaFormationLogo from "@/public/AnalyticaOfficialLogo.png";
 import LogoBlack from "@/public/LogoBlack.png";
 import LogoAnimationV2 from "@/public/LogoAnimationV2.gif";
 import DiscordLogo from "@/public/discord-mark-blue.svg";
@@ -25,6 +26,7 @@ import Tile13 from "@/public/slots/Tile13.png";
 export const tekImages: { [key: string]: StaticImageData } = {
   tekLogo: tekLogo,
   logo: AnalyticaOfficialLogo,
+  formationLogo: AnalyticaFormationLogo,
   logoBlack: LogoBlack,
   logoAnimated: LogoAnimationV2,
   discordLogo: DiscordLogo,
