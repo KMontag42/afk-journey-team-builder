@@ -82,11 +82,11 @@ export default function Arena3Layout(props: {
         />
 
         <div
-          className="h-16 w-16 grid grid-cols-1 place-items-center opacity-30"
+          className="h-16 w-16 grid grid-cols-1 place-items-center opacity-60"
           id="watermark-logo"
         >
           <Image
-            src={tekImages["logo"]}
+            src={tekImages["formationLogo"]}
             alt="Empty Slot"
             className="w-1/2 -ml-1"
           />
