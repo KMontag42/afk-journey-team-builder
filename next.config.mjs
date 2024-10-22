@@ -1,7 +1,10 @@
+import createMDX from "@next/mdx";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
     missingSuspenseWithCSRBailout: false,
+    mdxRs: true,
   },
   images: {
     remotePatterns: [
@@ -11,6 +14,7 @@ const nextConfig = {
       },
     ],
   },
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   headers: async () => {
     return [
       {
@@ -34,4 +38,9 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  // Add markdown plugins here, as desired
+});
+
+// Merge MDX config with Next.js config
+export default withMDX(nextConfig);
