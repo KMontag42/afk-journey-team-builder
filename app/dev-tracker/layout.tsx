@@ -1,7 +1,7 @@
 export default function MdxLayout({ children }: { children: React.ReactNode }) {
   // Create any shared layout or styles here
   return (
-    <div className="container prose prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-black prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg dark:prose-headings:text-white dark:prose-p:text-white dark:prose-a:text-blue-500 dark:prose-li:text-white">
+    <div className="container prose prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-black prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg dark:prose-headings:text-atekwhite dark:prose-p:text-atekwhite dark:prose-a:text-blue-500 dark:prose-li:text-atekwhite">
       {children}
     </div>
   );
