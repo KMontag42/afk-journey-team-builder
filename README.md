@@ -71,26 +71,7 @@ TURSO_DATABASE_URL=
 
 #### setting up your turso database
 
-```sql
-CREATE TABLE
-  formations (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    formation VARCHAR(255),
-    artifact VARCHAR(255),
-    layout INTEGER,
-    user_id VARCHAR(255),
-    name VARCHAR(255)
-  );
-
-CREATE TABLE
-  votes (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    formation_id INTEGER,
-    user_id VARCHAR(255),
-    UNIQUE(formation_id, user_id),
-    FOREIGN KEY(formation_id) REFERENCES formations(id) ON DELETE CASCADE
-  );
-```
+> this needs to be updated with more detail, but you run the drizzle migrations
 
 #### setting up your clerk instance
 
