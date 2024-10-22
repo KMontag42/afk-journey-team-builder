@@ -15,14 +15,13 @@ Brought to you by AFK Analytica.
 - Build your team
 - Share your team
 - Download your team as an image
+- Like teams
+- Search for teams
+- Guides written in markdown
 
 ## Roadmap
 
-- [x] Migrate Google Sites guides
-- [x] Better mobile experience
-- [ ] Tag formations
-- [ ] More sharing features
-- [ ] Better "my formation" organization
+Check out the [dev tracker](https://analytica.gg/dev-tracker)
 
 ## Tech Stack
 
