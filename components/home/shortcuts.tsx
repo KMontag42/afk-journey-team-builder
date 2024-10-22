@@ -2,7 +2,7 @@
 
 import { tekImages } from "@/lib/images";
 import { RelativePageURLs } from "@/lib/pages";
-import { BookMarked, Boxes, CodeXml } from "lucide-react";
+import { BookMarked, Boxes, CodeXml, ListTodo } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -37,6 +37,12 @@ export default function Shortcuts() {
               className="w-8"
             />
             <span className="text-atekwhite pt-2">Discord</span>
+          </div>
+        </Link>
+        <Link target="_blank" href={RelativePageURLs.devTracker}>
+          <div className="flex flex-col items-center">
+            <ListTodo />
+            <span className="text-atekwhite pt-2">Dev Tracker</span>
           </div>
         </Link>
       </div>
