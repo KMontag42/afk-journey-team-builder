@@ -5,4 +5,5 @@ export const RelativePageURLs = {
   guides: "/guides",
   myFormations: "/formations/mine",
   search: "/search",
+  devTracker: "/dev-tracker",
 };
