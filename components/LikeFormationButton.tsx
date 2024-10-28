@@ -10,11 +10,13 @@ import { Heart } from "lucide-react";
 type LikeFormationButtonProps = {
   formationId: number;
   liked: boolean;
+  totalLikes: number;
 };
 
 export default function LikeFormationButton({
   formationId,
   liked,
+  totalLikes,
 }: LikeFormationButtonProps) {
   const { isSignedIn } = useUser();
   const [localLiked, setLocalLiked] = useState(liked);

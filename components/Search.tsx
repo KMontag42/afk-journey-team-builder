@@ -16,6 +16,9 @@ import FormationCard from "@/components/FormationCard";
 
 import { FormationData } from "@/lib/formations";
 import { type CmsData } from "@/lib/cms-types";
+import MultiSelectCombobox from "@/components/ui/multi-select-combobox";
+
+import { type Character } from "@/lib/characters";
 
 type Props = {
   cmsData: CmsData;
@@ -30,6 +33,23 @@ export default function Search({
   const [search, setSearch] = useState("");
   const [results, setResults] = useState<FormationData[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const excludeHeroes = [
+    "PhraestoClone",
+    "Graveborn",
+    "Wilder",
+    "Celestial",
+    "Hypogean",
+    "Mauler",
+    "Lightbearer",
+  ];
+  const selectHeroes = Object.values(cmsData.characters)
+    .filter((character: Character) => !excludeHeroes.includes(character.name))
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((character: Character) => ({
+      value: character.id,
+      label: character.name,
+    }));
 
   const handleSearch = async (e: FormEvent) => {
     e.preventDefault();
@@ -86,12 +106,15 @@ export default function Search({
           </Popover>
         </Label>
 
-        <Input
-          id="name"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Formation name"
-        />
+        <div className="flex gap-2 mb-2">
+          <MultiSelectCombobox items={selectHeroes} itemName="hero" />
+          <Input
+            id="name"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Formation name"
+          />
+        </div>
         <Button type="submit">Search</Button>
       </form>
 
