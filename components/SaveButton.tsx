@@ -18,6 +18,14 @@ import {
 } from "@/components/ui/drawer";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import { track } from "@vercel/analytics";
 import { useRouter } from "next/navigation";
 
@@ -28,6 +36,7 @@ type SaveButtonProps = {
   user: { id: string };
   name?: string;
   id?: number;
+  tag?: string;
 };
 
 export default function SaveButton({
@@ -37,9 +46,16 @@ export default function SaveButton({
   user,
   name,
   id,
+  tag,
 }: SaveButtonProps) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const [selectedTag, setSelectedTag] = useState(tag);
+
+  const availableTags = [
+    { name: "Arena", value: "Arena" },
+    { name: "Dream Realm", value: "Dream Realm" },
+  ];
 
   const handleSave = async (e: FormEvent) => {
     e.preventDefault();
@@ -62,9 +78,10 @@ export default function SaveButton({
     const formationData = {
       formation,
       artifact,
-      layout: layout.toString(),
+      layout: Math.trunc(layout),
       user_id: user.id,
       name: name.value,
+      tags: [selectedTag],
     };
 
     const requestUrl = id ? `/api/formations/${id}` : "/api/formations";
@@ -80,6 +97,7 @@ export default function SaveButton({
       ...formationData,
       formation: formation.join(","),
       id: id || -1,
+      tags: JSON.stringify(formationData.tags),
     };
 
     try {
@@ -115,6 +133,9 @@ export default function SaveButton({
             className="px-4"
             onSubmit={handleSave}
             name={name}
+            availableTags={availableTags}
+            selectedTag={selectedTag}
+            setSelectedTag={setSelectedTag}
           />
           <DrawerFooter className="pt-2">
             <DrawerClose asChild>
@@ -131,7 +152,14 @@ function SaveFormationForm({
   className,
   onSubmit,
   name,
-}: React.ComponentProps<"form">) {
+  availableTags,
+  selectedTag,
+  setSelectedTag,
+}: React.ComponentProps<"form"> & {
+  availableTags: { name: string; value: string }[];
+  selectedTag: string | undefined;
+  setSelectedTag: (tag: string) => void;
+}) {
   return (
     <form
       className={cn("grid items-center gap-4", className)}
@@ -146,6 +174,19 @@ function SaveFormationForm({
           defaultValue={name}
           required
         />
+        <Label htmlFor="tags">Tag</Label>
+        <Select onValueChange={setSelectedTag} defaultValue={selectedTag}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select tag..." />
+          </SelectTrigger>
+          <SelectContent>
+            {availableTags.map((at) => (
+              <SelectItem key={at.value} value={at.value}>
+                {at.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
       <Button type="submit">Save formation</Button>
     </form>

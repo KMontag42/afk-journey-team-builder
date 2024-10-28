@@ -28,6 +28,8 @@ export async function PUT(
 
   await updateFormation(parseInt(id), data);
 
+  // clear the cache for the formation here
+
   return new Response(JSON.stringify({ id }), { status: 200 });
 }
 

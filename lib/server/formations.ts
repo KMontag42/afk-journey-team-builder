@@ -39,7 +39,7 @@ async function _getFormation(id: number): Promise<FormationData | false> {
   return buildFormationJson(formation, user);
 }
 
-export const getFormation = unstable_cache(_getFormation, [], {
+export const getFormation = unstable_cache(_getFormation, ["formations"], {
   revalidate: 3600,
   tags: ["formations"],
 });
@@ -119,6 +119,7 @@ async function _mostPopularFormations(limit: number): Promise<FormationData[]> {
       artifact: formations.artifact,
       layout: formations.layout,
       userId: formations.userId,
+      tags: formations.tags,
     })
     .from(formations)
     .leftJoin(votes, eq(formations.id, votes.formationId))
@@ -146,6 +147,7 @@ type FormationCreateData = {
   artifact: string;
   layout: string;
   name: string;
+  tags: string[];
 };
 
 export async function createFormation(
@@ -158,6 +160,7 @@ export async function createFormation(
     layout: parseInt(formation.layout),
     userId: userId!,
     name: formation.name,
+    tags: formation.tags,
   };
   const createResponse = await drizzle
     .insert(formations)
@@ -190,6 +193,7 @@ export async function updateFormation(
       artifact: formation.artifact,
       layout: parseInt(formation.layout),
       name: formation.name,
+      tags: formation.tags,
     })
     .where(eq(formations.id, id))
     .execute();

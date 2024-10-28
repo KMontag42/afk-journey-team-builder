@@ -14,6 +14,7 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 import LikeFormationButton from "@/components/LikeFormationButton";
 import DeleteFormationButton from "@/components/DeleteFormationButton";
@@ -41,8 +42,10 @@ export default function FormationCard({
   isLink,
   currentUserId,
 }: FormationCardProps) {
-  const { id, formation, artifact, layout, username, user_image, name, votes } =
+  const { id, formation, artifact, username, user_image, name, votes, tags } =
     data;
+
+  const layout = Math.trunc(data.layout);
 
   const LayoutComponent = layouts[layout as keyof typeof layouts].Component;
 
@@ -55,7 +58,14 @@ export default function FormationCard({
   const cardHeaderAndContent = (
     <>
       <CardHeader>
-        <CardTitle>{name}</CardTitle>
+        <CardTitle>
+          <div className="flex flex-col">
+            <div>{name}</div>
+            <div>
+              {tags && tags.map((tag) => <Badge key={tag}>{tag}</Badge>)}
+            </div>
+          </div>
+        </CardTitle>
       </CardHeader>
       <CardContent className="pr-2 pl-0">
         <div className="flex flex-col items-center">
