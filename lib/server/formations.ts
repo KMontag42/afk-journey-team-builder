@@ -109,7 +109,6 @@ export async function searchFormations(
   }
 
   if (tag) {
-    console.log(queryResponse.length);
     queryResponse = queryResponse.filter((x) => x.tags.indexOf(tag) !== -1);
   }
 
