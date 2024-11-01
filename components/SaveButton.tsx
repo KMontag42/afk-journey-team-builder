@@ -34,6 +34,7 @@ type SaveButtonProps = {
   artifact: string;
   layout: number;
   user: { id: string };
+  allTags: string[];
   name?: string;
   id?: number;
   tag?: string;
@@ -47,15 +48,13 @@ export default function SaveButton({
   name,
   id,
   tag,
+  allTags,
 }: SaveButtonProps) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const [selectedTag, setSelectedTag] = useState(tag);
 
-  const availableTags = [
-    { name: "Arena", value: "Arena" },
-    { name: "Dream Realm", value: "Dream Realm" },
-  ];
+  const availableTags = allTags.map((x) => ({ name: x, value: x }));
 
   const handleSave = async (e: FormEvent) => {
     e.preventDefault();

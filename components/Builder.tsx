@@ -35,7 +35,6 @@ import CharacterFilter, {
 } from "@/components/CharacterFilter";
 import BaseLayout from "@/components/layouts/base";
 import SaveButton from "@/components/SaveButton";
-import { useRouter } from "next/navigation";
 
 type Props = {
   data: CmsData;
@@ -44,6 +43,7 @@ type Props = {
 
 export default function Builder({ data, formation: _formation }: Props) {
   const Characters: CharacterCmsData = data.characters;
+  const allTags = data.tags;
 
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null,
@@ -63,7 +63,7 @@ export default function Builder({ data, formation: _formation }: Props) {
   const [layout, setLayout] = useQueryState<number>("map", {
     parse: (query: string): number => parseInt(query),
     serialize: (layout: number) => layout.toString(),
-    defaultValue: _formation ? _formation.layout : 0,
+    defaultValue: _formation ? Math.trunc(_formation.layout) : 0,
   });
   const [characterFilter, setCharacterFilter] = useState<CharacterFilterType>({
     name: "",
@@ -96,6 +96,8 @@ export default function Builder({ data, formation: _formation }: Props) {
     .sort((a, b) => a.name.localeCompare(b.name));
 
   const changeLayout = (newLayoutId: number) => {
+    console.log(newLayoutId);
+    console.log(layout);
     const existingLayoutTiles = layouts[layout].numTiles;
     const newLayoutTiles = layouts[newLayoutId].numTiles;
 
@@ -195,6 +197,7 @@ export default function Builder({ data, formation: _formation }: Props) {
               formation={formation}
               layout={layout}
               user={user}
+              allTags={allTags}
               name={_formation?.name}
               id={_formation?.id}
             />
