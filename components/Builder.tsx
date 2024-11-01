@@ -96,8 +96,6 @@ export default function Builder({ data, formation: _formation }: Props) {
     .sort((a, b) => a.name.localeCompare(b.name));
 
   const changeLayout = (newLayoutId: number) => {
-    console.log(newLayoutId);
-    console.log(layout);
     const existingLayoutTiles = layouts[layout].numTiles;
     const newLayoutTiles = layouts[newLayoutId].numTiles;
 

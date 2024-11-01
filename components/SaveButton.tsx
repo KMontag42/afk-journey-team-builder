@@ -161,7 +161,6 @@ function SaveFormationForm({
   selectedTag: string | undefined;
   setSelectedTag: (tag: string) => void;
 }) {
-  console.log(selectedTag);
   return (
     <form
       className={cn("grid items-center gap-4", className)}

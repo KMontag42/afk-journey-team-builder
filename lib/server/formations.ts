@@ -84,8 +84,6 @@ export async function searchFormations(
   let queryResponse;
 
   if (queryWords.length > 0 || heroIds.length > 0) {
-    console.log(queryWords);
-    console.log(heroIds);
     queryResponse = await drizzle.query.formations.findMany({
       where: (formations, { like, and }) =>
         and(
@@ -99,7 +97,6 @@ export async function searchFormations(
       },
     });
   } else {
-    console.log("no query string");
     // we only care about looking for tags
     queryResponse = await drizzle.query.formations.findMany({
       with: {

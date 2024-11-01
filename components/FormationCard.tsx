@@ -60,7 +60,7 @@ export default function FormationCard({
       <CardHeader>
         <CardTitle>
           <div className="flex flex-col">
-            <div>{name}</div>
+            <p>{name}</p>
             <div>
               {tags && tags.map((tag) => <Badge key={tag}>{tag}</Badge>)}
             </div>
