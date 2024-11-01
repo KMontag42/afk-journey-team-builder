@@ -65,6 +65,7 @@ export async function getFormationsForUserId(
 
 export async function searchFormations(
   query: string,
+  tag?: string,
 ): Promise<FormationData[]> {
   const heroMap = await heroNameToId();
   // split query into words
@@ -80,7 +81,7 @@ export async function searchFormations(
     queryWords.push(word);
   });
 
-  const queryResponse = await drizzle.query.formations.findMany({
+  let queryResponse = await drizzle.query.formations.findMany({
     where: (formations, { like, and }) =>
       and(
         ...[
@@ -92,6 +93,10 @@ export async function searchFormations(
       votes: true,
     },
   });
+
+  if (tag) {
+    queryResponse = queryResponse.filter((x) => x.tags.indexOf(tag) !== -1);
+  }
 
   const searchFormations = await Promise.all(
     queryResponse.map(async (formation) => {
