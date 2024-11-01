@@ -200,6 +200,7 @@ export default function Builder({ data, formation: _formation }: Props) {
               allTags={allTags}
               name={_formation?.name}
               id={_formation?.id}
+              tags={_formation?.tags}
             />
           )}
           <Button onClick={onDownloadButtonClick} className="h-8 px-2">

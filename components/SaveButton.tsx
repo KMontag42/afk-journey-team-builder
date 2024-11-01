@@ -37,7 +37,7 @@ type SaveButtonProps = {
   allTags: string[];
   name?: string;
   id?: number;
-  tag?: string;
+  tags?: string[];
 };
 
 export default function SaveButton({
@@ -47,9 +47,11 @@ export default function SaveButton({
   user,
   name,
   id,
-  tag,
+  tags,
   allTags,
 }: SaveButtonProps) {
+  // TODO: if we ever decide to support multiple tags, this is where we'd need to change
+  const tag = tags?.[0];
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const [selectedTag, setSelectedTag] = useState(tag);
@@ -159,6 +161,7 @@ function SaveFormationForm({
   selectedTag: string | undefined;
   setSelectedTag: (tag: string) => void;
 }) {
+  console.log(selectedTag);
   return (
     <form
       className={cn("grid items-center gap-4", className)}
@@ -174,7 +177,7 @@ function SaveFormationForm({
           required
         />
         <Label htmlFor="tags">Tag</Label>
-        <Select onValueChange={setSelectedTag} defaultValue={selectedTag}>
+        <Select onValueChange={setSelectedTag} value={selectedTag}>
           <SelectTrigger>
             <SelectValue placeholder="Select tag..." />
           </SelectTrigger>
