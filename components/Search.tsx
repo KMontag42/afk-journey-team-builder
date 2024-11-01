@@ -48,7 +48,7 @@ export default function Search({
     const params = new URLSearchParams();
     params.append("q", search);
     if (tag !== "") {
-      params.append("tag", tag);
+      params.append("t", tag);
     }
     const response = await fetch(`/api/search?${params.toString()}`);
     const data = await response.json();
