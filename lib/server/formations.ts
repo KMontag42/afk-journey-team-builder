@@ -218,6 +218,7 @@ export async function updateFormation(
     .execute();
 
   revalidatePath(`/formations/${id}`);
+  revalidatePath(`/search`);
 }
 
 export async function deleteFormation(id: number): Promise<void> {
