@@ -18,13 +18,6 @@ import {
 } from "@/components/ui/drawer";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 import { track } from "@vercel/analytics";
 import { useRouter } from "next/navigation";
@@ -34,7 +27,6 @@ type SaveButtonProps = {
   artifact: string;
   layout: number;
   user: { id: string };
-  allTags: string[];
   name?: string;
   id?: number;
   tags?: string[];
@@ -48,15 +40,9 @@ export default function SaveButton({
   name,
   id,
   tags,
-  allTags,
 }: SaveButtonProps) {
-  // TODO: if we ever decide to support multiple tags, this is where we'd need to change
-  const tag = tags?.[0];
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const [selectedTag, setSelectedTag] = useState(tag);
-
-  const availableTags = allTags.map((x) => ({ name: x, value: x }));
 
   const handleSave = async (e: FormEvent) => {
     e.preventDefault();
@@ -82,7 +68,7 @@ export default function SaveButton({
       layout: Math.trunc(layout),
       user_id: user.id,
       name: name.value,
-      tags: [selectedTag],
+      tags,
     };
 
     const requestUrl = id ? `/api/formations/${id}` : "/api/formations";
@@ -134,9 +120,6 @@ export default function SaveButton({
             className="px-4"
             onSubmit={handleSave}
             name={name}
-            availableTags={availableTags}
-            selectedTag={selectedTag}
-            setSelectedTag={setSelectedTag}
           />
           <DrawerFooter className="pt-2">
             <DrawerClose asChild>
@@ -153,14 +136,7 @@ function SaveFormationForm({
   className,
   onSubmit,
   name,
-  availableTags,
-  selectedTag,
-  setSelectedTag,
-}: React.ComponentProps<"form"> & {
-  availableTags: { name: string; value: string }[];
-  selectedTag: string | undefined;
-  setSelectedTag: (tag: string) => void;
-}) {
+}: React.ComponentProps<"form">) {
   return (
     <form
       className={cn("grid items-center gap-4", className)}
@@ -175,19 +151,6 @@ function SaveFormationForm({
           defaultValue={name}
           required
         />
-        <Label htmlFor="tags">Tag</Label>
-        <Select onValueChange={setSelectedTag} value={selectedTag}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select tag..." />
-          </SelectTrigger>
-          <SelectContent>
-            {availableTags.map((at) => (
-              <SelectItem key={at.value} value={at.value}>
-                {at.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
       </div>
       <Button type="submit">Save formation</Button>
     </form>

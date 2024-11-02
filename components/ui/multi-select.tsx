@@ -27,16 +27,18 @@ type SelectItem = {
 type Props = {
   itemDescription: string;
   items: SelectItem[];
+  selectedItems?: SelectItem[];
   callback(selected: string[]): void;
 };
 
 export default function MultiSelect({
   itemDescription,
   items,
+  selectedItems,
   callback,
 }: Props) {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<typeof items>([]);
+  const [selected, setSelected] = useState<typeof items>(selectedItems || []);
 
   const handleSelect = (item: (typeof items)[number]) => {
     setSelected((prev) => {
@@ -57,7 +59,7 @@ export default function MultiSelect({
   }, [selected, callback]);
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 w-full">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
@@ -99,7 +101,7 @@ export default function MultiSelect({
           </Command>
         </PopoverContent>
       </Popover>
-      <div className="flex flex-wrap gap-2">
+      <div className="hidden md:flex flex-wrap gap-2">
         {selected.map((item) => (
           <Badge key={item.value} variant="secondary">
             {item.name}
