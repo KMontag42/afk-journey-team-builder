@@ -65,7 +65,7 @@ export async function getFormationsForUserId(
 
 export async function searchFormations(
   query?: string,
-  tag?: string,
+  rawTags?: string,
 ): Promise<FormationData[]> {
   const heroMap = await heroNameToId();
   // split query into words
@@ -80,6 +80,7 @@ export async function searchFormations(
     }
     queryWords.push(word);
   });
+  const tags = rawTags?.split(",");
 
   let queryResponse;
 
@@ -105,8 +106,10 @@ export async function searchFormations(
     });
   }
 
-  if (tag) {
-    queryResponse = queryResponse.filter((x) => x.tags.indexOf(tag) !== -1);
+  if (tags && tags.length > 0) {
+    queryResponse = queryResponse.filter((x) =>
+      tags.every((t) => x.tags.includes(t)),
+    );
   }
 
   const searchFormations = await Promise.all(

@@ -23,6 +23,7 @@ import FormationCard from "@/components/FormationCard";
 
 import { FormationData } from "@/lib/formations";
 import { type CmsData } from "@/lib/cms-types";
+import MultiSelect from "./ui/multi-select";
 
 type Props = {
   cmsData: CmsData;
@@ -37,7 +38,7 @@ export default function Search({
   const [search, setSearch] = useState("");
   const [results, setResults] = useState<FormationData[]>([]);
   const [loading, setLoading] = useState(true);
-  const [tag, setTag] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
   const allTags = cmsData.tags;
 
   const handleSearch = async (e: FormEvent) => {
@@ -47,8 +48,8 @@ export default function Search({
 
     const params = new URLSearchParams();
     params.append("q", search);
-    if (tag !== "") {
-      params.append("t", tag);
+    if (tags.length > 0) {
+      params.append("t", tags.join(","));
     }
     const response = await fetch(`/api/search?${params.toString()}`);
     const data = await response.json();
@@ -105,18 +106,11 @@ export default function Search({
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Formation name"
         />
-        <Select onValueChange={setTag}>
-          <SelectTrigger>
-            <SelectValue placeholder="Search by tag..." />
-          </SelectTrigger>
-          <SelectContent>
-            {allTags.map((x) => (
-              <SelectItem key={x} value={x}>
-                {x}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <MultiSelect
+          itemDescription={"tag"}
+          items={allTags.map((x) => ({ name: x, value: x }))}
+          callback={setTags}
+        />
         <Button type="submit">Search</Button>
       </form>
 
