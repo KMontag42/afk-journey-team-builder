@@ -35,7 +35,7 @@ import CharacterFilter, {
 } from "@/components/CharacterFilter";
 import BaseLayout from "@/components/layouts/base";
 import SaveButton from "@/components/SaveButton";
-import { useRouter } from "next/navigation";
+import MultiSelect from "./ui/multi-select";
 
 type Props = {
   data: CmsData;
@@ -44,6 +44,7 @@ type Props = {
 
 export default function Builder({ data, formation: _formation }: Props) {
   const Characters: CharacterCmsData = data.characters;
+  const allTags = data.tags;
 
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null,
@@ -63,13 +64,14 @@ export default function Builder({ data, formation: _formation }: Props) {
   const [layout, setLayout] = useQueryState<number>("map", {
     parse: (query: string): number => parseInt(query),
     serialize: (layout: number) => layout.toString(),
-    defaultValue: _formation ? _formation.layout : 0,
+    defaultValue: _formation ? Math.trunc(_formation.layout) : 0,
   });
   const [characterFilter, setCharacterFilter] = useState<CharacterFilterType>({
     name: "",
     class: "All",
     faction: "All",
   });
+  const [tags, setTags] = useState(_formation?.tags || []);
 
   const charactersNotInFormation = Object.values(Characters).filter(
     (character) => !formation.includes(character.id),
@@ -159,7 +161,7 @@ export default function Builder({ data, formation: _formation }: Props) {
 
   return (
     <>
-      <div className="flex justify-center items-center gap-2">
+      <div className="flex flex-row md:flex-col justify-center items-center gap-2 w-full">
         <Select
           onValueChange={(e) => changeLayout(parseInt(e))}
           value={layout.toString()}
@@ -175,6 +177,12 @@ export default function Builder({ data, formation: _formation }: Props) {
             <SelectItem value="4">Arena 5</SelectItem>
           </SelectContent>
         </Select>
+        <MultiSelect
+          itemDescription="tag"
+          items={allTags.map((x) => ({ name: x, value: x }))}
+          selectedItems={_formation?.tags.map((x) => ({ name: x, value: x }))}
+          callback={setTags}
+        />
       </div>
       <div className="flex flex-col items-center mr-6 my-4" ref={formationRef}>
         <Layout
@@ -197,6 +205,7 @@ export default function Builder({ data, formation: _formation }: Props) {
               user={user}
               name={_formation?.name}
               id={_formation?.id}
+              tags={tags}
             />
           )}
           <Button onClick={onDownloadButtonClick} className="h-8 px-2">

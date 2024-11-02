@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/drawer";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+
 import { track } from "@vercel/analytics";
 import { useRouter } from "next/navigation";
 
@@ -28,6 +29,7 @@ type SaveButtonProps = {
   user: { id: string };
   name?: string;
   id?: number;
+  tags?: string[];
 };
 
 export default function SaveButton({
@@ -37,6 +39,7 @@ export default function SaveButton({
   user,
   name,
   id,
+  tags,
 }: SaveButtonProps) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -62,9 +65,10 @@ export default function SaveButton({
     const formationData = {
       formation,
       artifact,
-      layout: layout.toString(),
+      layout: Math.trunc(layout),
       user_id: user.id,
       name: name.value,
+      tags,
     };
 
     const requestUrl = id ? `/api/formations/${id}` : "/api/formations";
@@ -80,6 +84,7 @@ export default function SaveButton({
       ...formationData,
       formation: formation.join(","),
       id: id || -1,
+      tags: JSON.stringify(formationData.tags),
     };
 
     try {

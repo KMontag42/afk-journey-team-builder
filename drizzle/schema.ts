@@ -7,6 +7,7 @@ export const formations = sqliteTable("formations", {
   layout: integer("layout").notNull(),
   userId: text("user_id", { length: 255 }).notNull(),
   name: text("name", { length: 255 }).notNull(),
+  tags: text("tags", { mode: "json" }).$type<string[]>().default([]).notNull(),
 });
 
 export const votes = sqliteTable(
