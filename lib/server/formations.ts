@@ -39,7 +39,7 @@ async function _getFormation(id: number): Promise<FormationData | false> {
   return buildFormationJson(formation, user);
 }
 
-export const getFormation = unstable_cache(_getFormation, [], {
+export const getFormation = unstable_cache(_getFormation, ["formations"], {
   revalidate: 3600,
   tags: ["formations"],
 });
@@ -64,34 +64,53 @@ export async function getFormationsForUserId(
 }
 
 export async function searchFormations(
-  query: string,
+  query?: string,
+  rawTags?: string,
 ): Promise<FormationData[]> {
   const heroMap = await heroNameToId();
   // split query into words
-  const words = query.split(" ").map((x) => x.toLowerCase());
+  const words = query?.split(" ").map((x) => x.toLowerCase());
   // build our query arrays
   const queryWords: string[] = [];
   const heroIds: string[] = [];
-  words.forEach((word) => {
+  words?.forEach((word) => {
     if (word in heroMap) {
       heroIds.push(heroMap[word]);
       return;
     }
     queryWords.push(word);
   });
+  const tags = rawTags?.split(",");
 
-  const queryResponse = await drizzle.query.formations.findMany({
-    where: (formations, { like, and }) =>
-      and(
-        ...[
-          ...queryWords.map((word) => like(formations.name, `%${word}%`)),
-          ...heroIds.map((id) => like(formations.formation, `%${id}%`)),
-        ],
-      ),
-    with: {
-      votes: true,
-    },
-  });
+  let queryResponse;
+
+  if (queryWords.length > 0 || heroIds.length > 0) {
+    queryResponse = await drizzle.query.formations.findMany({
+      where: (formations, { like, and }) =>
+        and(
+          ...[
+            ...queryWords.map((word) => like(formations.name, `%${word}%`)),
+            ...heroIds.map((id) => like(formations.formation, `%${id}%`)),
+          ],
+        ),
+      with: {
+        votes: true,
+      },
+    });
+  } else {
+    // we only care about looking for tags
+    queryResponse = await drizzle.query.formations.findMany({
+      with: {
+        votes: true,
+      },
+    });
+  }
+
+  if (tags && tags.length > 0) {
+    queryResponse = queryResponse.filter((x) =>
+      tags.every((t) => x.tags.includes(t)),
+    );
+  }
 
   const searchFormations = await Promise.all(
     queryResponse.map(async (formation) => {
@@ -119,6 +138,7 @@ async function _mostPopularFormations(limit: number): Promise<FormationData[]> {
       artifact: formations.artifact,
       layout: formations.layout,
       userId: formations.userId,
+      tags: formations.tags,
     })
     .from(formations)
     .leftJoin(votes, eq(formations.id, votes.formationId))
@@ -146,6 +166,7 @@ type FormationCreateData = {
   artifact: string;
   layout: string;
   name: string;
+  tags: string[];
 };
 
 export async function createFormation(
@@ -158,6 +179,7 @@ export async function createFormation(
     layout: parseInt(formation.layout),
     userId: userId!,
     name: formation.name,
+    tags: formation.tags,
   };
   const createResponse = await drizzle
     .insert(formations)
@@ -190,11 +212,13 @@ export async function updateFormation(
       artifact: formation.artifact,
       layout: parseInt(formation.layout),
       name: formation.name,
+      tags: formation.tags,
     })
     .where(eq(formations.id, id))
     .execute();
 
   revalidatePath(`/formations/${id}`);
+  revalidatePath(`/search`);
 }
 
 export async function deleteFormation(id: number): Promise<void> {

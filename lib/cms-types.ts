@@ -35,6 +35,7 @@ export type MapsCmsData = {
 };
 
 export type CmsData = {
+  tags: string[];
   characters: CharacterCmsData;
   classes: ClassesCmsData;
   factions: FactionsCmsData;
