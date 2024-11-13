@@ -9,6 +9,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/components/ui/sonner";
 import Navbar from "@/components/Navbar";
 
+import { GoogleAnalytics } from "@next/third-parties/google";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -30,6 +32,7 @@ export default function RootLayout({
           <Toaster />
         </Providers>
         <Analytics />
+        <GoogleAnalytics gaId="G-DDWFXQBX9W" />
       </body>
     </html>
   );
