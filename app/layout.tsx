@@ -23,6 +23,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const googleAnalyticsId = process.env.NEXT_PUBLIC_GA_ID;
   return (
     <html lang="en">
       <body className={cn(inter.className, "dark")}>
@@ -32,7 +33,7 @@ export default function RootLayout({
           <Toaster />
         </Providers>
         <Analytics />
-        <GoogleAnalytics gaId="G-DDWFXQBX9W" />
+        {googleAnalyticsId && <GoogleAnalytics gaId={googleAnalyticsId} />}
       </body>
     </html>
   );
