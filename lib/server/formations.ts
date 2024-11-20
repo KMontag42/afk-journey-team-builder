@@ -66,51 +66,37 @@ export async function getFormationsForUserId(
 export async function searchFormations(
   query?: string,
   rawTags?: string,
+  rawCharacters?: string,
 ): Promise<FormationData[]> {
   const heroMap = await heroNameToId();
-  // split query into words
-  const words = query?.split(" ").map((x) => x.toLowerCase());
-  // build our query arrays
-  const queryWords: string[] = [];
-  const heroIds: string[] = [];
-  words?.forEach((word) => {
-    if (word in heroMap) {
-      heroIds.push(heroMap[word]);
-      return;
-    }
-    queryWords.push(word);
-  });
+
+  const heroIds = rawCharacters
+    ?.split(",")
+    .map((x) => heroMap[x.toLowerCase()]);
   const tags = rawTags?.split(",");
 
-  let queryResponse;
-
-  if (queryWords.length > 0 || heroIds.length > 0) {
-    queryResponse = await drizzle.query.formations.findMany({
-      where: (formations, { like, and }) =>
-        and(
-          ...[
-            ...queryWords.map((word) => like(formations.name, `%${word}%`)),
-            ...heroIds.map((id) => like(formations.formation, `%${id}%`)),
-          ],
-        ),
-      with: {
-        votes: true,
-      },
-    });
-  } else {
-    // we only care about looking for tags
-    queryResponse = await drizzle.query.formations.findMany({
-      with: {
-        votes: true,
-      },
-    });
-  }
-
-  if (tags && tags.length > 0) {
-    queryResponse = queryResponse.filter((x) =>
-      tags.every((t) => x.tags.includes(t)),
-    );
-  }
+  console.log(query, tags, heroIds);
+  const queryResponse = await drizzle.query.formations.findMany({
+    where: (formations, { like, and, or }) =>
+      and(
+        ...[
+          query ? like(formations.name, `%${query}%`) : undefined,
+          ...(tags ? tags.map((tag) => like(formations.tags, `%${tag}%`)) : []),
+          ...(heroIds
+            ? heroIds.map((id) =>
+                or(
+                  like(formations.formation, `%,${id},%`),
+                  like(formations.formation, `${id},%`),
+                  like(formations.formation, `%,${id}`),
+                ),
+              )
+            : []),
+        ],
+      ),
+    with: {
+      votes: true,
+    },
+  });
 
   const searchFormations = await Promise.all(
     queryResponse.map(async (formation) => {
