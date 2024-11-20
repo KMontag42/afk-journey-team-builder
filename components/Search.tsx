@@ -75,7 +75,7 @@ export default function Search({
     <div className="flex flex-col items-center md:px-0 md:container mx-auto mt-4">
       <form
         onSubmit={handleSearch}
-        className="flex md:w-[40vw] flex-col gap-2 px-2"
+        className="flex w-full md:w-[40vw] flex-col gap-2 md:px-2"
       >
         <Label
           htmlFor="name"
@@ -105,7 +105,7 @@ export default function Search({
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Formation name"
         />
-        <div className="flex gap-4">
+        <div className="flex flex-col md:flex-row gap-2 md:gap-4">
           <MultiSelect
             itemDescription={"tag"}
             items={allTags.map((x) => ({ name: x, value: x }))}
