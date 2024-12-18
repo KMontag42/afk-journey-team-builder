@@ -1,0 +1,73 @@
+{
+  "S+": [
+    { "name": "Phraesto\nФресто" },
+    { "name": "Smokey & Meerky\nСмоки и Мерки" }
+  ],
+  "S": [
+    { "name": "Lily May\nЛили Мей" },
+    { "name": "Harak\nХарак" },
+    { "name": "Ludovic\nЛюдвик" },
+    { "name": "Shakir\nШакир" },
+    { "name": "Mikola\nМикола" },
+    { "name": "Sonja\nСоня" }
+  ],
+  "A": [
+    { "name": "Odie\nОди" },
+    { "name": "Talene\nТалена" },
+    { "name": "Reinier\nРейнир" }
+  ],
+  "B": [
+    { "name": "Koko\nКоко" },
+    { "name": "Thoran\nТоран" },
+    { "name": "Vala\nВала" },
+    { "name": "Alsa\nАльса" },
+    { "name": "Lenya\nЛенья" },
+    { "name": "Florabelle\nФлорабель" },
+    { "name": "Sinbad\nСимбад" },
+    { "name": "Cassadee\nКассадия" },
+    { "name": "Lyca\nЛика" },
+    { "name": "Cecia\nЦессия" },
+    { "name": "Marilee\nМерилия" },
+    { "name": "Kruger\nКрюгер" },
+    { "name": "Korin\nКорин" }
+  ],
+  "C": [
+    { "name": "Scarlita\nСкарлита" },
+    { "name": "Eironn\nЭйрон" },
+    { "name": "Tasi\nТази" },
+    { "name": "Hewynn\nХьюинн" },
+    { "name": "Damian\nДамиан" },
+    { "name": "Brutus\nБрутус" },
+    { "name": "Arden\nАдрен" },
+    { "name": "Nara\nНара" },
+    { "name": "Ulmus\nУльмус" },
+    { "name": "Rowan\nРован" },
+    { "name": "Dionel\nДионель" },
+    { "name": "Silvina\nСильвина" },
+    { "name": "Berial\nБериал" },
+    { "name": "Carolina\nКаролина" },
+    { "name": "Lumont\nЛамонт" },
+    { "name": "Antandra\nАнтандра" },
+    { "name": "Soren\nСорен" },
+    { "name": "Parisa\nПариса" },
+    { "name": "Hodgkin\nХодкин" },
+    { "name": "Dunlingr\nДунглир" },
+    { "name": "Seth\nСет" },
+    { "name": "Lucius\nЛюций" },
+    { "name": "Granny Dahnie\nБабуля Дахни" },
+    { "name": "Fay\nФэй" },
+    { "name": "Walker\nУолкер" },
+    { "name": "Valen\nВален" },
+    { "name": "Viperian\nАспид" },
+    { "name": "Niru\nНиру" },
+    { "name": "Lucca\nЛюка" },
+    { "name": "Rhys\nРис" },
+    { "name": "Satrana\nСатрана" },
+    { "name": "Bryon\nБрайн" },
+    { "name": "Salazer\nСалазар" },
+    { "name": "Igor\nИгорь" },
+    { "name": "Atlanta\nАтланта" },
+    { "name": "Mirael\nМираэль" },
+    { "name": "Kafra\nКафра" }
+  ]
+}
