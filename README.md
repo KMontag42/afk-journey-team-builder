@@ -69,9 +69,42 @@ TURSO_AUTH_TOKEN=
 TURSO_DATABASE_URL=
 ```
 
-#### setting up your turso database
+### Setting up Your Turso Database
 
-> this needs to be updated with more detail, but you run the drizzle migrations
+1. **Create a Group on Turso**
+   - Go to [Turso](https://turso.tech) and log in or sign up.
+   - Create a new group for your project. When prompted to choose a provider, select **Fly.io**.
+
+2. **Create a Database in the Group**
+   - Within the group, set up a new database.
+   - Note down the database name for future reference.
+
+3. **Generate a Token for Your Database**
+   - Navigate to the database settings and press create token.
+   - After generating the token, you will receive the following:
+     - **TURSO_AUTH_TOKEN**: Your authentication token.
+     - **TURSO_DATABASE_URL**: The URL for your database.
+
+4. **Add Credentials to `.env.local`**
+   - Open the `.env.local` file in your project directory.
+   - At the following lines, add your Turso credentials:
+     ```bash
+     TURSO_AUTH_TOKEN=
+     TURSO_DATABASE_URL=
+     ```
+
+5. **Run Drizzle Migrations**
+   - Run the following command in your terminal to apply the Drizzle migrations to your database:
+     ```bash
+     npm run drizzle migrate
+     ```
+
+6. **Verify the Database Setup**
+   - Confirm that the migrations ran successfully and the database is populated with the required tables.
+
+7. **Troubleshooting**
+   - Double-check your credentials in `.env.local` for typos.
+   - Refer to the [Turso documentation](https://docs.turso.tech) for additional help if needed.
 
 #### setting up your clerk instance
 
