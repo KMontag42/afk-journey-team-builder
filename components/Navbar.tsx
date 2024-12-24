@@ -67,6 +67,15 @@ function Links({ pathname }: { pathname: string }) {
       Codes
     </Link>,
     <Link
+      href={RelativePageURLs.tierlist}
+      className={buttonVariants({
+        variant: pathname === RelativePageURLs.about ? "secondary" : "link",
+      })}
+      key="tierlist"
+    >
+      Tierlist
+    </Link>,
+    <Link
       href={RelativePageURLs.about}
       className={buttonVariants({
         variant: pathname === RelativePageURLs.about ? "secondary" : "link",
