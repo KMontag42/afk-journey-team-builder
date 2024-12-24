@@ -13,81 +13,57 @@ import SnowStomperTierData from "@/public/snowstomper-tier-data.json";
 import LoneGazeTierData from "@/public/lonegaze-tier-data.json";
 import AlphaBearTierData from "@/public/alphabear-tier-data.json";
 
+type SectionData = {
+  [tier: string]: { name: string; image?: string }[];
+};
+type Section = {
+  name: string;
+  value: string;
+  data: SectionData;
+};
+const Sections: Section[] = [
+  { name: "Overall", value: "overall", data: OverallTierData },
+  { name: "AFK Stages", value: "afk", data: AfkStageTierData },
+  { name: "Arena", value: "arena", data: ArenaTierData },
+  { name: "Supreme Arena", value: "supreme", data: SupremeArenaTierData },
+  { name: "Dream Realm", value: "dream", data: DreamRealmTierData },
+  { name: "Skyclops", value: "skyclops", data: SkyclopsTierData },
+  { name: "Croaker", value: "croaker", data: CroakerTierData },
+  { name: "Orson", value: "orson", data: OrsonTierData },
+  { name: "Crystal Beetle", value: "beetle", data: CrystalBeetleTierData },
+  { name: "Necrogragon", value: "necro", data: NecrogragonTierData },
+  { name: "Snow Stomper", value: "stomper", data: SnowStomperTierData },
+  { name: "Lone Gaze", value: "lone", data: LoneGazeTierData },
+  { name: "Alpha Bear", value: "bear", data: AlphaBearTierData },
+];
+const Tiers = ["S+", "S", "A", "B", "C"];
+
 export default async function TierlistPage() {
   return (
     <div className="container sm:container prose prose-invert">
       <Tabs defaultValue="overall" className="hidden sm:block">
         <TabsList>
-          <TabsTrigger value="overall">Overall</TabsTrigger>
-          <TabsTrigger value="afk">AFK Stages</TabsTrigger>
-          <TabsTrigger value="arena">Arena</TabsTrigger>
-          <TabsTrigger value="supreme">Supreme Arena</TabsTrigger>
-          <TabsTrigger value="dream">Dream Realm</TabsTrigger>
-          <TabsTrigger value="skyclops">Skyclops</TabsTrigger>
-          <TabsTrigger value="croaker">Croaker</TabsTrigger>
-          <TabsTrigger value="orson">Orson</TabsTrigger>
-          <TabsTrigger value="beetle">Crystal Beetle</TabsTrigger>
-          <TabsTrigger value="necro">Necrogragon</TabsTrigger>
-          <TabsTrigger value="stomper">Snow Stomper</TabsTrigger>
-          <TabsTrigger value="lone">Lone Gaze</TabsTrigger>
-          <TabsTrigger value="bear">Alpha Bear</TabsTrigger>
+          {Sections.map((x) => (
+            <>
+              <TabsTrigger value={x.value}>{x.name}</TabsTrigger>
+            </>
+          ))}
         </TabsList>
-        <TabsContent value="overall">
-          <TierlistSections title="Overall" tiers={OverallTierData} />
-        </TabsContent>
-        <TabsContent value="afk">
-          <TierlistSections title="AFK Stages" tiers={AfkStageTierData} />
-        </TabsContent>
-        <TabsContent value="arena">
-          <TierlistSections title="Arena" tiers={ArenaTierData} />
-        </TabsContent>
-        <TabsContent value="supreme">
-          <TierlistSections
-            title="Supreme Arena"
-            tiers={SupremeArenaTierData}
-          />
-        </TabsContent>
-        <TabsContent value="dream">
-          <TierlistSections title="Dream Realm" tiers={DreamRealmTierData} />
-        </TabsContent>
-        <TabsContent value="skyclops">
-          <TierlistSections title="Skyclops" tiers={SkyclopsTierData} />
-        </TabsContent>
-        <TabsContent value="croaker">
-          <TierlistSections title="Croaker" tiers={CroakerTierData} />
-        </TabsContent>
-        <TabsContent value="orson">
-          <TierlistSections title="Orson" tiers={OrsonTierData} />
-        </TabsContent>
-        <TabsContent value="beetle">
-          <TierlistSections
-            title="Crystal Beetle"
-            tiers={CrystalBeetleTierData}
-          />
-        </TabsContent>
-        <TabsContent value="necro">
-          <TierlistSections title="Necrogragon" tiers={NecrogragonTierData} />
-        </TabsContent>
-        <TabsContent value="stomper">
-          <TierlistSections title="Snow Stomper" tiers={SnowStomperTierData} />
-        </TabsContent>
-        <TabsContent value="lone">
-          <TierlistSections title="Lone Gaze" tiers={LoneGazeTierData} />
-        </TabsContent>
-        <TabsContent value="bear">
-          <TierlistSections title="Alpha Bear" tiers={AlphaBearTierData} />
-        </TabsContent>
+        {Sections.map((x) => (
+          <>
+            <TabsContent value={x.value}>
+              <TierlistSections title={x.name} tiers={x.data} />
+            </TabsContent>
+          </>
+        ))}
       </Tabs>
     </div>
   );
 }
 
-const Tiers = ["S+", "S", "A", "B", "C"];
 type TierlistSectionsProps = {
   title: string;
-  tiers?: {
-    [tier: string]: { name: string; image?: string }[];
-  };
+  tiers?: SectionData;
 };
 function TierlistSections({ title, tiers }: TierlistSectionsProps) {
   return (
