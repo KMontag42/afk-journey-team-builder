@@ -30,6 +30,7 @@ type SaveButtonProps = {
   name?: string;
   id?: number;
   tags?: string[];
+  formationShareId?: string;
 };
 
 export default function SaveButton({
@@ -40,6 +41,7 @@ export default function SaveButton({
   name,
   id,
   tags,
+  formationShareId,
 }: SaveButtonProps) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -69,6 +71,7 @@ export default function SaveButton({
       user_id: user.id,
       name: name.value,
       tags,
+      formationShareId,
     };
 
     const requestUrl = id ? `/api/formations/${id}` : "/api/formations";
@@ -85,6 +88,7 @@ export default function SaveButton({
       formation: formation.join(","),
       id: id || -1,
       tags: JSON.stringify(formationData.tags),
+      formationShareId: formationData.formationShareId || "",
     };
 
     try {
@@ -120,6 +124,7 @@ export default function SaveButton({
             className="px-4"
             onSubmit={handleSave}
             name={name}
+            formationShareId={formationShareId}
           />
           <DrawerFooter className="pt-2">
             <DrawerClose asChild>
@@ -136,7 +141,8 @@ function SaveFormationForm({
   className,
   onSubmit,
   name,
-}: React.ComponentProps<"form">) {
+  formationShareId,
+}: React.ComponentProps<"form"> & { formationShareId?: string }) {
   return (
     <form
       className={cn("grid items-center gap-4", className)}
@@ -149,6 +155,17 @@ function SaveFormationForm({
           id="name"
           placeholder="f2p Team"
           defaultValue={name}
+          required
+        />
+      </div>
+
+      <div className="grid gap-2">
+        <Label htmlFor="name">Formation Share ID</Label>
+        <Input
+          type="text"
+          id="formationShareId"
+          placeholder="1a2a3a"
+          defaultValue={formationShareId}
           required
         />
       </div>

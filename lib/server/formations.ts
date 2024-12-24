@@ -5,7 +5,7 @@ import { auth } from "@clerk/nextjs/server";
 
 import { type ClerkUser, getUser } from "@/lib/server/users";
 import { type FormationData } from "@/lib/formations";
-import { eq, sql, desc, and } from "drizzle-orm";
+import { eq, sql, desc } from "drizzle-orm";
 import { formations, votes, type FormationWithVotes } from "@/drizzle/schema";
 import { drizzleClient } from "@/lib/server/drizzle";
 import { heroNameToId } from "./cms-data";
@@ -125,6 +125,7 @@ async function _mostPopularFormations(limit: number): Promise<FormationData[]> {
       layout: formations.layout,
       userId: formations.userId,
       tags: formations.tags,
+      formationShareId: formations.formationShareId,
     })
     .from(formations)
     .leftJoin(votes, eq(formations.id, votes.formationId))
@@ -153,6 +154,7 @@ type FormationCreateData = {
   layout: string;
   name: string;
   tags: string[];
+  formationShareId?: string;
 };
 
 export async function createFormation(
@@ -166,6 +168,7 @@ export async function createFormation(
     userId: userId!,
     name: formation.name,
     tags: formation.tags,
+    formationShareId: formation.formationShareId,
   };
   const createResponse = await drizzle
     .insert(formations)
@@ -199,6 +202,7 @@ export async function updateFormation(
       layout: parseInt(formation.layout),
       name: formation.name,
       tags: formation.tags,
+      formationShareId: formation.formationShareId,
     })
     .where(eq(formations.id, id))
     .execute();
