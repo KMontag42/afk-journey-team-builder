@@ -28,7 +28,7 @@ export default function MobileTierlist() {
           ))}
         </SelectContent>
       </Select>
-      <div>
+      <div className="sm:hidden">
         <TierlistSection
           title={Sections[section].name}
           tiers={Sections[section].data}

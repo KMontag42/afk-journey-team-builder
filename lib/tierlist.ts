@@ -47,4 +47,15 @@ export const Sections: { [name: string]: Section } = {
   lone: { name: "Lone Gaze", value: "lone", data: LoneGazeTierData },
   bear: { name: "Alpha Bear", value: "bear", data: AlphaBearTierData },
 };
-export const Tiers = ["S+", "S", "A", "B", "C"];
+export type Tier = {
+  name: string;
+  bgName: string;
+  bgSection: string;
+};
+export const Tiers: { [name: string]: Tier } = {
+  "S+": { name: "S+", bgName: "#d85c5c", bgSection: "#ea9999" },
+  S: { name: "S", bgName: "#ea8e5c", bgSection: "#f5bf99" },
+  A: { name: "A", bgName: "#ffce5d", bgSection: "#ffe599" },
+  B: { name: "B", bgName: "#bbc167", bgSection: "#dadea1" },
+  C: { name: "C", bgName: "#82b570", bgSection: "#b6d7a8" },
+};

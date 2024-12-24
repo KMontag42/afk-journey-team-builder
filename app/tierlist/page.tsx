@@ -1,11 +1,4 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Sections } from "@/lib/tierlist";
 import { TierlistSection } from "@/components/TierlistSection";
 import MobileTierlist from "@/components/MobileTierlist";
