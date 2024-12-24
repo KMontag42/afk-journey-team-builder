@@ -1,5 +1,4 @@
 import { type SectionData, Tiers } from "@/lib/tierlist";
-import { DivideCircle } from "lucide-react";
 
 type TierlistSectionProps = {
   title: string;
