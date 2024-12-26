@@ -30,6 +30,7 @@ type SaveButtonProps = {
   name?: string;
   id?: number;
   tags?: string[];
+  formationShareId?: string;
 };
 
 export default function SaveButton({
@@ -40,6 +41,7 @@ export default function SaveButton({
   name,
   id,
   tags,
+  formationShareId,
 }: SaveButtonProps) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -47,9 +49,12 @@ export default function SaveButton({
   const handleSave = async (e: FormEvent) => {
     e.preventDefault();
 
-    const { name } = e.target as typeof e.target & {
+    const { name, formationShareId } = e.target as typeof e.target & {
       name: { value: string };
+      formationShareId: { value: string };
     };
+
+    console.log("formationShareId", formationShareId);
 
     if (formation.filter((x) => x != "").length === 0) {
       toast.error("Formation is empty!");
@@ -69,6 +74,7 @@ export default function SaveButton({
       user_id: user.id,
       name: name.value,
       tags,
+      formationShareId: formationShareId.value,
     };
 
     const requestUrl = id ? `/api/formations/${id}` : "/api/formations";
@@ -85,6 +91,7 @@ export default function SaveButton({
       formation: formation.join(","),
       id: id || -1,
       tags: JSON.stringify(formationData.tags),
+      formationShareId: formationData.formationShareId || "",
     };
 
     try {
@@ -120,6 +127,7 @@ export default function SaveButton({
             className="px-4"
             onSubmit={handleSave}
             name={name}
+            formationShareId={formationShareId}
           />
           <DrawerFooter className="pt-2">
             <DrawerClose asChild>
@@ -136,7 +144,8 @@ function SaveFormationForm({
   className,
   onSubmit,
   name,
-}: React.ComponentProps<"form">) {
+  formationShareId,
+}: React.ComponentProps<"form"> & { formationShareId?: string }) {
   return (
     <form
       className={cn("grid items-center gap-4", className)}
@@ -147,9 +156,21 @@ function SaveFormationForm({
         <Input
           type="text"
           id="name"
+          name="name"
           placeholder="f2p Team"
           defaultValue={name}
           required
+        />
+      </div>
+
+      <div className="grid gap-2">
+        <Label htmlFor="formationShareId">Formation Share ID</Label>
+        <Input
+          type="text"
+          id="formationShareId"
+          name="formationShareId"
+          placeholder="1a2a3a"
+          defaultValue={formationShareId}
         />
       </div>
       <Button type="submit">Save formation</Button>
