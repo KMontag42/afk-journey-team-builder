@@ -19,7 +19,8 @@ import { Badge } from "@/components/ui/badge";
 import LikeFormationButton from "@/components/LikeFormationButton";
 import DeleteFormationButton from "@/components/DeleteFormationButton";
 import ShareFormationButton from "@/components/ShareFormationButton";
-import { Edit2 } from "lucide-react";
+import { Copy, Edit2 } from "lucide-react";
+import CopyFormationShareId from "./CopyFormationShareId";
 
 type FormationCardProps = {
   data: FormationData;
@@ -42,8 +43,17 @@ export default function FormationCard({
   isLink,
   currentUserId,
 }: FormationCardProps) {
-  const { id, formation, artifact, username, user_image, name, votes, tags } =
-    data;
+  const {
+    id,
+    formation,
+    artifact,
+    username,
+    user_image,
+    name,
+    votes,
+    tags,
+    formationShareId,
+  } = data;
 
   const layout = Math.trunc(data.layout);
 
@@ -110,6 +120,9 @@ export default function FormationCard({
           <ShareFormationButton formationId={id} />
           {votes && (
             <LikeFormationButton formationId={id} liked={currentUserLiked} />
+          )}
+          {formationShareId && (
+            <CopyFormationShareId formationShareId={formationShareId} />
           )}
         </div>
       </CardFooter>
