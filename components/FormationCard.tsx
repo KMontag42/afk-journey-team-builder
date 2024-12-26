@@ -69,11 +69,16 @@ export default function FormationCard({
     <>
       <CardHeader>
         <CardTitle>
-          <div className="flex flex-col">
-            <p>{name}</p>
-            <div>
-              {tags && tags.map((tag) => <Badge key={tag}>{tag}</Badge>)}
+          <div className="flex flex-row justify-between">
+            <div className="flex flex-col">
+              <p>{name}</p>
+              <div>
+                {tags && tags.map((tag) => <Badge key={tag}>{tag}</Badge>)}
+              </div>
             </div>
+            {formationShareId && (
+              <CopyFormationShareId formationShareId={formationShareId} />
+            )}
           </div>
         </CardTitle>
       </CardHeader>
@@ -120,9 +125,6 @@ export default function FormationCard({
           <ShareFormationButton formationId={id} />
           {votes && (
             <LikeFormationButton formationId={id} liked={currentUserLiked} />
-          )}
-          {formationShareId && (
-            <CopyFormationShareId formationShareId={formationShareId} />
           )}
         </div>
       </CardFooter>

@@ -17,6 +17,7 @@ export default function CopyFormationShareId({
       }}
     >
       <Copy />
+      &nbsp;Copy import ID
     </Button>
   );
 }
