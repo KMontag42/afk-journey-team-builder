@@ -20,6 +20,7 @@ import LikeFormationButton from "@/components/LikeFormationButton";
 import DeleteFormationButton from "@/components/DeleteFormationButton";
 import ShareFormationButton from "@/components/ShareFormationButton";
 import { Edit2 } from "lucide-react";
+import CopyFormationShareId from "@/components/CopyFormationShareId";
 
 type FormationCardProps = {
   data: FormationData;
@@ -42,8 +43,17 @@ export default function FormationCard({
   isLink,
   currentUserId,
 }: FormationCardProps) {
-  const { id, formation, artifact, username, user_image, name, votes, tags } =
-    data;
+  const {
+    id,
+    formation,
+    artifact,
+    username,
+    user_image,
+    name,
+    votes,
+    tags,
+    formationShareId,
+  } = data;
 
   const layout = Math.trunc(data.layout);
 
@@ -59,11 +69,16 @@ export default function FormationCard({
     <>
       <CardHeader>
         <CardTitle>
-          <div className="flex flex-col">
-            <p>{name}</p>
-            <div>
-              {tags && tags.map((tag) => <Badge key={tag}>{tag}</Badge>)}
+          <div className="flex flex-row justify-between">
+            <div className="flex flex-col">
+              <p>{name}</p>
+              <div>
+                {tags && tags.map((tag) => <Badge key={tag}>{tag}</Badge>)}
+              </div>
             </div>
+            {formationShareId && (
+              <CopyFormationShareId formationShareId={formationShareId} />
+            )}
           </div>
         </CardTitle>
       </CardHeader>
