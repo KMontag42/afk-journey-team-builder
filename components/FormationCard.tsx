@@ -19,8 +19,8 @@ import { Badge } from "@/components/ui/badge";
 import LikeFormationButton from "@/components/LikeFormationButton";
 import DeleteFormationButton from "@/components/DeleteFormationButton";
 import ShareFormationButton from "@/components/ShareFormationButton";
-import { Copy, Edit2 } from "lucide-react";
-import CopyFormationShareId from "./CopyFormationShareId";
+import { Edit2 } from "lucide-react";
+import CopyFormationShareId from "@/components/CopyFormationShareId";
 
 type FormationCardProps = {
   data: FormationData;
