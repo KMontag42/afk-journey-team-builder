@@ -213,6 +213,7 @@ export default function Builder({ data, formation: _formation }: Props) {
               name={_formation?.name}
               id={_formation?.id}
               tags={tags}
+              formationShareId={_formation?.formationShareId}
             />
           )}
           <Button onClick={onDownloadButtonClick} className="h-8 px-2">
