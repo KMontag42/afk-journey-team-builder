@@ -160,7 +160,8 @@ export default function Builder({ data, formation: _formation }: Props) {
   }
 
   function onResetFormation() {
-    setFormation(new Array<string>(13).fill(""));
+    const numTiles = layouts[layout].numTiles;
+    setFormation(new Array<string>(numTiles).fill(""));
   }
 
   const Layout: ElementType = layouts[layout]?.Component ?? BaseLayout;
