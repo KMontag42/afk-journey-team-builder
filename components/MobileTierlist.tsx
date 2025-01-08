@@ -22,9 +22,9 @@ export default function MobileTierlist() {
         </SelectTrigger>
         <SelectContent>
           {Object.values(Sections).map((x) => (
-            <>
-              <SelectItem value={x.value}>{x.name}</SelectItem>
-            </>
+            <SelectItem value={x.value} key={x.name}>
+              {x.name}
+            </SelectItem>
           ))}
         </SelectContent>
       </Select>

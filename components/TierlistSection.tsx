@@ -1,4 +1,5 @@
 import { type SectionData, Tiers } from "@/lib/tierlist";
+import Image from "next/image";
 
 type TierlistSectionProps = {
   title: string;
@@ -27,8 +28,17 @@ export function TierlistSection({
           >
             {tiers &&
               tiers[tier.name].map((x) => (
-                <div className="whitespace-pre border rounded p-4" key={x.name}>
-                  {x.name}
+                <div
+                  className="relative w-12 h-24 sm:w-24 sm:h-36 border rounded"
+                  key={x.name}
+                >
+                  <Image
+                    src={`/tierlist/characters/${x.name.split("\n")[0].replaceAll(" ", "")}.png`}
+                    fill
+                    style={{ objectFit: "cover" }}
+                    alt={x.name}
+                    className="m-0"
+                  />
                 </div>
               ))}
           </div>
