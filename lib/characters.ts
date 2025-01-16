@@ -30,3 +30,5 @@ export type Character = {
 // not a huge fan of this, but it is simple and easy
 export const PhraestoId = "33";
 export const PhraestoCloneId = "34";
+export const ElijahAndLailiahId = "75";
+export const ElijahId = "76";
