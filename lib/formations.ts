@@ -21,7 +21,8 @@ export function updateSlotInFormation(
   const formationCharacters = formation.filter((character) => character !== "");
   const formationCopy = [...formation];
   const formationHasPhraesto = formation.includes(PhraestoId);
-  const maxCharacters = formationHasPhraesto ? 6 : 5;
+  const formationHasEL = formation.includes(ElijahAndLailiahId);
+  const maxCharacters = formationHasPhraesto || formationHasEL ? 6 : 5;
 
   if (characterInSlot === character.id) {
     // remove character from slot
