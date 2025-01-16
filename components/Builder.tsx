@@ -38,7 +38,6 @@ import SaveButton from "@/components/SaveButton";
 import ResetFormation from "@/components/ResetFormation";
 import MultiSelect from "./ui/multi-select";
 
-
 type Props = {
   data: CmsData;
   formation?: FormationData;
@@ -49,7 +48,7 @@ export default function Builder({ data, formation: _formation }: Props) {
   const allTags = data.tags;
 
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
-    null
+    null,
   );
   const [formation, setFormation] = useQueryState<string[]>("formation", {
     parse: (query: string): string[] => atob(query).split(","),
@@ -76,7 +75,7 @@ export default function Builder({ data, formation: _formation }: Props) {
   const [tags, setTags] = useState(_formation?.tags || []);
 
   const charactersNotInFormation = Object.values(Characters).filter(
-    (character) => !formation.includes(character.id)
+    (character) => !formation.includes(character.id),
   );
   const charactersInFormation = formation.map((x) => {
     if (x === "" || x === undefined) {
@@ -107,7 +106,7 @@ export default function Builder({ data, formation: _formation }: Props) {
       setFormation((formation) => formation.slice(0, newLayoutTiles));
     } else if (newLayoutTiles > existingLayoutTiles) {
       setFormation(
-        Array.from({ length: newLayoutTiles }).map((_, i) => formation[i])
+        Array.from({ length: newLayoutTiles }).map((_, i) => formation[i]),
       );
     }
     setLayout(newLayoutId);
@@ -262,7 +261,7 @@ export default function Builder({ data, formation: _formation }: Props) {
             return (
               <Image
                 key={character.name}
-                src={character.tileUrl}
+                src={character.imageUrl}
                 width={56}
                 height={64}
                 alt={character.name}

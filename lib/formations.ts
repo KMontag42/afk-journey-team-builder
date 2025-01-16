@@ -1,5 +1,11 @@
 import { FormationSelect, VoteSelect } from "@/drizzle/schema";
-import { type Character, PhraestoCloneId, PhraestoId } from "@/lib/characters";
+import {
+  type Character,
+  PhraestoCloneId,
+  PhraestoId,
+  ElijahAndLailiahId,
+  ElijahId,
+} from "@/lib/characters";
 import { ClerkUser } from "@/lib/server/users";
 
 export type FormationData = FormationSelect &
@@ -15,7 +21,8 @@ export function updateSlotInFormation(
   const formationCharacters = formation.filter((character) => character !== "");
   const formationCopy = [...formation];
   const formationHasPhraesto = formation.includes(PhraestoId);
-  const maxCharacters = formationHasPhraesto ? 6 : 5;
+  const formationHasEL = formation.includes(ElijahAndLailiahId);
+  const maxCharacters = formationHasPhraesto || formationHasEL ? 6 : 5;
 
   if (characterInSlot === character.id) {
     // remove character from slot
@@ -25,6 +32,11 @@ export function updateSlotInFormation(
       // remove Phraesto from formation
       formationCopy[formationCopy.indexOf(PhraestoId)] = "";
       formationCopy[formationCopy.indexOf(PhraestoCloneId)] = "";
+    }
+    if (character.name === "Elijah & Lailiah" || character.name === "Elijah") {
+      // remove Elijah & Lailiah from formation
+      formationCopy[formationCopy.indexOf(ElijahAndLailiahId)] = "";
+      formationCopy[formationCopy.indexOf(ElijahId)] = "";
     }
   } else if (characterIndex !== -1) {
     // swap characters
@@ -39,10 +51,25 @@ export function updateSlotInFormation(
       formationCopy[formationCopy.indexOf(PhraestoCloneId)] = "";
     }
 
+    if (
+      characterInSlot === ElijahAndLailiahId ||
+      characterInSlot === ElijahId
+    ) {
+      // remove Elijah & Lailiah from formation
+      formationCopy[formationCopy.indexOf(ElijahAndLailiahId)] = "";
+      formationCopy[formationCopy.indexOf(ElijahId)] = "";
+    }
+
     if (character.name === "Phraesto") {
       // add phraesto clone to first open slot
       const firstOpenSlot = formationCopy.indexOf("");
       formationCopy[firstOpenSlot] = PhraestoCloneId;
+    }
+
+    if (character.name === "Elijah & Lailiah") {
+      // add Elijah to first open slot
+      const firstOpenSlot = formationCopy.indexOf("");
+      formationCopy[firstOpenSlot] = ElijahId;
     }
   } else if (
     formationCharacters.length === maxCharacters &&
@@ -55,10 +82,25 @@ export function updateSlotInFormation(
       formationCopy[firstOpenSlot] = PhraestoCloneId;
     }
 
+    if (character.name === "Elijah & Lailiah") {
+      // add elija to first open slot
+      const firstOpenSlot = formationCopy.indexOf("");
+      formationCopy[firstOpenSlot] = ElijahId;
+    }
+
     if (characterInSlot === PhraestoId || characterInSlot === PhraestoCloneId) {
       // remove phraesto or clone from formation
       formationCopy[formationCopy.indexOf(PhraestoId)] = "";
       formationCopy[formationCopy.indexOf(PhraestoCloneId)] = "";
+    }
+
+    if (
+      characterInSlot === ElijahAndLailiahId ||
+      characterInSlot === ElijahId
+    ) {
+      // remove Elijah & Lailiah from formation
+      formationCopy[formationCopy.indexOf(ElijahAndLailiahId)] = "";
+      formationCopy[formationCopy.indexOf(ElijahId)] = "";
     }
   }
   return formationCopy;
