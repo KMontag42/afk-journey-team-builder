@@ -11,6 +11,14 @@ import { ClerkUser } from "@/lib/server/users";
 export type FormationData = FormationSelect &
   ClerkUser & { votes?: VoteSelect[]; voteCount?: number };
 
+function calculateMaxCharacters(formation: string[]): number {
+  const formationHasPhraesto = formation.includes(PhraestoId);
+  const formationHasEL = formation.includes(ElijahAndLailiahId);
+  const maxCharacters = formationHasPhraesto || formationHasEL ? 6 : 5;
+
+  return formationHasPhraesto && formationHasEL ? 7 : maxCharacters;
+}
+
 export function updateSlotInFormation(
   formation: string[],
   slot: number,
@@ -20,9 +28,7 @@ export function updateSlotInFormation(
   const characterIndex = formation.indexOf(character.id);
   const formationCharacters = formation.filter((character) => character !== "");
   const formationCopy = [...formation];
-  const formationHasPhraesto = formation.includes(PhraestoId);
-  const formationHasEL = formation.includes(ElijahAndLailiahId);
-  const maxCharacters = formationHasPhraesto || formationHasEL ? 6 : 5;
+  const maxCharacters = calculateMaxCharacters(formation);
 
   if (characterInSlot === character.id) {
     // remove character from slot
