@@ -17,8 +17,11 @@ export function TierlistSection({
       {Object.values(Tiers).map((tier) => (
         <section key={tier.name} className="flex flex-col sm:flex-row">
           <h2
-            style={{ backgroundColor: tier.bgName }}
-            className="m-0 p-2 sm:min-w-16 sm:text-center"
+            style={{
+              backgroundColor: tier.bgName,
+              font: "NotoSans",
+            }}
+            className="m-0 p-2 sm:min-w-20 sm:text-center text-5xl italic bold"
           >
             {tier.name}
           </h2>
