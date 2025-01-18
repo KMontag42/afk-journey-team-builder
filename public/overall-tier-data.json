@@ -1,74 +1,264 @@
 {
   "S+": [
-    { "name": "Lily May\nЛили Мей" },
-    { "name": "Phraesto\nФресто" },
-    { "name": "Harak\nХарак" },
-    { "name": "Odie\nОди" },
-    { "name": "Smokey & Meerky\nСмоки и Мерки" }
+    {
+      "name": "Phraesto",
+      "level": "S-Level"
+    },
+    {
+      "name": "Smokey & Meerky",
+      "level": "S-Level"
+    },
+    {
+      "name": "Harak",
+      "level": "S-Level"
+    },
+    {
+      "name": "Lily May",
+      "level": "S-Level"
+    }
   ],
   "S": [
-    { "name": "Ludovic\nЛюдвик" },
-    { "name": "Talene\nТалена" },
-    { "name": "Shakir\nШакир" },
-    { "name": "Reinier\nРейнир" },
-    { "name": "Koko\nКоко" },
-    { "name": "Scarlita\nСкарлита" }
+    {
+      "name": "Mikola",
+      "level": "S-Level"
+    },
+    {
+      "name": "Talene",
+      "level": "S-Level"
+    },
+    {
+      "name": "Shakir",
+      "level": "S-Level"
+    },
+    {
+      "name": "Ludovic",
+      "level": "S-Level"
+    },
+    {
+      "name": "Sonja",
+      "level": "S-Level"
+    },
+    {
+      "name": "Reinier",
+      "level": "S-Level"
+    }
   ],
   "A": [
-    { "name": "Eironn\nЭйрон" },
-    { "name": "Mikola\nМикола" },
-    { "name": "Thoran\nТоран" },
-    { "name": "Tasi\nТази" },
-    { "name": "Vala\nВала" },
-    { "name": "Hewynn\nХьюинн" },
-    { "name": "Damian\nДамиан" },
-    { "name": "Sonja\nСоня" },
-    { "name": "Temesia\nТемзия" },
-    { "name": "Brutus\nБрутус" },
-    { "name": "Arden\nАдрен" },
-    { "name": "Nara\nНара" },
-    { "name": "Ulmus\nУльмус" }
+    {
+      "name": "Odie",
+      "level": "A-Level"
+    },
+    {
+      "name": "Koko",
+      "level": "A-Level"
+    },
+    {
+      "name": "Tasi",
+      "level": "S-Level"
+    },
+    {
+      "name": "Scarlita",
+      "level": "S-Level"
+    },
+    {
+      "name": "Bonnie",
+      "level": "A-Level"
+    },
+    {
+      "name": "Temesia",
+      "level": "S-Level"
+    },
+    {
+      "name": "Eironn",
+      "level": "S-Level"
+    },
+    {
+      "name": "Arden",
+      "level": "A-Level"
+    },
+    {
+      "name": "Ulmus",
+      "level": "A-Level"
+    },
+    {
+      "name": "Thoran",
+      "level": "S-Level"
+    },
+    {
+      "name": "Alsa",
+      "level": "S-Level"
+    },
+    {
+      "name": "Lenya",
+      "level": "S-Level"
+    },
+    {
+      "name": "Florabelle",
+      "level": "S-Level"
+    },
+    {
+      "name": "Rowan",
+      "level": "S-Level"
+    },
+    {
+      "name": "Vala",
+      "level": "S-Level"
+    },
+    {
+      "name": "Dionel",
+      "level": "S-Level"
+    }
   ],
   "B": [
-    { "name": "Alsa\nАльса" },
-    { "name": "Lenya\nЛенья" },
-    { "name": "Florabelle\nФлорабель" },
-    { "name": "Rowan\nРован" },
-    { "name": "Dionel\nДионель" },
-    { "name": "Silvina\nСильвина" },
-    { "name": "Berial\nБериал" },
-    { "name": "Carolina\nКаролина" },
-    { "name": "Lumont\nЛамонт" },
-    { "name": "Sinbad\nСимбад" },
-    { "name": "Cassadee\nКассадия" },
-    { "name": "Antandra\nАнтандра" },
-    { "name": "Soren\nСорен" },
-    { "name": "Parisa\nПариса" },
-    { "name": "Lyca\nЛика" },
-    { "name": "Cecia\nЦессия" },
-    { "name": "Hodgkin\nХодкин" }
+    {
+      "name": "Hewynn",
+      "level": "S-Level"
+    },
+    {
+      "name": "Berial",
+      "level": "S-Level"
+    },
+    {
+      "name": "Brutus",
+      "level": "S-Level"
+    },
+    {
+      "name": "Carolina",
+      "level": "S-Level"
+    },
+    {
+      "name": "Damian",
+      "level": "A-Level"
+    },
+    {
+      "name": "Dunlingr",
+      "level": "S-Level"
+    },
+    {
+      "name": "Antandra",
+      "level": "A-Level"
+    },
+    {
+      "name": "Cassadee",
+      "level": "S-Level"
+    },
+    {
+      "name": "Parisa",
+      "level": "A-Level"
+    },
+    {
+      "name": "Lyca",
+      "level": "A-Level"
+    },
+    {
+      "name": "Cecia",
+      "level": "S-Level"
+    },
+    {
+      "name": "Hugin",
+      "level": "A-Level"
+    },
+    {
+      "name": "Silvina",
+      "level": "A-Level"
+    },
+    {
+      "name": "Lumont",
+      "level": "S-Level"
+    },
+    {
+      "name": "Sinbad",
+      "level": "A-Level"
+    },
+    {
+      "name": "Soren",
+      "level": "A-Level"
+    },
+    {
+      "name": "Niru",
+      "level": "A-Level"
+    }
   ],
   "C": [
-    { "name": "Marilee\nМерилия" },
-    { "name": "Dunlingr\nДунглир" },
-    { "name": "Kruger\nКрюгер" },
-    { "name": "Seth\nСет" },
-    { "name": "Lucius\nЛюций" },
-    { "name": "Granny Dahnie\nБабуля Дахни" },
-    { "name": "Korin\nКорин" },
-    { "name": "Fay\nФэй" },
-    { "name": "Walker\nУолкер" },
-    { "name": "Valen\nВален" },
-    { "name": "Viperian\nАспид" },
-    { "name": "Niru\nНиру" },
-    { "name": "Lucca\nЛюка" },
-    { "name": "Rhys\nРис" },
-    { "name": "Satrana\nСатрана" },
-    { "name": "Bryon\nБрайн" },
-    { "name": "Salazer\nСалазар" },
-    { "name": "Igor\nИгорь" },
-    { "name": "Atlanta\nАтланта" },
-    { "name": "Mirael\nМираэль" },
-    { "name": "Kafra\nКафра" }
+    {
+      "name": "Marilee",
+      "level": "A-Level"
+    },
+    {
+      "name": "Lucius",
+      "level": "A-Level"
+    },
+    {
+      "name": "Lucca",
+      "level": "A-Level"
+    },
+    {
+      "name": "Granny Dahnie",
+      "level": "S-Level"
+    },
+    {
+      "name": "Kruger",
+      "level": "A-Level"
+    },
+    {
+      "name": "Korin",
+      "level": "A-Level"
+    },
+    {
+      "name": "Seth",
+      "level": "A-Level"
+    },
+    {
+      "name": "Viperian",
+      "level": "A-Level"
+    },
+    {
+      "name": "Hodgkin",
+      "level": "S-Level"
+    },
+    {
+      "name": "Walker",
+      "level": "A-Level"
+    },
+    {
+      "name": "Rhys",
+      "level": "S-Level"
+    },
+    {
+      "name": "Satrana",
+      "level": "A-Level"
+    },
+    {
+      "name": "Fay",
+      "level": "A-Level"
+    },
+    {
+      "name": "Bryon",
+      "level": "S-Level"
+    },
+    {
+      "name": "Valen",
+      "level": "A-Level"
+    },
+    {
+      "name": "Salazer",
+      "level": "A-Level"
+    },
+    {
+      "name": "Igor",
+      "level": "S-Level"
+    },
+    {
+      "name": "Atlanta",
+      "level": "S-Level"
+    },
+    {
+      "name": "Mirael",
+      "level": "A-Level"
+    },
+    {
+      "name": "Kafra",
+      "level": "A-Level"
+    }
   ]
 }

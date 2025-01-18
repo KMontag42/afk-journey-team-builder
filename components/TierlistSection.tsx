@@ -37,7 +37,7 @@ export function TierlistSection({
                 >
                   <Image
                     src={
-                      x.tier === "S"
+                      x.level === "S-Level"
                         ? "/tierlist/S_Rank.png"
                         : "/tierlist/A_Rank.png"
                     }
