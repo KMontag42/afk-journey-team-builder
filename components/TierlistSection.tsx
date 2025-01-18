@@ -19,7 +19,6 @@ export function TierlistSection({
           <h2
             style={{
               backgroundColor: tier.bgName,
-              font: "NotoSans",
             }}
             className="m-0 p-2 sm:min-w-20 sm:text-center text-5xl italic bold"
           >
