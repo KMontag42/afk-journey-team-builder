@@ -22,30 +22,30 @@ export type Section = {
 };
 export const Sections: { [name: string]: Section } = {
   overall: { name: "Overall", value: "overall", data: OverallTierData },
-  afk: { name: "AFK Stages", value: "afk", data: AfkStageTierData },
-  arena: { name: "Arena", value: "arena", data: ArenaTierData },
-  supreme: {
-    name: "Supreme Arena",
-    value: "supreme",
-    data: SupremeArenaTierData,
-  },
-  dream: { name: "Dream Realm", value: "dream", data: DreamRealmTierData },
-  skyclops: { name: "Skyclops", value: "skyclops", data: SkyclopsTierData },
-  croaker: { name: "Croaker", value: "croaker", data: CroakerTierData },
-  orson: { name: "Orson", value: "orson", data: OrsonTierData },
-  beetle: {
-    name: "Crystal Beetle",
-    value: "beetle",
-    data: CrystalBeetleTierData,
-  },
-  necro: { name: "Necrogragon", value: "necro", data: NecrogragonTierData },
-  stomper: {
-    name: "Snow Stomper",
-    value: "stomper",
-    data: SnowStomperTierData,
-  },
-  lone: { name: "Lone Gaze", value: "lone", data: LoneGazeTierData },
-  bear: { name: "Alpha Bear", value: "bear", data: AlphaBearTierData },
+  // afk: { name: "AFK Stages", value: "afk", data: AfkStageTierData },
+  // arena: { name: "Arena", value: "arena", data: ArenaTierData },
+  // supreme: {
+  //   name: "Supreme Arena",
+  //   value: "supreme",
+  //   data: SupremeArenaTierData,
+  // },
+  // dream: { name: "Dream Realm", value: "dream", data: DreamRealmTierData },
+  // skyclops: { name: "Skyclops", value: "skyclops", data: SkyclopsTierData },
+  // croaker: { name: "Croaker", value: "croaker", data: CroakerTierData },
+  // orson: { name: "Orson", value: "orson", data: OrsonTierData },
+  // beetle: {
+  //   name: "Crystal Beetle",
+  //   value: "beetle",
+  //   data: CrystalBeetleTierData,
+  // },
+  // necro: { name: "Necrogragon", value: "necro", data: NecrogragonTierData },
+  // stomper: {
+  //   name: "Snow Stomper",
+  //   value: "stomper",
+  //   data: SnowStomperTierData,
+  // },
+  // lone: { name: "Lone Gaze", value: "lone", data: LoneGazeTierData },
+  // bear: { name: "Alpha Bear", value: "bear", data: AlphaBearTierData },
 };
 export type Tier = {
   name: string;
