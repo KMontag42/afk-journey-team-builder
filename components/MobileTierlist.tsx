@@ -16,7 +16,7 @@ export default function MobileTierlist() {
 
   return (
     <>
-      <Select defaultValue="overall" onValueChange={setSection}>
+      {/*<Select defaultValue="overall" onValueChange={setSection}>
         <SelectTrigger className="sm:hidden">
           <SelectValue placeholder="Overall" />
         </SelectTrigger>
@@ -27,7 +27,7 @@ export default function MobileTierlist() {
             </SelectItem>
           ))}
         </SelectContent>
-      </Select>
+      </Select>*/}
       <div className="sm:hidden">
         <TierlistSection
           title={Sections[section].name}
