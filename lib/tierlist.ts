@@ -13,7 +13,7 @@ import LoneGazeTierData from "@/public/lonegaze-tier-data.json";
 import AlphaBearTierData from "@/public/alphabear-tier-data.json";
 
 export type SectionData = {
-  [tier: string]: { name: string; image?: string }[];
+  [tier: string]: { name: string; image?: string; tier?: string }[];
 };
 export type Section = {
   name: string;
