@@ -17,8 +17,10 @@ export function TierlistSection({
       {Object.values(Tiers).map((tier) => (
         <section key={tier.name} className="flex flex-col sm:flex-row">
           <h2
-            style={{ backgroundColor: tier.bgName }}
-            className="m-0 p-2 sm:min-w-16 sm:text-center"
+            style={{
+              backgroundColor: tier.bgName,
+            }}
+            className="m-0 p-2 sm:min-w-20 sm:text-center text-5xl italic bold"
           >
             {tier.name}
           </h2>
@@ -29,13 +31,27 @@ export function TierlistSection({
             {tiers &&
               tiers[tier.name].map((x) => (
                 <div
-                  className="relative w-12 h-24 sm:w-24 sm:h-36 border rounded"
+                  className="relative w-12 h-24 sm:w-24 sm:h-36"
                   key={x.name}
                 >
                   <Image
-                    src={`/tierlist/characters/${x.name.split("\n")[0].replaceAll(" ", "")}.png`}
+                    src={
+                      x.level === "S-Level"
+                        ? "/tierlist/S_Rank.png"
+                        : "/tierlist/A_Rank.png"
+                    }
                     fill
                     style={{ objectFit: "cover" }}
+                    alt="S Rank"
+                    className="m-0"
+                  />
+                  <Image
+                    src={`/tierlist/characters/${x.name.split("\n")[0].replaceAll(" ", "")}.png`}
+                    fill
+                    style={{
+                      objectFit: "cover",
+                      clipPath: "inset(5px 5px 10px)",
+                    }}
                     alt={x.name}
                     className="m-0"
                   />
