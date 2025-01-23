@@ -38,6 +38,20 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
       <div
         style={{
           display: "flex",
+          position: "absolute",
+          top: "100px",
+          left: "40px",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "8px",
+          fontSize: "24px",
+        }}
+      >
+        {formation.title}
+      </div>
+      <div
+        style={{
+          display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
