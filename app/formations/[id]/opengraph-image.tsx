@@ -110,9 +110,7 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
           justifyContent: "center",
           alignItems: "center",
           gap: "8px",
-          fontSize: "36px",
-          width: "240px",
-          wordWrap: "break-word",
+          fontSize: "24px",
         }}
       >
         {formation.tags.map((x: string) => (
