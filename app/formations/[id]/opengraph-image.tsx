@@ -47,7 +47,7 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
           fontSize: "24px",
         }}
       >
-        {formation.title}
+        {formation.name}
       </div>
       <div
         style={{
