@@ -40,13 +40,15 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
           display: "flex",
           position: "absolute",
           top: "40px",
-          marginRight: "40px",
-          marginLeft: "40px",
-          justifyContent: "center",
-          alignItems: "center",
+          paddingRight: "40px",
+          paddingLeft: "40px",
           gap: "8px",
-          fontSize: "32px",
+          fontSize: "48px",
           width: "100%",
+          textAlign: "center",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
         }}
       >
         {formation.name}
@@ -110,15 +112,28 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
           flexDirection: "column",
           position: "absolute",
           right: "40px",
-          justifyContent: "center",
+          paddingBottom: "100px",
+          justifyContent: "flex-end",
           alignItems: "flex-end",
           fontSize: "24px",
           fontWeight: "bold",
           height: "100%",
+          gap: "8px",
         }}
       >
         {formation.tags.map((x: string) => (
-          <p key={x}>{x}</p>
+          <p
+            key={x}
+            style={{
+              background: "white",
+              color: "black",
+              padding: "4px 12px",
+              borderRadius: "8px",
+              margin: "0",
+            }}
+          >
+            {x}
+          </p>
         ))}
       </div>
     </div>
