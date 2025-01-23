@@ -38,10 +38,29 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
       <div
         style={{
           display: "flex",
+          position: "absolute",
+          top: "40px",
+          paddingRight: "40px",
+          paddingLeft: "40px",
+          gap: "8px",
+          fontSize: "48px",
+          width: "100%",
+          textAlign: "center",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}
+      >
+        {formation.name}
+      </div>
+      <div
+        style={{
+          display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           marginLeft: "96px",
+          marginTop: "50px",
           gap: "2px",
         }}
       >
@@ -87,6 +106,36 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
         />
         {formation.username}
       </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          position: "absolute",
+          right: "40px",
+          paddingBottom: "100px",
+          justifyContent: "flex-end",
+          alignItems: "flex-end",
+          fontSize: "24px",
+          fontWeight: "bold",
+          height: "100%",
+          gap: "8px",
+        }}
+      >
+        {formation.tags.map((x: string) => (
+          <p
+            key={x}
+            style={{
+              background: "white",
+              color: "black",
+              padding: "4px 12px",
+              borderRadius: "8px",
+              margin: "0",
+            }}
+          >
+            {x}
+          </p>
+        ))}
+      </div>
     </div>
   );
 }
@@ -122,7 +171,7 @@ export default async function FormationOpenGraphImage({
     ),
     {
       width: 1200,
-      height: 630,
+      height: 730,
     },
   );
 }
