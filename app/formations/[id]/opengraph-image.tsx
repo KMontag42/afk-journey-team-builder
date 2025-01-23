@@ -45,8 +45,6 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
           alignItems: "center",
           gap: "8px",
           fontSize: "36px",
-          width: "240px",
-          wordWrap: "break-word",
         }}
       >
         {formation.name}
@@ -102,6 +100,26 @@ function ServerFormation({ formation, characters, map, artifact }: any) {
           alt={formation.username}
         />
         {formation.username}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          position: "absolute",
+          top: "100px",
+          right: "40px",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "8px",
+          fontSize: "36px",
+          width: "240px",
+          wordWrap: "break-word",
+        }}
+      >
+        {formation.tags.map((x: string) => (
+          <>
+            <p>{x}</p>
+          </>
+        ))}
       </div>
     </div>
   );
