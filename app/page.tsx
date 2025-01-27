@@ -31,6 +31,27 @@ export default async function Home() {
             </Card>
             <Card className="bg-slate-900 pt-6">
               <CardContent>
+                <div className="flex justify-between text-center">
+                  <Link className="underline" href="https://x.com/Analytica_GG">
+                    Twitter
+                  </Link>
+                  <Link
+                    className="underline"
+                    href="https://www.reddit.com/r/Analytica/"
+                  >
+                    Reddit
+                  </Link>
+                  <Link
+                    className="underline"
+                    href="https://discord.gg/analytica"
+                  >
+                    Discord
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="bg-slate-900 pt-6">
+              <CardContent>
                 <Disclaimer />
               </CardContent>
             </Card>
