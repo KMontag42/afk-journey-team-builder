@@ -16,6 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Analytica.gg",
   description: "The Premier AFK Community Homepage",
+  other: { "google-adsense-account": "ca-pub-9844195965003561" },
 };
 
 export default function RootLayout({
