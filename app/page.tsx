@@ -14,10 +14,12 @@ export default async function Home() {
       <Card className="w-full bg-slate-900 pt-6">
         <CardContent className="flex flex-row flex-wrap gap-y-2 items-center justify-center">
           <span className="text-md text-center font-bold">
-            The Builder has moved! Build your formations to share here:
+            Check out our affiliate, Lootbar, for all your in-game purchases!
           </span>
           <Button variant="analytica" className="ml-4" asChild>
-            <Link href="/builder">Take me there!</Link>
+            <Link href="https://lootbar.gg/top-up/afk-journey?aff_short=Analytica">
+              Take me there!
+            </Link>
           </Button>
         </CardContent>
       </Card>
@@ -46,6 +48,12 @@ export default async function Home() {
                     href="https://discord.gg/analytica"
                   >
                     Discord
+                  </Link>
+                  <Link
+                    href="https://lootbar.gg/top-up/afk-journey?aff_short=Analytica"
+                    className="underline"
+                  >
+                    Lootbar
                   </Link>
                 </div>
               </CardContent>

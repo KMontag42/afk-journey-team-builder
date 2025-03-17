@@ -31,6 +31,12 @@ function Links({ pathname }: { pathname: string }) {
 
   const defaultLinks = [
     <Link
+      href="https://lootbar.gg/top-up/afk-journey?aff_short=Analytica"
+      key="lootbar"
+    >
+      Lootbar
+    </Link>,
+    <Link
       href={RelativePageURLs.builder}
       className={buttonVariants({
         variant: pathname === RelativePageURLs.builder ? "secondary" : "link",

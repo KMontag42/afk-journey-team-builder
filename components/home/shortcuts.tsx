@@ -2,7 +2,7 @@
 
 import { tekImages } from "@/lib/images";
 import { RelativePageURLs } from "@/lib/pages";
-import { BookMarked, Boxes, CodeXml, ListTodo } from "lucide-react";
+import { BookMarked, Boxes, CodeXml, ListTodo, DollarSign } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,6 +11,15 @@ export default function Shortcuts() {
     <>
       <div className="text-xl font-bold text-center pb-4">Shortcuts</div>
       <div className="grid grid-cols-3 gap-y-8 text-atekgold">
+        <Link
+          href="https://lootbar.gg/top-up/afk-journey?aff_short=Analytica"
+          key="lootbar"
+        >
+          <div className="flex flex-col items-center">
+            <DollarSign />
+            <span className="text-atekwhite pt-2">Lootbar</span>
+          </div>
+        </Link>
         <Link href={RelativePageURLs.builder}>
           <div className="flex flex-col items-center">
             <Boxes />
