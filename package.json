@@ -8,7 +8,7 @@
     "lint": "next lint",
     "start": "next start",
     "drizzle": "dotenvx run -f .env.local -- drizzle-kit",
-    "vercel-build": "next build && drizzle-kit migrate",
+    "vercel-build": "next build",
     "format": "prettier -w ."
   },
   "dependencies": {
